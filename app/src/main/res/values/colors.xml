@@ -3,4 +3,22 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorYellow">#FFC82F</color>
+    <color name="colorPageTitleGrayHintProgressionIcon">#8D8D8D</color>
+    <color name="colorPageIconFilterItem">#717171</color>
+    <color name="colorJobTitle">#2799AB</color>
+    <color name="colorJobDestTitle">#A5AAAD</color>
+    <color name="colorJobDeadlineSafe">#7ED321</color>
+    <color name="colorJobDeadlineUrgent">#F5658F</color>
+    <color name="colorFilterContentTitle">#AAAAAA</color>
+    <color name="colorRegLogIconHint">#C6C6C6</color>
+    <color name="colorRegLogHintText">#E2E2E2</color>
+    <color name="colorValidateTexr">#FA7470</color>
+    <color name="colorProgressionBarSeleted">#F08684</color>
+    <color name="colorToggleBtn">#A8C45C</color>
+    <color name="colorResumeIcn">#F28500</color>
+    <color name="colorTermOfUseIcn">#467FD7</color>
+    <color name="colorPrivatePrivacyIcn">#FFE16B</color>
+    <color name="colorFilterItemSelected">#4DD0E1</color>
+    <color name="black_alpha">#6d6d6d</color>
 </resources>
