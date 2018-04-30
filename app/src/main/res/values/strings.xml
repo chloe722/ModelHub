@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Jeeva</string>
+    <string name="Home">Home</string>
+    <string name="join_us_be_the_memebr_for_free">Join Us! Be the memebr for free!</string>
+    <string name="or">or</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="jeeva">Jeeva</string>
+    <string name="already_have_an_account">Already have an account?</string>
 </resources>
