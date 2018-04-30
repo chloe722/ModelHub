@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/JeevaFirstPage"
+    android:background="@drawable/jeeva_first_page"
     tools:context="thhsu.chloe.jeeva.activities.FirstPageActivity">
 
     <TextView
