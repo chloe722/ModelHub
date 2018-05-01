@@ -6,6 +6,6 @@
 
     <item android:drawable="@drawable/shadow"/>
     <item
-        android:drawable="@drawable/rounded_shape"
+        android:drawable="@drawable/yellow_rounded_shape"
         android:bottom="4dp" />
 </layer-list>
