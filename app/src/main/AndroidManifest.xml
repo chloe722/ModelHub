@@ -4,6 +4,7 @@
     package="thhsu.chloe.jeeva">
 
     <application
+        android:name=".Jeeva"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,14 +24,19 @@
 
         <activity android:name=".activities.FirstPageActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            <!--<intent-filter>-->
+
+                <!--&lt;!&ndash;<action android:name="android.intent.action.VIEW" />&ndash;&gt;-->
+                <!--&lt;!&ndash;<category android:name="android.intent.category.DEFAULT" />&ndash;&gt;-->
+            <!--</intent-filter>-->
         </activity>
 
         <activity android:name=".activities.BaseActivity"
             android:exported="true"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

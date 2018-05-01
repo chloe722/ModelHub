@@ -3,9 +3,30 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#ffffff</item>
         <item name="colorPrimaryDark">@color/colorYellow</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!--<style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+        <!--&lt;!&ndash; android:textColorPrimary is the color of the title text in the Toolbar  &ndash;&gt;-->
+        <!--<item name="android:textColorPrimary">@android:color/holo_blue_light</item>-->
+        <!--&lt;!&ndash; actionMenuTextColor is the color of the text of action (menu) items  &ndash;&gt;-->
+        <!--<item name="actionMenuTextColor">@android:color/holo_green_light</item>-->
+        <!--&lt;!&ndash; Tints the input fields like checkboxes and text fields &ndash;&gt;-->
+        <!--<item name="colorAccent">#111111</item>-->
+        <!--&lt;!&ndash; Applies to views in their normal state. &ndash;&gt;-->
+        <!--<item name="colorControlNormal">#111111</item>-->
+        <!--&lt;!&ndash; Applies to views in their activated state (i.e checked or switches) &ndash;&gt;-->
+        <!--<item name="colorControlActivated">#111111</item>-->
+        <!--&lt;!&ndash; Applied to framework control highlights (i.e ripples or list selectors) &ndash;&gt;-->
+        <!--<item name="colorControlHighlight">#111111</item>-->
+
+        <!--&lt;!&ndash; Enable these below if you want clicking icons to trigger a ripple effect &ndash;&gt;-->
+        <!--&lt;!&ndash;-->
+        <!--<item name="selectableItemBackground">?android:selectableItemBackground</item>-->
+        <!--<item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>-->
+        <!--&ndash;&gt;-->
+    <!--</style>-->
 
 </resources>

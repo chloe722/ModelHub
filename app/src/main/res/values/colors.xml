@@ -12,6 +12,7 @@
     <color name="colorJobDeadlineUrgent">#F5658F</color>
     <color name="colorFilterContentTitle">#AAAAAA</color>
     <color name="colorRegLogIconHint">#C6C6C6</color>
+    <color name="colorHrLine">#e7e7e7</color>
     <color name="colorRegLogHintText">#E2E2E2</color>
     <color name="colorValidateTexr">#FA7470</color>
     <color name="colorProgressionBarSeleted">#F08684</color>
@@ -21,4 +22,5 @@
     <color name="colorPrivatePrivacyIcn">#FFE16B</color>
     <color name="colorFilterItemSelected">#4DD0E1</color>
     <color name="black_alpha">#6d6d6d</color>
+    <color name="colorButtonNavInactive">#8D8D8D</color>
 </resources>
