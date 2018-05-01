@@ -1,13 +1,14 @@
-package thhsu.chloe.jeeva.SignInTab;
+package thhsu.chloe.jeeva.Home;
 
 import thhsu.chloe.jeeva.BasePresenter;
 import thhsu.chloe.jeeva.BaseView;
 
 /**
- * Created by Chloe on 4/30/2018.
+ * Created by Chloe on 5/1/2018.
  */
 
-public interface SignInTabContract  {
+public interface HomeContract {
+
     interface View extends BaseView<Presenter>{
 
     }

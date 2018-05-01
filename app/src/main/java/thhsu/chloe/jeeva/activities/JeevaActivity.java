@@ -1,16 +1,20 @@
 package thhsu.chloe.jeeva.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 import thhsu.chloe.jeeva.JeevaContract;
+import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
 
 /**
@@ -23,10 +27,19 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private Toolbar mToolbar;
     private BottomNavigationView mButtomNavigationView;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        init();
+    }
+
     private void init(){
         setContentView(R.layout.activity_main);
         setBottomNavigationView();
         setToolbar();
+
+        mPresenter = new JeevaPresenter(this, getFragmentManager());
         mPresenter.start();
     }
 
@@ -53,6 +66,12 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         mToolbarTitle.setText(title);
     }
 
+//    public void setToolbarVisibility(boolean isVisible){
+//        if(mToolbar != null){
+//            mToolbar.setVisibility(isVisible) ? View.VISIBLE: View.GONE;
+//        }
+//    }
+
     @Override
     public void setPresenter(JeevaContract.Presenter presenter) {
         mPresenter = presenter;
@@ -76,6 +95,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     }
 
     @Override
+    public void showSignInTabPageUi() {
+        setToolbarTitle("Sign Up or Sign In");
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
@@ -88,8 +112,12 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
                 return true;
 
             case R.id.action_profile:
-                mPresenter.transToProfile();
+                mPresenter.transToSignInTabPage();
                 return true;
+
+//            case R.id.action_profile:
+//                mPresenter.transToProfile();
+//                return true;
         }
         return false;
     }
