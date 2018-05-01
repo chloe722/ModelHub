@@ -8,8 +8,14 @@ import thhsu.chloe.jeeva.BaseView;
  */
 
 public interface ProfileContract {
+
     interface View extends BaseView<Presenter> {
 
     }
-    interface Presenter extends BasePresenter{}
+
+    interface Presenter extends BasePresenter{
+
+        void result(int requestCode, int resultCode);
+    }
+
 }

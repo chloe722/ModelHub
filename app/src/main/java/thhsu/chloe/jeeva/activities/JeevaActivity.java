@@ -111,13 +111,13 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
                 mPresenter.transToSavedJob();
                 return true;
 
-            case R.id.action_profile:
-                mPresenter.transToSignInTabPage();
-                return true;
-
 //            case R.id.action_profile:
-//                mPresenter.transToProfile();
+//                mPresenter.transToSignInTabPage();
 //                return true;
+
+            case R.id.action_profile:
+                mPresenter.transToProfile();
+                return true;
         }
         return false;
     }

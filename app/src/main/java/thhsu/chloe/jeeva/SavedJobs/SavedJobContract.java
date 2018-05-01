@@ -11,5 +11,7 @@ import thhsu.chloe.jeeva.JeevaContract;
 public interface SavedJobContract {
     interface View extends BaseView<Presenter>{}
 
-    interface Presenter extends BasePresenter{}
+    interface Presenter extends BasePresenter{
+        void result(int requestCode, int resultCode);
+    }
 }
