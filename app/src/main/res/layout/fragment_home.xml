@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
+    <TextView
+        android:id="@+id/horizontal_view_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="Recommend"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorResumeIcn"/>
 
         <android.support.v7.widget.RecyclerView
-
+            android:id="@+id/home_horizontal_recyclerview"
             android:layout_height="200dp"
             android:layout_width="match_parent" >
         </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/vertical_view_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jobs"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorResumeIcn"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_vertical_recyclerview"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" >
+    </android.support.v7.widget.RecyclerView>
 
 
-    </android.support.constraint.ConstraintLayout>
-
-
-</FrameLayout>
+</LinearLayout>
 
 
 

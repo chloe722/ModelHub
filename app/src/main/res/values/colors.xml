@@ -23,4 +23,6 @@
     <color name="colorFilterItemSelected">#4DD0E1</color>
     <color name="black_alpha">#6d6d6d</color>
     <color name="colorButtonNavInactive">#8D8D8D</color>
+    <color name="fullTime_tag">#2DB5FF</color>
+    <color name="job_company_location_title">#A5AAAD</color>
 </resources>
