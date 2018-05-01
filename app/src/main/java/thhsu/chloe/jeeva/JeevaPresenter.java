@@ -83,6 +83,25 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     @Override
     public void transToSavedJob() {
 
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+
+        if(mFragmentManager.findFragmentByTag(HOME) != null)
+            mFragmentManager.popBackStack();
+        if(mSavedJobsFragment == null) mSavedJobsFragment = SavedJobsFragment.newInstance();
+        if(mHomeFragment != null) transaction.hide(mHomeFragment);
+        if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
+        if (!mSavedJobsFragment.isAdded()){
+            transaction.add(R.id.main_container_for_fragment, mSavedJobsFragment, HOME);
+        }else{
+            transaction.show(mSavedJobsFragment);
+        }
+        transaction.commit();
+
+        if(mSavedJobsPresenter == null){
+            mSavedJobsPresenter = new SavedJobsPresenter(mSavedJobsFragment);
+        }
+        mJeevaContractView.showSavedJobUi();
+
     }
 
     @Override
