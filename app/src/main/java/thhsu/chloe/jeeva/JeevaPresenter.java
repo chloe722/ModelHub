@@ -85,13 +85,13 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
 
-        if(mFragmentManager.findFragmentByTag(HOME) != null)
+        if(mFragmentManager.findFragmentByTag(SAVEDJOBS) != null)
             mFragmentManager.popBackStack();
         if(mSavedJobsFragment == null) mSavedJobsFragment = SavedJobsFragment.newInstance();
         if(mHomeFragment != null) transaction.hide(mHomeFragment);
         if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
         if (!mSavedJobsFragment.isAdded()){
-            transaction.add(R.id.main_container_for_fragment, mSavedJobsFragment, HOME);
+            transaction.add(R.id.main_container_for_fragment, mSavedJobsFragment, SAVEDJOBS);
         }else{
             transaction.show(mSavedJobsFragment);
         }
@@ -106,6 +106,25 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
     @Override
     public void transToProfile() {
+
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+
+        if(mFragmentManager.findFragmentByTag(PROFILE) != null)
+            mFragmentManager.popBackStack();
+        if(mProfileFragment == null) mProfileFragment = ProfileFragment.newInstance();
+        if(mHomeFragment != null) transaction.hide(mHomeFragment);
+        if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
+        if (!mProfileFragment.isAdded()){
+            transaction.add(R.id.main_container_for_fragment, mProfileFragment, PROFILE);
+        }else{
+            transaction.show(mProfileFragment);
+        }
+        transaction.commit();
+
+        if(mProfilePresenter == null){
+            mProfilePresenter = new ProfilePresenter(mProfileFragment);
+        }
+        mJeevaContractView.showProfileUi();
 
     }
 
