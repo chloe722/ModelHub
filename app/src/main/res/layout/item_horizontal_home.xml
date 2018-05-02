@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="2dp">
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="2dp">-->
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="2dp"
-        android:elevation="0dp"
-        android:foreground="?android:selectableItemBackground"
-        card_view:cardBackgroundColor="@android:color/darker_gray"
-        card_view:cardCornerRadius="5dp"
-        card_view:contentPadding="5dp">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="2dp"
+    android:elevation="0dp"
+    android:foreground="?android:selectableItemBackground"
+    android:id="@+id/cardView_recommended_job_item"
+    card_view:cardBackgroundColor="@android:color/darker_gray"
+    card_view:cardCornerRadius="5dp"
+    card_view:contentPadding="5dp">
 
         <ImageView
             android:id="@+id/recommend_job_image"
@@ -33,7 +35,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="32dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="16dp"
                 android:scaleType="fitXY"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
@@ -65,4 +67,4 @@
 
 
     </android.support.v7.widget.CardView>
-</LinearLayout>
+<!--</LinearLayout>-->

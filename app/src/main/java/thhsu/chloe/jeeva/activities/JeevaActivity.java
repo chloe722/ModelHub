@@ -7,8 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -25,6 +28,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private JeevaContract.Presenter mPresenter;
     private TextView mToolbarTitle;
     private Toolbar mToolbar;
+    private ImageButton mFilterIcn;
     private BottomNavigationView mButtomNavigationView;
 
     @Override
@@ -44,6 +48,18 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        int currentSelectedItemId = mButtomNavigationView.getSelectedItemId();
+        MenuInflater inflater = getMenuInflater();
+        if (currentSelectedItemId == R.id.action_home){
+            inflater.inflate(R.menu.menu_filter, menu);
+        }else if(currentSelectedItemId == R.id.action_saved_job){
+            mFilterIcn.setVisibility(View.GONE);
+        }
+        return true;
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         init();
@@ -60,6 +76,15 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
         mToolbarTitle.setText("Home");
+        mFilterIcn = (ImageButton) findViewById(R.id.home_filter_icn);
+        mFilterIcn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.transToFilter();
+            }
+        });
+
+
     }
 
     private void setToolbarTitle(String title) {
@@ -97,6 +122,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     @Override
     public void showSignInTabPageUi() {
         setToolbarTitle("Sign Up or Sign In");
+    }
+
+    @Override
+    public void showFilterPageUi() {
+        setToolbarTitle("Filter");
     }
 
     @Override

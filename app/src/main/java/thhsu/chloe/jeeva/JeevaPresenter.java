@@ -5,6 +5,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.util.Log;
 
+import thhsu.chloe.jeeva.Filter.FilterFragment;
+import thhsu.chloe.jeeva.Filter.FilterPresenter;
 import thhsu.chloe.jeeva.Home.HomeFragment;
 import thhsu.chloe.jeeva.Home.HomePresenter;
 import thhsu.chloe.jeeva.Profile.ProfileFragment;
@@ -26,17 +28,20 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     public static final String SAVEDJOBS = "SAVEDJOBS";
     public static final String PROFILE = "PROFILE";
     public static final String SIGNIN = "SIGNIN";
+    public static final String FILTER = "FILTER";
 
 
     private SignInTabFragment mSignInTabFragment;
     private SavedJobsFragment mSavedJobsFragment;
     private HomeFragment mHomeFragment;
     private ProfileFragment mProfileFragment;
+    private FilterFragment mFilterFragment;
 
     private SignInTabPresenter mSignInTabPresenter;
     private SavedJobsPresenter mSavedJobsPresenter;
     private HomePresenter mHomePresenter;
     private ProfilePresenter mProfilePresenter;
+    private FilterPresenter mFilterPresenter;
 
     public JeevaPresenter(JeevaContract.View jeevaView, FragmentManager fragmentManager){
         mJeevaContractView = jeevaView;
@@ -149,6 +154,30 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         }
         mJeevaContractView.showSignInTabPageUi();
 
+    }
+
+    @Override
+    public void transToFilter() {
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+
+        if(mFragmentManager.findFragmentByTag(FILTER) != null)
+            mFragmentManager.popBackStack();
+        if(mFilterFragment == null) mFilterFragment = FilterFragment.newInstance();
+        if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
+        if(mHomeFragment != null) transaction.hide(mHomeFragment);
+        if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
+        if(mProfileFragment != null) transaction.hide(mProfileFragment);
+        if (!mFilterFragment.isAdded()){
+            transaction.add(R.id.main_container_for_fragment, mFilterFragment, FILTER);
+        }else{
+            transaction.show(mFilterFragment);
+        }
+        transaction.commit();
+
+        if(mFilterPresenter == null){
+            mFilterPresenter = new FilterPresenter(mFilterFragment);
+        }
+        mJeevaContractView.showFilterPageUi();
     }
 
     @Override
