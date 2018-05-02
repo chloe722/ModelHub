@@ -29,9 +29,10 @@ public class SignInTabFragment extends Fragment implements SignInTabContract.Vie
         View root = inflater.inflate(R.layout.fragment_sign_in_tab, container, false);
 //        ((Button) root.findViewById(R.id.signin_tab_signup_btn));
 //        ((Button) root.findViewById(R.id.signin_tab_signin_btn));
-
         return root;
     }
+
+
 
     @Override
     public void setPresenter(SignInTabContract.Presenter presenter) {

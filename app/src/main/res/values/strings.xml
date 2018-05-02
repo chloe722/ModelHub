@@ -9,4 +9,20 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="resume">Resume</string>
     <string name="status">Status: Member</string>
+    <string name="position">Position</string>
+    <string name="frontend_developer">Frontend Developer</string>
+    <string name="backend_developer">Backend Developer</string>
+    <string name="product_manager">Product Manager</string>
+    <string name="web_designer">Web Designer</string>
+    <string name="ui_ux_desinger">UI/UX Desinger</string>
+    <string name="project_manager">Project Manager</string>
+    <string name="type">Type</string>
+    <string name="full_time">Full-Time</string>
+    <string name="contract">Contract</string>
+    <string name="internship">Internship</string>
+    <string name="part_time">Part-Time</string>
+    <string name="permanent">Permanent</string>
+    <string name="remote">Remote</string>
+    <string name="fullstack_developer">FullStack Developer</string>
+    <string name="save">Save</string>
 </resources>
