@@ -5,6 +5,16 @@ package thhsu.chloe.jeeva.Filter;
  */
 
 public class FilterPresenter implements FilterContract.Presenter {
+    FilterContract.View mFilterView;
+
+    public FilterPresenter(FilterContract.View filterView){
+        this.mFilterView = filterView;
+        if(filterView != null){
+            mFilterView.setPresenter(this);
+        }
+    }
+
+
     @Override
     public void start() {
 

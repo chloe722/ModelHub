@@ -16,6 +16,8 @@ public interface JeevaContract {
 
         void showSignInTabPageUi();
 
+        void showFilterPageUi();
+
     }
 
     interface Presenter extends BasePresenter{
@@ -29,6 +31,8 @@ public interface JeevaContract {
         void transToProfile();
 
         void transToSignInTabPage();
+
+        void transToFilter();
 
 
     }
