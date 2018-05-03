@@ -29,7 +29,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
@@ -43,7 +42,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_frontend" />
 
@@ -57,7 +55,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fullstack" />
 
@@ -71,7 +68,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
         app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
@@ -84,7 +80,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="@+id/filter_checkbox_web_designer"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_web_designer" />
 
@@ -98,7 +93,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_uiux_designer" />
 
@@ -124,7 +118,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
 
@@ -138,7 +131,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fulltime" />
 
@@ -151,7 +143,6 @@
         android:text="@string/internship"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_contract" />
 
@@ -165,7 +156,6 @@
         android:textAlignment="viewStart"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
         app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
 
@@ -178,7 +168,6 @@
         android:text="@string/permanent"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_parttime" />
 
@@ -191,7 +180,6 @@
         android:text="@string/remote"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_permanent" />
 
@@ -204,7 +192,6 @@
         android:text="@string/fullstack_developer"
         android:textColor="@color/colorPageIconFilterItem"
         android:textSize="16sp"
-        android:onClick="onCheckboxClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_backend" />
 

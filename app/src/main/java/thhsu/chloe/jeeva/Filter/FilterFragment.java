@@ -39,6 +39,7 @@ public class FilterFragment extends Fragment implements FilterContract.View, Vie
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_filter, container,false);
+        setHasOptionsMenu(true);
 
         filterResult = new HashMap<String, Boolean>();
         mFrontend = (CheckBox) root.findViewById(R.id.filter_checkbox_frontend);
@@ -127,4 +128,5 @@ public class FilterFragment extends Fragment implements FilterContract.View, Vie
 
         Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
     }
+
 }

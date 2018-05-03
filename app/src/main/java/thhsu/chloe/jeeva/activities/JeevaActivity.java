@@ -1,24 +1,25 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+import thhsu.chloe.jeeva.Filter.FilterFragment;
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
+
+import static thhsu.chloe.jeeva.JeevaPresenter.FILTER;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -29,7 +30,14 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private TextView mToolbarTitle;
     private Toolbar mToolbar;
     private ImageButton mFilterIcn;
-    private BottomNavigationView mButtomNavigationView;
+    private BottomNavigationView mBottomNavigationView;
+    private MenuItem mFilterItem;
+    private FilterFragment filterFragment;
+    private boolean isFilterInHome = true;
+    private boolean shouldShowFilter = false;
+    private Fragment currentFragment;
+    JeevaActivity jeevaActivity;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,20 +51,44 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setBottomNavigationView();
         setToolbar();
 
-        mPresenter = new JeevaPresenter(this, getFragmentManager());
+        mPresenter = new JeevaPresenter(this, getFragmentManager(), this);
         mPresenter.start();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        int currentSelectedItemId = mButtomNavigationView.getSelectedItemId();
+        jeevaActivity = this;
+        int currentItem = mBottomNavigationView.getSelectedItemId();
+        currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
         MenuInflater inflater = getMenuInflater();
-        if (currentSelectedItemId == R.id.action_home){
+        if (currentItem == R.id.action_home){
             inflater.inflate(R.menu.menu_filter, menu);
-        }else if(currentSelectedItemId == R.id.action_saved_job){
-            mFilterIcn.setVisibility(View.GONE);
+                mFilterItem = menu.findItem(R.id.home_filter).setVisible(true);
+                Log.d("Chloe", "currentItemId: " + currentItem);
+                mFilterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(jeevaActivity,FilterActivity.class);
+                        startActivity(intent);
+                        return true;
+                    }
+                });
+        }else if(currentItem == R.id.action_profile){
+            inflater.inflate(R.menu.menu_more_member, menu);
+
         }
+
+//        if(currentFragment == getFragmentManager().findFragmentByTag(FILTER)){
+//            menu.clear();
+////            mBottomNavigationView.;
+//
+//        }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -66,23 +98,18 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     }
 
     private void setBottomNavigationView(){
-        mButtomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        mButtomNavigationView.setOnNavigationItemSelectedListener(this);
+        mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
 
     private void setToolbar() {
         // Retrieve the AppCompact Toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
         mToolbarTitle.setText("Home");
-        mFilterIcn = (ImageButton) findViewById(R.id.home_filter_icn);
-        mFilterIcn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.transToFilter();
-            }
-        });
 
 
     }
@@ -97,6 +124,16 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 //        }
 //    }
 
+//    public void hideFilter(){
+//        shouldShowFilter = false;
+//        invalidateOptionsMenu();
+//    }
+//
+//    public void showFilter(){
+//        shouldShowFilter = true;
+//        invalidateOptionsMenu();
+//    }
+
     @Override
     public void setPresenter(JeevaContract.Presenter presenter) {
         mPresenter = presenter;
@@ -106,40 +143,52 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     @Override
     public void showHomeUi() {
         setToolbarTitle("Home");
+        isFilterInHome = true;
+//        showFilter();
 
     }
 
     @Override
     public void showSavedJobUi() {
         setToolbarTitle("Saved Jobs");
+        isFilterInHome = false;
+//        hideFilter();
     }
 
     @Override
     public void showProfileUi() {
         setToolbarTitle("Profile");
+        isFilterInHome = false;
+//        hideFilter();
     }
 
     @Override
     public void showSignInTabPageUi() {
         setToolbarTitle("Sign Up or Sign In");
+        isFilterInHome = false;
+//        hideFilter();
     }
 
     @Override
     public void showFilterPageUi() {
+        invalidateOptionsMenu();
         setToolbarTitle("Filter");
+        isFilterInHome = false;
+//        hideFilter();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+        invalidateOptionsMenu();
         switch (item.getItemId()) {
             case R.id.action_home:
+
                 mPresenter.transToHome();
-                return true;
+                break;
 
             case R.id.action_saved_job:
                 mPresenter.transToSavedJob();
-                return true;
+                break;
 
 //            case R.id.action_profile:
 //                mPresenter.transToSignInTabPage();
@@ -147,8 +196,9 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
             case R.id.action_profile:
                 mPresenter.transToProfile();
-                return true;
+
+                break;
         }
-        return false;
+        return true;
     }
 }

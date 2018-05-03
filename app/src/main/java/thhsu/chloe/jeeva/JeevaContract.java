@@ -32,7 +32,7 @@ public interface JeevaContract {
 
         void transToSignInTabPage();
 
-        void transToFilter();
+//        void transToFilter();
 
 
     }
