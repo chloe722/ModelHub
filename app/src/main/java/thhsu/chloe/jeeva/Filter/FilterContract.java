@@ -17,5 +17,7 @@ public interface FilterContract {
 
         void result(int requestCode, int resultCode);
 
+//        void transToHome();
+
     }
 }

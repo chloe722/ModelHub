@@ -78,11 +78,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
         }
 
-        if(currentFragment == getFragmentManager().findFragmentByTag(FILTER)){
-            menu.clear();
-//            mBottomNavigationView.;
-
-        }
+//        if(currentFragment == getFragmentManager().findFragmentByTag(FILTER)){
+//            menu.clear();
+////            mBottomNavigationView.;
+//
+//        }
         return true;
     }
 
