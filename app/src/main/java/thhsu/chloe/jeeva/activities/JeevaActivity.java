@@ -5,16 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
@@ -29,7 +27,9 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private TextView mToolbarTitle;
     private Toolbar mToolbar;
     private ImageButton mFilterIcn;
-    private BottomNavigationView mButtomNavigationView;
+    private BottomNavigationView mBottomNavigationView;
+    private MenuItem mFilterItem;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,14 +49,21 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        int currentSelectedItemId = mButtomNavigationView.getSelectedItemId();
+        int currentItem = mBottomNavigationView.getSelectedItemId();
         MenuInflater inflater = getMenuInflater();
-        if (currentSelectedItemId == R.id.action_home){
+        if (currentItem == R.id.action_home){
             inflater.inflate(R.menu.menu_filter, menu);
-        }else if(currentSelectedItemId == R.id.action_saved_job){
-            mFilterIcn.setVisibility(View.GONE);
+            mFilterItem = menu.findItem(R.id.home_filter);
+            Log.d("Chloe", "currentItemId: " + currentItem);
+        }else if(currentItem == R.id.action_saved_job){
+
         }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -66,23 +73,18 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     }
 
     private void setBottomNavigationView(){
-        mButtomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        mButtomNavigationView.setOnNavigationItemSelectedListener(this);
+        mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
 
     private void setToolbar() {
         // Retrieve the AppCompact Toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
         mToolbarTitle.setText("Home");
-        mFilterIcn = (ImageButton) findViewById(R.id.home_filter_icn);
-        mFilterIcn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.transToFilter();
-            }
-        });
 
 
     }
@@ -134,12 +136,13 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
         switch (item.getItemId()) {
             case R.id.action_home:
+
                 mPresenter.transToHome();
-                return true;
+                break;
 
             case R.id.action_saved_job:
                 mPresenter.transToSavedJob();
-                return true;
+                break;
 
 //            case R.id.action_profile:
 //                mPresenter.transToSignInTabPage();
@@ -147,8 +150,9 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
             case R.id.action_profile:
                 mPresenter.transToProfile();
-                return true;
+
+                break;
         }
-        return false;
+        return true;
     }
 }
