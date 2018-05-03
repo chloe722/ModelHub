@@ -115,138 +115,59 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         String checkedResult = "On checked Selected: ";
-        if(mFrontend.isChecked()){
-            filterResultTest.put(mFrontend.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mFrontend.getId()), mFrontend.isChecked());
             checkedResult += "\n  Frontend Chcecked!";
-            savePreferences(mFrontend.getText().toString(), true);
+//            savePreferences(mFrontend.getText().toString(),mFrontend.isChecked());
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mFrontend.getText().toString());
-//            checkedResult += "\n  Fronted unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mBackend.isChecked()){
-            filterResultTest.put(mBackend.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mBackend.getId()), mBackend.isChecked());
             checkedResult += "\n  Backend Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mBackend.getText().toString());
-//            checkedResult += "\n  Backend unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mFullStack.isChecked()){
-            filterResultTest.put(mFullStack.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mFullStack.getId()), mFullStack.isChecked());
             checkedResult += "\n  FullStack Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mFullStack.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mUiUxD.isChecked()){
-            filterResultTest.put(mUiUxD.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mUiUxD.getId()), mUiUxD.isChecked());
             checkedResult += "\n  UiUxD Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mUiUxD.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mWebD.isChecked()){
-            filterResultTest.put(mWebD.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mWebD.getId()), mWebD.isChecked());
             checkedResult += "\n  mWebD Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mWebD.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mProductM.isChecked()){
-            filterResultTest.put(mProductM.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mProductM.getId()), mProductM.isChecked());
             checkedResult += "\n  ProductM Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mProductM.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mProjectM.isChecked()){
-            filterResultTest.put(mProjectM.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mProjectM.getId()), mProjectM.isChecked());
             checkedResult += "\n  ProjectM Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mProjectM.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mFullTime.isChecked()){
-            filterResultTest.put(mFullTime.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mFullTime.getId()), mFullTime.isChecked());
             checkedResult += "\n  FullTime Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mFullTime.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mPartTime.isChecked()){
-            filterResultTest.put(mPartTime.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mPartTime.getId()), mPartTime.isChecked());
             checkedResult += "\n  PartTime Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mPartTime.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mPermanent.isChecked()){
-            filterResultTest.put(mPermanent.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mPermanent.getId()), mPermanent.isChecked());
             checkedResult += "\n  Permanent Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mPermanent.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mContract.isChecked()){
-            filterResultTest.put(mContract.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mContract.getId()), mContract.isChecked());
             checkedResult += "\n  Contract Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mContract.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mIntern.isChecked()){
-            filterResultTest.put(mIntern.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mIntern.getId()), mIntern.isChecked());
             checkedResult += "\n  Intern Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mIntern.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
 
-        if(mRemote.isChecked()){
-            filterResultTest.put(mRemote.getText().toString(), true);
+            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mRemote.getId()), mRemote.isChecked());
             checkedResult += "\n  Remote Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        }else{
-            filterResultTest.remove(mRemote.getText().toString());
-//            checkedResult += "\n  FullStack unchecked!";
-            Log.d("Chloe", "filterResult: " + filterResultTest);
-        }
-
-        Log.d("Chloe", "Total result: " + filterResultTest);
+        
         Toast.makeText(FilterActivity.this, checkedResult, Toast.LENGTH_SHORT).show();
     }
 
