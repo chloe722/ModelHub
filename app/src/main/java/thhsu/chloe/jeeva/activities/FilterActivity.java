@@ -167,7 +167,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
             filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mRemote.getId()), mRemote.isChecked());
             checkedResult += "\n  Remote Chcecked!";
             Log.d("Chloe", "filterResult: " + filterResultTest);
-        
+
         Toast.makeText(FilterActivity.this, checkedResult, Toast.LENGTH_SHORT).show();
     }
 

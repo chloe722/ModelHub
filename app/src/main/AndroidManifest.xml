@@ -11,35 +11,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".activities.JeevaActivity"
+        <activity
+            android:name=".activities.JeevaActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:exported="true">
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.FirstPageActivity"
+        <activity
+            android:name=".activities.FirstPageActivity"
             android:screenOrientation="portrait">
-            <!--<intent-filter>-->
 
-                <!--&lt;!&ndash;<action android:name="android.intent.action.VIEW" />&ndash;&gt;-->
-                <!--&lt;!&ndash;<category android:name="android.intent.category.DEFAULT" />&ndash;&gt;-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+
+
+            <!-- &lt;!&ndash;<action android:name="android.intent.action.VIEW" />&ndash;&gt; -->
+            <!-- &lt;!&ndash;<category android:name="android.intent.category.DEFAULT" />&ndash;&gt; -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity
+            android:name=".activities.FilterActivity"
+            android:exported="true" />
 
-        <activity android:name=".activities.FilterActivity"
-        android:exported="true"></activity>
-
-        <activity android:name=".activities.BaseActivity"
-            android:exported="true"></activity>
+        <activity
+            android:name=".activities.AboutpageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.BaseActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
