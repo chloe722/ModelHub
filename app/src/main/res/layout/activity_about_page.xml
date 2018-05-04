@@ -13,7 +13,7 @@
     <!--xmlns:app="http://schemas.android.com/apk/res-auto">-->
 
     <LinearLayout
-        android:id="@+id/about_page_toolbar_container"
+        android:id="@+id/about_me_page_toolbar_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -89,7 +89,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_page_toolbar_container">
+        app:layout_constraintTop_toBottomOf="@+id/about_me_page_toolbar_container">
 
         <Button
             android:id="@+id/profile_staus_btn"

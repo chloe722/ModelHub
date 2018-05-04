@@ -38,6 +38,10 @@
             android:exported="true" />
 
         <activity
+            android:name=".activities.AboutMeActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".activities.AboutpageActivity"
             android:exported="true" />
         <activity
