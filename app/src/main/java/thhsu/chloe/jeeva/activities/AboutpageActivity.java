@@ -25,15 +25,15 @@ public class AboutpageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_page);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar2);
-        actionMenuView = (ActionMenuView) mToolbar.findViewById(R.id.action_menu_view);
+//        actionMenuView = (ActionMenuView) mToolbar.findViewById(R.id.action_menu_view);
         getMenuInflater().inflate(R.menu.menu_toolbar_left_backarrow, actionMenuView.getMenu());
 
-        actionMenuView.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                return false;
-            }
-        });
+//        actionMenuView.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                return false;
+//            }
+//        });
 
     }
 

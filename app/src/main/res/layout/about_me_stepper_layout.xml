@@ -62,7 +62,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/about_me_page_toolbar_container"
-        android:background="?android:attr/floatingToolbarDividerColor"
         app:stpi_stepCount="3" />
 
     <!--<com.stepstone.stepper.StepperLayout-->
@@ -77,8 +76,7 @@
         android:id="@+id/nonSwapeable_viewpager_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/stepper_Indicater_layout"
-        tools:context="thhsu.chloe.jeeva .activities.AboutMeActivity"/>
+        android:layout_below="@+id/stepper_Indicater_layout" />
 
 </RelativeLayout>
 
