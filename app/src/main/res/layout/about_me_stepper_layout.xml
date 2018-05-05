@@ -68,7 +68,7 @@
         app:stpi_showStepNumberInstead="true"
         app:stpi_showDoneIcon="true"/>
 
-    <android.support.v4.view.ViewPager
+    <thhsu.chloe.jeeva.Aboutme.NonSwipeableViewPager
         android:id="@+id/nonSwapeable_viewpager_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

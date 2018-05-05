@@ -15,6 +15,7 @@ import thhsu.chloe.jeeva.Aboutme.AboutMeStepOneFragment;
 import thhsu.chloe.jeeva.Aboutme.AboutMeStepThreeFragment;
 import thhsu.chloe.jeeva.Aboutme.AboutMeStepTwoFragment;
 
+import thhsu.chloe.jeeva.Aboutme.NonSwipeableViewPager;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.adapters.AboutMePagerAdapter;
 
@@ -26,7 +27,7 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     private StepperLayout mStepperLayout;
     private AboutMePagerAdapter mAboutMePagerAdapter;
     private StepperIndicator stepperIndicator;
-    private ViewPager mViewPager;
+    private NonSwipeableViewPager mViewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,11 +54,7 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     public void onBackPressed(Fragment fragment) {
         Log.d("Chloe", "backpress viewpager currentitem: " + mViewPager.getCurrentItem());
         mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1,true);
-//        if(fragment instanceof AboutMeStepTwoFragment){
-//            mViewPager.setCurrentItem(0, true);
-//        }else if (fragment instanceof AboutMeStepThreeFragment){
-//            mViewPager.setCurrentItem(1, true);
-//        }
+
     }
 
     @Override

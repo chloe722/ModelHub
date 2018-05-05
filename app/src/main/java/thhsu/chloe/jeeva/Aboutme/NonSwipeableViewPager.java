@@ -37,11 +37,11 @@ public class NonSwipeableViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        //Never allow swiping to switcch between pages
+        //Never allow swiping to switch between pages
         return false;
     }
 
-    private void setMyScroller(){
+    private void setMyScroller(){ //for smooth transition
         try{
             Class<?> viewPager = ViewPager.class;
             Field scroller = viewPager.getDeclaredField("mScroller");
