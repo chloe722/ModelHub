@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import thhsu.chloe.jeeva.R;
 
@@ -16,10 +19,11 @@ import thhsu.chloe.jeeva.R;
  * Created by Chloe on 5/4/2018.
  */
 
-public class AboutMeStepThreeFragment extends Fragment implements View.OnClickListener {
+public class AboutMeStepThreeFragment extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener {
 
     private Button mCompleteBtn;
     private Button mBackBtn;
+    private Switch mNotificationSwitchBtn;
 
     private OnStepThreeListener mOnStepThreeListener;
 
@@ -43,6 +47,8 @@ public class AboutMeStepThreeFragment extends Fragment implements View.OnClickLi
         super.onViewCreated(view, savedInstanceState);
         mCompleteBtn = view.findViewById(R.id.stepper_three_complete_btn);
         mBackBtn = view.findViewById(R.id.stepper_three_back_btn);
+        mNotificationSwitchBtn = view.findViewById(R.id.stepper_three_switch_btn);
+        mNotificationSwitchBtn.setChecked(true);
     }
 
     @Override
@@ -50,6 +56,7 @@ public class AboutMeStepThreeFragment extends Fragment implements View.OnClickLi
         super.onResume();
         mCompleteBtn.setOnClickListener(this);
         mBackBtn.setOnClickListener(this);
+        mNotificationSwitchBtn.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -57,7 +64,20 @@ public class AboutMeStepThreeFragment extends Fragment implements View.OnClickLi
         super.onPause();
         mCompleteBtn.setOnClickListener(null);
         mBackBtn.setOnClickListener(null);
+        mNotificationSwitchBtn.setOnCheckedChangeListener(null);
     }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(mNotificationSwitchBtn.isChecked()){
+            mOnStepThreeListener.onSwitchPressedOn(this);
+        }else{
+            mOnStepThreeListener.onSwitchPressedOff(this);
+        }
+    }
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -94,8 +114,11 @@ public class AboutMeStepThreeFragment extends Fragment implements View.OnClickLi
         mBackBtn = null;
     }
 
+
     public interface OnStepThreeListener {
         void onCompletePressed(Fragment fragment);
         void onBackPressed(Fragment fragment);
+        void onSwitchPressedOn(Fragment fragment);
+        void onSwitchPressedOff(Fragment fragment);
     }
 }

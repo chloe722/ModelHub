@@ -4,11 +4,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import thhsu.chloe.jeeva.R;
 
@@ -17,9 +22,9 @@ import thhsu.chloe.jeeva.R;
  */
 
 public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener {
-    private Button mNextBtn;
-    private Button mBackBtn;
-
+    private Button mNextBtn, mBackBtn;
+    private EditText mFacebookUrlText, mGithubUrlText, mLinkedinUrlText;
+    private TextInputLayout mFacebookTextLayout, mGithubTextLayout, mLinkedinTextLayout;
     private OnStepTwoListener mOnStepTwoListener;
 
     public AboutMeStepTwoFragment() {
@@ -42,7 +47,26 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         super.onViewCreated(view, savedInstanceState);
         mNextBtn = view.findViewById(R.id.stepper_two_next_btn);
         mBackBtn = view.findViewById(R.id.stepper_two_back_btn);
+        mFacebookUrlText = view.findViewById(R.id.stepper_two_textinput_fb_url);
+        mGithubUrlText = view.findViewById(R.id.stepper_two_textinput_githuburl);
+        mLinkedinUrlText = view.findViewById(R.id.stepper_two_textinput_linkedin_url);
+        mFacebookTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_fb);
+        mGithubTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_github);
+        mLinkedinTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_linkedin);
     }
+
+//    public boolean validateUrl(){
+//        boolean isUrlFormat = true;
+//        String facebookUrl = mFacebookUrlText.getText().toString();
+//        if (!(Patterns.WEB_URL.matcher(facebookUrl).matches())){
+//            mFacebookTextLayout.setError(getString(R.string.invalidUrl));
+//            isUrlFormat = false;
+//            Log.d("Chloe", "facebook url format testing: " + Patterns.WEB_URL.matcher(facebookUrl).matches());
+//        }else{
+//            mFacebookTextLayout.setErrorEnabled(false);
+//        }
+//        return isUrlFormat;
+//    }
 
     @Override
     public void onResume() {

@@ -28,4 +28,5 @@
     <string name="invalidName">invalid Name</string>
     <string name="invalidEmail">invalid Email</string>
     <string name="invalidPhoneNumber">invalid phone number</string>
+    <string name="invalidUrl">invalid URL</string>
 </resources>

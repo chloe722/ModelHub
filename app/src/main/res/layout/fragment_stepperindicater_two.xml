@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/ic_people_black_24dp"
         android:drawablePadding="8dp"
-        android:text="Add your social media links"
+        android:text="Add your social media"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,58 +25,56 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stepper_two_facebook_icn"
         app:layout_constraintTop_toBottomOf="@+id/stepper_two_title">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/stepper_two_textinput_fb_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="http://facebook.com/wetogether"
-            android:inputType="textWebEmailAddress"
+            android:hint="Enter username"
+            android:inputType="text"
             android:textSize="15sp"
             android:textStyle="italic" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/stepper_two_textinputlayout_github"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/stepper_two_github_icn"
         app:layout_constraintTop_toBottomOf="@+id/stepper_two_textinputlayout_fb">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/stepper_two_textinput_githuburl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="http://github.com/wetogether"
-            android:inputType="textWebEmailAddress"
+            android:hint="Enter username"
+            android:inputType="text"
             android:textSize="15sp"
             android:textStyle="italic" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/stepper_two_textinputlayout_linkedin"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/stepper_two_linkedin_icn"
         app:layout_constraintTop_toBottomOf="@+id/stepper_two_textinputlayout_github">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/stepper_two_textinput_linkedin_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="http://www.linkedin.com/wetogether"
-            android:inputType="textWebEmailAddress"
+            android:hint="Enter username"
+            android:inputType="text"
             android:textSize="15sp"
             android:textStyle="italic" />
     </android.support.design.widget.TextInputLayout>
@@ -106,5 +104,35 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/stepper_two_facebook_icn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_title"
+        app:srcCompat="@drawable/facebook_box" />
+
+    <ImageView
+        android:id="@+id/stepper_two_github_icn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_facebook_icn"
+        app:srcCompat="@drawable/github_circle" />
+
+    <ImageView
+        android:id="@+id/stepper_two_linkedin_icn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_github_icn"
+        app:srcCompat="@drawable/linkedin_box" />
 
 </android.support.constraint.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,36 +52,39 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mPhoneLayout = view.findViewById(R.id.stepper_one_textinputlayout_phone);
     }
 
-    private boolean validateData(){
+    private boolean validateData() {
         boolean result = true;
 
         String name = mFullName.getText().toString();
-        if(name == null || name.length() < 3) {
+        if (name == null || name.length() < 3) {
             //set the error message
             mFullNameLayout.setError(getString(R.string.invalidName));
             result = false;
-        }else{
+        } else {
             // remove error message
             mFullNameLayout.setErrorEnabled(false);
         }
 
         String email = mEmail.getText().toString();
-        if(email == null || !(email.contains("@"))){
+        if (email == null || !(email.contains("@"))) {
             mEmailLayout.setError(getString(R.string.invalidEmail));
             result = false;
-        }else{
+        } else {
             mEmailLayout.setErrorEnabled(false);
         }
 
         String phone = mPhone.getText().toString();
-        if(phone == null || phone.equals("")){
-            mPhoneLayout.setError(getString(R.string.invalidPhoneNumber));
-            result = false;
-        }else if(phone.equals("0") || phone.length() < 8){
-            mPhoneLayout.setError(getString(R.string.invalidPhoneNumber));
-            result = false;
-        }else{
-            mPhoneLayout.setErrorEnabled(false);
+        boolean digitsOnly = TextUtils.isDigitsOnly(phone); // Check if enter text is number/ digit. However since the inputtype is phone so it's validated itself no need this line
+        if(digitsOnly){
+            if (phone == null || phone.equals("")) {
+                mPhoneLayout.setError(getString(R.string.invalidPhoneNumber));
+                result = false;
+            } else if (phone.equals("0") || phone.length() < 8) {
+                mPhoneLayout.setError(getString(R.string.invalidPhoneNumber));
+                result = false;
+            } else {
+                mPhoneLayout.setErrorEnabled(false);
+            }
         }
         return result;
     }

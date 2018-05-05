@@ -1,5 +1,6 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -59,9 +60,21 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     }
 
     @Override
+    public void onSwitchPressedOn(Fragment fragment) {
+        Toast.makeText(this, "Notfication on! ", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSwitchPressedOff(Fragment fragment) {
+        Toast.makeText(this, "Notification off. You'll not receive notification from WeTogether system", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onCompletePressed(Fragment fragment) {
         if(fragment instanceof AboutMeStepThreeFragment){
-            Toast.makeText(this, "Sweet! You've completed the profile! ", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(this, "Sweet! You've completed the profile! ", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(AboutMeActivity.this, JeevaActivity.class);
+            startActivity(intent);
 //            finish();
         }
     }

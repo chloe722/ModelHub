@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:hint="Full Name"
             android:singleLine="true"
+            android:maxLength="30"
             android:textSize="15sp" />
 
     </android.support.design.widget.TextInputLayout>
@@ -42,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:maxLength="50"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
@@ -61,6 +63,7 @@
             android:layout_height="wrap_content"
             android:hint="Phone Number"
             android:inputType="phone"
+            android:maxLength="20"
             android:textSize="15sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -80,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Country"
+            android:maxLength="30"
             android:textSize="15sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -99,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="City"
+            android:maxLength="30"
             android:textSize="15sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -118,6 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Company"
+            android:maxLength="80"
             android:textSize="15sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -137,6 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Job Title"
+            android:maxLength="50"
             android:textSize="15sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -161,6 +168,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:drawableLeft="@drawable/ic_person_black_36dp"
+        android:drawablePadding="3dp"
         android:text="Personal Info"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -177,6 +185,7 @@
         android:text="Current location"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:drawablePadding="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stepper_one_textinputlayout_phone" />
 

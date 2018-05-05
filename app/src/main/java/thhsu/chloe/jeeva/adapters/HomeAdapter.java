@@ -2,7 +2,6 @@ package thhsu.chloe.jeeva.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -127,16 +124,16 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public HomeJobsItemViewHolder(View itemView) {
             super(itemView);
 
-            mHomeJobTypeTag = (TextView) itemView.findViewById(R.id.home_job_type_tag);
-            mHomeJobTitle = (TextView) itemView.findViewById(R.id.home_job_title);
-            mHomeJobPostedOnText = (TextView) itemView.findViewById(R.id.home_job_posted_text);
-            mHomeJobPostedDate = (TextView) itemView.findViewById(R.id.home_job_posted_date);
-            mHomeJobCompanyTitle = (TextView) itemView.findViewById(R.id.home_job_company_title);
-            mHomeJobLocationTitle = (TextView) itemView.findViewById(R.id.home_job_location_title);
-            mHomeJobCompanyName = (TextView) itemView.findViewById(R.id.home_job_company_name);
+            mHomeJobTypeTag = (TextView) itemView.findViewById(R.id.job_details_type_tag);
+            mHomeJobTitle = (TextView) itemView.findViewById(R.id.job_details_job_title);
+            mHomeJobPostedOnText = (TextView) itemView.findViewById(R.id.job_details_posted_text);
+            mHomeJobPostedDate = (TextView) itemView.findViewById(R.id.job_details_posted_date);
+            mHomeJobCompanyTitle = (TextView) itemView.findViewById(R.id.job_details_company_title);
+            mHomeJobLocationTitle = (TextView) itemView.findViewById(R.id.job_details_location_title);
+            mHomeJobCompanyName = (TextView) itemView.findViewById(R.id.job_details_company_name);
             mHomeJobLocationName = (TextView) itemView.findViewById(R.id.home_job_location_name);
             mHomeJobUrgentOrNotText = (TextView) itemView.findViewById(R.id.home_job_urgentornot_text);
-            mHomeJobCompanyLogo = (ImageView) itemView.findViewById(R.id.home_job_company_logo);
+            mHomeJobCompanyLogo = (ImageView) itemView.findViewById(R.id.job_details_company_logo);
             mSavedJobIcnBtn = (ImageButton) itemView.findViewById(R.id.home_job_savedJob_icn_btn);
 
             mSavedJobIcnBtn.setOnClickListener(this);
