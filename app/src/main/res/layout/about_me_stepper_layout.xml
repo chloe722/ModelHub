@@ -62,7 +62,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/about_me_page_toolbar_container"
-        app:stpi_stepCount="3" />
+        app:stpi_stepCount="3"
+        app:stpi_circleColor="#F08684"
+        app:stpi_indicatorColor="#F08684"
+        app:stpi_showStepNumberInstead="true"
+        app:stpi_showDoneIcon="true"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/nonSwapeable_viewpager_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/stepper_Indicater_layout"/>
 
     <!--<com.stepstone.stepper.StepperLayout-->
     <!--android:id="@+id/stepperLayout"-->
@@ -71,12 +83,13 @@
     <!--app:ms_stepperType="tabs"-->
     <!--android:layout_below="@+id/about_page_toolbar_container"/>-->
 
-    <com.codezlab.biketaxiuser.customwidgets.NonSwipeableViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/nonSwapeable_viewpager_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/stepper_Indicater_layout" />
+    <!--<com.codezlab.biketaxiuser.customwidgets.NonSwipeableViewPager-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/nonSwapeable_viewpager_container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/stepper_Indicater_layout" />-->
+
 
 </RelativeLayout>
 

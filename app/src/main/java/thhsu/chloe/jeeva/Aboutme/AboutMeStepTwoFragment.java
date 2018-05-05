@@ -17,12 +17,6 @@ import thhsu.chloe.jeeva.R;
  */
 
 public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     private Button mNextBtn;
     private Button mBackBtn;
 
@@ -31,22 +25,10 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     public AboutMeStepTwoFragment() {
     }
 
-    public static AboutMeStepOneFragment newInstance(String param1, String param2){
-        AboutMeStepOneFragment fragment = new AboutMeStepOneFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Nullable
@@ -82,13 +64,13 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
             case R.id.stepper_two_next_btn:
                 if(mOnStepTwoListener != null){
                     mOnStepTwoListener.onNextPressed(this);
-                    break;
                 }
+                break;
             case R.id.stepper_two_back_btn:
                 if(mOnStepTwoListener != null){
                     mOnStepTwoListener.onBackPressed(this);
-                    break;
                 }
+                break;
         }
     }
 
