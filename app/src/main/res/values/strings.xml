@@ -25,4 +25,7 @@
     <string name="remote">Remote</string>
     <string name="fullstack_developer">FullStack Developer</string>
     <string name="save">Save</string>
+    <string name="invalidName">invalid Name</string>
+    <string name="invalidEmail">invalid Email</string>
+    <string name="invalidPhoneNumber">invalid phone number</string>
 </resources>

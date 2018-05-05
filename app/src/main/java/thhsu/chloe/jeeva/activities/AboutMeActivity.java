@@ -47,6 +47,7 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     @Override
     public void onNextPressed(Fragment fragment) {
         Log.d("Chloe", "Nextpress viewpager currentitem: " + mViewPager.getCurrentItem());
+
         mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1,true);
     }
 
