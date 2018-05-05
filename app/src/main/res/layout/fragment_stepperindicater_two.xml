@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stepper_two_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/stepper_two_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_people_black_24dp"
+        android:drawablePadding="8dp"
+        android:text="Add your social media"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/stepper_two_textinputlayout_fb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stepper_two_facebook_icn"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_title">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/stepper_two_textinput_fb_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter username"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/stepper_two_textinputlayout_github"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/stepper_two_github_icn"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_textinputlayout_fb">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/stepper_two_textinput_githuburl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter username"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/stepper_two_textinputlayout_linkedin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/stepper_two_linkedin_icn"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_textinputlayout_github">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/stepper_two_textinput_linkedin_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter username"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/stepper_two_next_btn"
+        android:layout_width="86dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/yellow_rounded_shape"
+        android:text="Next"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/stepper_two_back_btn"
+        android:layout_width="86dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/yellow_rounded_shape"
+        android:text="Back"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/stepper_two_facebook_icn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_title"
+        app:srcCompat="@drawable/facebook_box" />
+
+    <ImageView
+        android:id="@+id/stepper_two_github_icn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_facebook_icn"
+        app:srcCompat="@drawable/github_circle" />
+
+    <ImageView
+        android:id="@+id/stepper_two_linkedin_icn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepper_two_github_icn"
+        app:srcCompat="@drawable/linkedin_box" />
+
+</android.support.constraint.ConstraintLayout>
