@@ -244,79 +244,86 @@
         </android.support.constraint.ConstraintLayout>
 
         <!--<android.support.constraint.ConstraintLayout-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="500dp"-->
-            <!--android:id="@+id/job_details_requirement_constraint"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/constraintLayout">-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="500dp"-->
+        <!--android:id="@+id/job_details_requirement_constraint"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/constraintLayout">-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/job_details_requirement_title"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginStart="16dp"-->
-                <!--android:text="Requirement"-->
-                <!--android:textColor="@color/job_company_location_title"-->
-                <!--android:textSize="18sp"-->
-                <!--android:textStyle="bold"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintTop_toTopOf="parent" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/job_details_requirement_title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:text="Requirement"-->
+        <!--android:textColor="@color/job_company_location_title"-->
+        <!--android:textSize="18sp"-->
+        <!--android:textStyle="bold"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/textView10"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginEnd="16dp"-->
-                <!--android:layout_marginStart="16dp"-->
-                <!--android:layout_marginTop="8dp"-->
-                <!--android:maxWidth="360dp"-->
-                <!--android:lineSpacingExtra="3dp"-->
-                <!--android:text="123"-->
-                <!--app:layout_constraintEnd_toEndOf="parent"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintTop_toBottomOf="@+id/job_details_requirement_title" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/textView10"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:maxWidth="360dp"-->
+        <!--android:lineSpacingExtra="3dp"-->
+        <!--android:text="123"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/job_details_requirement_title" />-->
         <!--</android.support.constraint.ConstraintLayout>-->
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/job_details_benifit_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            tools:layout_editor_absoluteX="16dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/job_details_benifit_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Benefits"
+                android:textColor="@color/job_company_location_title"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <GridLayout
+                android:id="@+id/job_details_benifit_content_gridlayout_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:columnCount="2"
                 android:columnOrderPreserved="false"
                 android:orientation="horizontal"
                 app:layout_constrainedWidth="false"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="301dp">
+                app:layout_constraintTop_toBottomOf="@+id/job_details_benifit_title">
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title1"
+                    android:id="@+id/job_details_benefit_childcare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/ic_child_care_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Child Care"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -325,13 +332,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title2"
+                    android:id="@+id/job_details_benefit_cafe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/ic_local_cafe_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Coffee"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -340,13 +349,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title3"
+                    android:id="@+id/job_details_benefit_commute"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Commute"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -355,13 +366,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title5"
+                    android:id="@+id/job_details_benefit_dental"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/tooth_outline"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Dental Insurance"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -369,29 +382,17 @@
                     app:layout_column="0"
                     app:layout_row="0" />
 
-                <TextView
-                    android:id="@+id/job_details_benefit_title6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
-                    android:maxWidth="150dp"
-                    android:text="Disability Insurance"
-                    android:textColor="@color/job_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_column="0"
-                    app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title7"
+                    android:id="@+id/job_details_benefit_gym"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/ic_fitness_center_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Gym"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -400,13 +401,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title8"
+                    android:id="@+id/job_details_benefit_life_insurance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/health"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Life Insurance"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -415,13 +418,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title9"
+                    android:id="@+id/job_details_benefit_preganent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/ic_pregnant_woman_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Maternity Leave"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -430,13 +435,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title10"
+                    android:id="@+id/job_details_benefit_hospital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/ic_local_hospital_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Medical Insurance"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -445,13 +452,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title11"
+                    android:id="@+id/job_details_benefit_mentor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/ic_people_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Mentor Program"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -460,13 +469,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title12"
+                    android:id="@+id/job_details_benefit_movie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/ic_movie_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Movie"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -475,13 +486,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title13"
+                    android:id="@+id/job_details_benefit_vacation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/beach"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Paid Vacation"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -490,13 +503,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title14"
+                    android:id="@+id/job_details_benefit_parental"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/ic_child_friendly_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Parental Leave"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -505,13 +520,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title15"
+                    android:id="@+id/job_details_benefit_reading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/study"
+                    android:drawablePadding="5dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Reading Room"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -520,13 +537,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title16"
+                    android:id="@+id/job_details_benefit_saving_plan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/cash_usd"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Saving Plan"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -535,13 +554,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title17"
+                    android:id="@+id/job_details_benefit_food"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/food"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Snacks  Drinks"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -550,13 +571,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title18"
+                    android:id="@+id/job_details_benefit_tuition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/cash_multiple"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Tuition"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -565,13 +588,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title19"
+                    android:id="@+id/job_details_benefit_training"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/mortarboard"
+                    android:drawablePadding="5dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Unconscious Bias Traning"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -580,13 +605,15 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title20"
+                    android:id="@+id/job_details_benefit_vision"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_green_24dp"
+                    android:drawableLeft="@drawable/ic_visibility_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Vision Insurance"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
@@ -595,14 +622,33 @@
                     app:layout_row="0" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_title21"
+                    android:id="@+id/job_details_benefit_workfromhome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_clock_pink_24dp"
+                    android:drawableLeft="@drawable/ic_home_black_24dp"
+                    android:drawablePadding="3dp"
                     android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
                     android:text="Work from Home"
+                    android:textColor="@color/job_company_location_title"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_column="0"
+                    app:layout_row="0" />
+
+                <TextView
+                    android:id="@+id/job_details_benefit_disability"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="left"
+                    android:drawableLeft="@drawable/ic_accessible_black_24dp"
+                    android:drawablePadding="3dp"
+                    android:maxWidth="150dp"
+                    android:paddingBottom="4dp"
+                    android:text="Disability Insurance"
                     android:textColor="@color/job_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
