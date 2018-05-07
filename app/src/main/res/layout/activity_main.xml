@@ -41,7 +41,20 @@
                     <!--android:layout_marginStart="17dp"-->
                     <!--android:background="@null"-->
                     <!--app:srcCompat="@drawable/ic_filter_list_black_24dp" />-->
+
+
             </android.support.v7.widget.Toolbar>
+
+            <ImageButton
+                android:visibility="gone"
+                android:id="@+id/tool_bar_back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="9dp"
+                android:background="@null"
+                app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
         </RelativeLayout>
 

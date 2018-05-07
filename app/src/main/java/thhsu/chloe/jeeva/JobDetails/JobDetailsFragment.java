@@ -9,9 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.adapters.JobDetailsAdapter;
 
 /**
@@ -22,6 +24,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
 
     private JobDetailsContract.Presenter mPresenter;
     private JobDetailsAdapter mJobDetailAdapter;
+    JeevaActivity mJeevaActivity;
 
     public static JobDetailsFragment newInstance(){return new JobDetailsFragment();}
 
@@ -58,14 +61,28 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 //            mPresenter.start();
-
-
     }
 
+    @Override
+    public void onDestroy() {  //When the fragment finish, run the code below.  onDestroy --> Fragment has finished or got destroyed
+        ((JeevaActivity) getActivity()).showBtnNavView();
+        ((JeevaActivity) getActivity()).showFilterIcn();
+        ((JeevaActivity) getActivity()).hideToolbarBackBtn();
+        super.onDestroy();
 
+    }
 
     @Override
     public void showJobDetails() {
 
     }
+
+//    @Override
+//    public void onClick(View v) {
+//        if(v.getId() == R.id.tool_bar_back_btn){
+//
+//        }
+//    }
+
+
 }

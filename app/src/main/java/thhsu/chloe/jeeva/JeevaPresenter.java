@@ -3,9 +3,12 @@ package thhsu.chloe.jeeva;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import thhsu.chloe.jeeva.Filter.FilterFragment;
 import thhsu.chloe.jeeva.Filter.FilterPresenter;
@@ -30,6 +33,8 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     private FragmentManager mFragmentManager;
     private MenuItem menuItem;
     public JeevaActivity mActivity;
+    public BottomNavigationView mBottomNavigationView;
+    public Toolbar mToolbar;
 
     public static final String HOME = "HOME";
     public static final String SAVEDJOBS = "SAVEDJOBS";
@@ -53,7 +58,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     private FilterPresenter mFilterPresenter;
     private JobDetailsPresenter mJobDetailsPresenter;
 
-    public JeevaPresenter(JeevaContract.View jeevaView, FragmentManager fragmentManager, JeevaActivity activity){
+    public JeevaPresenter(JeevaContract.View jeevaView, FragmentManager fragmentManager, JeevaActivity activity, BottomNavigationView bottomNavigationView, Toolbar toolbar){
         this.mActivity = activity;
         mJeevaContractView = jeevaView;
         if(jeevaView != null){
@@ -62,6 +67,8 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             Log.d("Chloe", "jeevaView is empty");
         }
         mFragmentManager = fragmentManager;
+        mBottomNavigationView = bottomNavigationView;
+        mToolbar = toolbar;
 
     }
 
@@ -183,38 +190,18 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         if(mHomeFragment != null) {
             transaction.hide(mHomeFragment);
             transaction.addToBackStack(HOME);
-
-
         }
-//        if(mSavedJobsFragment != null ) {
-//            transaction.hide(mSavedJobsFragment);
-////            transaction.addToBackStack(SAVEDJOBS);
-//        }
-//
-//        if(mProfileFragment != null){
-//            transaction.hide(mProfileFragment);
-////            transaction.addToBackStack(PROFILE);
-//        }
-//
-//        if(mSignInTabFragment != null ){
-//            transaction.hide(mSignInTabFragment);
-////            transaction.addToBackStack(SIGNIN);
-//        }
 
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
-//        if(!mJobDetailsFragment.isAdded()){
-//
-//
-//        }else{
-//            transaction.show(mJobDetailsFragment);
-//        }
-
         transaction.commit();
         if(mJobDetailsPresenter == null){
             mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment);
         }
-        mJeevaContractView.showJobDetailsUi();
 
+        mJeevaContractView.showJobDetailsUi();
+        mBottomNavigationView.setVisibility(View.GONE);
+        mToolbar.findViewById(R.id.home_filter).setVisibility(View.GONE);
+        mActivity.findViewById(R.id.tool_bar_back_btn).setVisibility(View.VISIBLE);
 
     }
 

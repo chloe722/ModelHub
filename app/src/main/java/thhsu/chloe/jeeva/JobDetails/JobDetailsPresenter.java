@@ -1,5 +1,8 @@
 package thhsu.chloe.jeeva.JobDetails;
 
+import thhsu.chloe.jeeva.Jeeva;
+import thhsu.chloe.jeeva.activities.JeevaActivity;
+
 /**
  * Created by Chloe on 5/6/2018.
  */
@@ -7,13 +10,14 @@ package thhsu.chloe.jeeva.JobDetails;
 public class JobDetailsPresenter implements JobDetailsContract.Presenter {
 
     private final JobDetailsContract.View mJobDetailsView;
+    JeevaActivity mActivity;
+
 
     public JobDetailsPresenter(JobDetailsContract.View JobDetailsview){
         mJobDetailsView = JobDetailsview;
         if (JobDetailsview != null){
             mJobDetailsView.setPresenter(this);
         }
-
 //        mJobDetailsView.setPresenter(this);
     }
 
