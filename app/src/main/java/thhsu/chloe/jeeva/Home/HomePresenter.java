@@ -15,6 +15,7 @@ public class HomePresenter implements HomeContract.Presenter {
         if(homeView != null){
             mHomeView.setPresenter(this);
         }
+        mHomeView.setPresenter(this);
     }
 
 
@@ -43,6 +44,6 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void openJobDetails() {
-
+        mHomeView.showJobsDetailUi();
     }
 }

@@ -178,6 +178,15 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     }
 
     @Override
+    public void showJobDetailsUi() {
+        setToolbarTitle("Details");
+    }
+
+    public void transToJobDetails(){ // Need to pass ID here after connect API
+        mPresenter.transToJobDetails(); // Need to pass ID here after connect API
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         invalidateOptionsMenu();
         switch (item.getItemId()) {
