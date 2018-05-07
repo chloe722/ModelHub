@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Home.HomeContract;
@@ -64,7 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mJobs.size();
     }
 
     @Override
@@ -166,6 +168,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
         holder.getHomeJobCompanyName().setText(mJobs.get(position).getCompany());
         holder.getHomeJobLocationName().setText(mJobs.get(position).getLocation());
         holder.getHomeJobPostedDate().setText(mJobs.get(position).getDatePosted());
+        holder.getHomeJobTitle().setText(mJobs.get(position).getTitle());
+        if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
+            Picasso.get().load(mJobs.get(position).getLogo()).into(holder.getHomeJobCompanyLogo());
+
+        }
     }
 
     public void updateData(ArrayList<Jobs> jobs){
