@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_email_black_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorAccent"
+            android:drawableTint="@color/colorJobDeadlineUrgent"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorAccent"
+            android:drawableTint="@color/colorJobDeadlineUrgent"
             android:hint="Password"
             android:textSize="18sp" />
 

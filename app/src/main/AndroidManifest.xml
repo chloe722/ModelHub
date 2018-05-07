@@ -22,17 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.FirstPageActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
-
-            <!-- <intent-filter> -->
-
-
-            <!-- &lt;!&ndash;<action android:name="android.intent.action.VIEW" />&ndash;&gt; -->
-            <!-- &lt;!&ndash;<category android:name="android.intent.category.DEFAULT" />&ndash;&gt; -->
-            <!-- </intent-filter> -->
+             <!--<intent-filter> -->
+             <!--&lt;!&ndash;<action android:name="android.intent.action.VIEW" />&ndash;&gt; -->
+             <!--&lt;!&ndash;<category android:name="android.intent.category.DEFAULT" />&ndash;&gt; -->
+             <!--</intent-filter> -->
         </activity>
+
+        <activity android:name=".activities.SignInActivity"
+            android:exported="true"/>
         <activity
             android:name=".activities.FilterActivity"
             android:exported="true" />
