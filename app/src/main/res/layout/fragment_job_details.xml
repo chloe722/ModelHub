@@ -8,5 +8,20 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/job_details_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/job_details_apply_btn"
+        />
+
+    <Button
+        android:id="@+id/job_details_apply_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:background="@drawable/yellow_rounded_shape"
+        android:text="Apply"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </RelativeLayout>

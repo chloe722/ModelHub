@@ -8,9 +8,17 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
 
     private final JobDetailsContract.View mJobDetailsView;
 
-    public JobDetailsPresenter(JobDetailsContract.View view){
-        this.mJobDetailsView = view;
-        mJobDetailsView.setPresenter(this);
+    public JobDetailsPresenter(JobDetailsContract.View JobDetailsview){
+        mJobDetailsView = JobDetailsview;
+        if (JobDetailsview != null){
+            mJobDetailsView.setPresenter(this);
+        }
+
+//        mJobDetailsView.setPresenter(this);
+    }
+
+    public void showJobDetails(){
+        mJobDetailsView.showJobDetails();
     }
 
     @Override
@@ -24,6 +32,5 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
 
     @Override
     public void loadJob() {
-
     }
 }

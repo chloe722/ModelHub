@@ -2,6 +2,7 @@ package thhsu.chloe.jeeva.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +23,11 @@ import thhsu.chloe.jeeva.R;
 
 public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.JobDetailsViewHolder> {
     public Context mContext;
+    public JobDetailsContract.Presenter mJobDetailsPresenter;
 
-    public JobDetailsAdapter(Context context){
+    public JobDetailsAdapter(Context context, JobDetailsContract.Presenter presenter){
         this.mContext = context;
+        mJobDetailsPresenter = presenter;
     }
 
     @NonNull
@@ -40,7 +43,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
     }
 
-    public class JobDetailsViewHolder extends RecyclerView.ViewHolder {
+    public class JobDetailsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView mDetailsJobType, mDetailsJobTitle, mDetailsJobPostedText, mDetailsJobDate,
                 mDetailsCompanyTitle, mDetailsLocationTitle, mDetailsCompanyName, mDetailsLocationName,
                 mDetailsSalaryTitle, mDetailsSalaryNum, mDetailsSalaryUnit, mDetailsDesTitle, mDetailsJobDesContent,
@@ -54,6 +57,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         public ImageButton mDetailsShareBtn, mDetailsBookMark;
         public ImageView mDetailsCompanyLogo;
         public Button mDetailsReadMoreBtn, mDetailsApplyBtn;
+        public ConstraintLayout mRequirementConstraint, mBenefitConstraint, mHiringResourceConstraint;
 
         public JobDetailsViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +112,12 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
             mDetailsCompanyLogo = (ImageView) itemView.findViewById(R.id.job_details_company_logo);
 
+            mRequirementConstraint = (ConstraintLayout) itemView.findViewById(R.id.job_details_requirement_constraint);
+            mBenefitConstraint = (ConstraintLayout) itemView.findViewById(R.id.job_details_benefit_container_constraint);
+            mHiringResourceConstraint = (ConstraintLayout) itemView.findViewById(R.id.job_details_hiring_resource_container_constraint);
+
+            mDetailsReadMoreBtn.setOnClickListener(this);
+
 
         }
 
@@ -141,12 +151,23 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         public TextView getDetailsHiringContactEmailText(){return mDetailsHiringContactEmailText;}
         public TextView getDetailsHiringOtherInfoText(){return mDetailsHiringOtherInfoText;}
         public ImageView getmDetailsCompanyLogo(){return mDetailsCompanyLogo;}
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.job_details_readmore_btn){
+                mDetailsJobDesContent.setMaxLines(Integer.MAX_VALUE);
+                mDetailsReadMoreBtn.setVisibility(View.INVISIBLE);
+                mRequirementConstraint.setVisibility(View.VISIBLE);
+                mBenefitConstraint.setVisibility(View.VISIBLE);
+                mHiringResourceConstraint.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 1;
     }
 }

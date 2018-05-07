@@ -23,10 +23,19 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     private JobDetailsContract.Presenter mPresenter;
     private JobDetailsAdapter mJobDetailAdapter;
 
+    public static JobDetailsFragment newInstance(){return new JobDetailsFragment();}
+
+    @Override
+    public void setPresenter(JobDetailsContract.Presenter presenter) {
+        if(presenter != null){
+            mPresenter = presenter;
+        }
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mJobDetailAdapter = new JobDetailsAdapter(getContext());
+        mJobDetailAdapter = new JobDetailsAdapter(getContext(), mPresenter);
     }
 
     @Override
@@ -47,13 +56,13 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mPresenter.start();
+        super.onViewCreated(view, savedInstanceState);
+//            mPresenter.start();
+
+
     }
 
-    @Override
-    public void setPresenter(JobDetailsContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
+
 
     @Override
     public void showJobDetails() {
