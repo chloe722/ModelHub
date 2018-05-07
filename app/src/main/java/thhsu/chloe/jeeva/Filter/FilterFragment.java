@@ -125,7 +125,6 @@ public class FilterFragment extends Fragment implements FilterContract.View, Vie
         if(mFrontend.isChecked()){
             result += "\n Frontend Chcecked!";
         }
-
         Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
     }
 
