@@ -13,12 +13,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Home.HomeContract;
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/1/2018.
@@ -26,20 +29,13 @@ import thhsu.chloe.jeeva.Utils.Constants;
 
 public class HomeAdapter extends RecyclerView.Adapter {
 
-    public ArrayList<String> recommendedJobTitleList;
-    public ArrayList<String> recommendedJobCompanyNameList;
-    private ArrayList<String> jobCompanyNameList;
-    private ArrayList<String> jobTitleList;
-    private ArrayList<String> jobTitle;
     private HomeContract.Presenter mPresenter;
+    private ArrayList<Jobs> mJobs;
 
-//    public HomeAdapter(ArrayList<String> recommendedJobTitleList, ArrayList<String> recommendedJobCompanyNameList,){
-//        this.recommendedJobTitleList = recommendedJobTitleList;
-//        this.recommendedJobCompanyNameList = recommendedJobCompanyNameList;
-//    }
 
-    public HomeAdapter(HomeContract.Presenter presenter){
+    public HomeAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
         mPresenter = presenter;
+        this.mJobs = jobs;
 
     }
 
@@ -70,7 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mJobs.size();
     }
 
     @Override
@@ -99,7 +95,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-           mPresenter.openJobDetails(); // Pass getAdapterPosition here
+//           mPresenter.openJobDetails(mJobs.get(getAdapterPosition()).getId()); // Pass getAdapterPosition here
         }
     }
 
@@ -150,7 +146,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
             }else{
                 Log.d("Chloe", "v.getId(): " + v.getId());
-                mPresenter.openJobDetails(); // setOpenJob here  getAdapterPosition()
+                mPresenter.openJobDetails(mJobs.get(getAdapterPosition()).getId()); // setOpenJob here  getAdapterPosition()
             }
         }
 
@@ -167,14 +163,24 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public ImageButton getSavedJobIcnBtn(){return mSavedJobIcnBtn;}
     }
 
+    private void bindHomeJobsItem(HomeJobsItemViewHolder holder, int position){
+        holder.getHomeJobTypeTag().setText(mJobs.get(position).getType());
+        holder.getHomeJobCompanyName().setText(mJobs.get(position).getCompany());
+        holder.getHomeJobLocationName().setText(mJobs.get(position).getLocation());
+        holder.getHomeJobPostedDate().setText(mJobs.get(position).getDatePosted());
+        holder.getHomeJobTitle().setText(mJobs.get(position).getTitle());
+        if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
+            Picasso.get().load(mJobs.get(position).getLogo()).into(holder.getHomeJobCompanyLogo());
 
+        }
+    }
 
-    private void bindHomeJobsItem(HomeJobsItemViewHolder holder, int positionInJobList){
-//        holder.getHomeJobTypeTag().setText();
-//        holder.getHomeJobCompanyName().setText();
-//        holder.getHomeJobLocationName().setText();
-//        holder.getHomeJobPostedDate().setText();
-//        holder.getHomeJobUrgentOrNotText();
+    public void updateData(ArrayList<Jobs> jobs){
+        Log.d("Chloe", "HomeAdapter update data");
+        for (Jobs job : jobs){
+            mJobs.add(job);
+        }
+        notifyDataSetChanged();
     }
 
 }

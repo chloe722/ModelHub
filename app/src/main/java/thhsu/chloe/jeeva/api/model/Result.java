@@ -8,4 +8,5 @@ import java.util.ArrayList;
 
 public class Result<T> {
     public ArrayList<Jobs> jobs;
+    public ArrayList<FilterJobs> filterJobs;
 }

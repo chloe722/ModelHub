@@ -10,13 +10,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiManager {
-    public static final String BASE_URL = "https://v2.wetogether.co/api/jobs";
+    public static final String BASE_URL = "https://v2.wetogether.co/api/";
     public ApiJobsService apiJobsService;
 
-    public static final ApiManager ourInstance = new ApiManager();
+
+    private static final ApiManager ourInstance = new ApiManager();
     public static ApiManager getInstance(){return ourInstance;}
 
-    public ApiManager(){
+    private ApiManager(){
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
