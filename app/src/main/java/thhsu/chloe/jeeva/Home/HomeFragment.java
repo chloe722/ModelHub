@@ -11,10 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.adapters.HomeAdapter;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/1/2018.
@@ -29,12 +32,18 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHomeAdapter = new HomeAdapter(mPresenter);
+        mHomeAdapter = new HomeAdapter(mPresenter, new ArrayList<Jobs>());
 
     }
 
     public static HomeFragment newInstance(){
         return new HomeFragment();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.loadJobs();
     }
 
     @Nullable
@@ -65,12 +74,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
-    public void showJobsList() {
-
+    public void showJobs(ArrayList<Jobs> jobs) {
+        mHomeAdapter.updateData(jobs);
     }
 
     @Override
-    public void showJobsDetailUi() {
+    public void showJobsDetailUi(String jobId) {
         ((JeevaActivity)getActivity()).transToJobDetails();
     }
+
 }

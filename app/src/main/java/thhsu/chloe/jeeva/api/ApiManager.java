@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiManager {
-    public static final String BASE_URL = "https://v2.wetogether.co/api/jobs";
+    public static final String BASE_URL = "https://v2.wetogether.co/api";
     public ApiJobsService apiJobsService;
 
     public static final ApiManager ourInstance = new ApiManager();
