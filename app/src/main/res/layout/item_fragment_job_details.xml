@@ -220,7 +220,7 @@
                 android:layout_marginTop="16dp"
                 android:ellipsize="end"
                 android:lineSpacingExtra="5dp"
-                android:maxLines="10"
+                android:maxLines="15"
                 android:maxWidth="320dp"
                 android:text="Job Description
 IBM Global Business Services (GBS) is a world leading strategy consultancy with deep industry expertise. We are looking for application architect in the financial services.
@@ -244,7 +244,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:background="@null"
                 android:text="Read More"
                 android:textColor="@color/colorAccent"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/job_details_des_content" />

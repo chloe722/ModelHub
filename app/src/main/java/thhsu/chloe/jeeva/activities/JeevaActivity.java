@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -36,22 +38,29 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private boolean isFilterInHome = true;
     private boolean shouldShowFilter = false;
     private Fragment currentFragment;
+    private Button mToolBarBackBtn;
     JeevaActivity jeevaActivity;
+
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         init();
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//    }
+
 
     private void init(){
         setContentView(R.layout.activity_main);
         setBottomNavigationView();
         setToolbar();
 
-        mPresenter = new JeevaPresenter(this, getFragmentManager(), this);
+        mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar);
         mPresenter.start();
     }
 
@@ -86,6 +95,17 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         return true;
     }
 
+//    @Override
+//    public void onClick(View v) {
+//        if(v.getId() == R.id.tool_bar_back_btn){
+//            jeevaActivity.onBackPressed();
+//        }
+//    }
+
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
@@ -111,18 +131,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
         mToolbarTitle.setText("Home");
 
-
     }
 
     private void setToolbarTitle(String title) {
         mToolbarTitle.setText(title);
     }
-
-//    public void setToolbarVisibility(boolean isVisible){
-//        if(mToolbar != null){
-//            mToolbar.setVisibility(isVisible) ? View.VISIBLE: View.GONE;
-//        }
-//    }
 
 //    public void hideFilter(){
 //        shouldShowFilter = false;
@@ -210,4 +223,19 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         }
         return true;
     }
+
+
+    public void showBtnNavView(){
+        mBottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    public void showFilterIcn(){
+        mToolbar.findViewById(R.id.home_filter).setVisibility(View.VISIBLE);
+    }
+
+    public void hideToolbarBackBtn(){
+        this.findViewById(R.id.tool_bar_back_btn).setVisibility(View.GONE);
+    }
+
+
 }
