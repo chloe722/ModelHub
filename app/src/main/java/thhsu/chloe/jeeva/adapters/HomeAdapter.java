@@ -181,11 +181,18 @@ public class HomeAdapter extends RecyclerView.Adapter {
             (holder.mHomeJobClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
             (holder.getHomeJobUrgentOrNotText()).setText("Urgent");
             (holder.getHomeJobUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
-            ;}
-        if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
-            Picasso.get().load(mJobs.get(position).getLogo()).into(holder.getHomeJobCompanyLogo());
+            }
 
+        if(mJobs.get(position).getLogo() == null){
+            (holder.mHomeJobCompanyLogo).setVisibility(View.GONE);
+
+        }else{
+            Picasso.get().load(mJobs.get(position).getLogo()).into(holder.getHomeJobCompanyLogo());
         }
+//        if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
+//        }
+
+
     }
 
     public void updateData(ArrayList<Jobs> jobs){
