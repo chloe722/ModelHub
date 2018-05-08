@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void showJobsDetailUi(String jobId) {
-        ((JeevaActivity)getActivity()).transToJobDetails();
+        ((JeevaActivity)getActivity()).transToJobDetails(jobId);
     }
 
 }

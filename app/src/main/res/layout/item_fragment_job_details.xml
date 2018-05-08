@@ -47,7 +47,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/job_details_job_title"
+            android:id="@+id/home_job_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -69,7 +69,7 @@
             android:text="Posted on"
             android:textColor="@color/job_company_location_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_job_title" />
+            app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
         <TextView
             android:id="@+id/job_details_posted_date"
@@ -79,7 +79,7 @@
             android:layout_marginTop="5dp"
             android:text="October 24, 2018"
             app:layout_constraintStart_toEndOf="@+id/job_details_posted_text"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_job_title" />
+            app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
         <ImageView
             android:id="@+id/job_details_company_logo"

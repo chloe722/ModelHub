@@ -12,10 +12,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.JobDetails.JobDetailsContract;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/6/2018.
@@ -24,10 +25,12 @@ import thhsu.chloe.jeeva.R;
 public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.JobDetailsViewHolder> {
     public Context mContext;
     public JobDetailsContract.Presenter mJobDetailsPresenter;
+    private ArrayList<Jobs> jobs;
 
-    public JobDetailsAdapter(Context context, JobDetailsContract.Presenter presenter){
+    public JobDetailsAdapter(Context context, ArrayList<Jobs> jobs, JobDetailsContract.Presenter presenter){
         this.mContext = context;
         mJobDetailsPresenter = presenter;
+        this.jobs = jobs;
     }
 
     @NonNull
@@ -40,6 +43,8 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
     @Override
     public void onBindViewHolder(@NonNull JobDetailsViewHolder holder, int position) {
+//        holder.getDetailsJobTitle().setText();
+
 
     }
 
@@ -63,7 +68,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
             super(itemView);
 
             mDetailsJobType = (TextView) itemView.findViewById(R.id.job_details_type_tag);
-            mDetailsJobTitle = (TextView) itemView.findViewById(R.id.job_details_job_title);
+            mDetailsJobTitle = (TextView) itemView.findViewById(R.id.home_job_title);
             mDetailsJobPostedText = (TextView) itemView.findViewById(R.id.job_details_posted_text);
             mDetailsJobDate = (TextView) itemView.findViewById(R.id.job_details_posted_date);
             mDetailsCompanyTitle = (TextView) itemView.findViewById(R.id.job_details_company_title);
@@ -164,6 +169,10 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         }
     }
 
+    public void updateJobs(ArrayList<Jobs> jobs){
+
+        notifyItemChanged(0);
+    }
 
 
     @Override

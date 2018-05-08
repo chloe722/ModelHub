@@ -1,6 +1,7 @@
 package thhsu.chloe.jeeva.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
@@ -10,12 +11,18 @@ import thhsu.chloe.jeeva.R;
 
 public class FirstPageActivity extends BaseActivity {
     private Button mGetStartedBtn, mFirstPageSignInBtn;
-
+    private View backgroundImage;
+    private Drawable background;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_page);
 
+
+
+        backgroundImage = (View) findViewById(R.id.firstpage_constraint);
+        background = backgroundImage.getBackground();
+//        background.setAlpha(90);
         mGetStartedBtn = (Button) findViewById(R.id.getStartedBtn);
         mFirstPageSignInBtn = (Button) findViewById(R.id.first_page_signIn_btn);
         mGetStartedBtn.setOnClickListener(new View.OnClickListener() {

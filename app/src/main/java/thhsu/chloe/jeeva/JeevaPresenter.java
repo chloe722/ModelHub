@@ -1,6 +1,7 @@
 package thhsu.chloe.jeeva;
 
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import thhsu.chloe.jeeva.Filter.FilterFragment;
 import thhsu.chloe.jeeva.Filter.FilterPresenter;
@@ -77,9 +79,11 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
     }
 
+
     @Override
     public void transToHome() {
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        FragmentTransaction transaction
+                = mFragmentManager.beginTransaction();
 
 //        if(mFragmentManager.findFragmentByTag(HOME) != null)
 //            mFragmentManager.popBackStack();
@@ -183,9 +187,10 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     }
 
     @Override
-    public void transToJobDetails() {
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-
+    public void transToJobDetails(String jobId) {
+        final FragmentTransaction transaction =
+                mFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right); //smooth animator while switching the fragment
         mJobDetailsFragment = JobDetailsFragment.newInstance();
         if(mHomeFragment != null) {
             transaction.hide(mHomeFragment);
@@ -195,13 +200,20 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
         if(mJobDetailsPresenter == null){
-            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment);
+            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, jobId);
         }
 
         mJeevaContractView.showJobDetailsUi();
         mBottomNavigationView.setVisibility(View.GONE);
         mToolbar.findViewById(R.id.home_filter).setVisibility(View.GONE);
-        mActivity.findViewById(R.id.tool_bar_back_btn).setVisibility(View.VISIBLE);
+        mToolbar.findViewById(R.id.tool_bar_back_btn).setVisibility(View.VISIBLE);
+        mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFragmentManager.popBackStack();
+
+            }
+        });
 
     }
 

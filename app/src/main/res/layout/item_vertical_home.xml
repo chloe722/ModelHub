@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintlayout_home_job_item"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="240dp">
 
 
     <TextView
-        android:id="@+id/job_details_job_title"
+        android:id="@+id/home_job_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
-        android:maxWidth="220dp"
+        android:maxWidth="300dp"
         android:text="Full Stack Ruby on Rails Developer"
         android:textColor="@color/colorJobTitle"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/job_details_type_tag"
+        android:id="@+id/home_job_type_tag"
         android:layout_width="95dp"
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/job_details_posted_text"
+        android:id="@+id/home_job_posted_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,30 +44,30 @@
         android:text="Posted on"
         android:textColor="@color/job_company_location_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_job_title" />
+        app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
     <TextView
-        android:id="@+id/job_details_posted_date"
+        android:id="@+id/home_job_posted_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="October 24, 2018"
-        app:layout_constraintStart_toEndOf="@+id/job_details_posted_text"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_job_title" />
+        app:layout_constraintStart_toEndOf="@+id/home_job_posted_text"
+        app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
     <ImageView
-        android:id="@+id/job_details_company_logo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/home_job_company_logo"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text"
+        app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/job_details_company_title"
+        android:id="@+id/home_job_company_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -76,61 +76,59 @@
         android:textColor="@color/job_company_location_title"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text" />
+        app:layout_constraintStart_toEndOf="@+id/home_job_company_logo"
+        app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
 
     <TextView
-        android:id="@+id/job_details_location_title"
+        android:id="@+id/home_job_location_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Location"
         android:textColor="@color/job_company_location_title"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/job_details_company_title"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text" />
+        app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
+        app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
 
     <TextView
-        android:id="@+id/job_details_company_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/home_job_company_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
         android:layout_marginTop="8dp"
-        android:maxWidth="90dp"
+        android:maxWidth="100dp"
+        android:minWidth="90dp"
         android:text="Rockstar Games INC."
         android:textColor="@color/job_company_location_title"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_company_title" />
+        app:layout_constraintStart_toStartOf="@+id/home_job_company_title"
+        app:layout_constraintTop_toBottomOf="@+id/home_job_company_title" />
 
     <TextView
         android:id="@+id/home_job_location_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:maxWidth="120dp"
+        android:maxWidth="110dp"
+        android:minWidth="100dp"
         android:text="San Francisco, United States"
         android:textColor="@color/job_company_location_title"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/job_details_company_name"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_location_title" />
+        app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
+        app:layout_constraintTop_toBottomOf="@+id/home_job_location_title" />
 
     <TextView
         android:id="@+id/home_job_urgentornot_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/ic_clock_green_24dp"
-        android:drawablePadding="5dp"
-        android:text="21 Days Left | Not Urgent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="13dp"
+        android:text="Not Urgent"
         android:textColor="@color/colorJobDeadlineSafe"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_company_name" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/home_clock_icn" />
 
     <ImageButton
         android:id="@+id/home_job_savedJob_icn_btn"
@@ -142,5 +140,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_bookmark_border_red_24dp" />
+
+    <ImageView
+        android:id="@+id/home_hr_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorHrLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_job_urgentornot_text" />
+
+    <ImageView
+        android:id="@+id/home_clock_icn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_clock_green_24dp" />
 
 </android.support.constraint.ConstraintLayout>

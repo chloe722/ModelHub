@@ -11,10 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.adapters.JobDetailsAdapter;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/6/2018.
@@ -25,6 +28,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     private JobDetailsContract.Presenter mPresenter;
     private JobDetailsAdapter mJobDetailAdapter;
     JeevaActivity mJeevaActivity;
+
 
     public static JobDetailsFragment newInstance(){return new JobDetailsFragment();}
 
@@ -38,7 +42,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mJobDetailAdapter = new JobDetailsAdapter(getContext(), mPresenter);
+        mJobDetailAdapter = new JobDetailsAdapter(getContext(), new ArrayList<Jobs>(), mPresenter);
     }
 
     @Override
@@ -73,8 +77,8 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     }
 
     @Override
-    public void showJobDetails() {
-
+    public void showJobDetails(ArrayList<Jobs> jobs) {
+        mJobDetailAdapter.updateJobs(jobs);
     }
 
 //    @Override
