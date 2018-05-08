@@ -26,6 +26,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     private JobDetailsAdapter mJobDetailAdapter;
     JeevaActivity mJeevaActivity;
 
+
     public static JobDetailsFragment newInstance(){return new JobDetailsFragment();}
 
     @Override

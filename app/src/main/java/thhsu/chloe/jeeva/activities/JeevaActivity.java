@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import thhsu.chloe.jeeva.Filter.FilterFragment;
 import thhsu.chloe.jeeva.JeevaContract;
@@ -22,12 +23,13 @@ import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
 
 import static thhsu.chloe.jeeva.JeevaPresenter.FILTER;
+import static thhsu.chloe.jeeva.JeevaPresenter.JOBDETAILS;
 
 /**
  * Created by Chloe on 4/30/2018.
  */
 
-public class JeevaActivity extends BaseActivity implements JeevaContract.View, BottomNavigationView.OnNavigationItemSelectedListener{
+public class JeevaActivity extends BaseActivity implements JeevaContract.View, BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
     private JeevaContract.Presenter mPresenter;
     private TextView mToolbarTitle;
     private Toolbar mToolbar;
@@ -49,17 +51,10 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         init();
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//    }
-
-
     private void init(){
         setContentView(R.layout.activity_main);
         setBottomNavigationView();
         setToolbar();
-
         mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar);
         mPresenter.start();
     }
@@ -86,11 +81,14 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
             inflater.inflate(R.menu.menu_more_member, menu);
 
         }
-
-//        if(currentFragment == getFragmentManager().findFragmentByTag(FILTER)){
-//            menu.clear();
-////            mBottomNavigationView.;
-//
+//        if(currentFragment == getFragmentManager().findFragmentByTag(JOBDETAILS)){
+//            mToolBarBackBtn.setVisibility(View.VISIBLE);
+//            mToolBarBackBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(getApplicationContext(), "Button click", Toast.LENGTH_SHORT).show();
+//                }
+//            });
 //        }
         return true;
     }
@@ -104,6 +102,14 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
 
 
+@Override
+public void onClick(View v) {
+    currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
+    if(currentFragment == getFragmentManager().findFragmentByTag(JOBDETAILS))
+        if (v.getId() == R.id.tool_bar_back_btn){
+            Toast.makeText(getApplicationContext(), "Button click", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
     @Override
@@ -114,6 +120,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        mToolBarBackBtn.setOnClickListener(this);
         init();
     }
 
@@ -121,7 +128,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
-
 
     private void setToolbar() {
         // Retrieve the AppCompact Toolbar
@@ -236,6 +242,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     public void hideToolbarBackBtn(){
         this.findViewById(R.id.tool_bar_back_btn).setVisibility(View.GONE);
     }
+
 
 
 }
