@@ -1,5 +1,6 @@
 package thhsu.chloe.jeeva.adapters;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,9 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public int getItemCount() {
-        return mJobs.size();
-    }
+    public int getItemCount() {return mJobs.size();}
 
     @Override
     public int getItemViewType(int position) {
@@ -114,23 +113,24 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public TextView mHomeJobTypeTag, mHomeJobTitle, mHomeJobPostedOnText,
                 mHomeJobPostedDate, mHomeJobCompanyTitle, mHomeJobLocationTitle,
                 mHomeJobCompanyName, mHomeJobLocationName, mHomeJobUrgentOrNotText ;
-        public ImageView mHomeJobCompanyLogo;
+        public ImageView mHomeJobCompanyLogo, mHomeJobClockIcn;
         public ImageButton mSavedJobIcnBtn;
 
         public HomeJobsItemViewHolder(View itemView) {
             super(itemView);
 
-            mHomeJobTypeTag = (TextView) itemView.findViewById(R.id.job_details_type_tag);
-            mHomeJobTitle = (TextView) itemView.findViewById(R.id.job_details_job_title);
-            mHomeJobPostedOnText = (TextView) itemView.findViewById(R.id.job_details_posted_text);
-            mHomeJobPostedDate = (TextView) itemView.findViewById(R.id.job_details_posted_date);
-            mHomeJobCompanyTitle = (TextView) itemView.findViewById(R.id.job_details_company_title);
-            mHomeJobLocationTitle = (TextView) itemView.findViewById(R.id.job_details_location_title);
-            mHomeJobCompanyName = (TextView) itemView.findViewById(R.id.job_details_company_name);
+            mHomeJobTypeTag = (TextView) itemView.findViewById(R.id.home_job_type_tag);
+            mHomeJobTitle = (TextView) itemView.findViewById(R.id.home_job_title);
+            mHomeJobPostedOnText = (TextView) itemView.findViewById(R.id.home_job_posted_text);
+            mHomeJobPostedDate = (TextView) itemView.findViewById(R.id.home_job_posted_date);
+            mHomeJobCompanyTitle = (TextView) itemView.findViewById(R.id.home_job_company_title);
+            mHomeJobLocationTitle = (TextView) itemView.findViewById(R.id.home_job_location_title);
+            mHomeJobCompanyName = (TextView) itemView.findViewById(R.id.home_job_company_name);
             mHomeJobLocationName = (TextView) itemView.findViewById(R.id.home_job_location_name);
             mHomeJobUrgentOrNotText = (TextView) itemView.findViewById(R.id.home_job_urgentornot_text);
-            mHomeJobCompanyLogo = (ImageView) itemView.findViewById(R.id.job_details_company_logo);
+            mHomeJobCompanyLogo = (ImageView) itemView.findViewById(R.id.home_job_company_logo);
             mSavedJobIcnBtn = (ImageButton) itemView.findViewById(R.id.home_job_savedJob_icn_btn);
+            mHomeJobClockIcn = (ImageView) itemView.findViewById(R.id.home_clock_icn);
 
             mSavedJobIcnBtn.setOnClickListener(this);
             ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_home_job_item)).setOnClickListener(this);
@@ -169,6 +169,19 @@ public class HomeAdapter extends RecyclerView.Adapter {
         holder.getHomeJobLocationName().setText(mJobs.get(position).getLocation());
         holder.getHomeJobPostedDate().setText(mJobs.get(position).getDatePosted());
         holder.getHomeJobTitle().setText(mJobs.get(position).getTitle());
+        if (mJobs.get(position).getType().equals("fulltime")){
+            (holder.getHomeJobTypeTag()).setText("Full-time");
+            (holder.getHomeJobTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
+        }else if(mJobs.get(position).getType().equals("parttime")){
+            (holder.getHomeJobTypeTag()).setText("Part-time");
+        }else if(mJobs.get(position).getType().equals("intern")){
+            (holder.getHomeJobTypeTag()).setText("Intern");
+        }
+        if(mJobs.get(position).getUrgent()){
+            (holder.mHomeJobClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
+            (holder.getHomeJobUrgentOrNotText()).setText("Urgent");
+            (holder.getHomeJobUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
+            ;}
         if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
             Picasso.get().load(mJobs.get(position).getLogo()).into(holder.getHomeJobCompanyLogo());
 

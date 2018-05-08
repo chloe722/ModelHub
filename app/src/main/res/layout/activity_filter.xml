@@ -1,214 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/filter_fragment"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+<LinearLayout
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/filter_linearLayout">
 
-    <TextView
-        android:id="@+id/filter_position_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/position"
-        android:textColor="@color/colorFilterContentTitle"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_frontend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/frontend_developer"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/filter_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#ffffff">
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_backend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/backend_developer"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_frontend" />
+                <TextView
+                    android:id="@+id/filter_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Filter"
+                    android:textColor="@color/colorPageTitleGrayHintProgressionIcon"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_product_m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/product_manager"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fullstack" />
+                <ImageButton
+                    android:id="@+id/filter_tool_bar_back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="9dp"
+                    android:background="@null"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_web_designer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/web_designer"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
-        app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
+            </android.support.v7.widget.Toolbar>
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_uiux_designer"
-        android:layout_width="154dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/ui_ux_desinger"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/filter_checkbox_web_designer"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_web_designer" />
+        </RelativeLayout>
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_project_m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/project_manager"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_uiux_designer" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/dropshadow" />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/filter_linearLayout">
 
-    <TextView
-        android:id="@+id/filter_type_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/type"
-        android:textColor="@color/colorFilterContentTitle"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_product_m" />
+        <android.support.constraint.ConstraintLayout
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_fulltime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/full_time"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
+            android:id="@+id/filter_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_contract"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/contract"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fulltime" />
+            <TextView
+                android:id="@+id/filter_position_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/position"
+                android:textColor="@color/colorFilterContentTitle"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_intern"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/internship"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_contract" />
+            <CheckBox
+                android:id="@+id/filter_checkbox_frontend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/frontend_developer"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_parttime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/part_time"
-        android:textAlignment="viewStart"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
-        app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
+            <CheckBox
+                android:id="@+id/filter_checkbox_backend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/backend_developer"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_frontend" />
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_permanent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/permanent"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_parttime" />
+            <CheckBox
+                android:id="@+id/filter_checkbox_product_m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/product_manager"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fullstack" />
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_remote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/remote"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_permanent" />
+            <CheckBox
+                android:id="@+id/filter_checkbox_web_designer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/web_designer"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
+                app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
-    <CheckBox
-        android:id="@+id/filter_checkbox_fullstack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/fullstack_developer"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_backend" />
+            <CheckBox
+                android:id="@+id/filter_checkbox_uiux_designer"
+                android:layout_width="154dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/ui_ux_desinger"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/filter_checkbox_web_designer"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_web_designer" />
 
-    <Button
-        android:id="@+id/filter_save_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/yellow_rounded_shape"
-        android:text="@string/save"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <CheckBox
+                android:id="@+id/filter_checkbox_project_m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/project_manager"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_uiux_designer" />
 
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/filter_type_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/type"
+                android:textColor="@color/colorFilterContentTitle"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_product_m" />
+
+            <CheckBox
+                android:id="@+id/filter_checkbox_fulltime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/full_time"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
+
+            <CheckBox
+                android:id="@+id/filter_checkbox_contract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/contract"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fulltime" />
+
+            <CheckBox
+                android:id="@+id/filter_checkbox_intern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/internship"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_contract" />
+
+            <CheckBox
+                android:id="@+id/filter_checkbox_parttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/part_time"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
+                app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
+
+            <CheckBox
+                android:id="@+id/filter_checkbox_permanent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/permanent"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_parttime" />
+
+            <CheckBox
+                android:id="@+id/filter_checkbox_remote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/remote"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_permanent" />
+
+            <CheckBox
+                android:id="@+id/filter_checkbox_fullstack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/fullstack_developer"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_backend" />
+
+            <Button
+                android:id="@+id/filter_save_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/yellow_rounded_shape"
+                android:text="@string/save"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </FrameLayout>
+
+</RelativeLayout>
+
+
+

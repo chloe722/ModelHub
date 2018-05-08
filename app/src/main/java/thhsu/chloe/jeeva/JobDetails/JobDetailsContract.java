@@ -14,12 +14,14 @@ public interface JobDetailsContract {
 
     interface View extends BaseView<Presenter>{
 
-        void showJobDetails();
+        void showJobDetails(ArrayList<Jobs> jobs);
 
     }
 
     interface Presenter extends BasePresenter{
         void result(int requestCode, int resultCode);
+
+        void showJobDetails(ArrayList<Jobs> jobs);
 
         void loadJob();
     }

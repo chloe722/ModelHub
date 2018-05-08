@@ -187,12 +187,10 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     }
 
     @Override
-    public void transToJobDetails() {
+    public void transToJobDetails(String jobId) {
         final FragmentTransaction transaction =
                 mFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right);
-
-
+                        .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right); //smooth animator while switching the fragment
         mJobDetailsFragment = JobDetailsFragment.newInstance();
         if(mHomeFragment != null) {
             transaction.hide(mHomeFragment);
@@ -202,7 +200,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
         if(mJobDetailsPresenter == null){
-            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment);
+            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, jobId);
         }
 
         mJeevaContractView.showJobDetailsUi();
@@ -213,8 +211,6 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             @Override
             public void onClick(View v) {
                 mFragmentManager.popBackStack();
-
-                Toast.makeText(mActivity, "Button click", Toast.LENGTH_SHORT).show();
 
             }
         });

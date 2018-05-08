@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,8 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
             mUiUxD, mProductM, mProjectM, mFullTime,
             mPartTime, mContract, mPermanent, mIntern, mRemote;
     public Button mSavedBtn;
+    public ImageButton mFilterBackBtn;
+    public Toolbar mToolbar;
     public TextView mFilterPositionTitle, mFilterTypeTitle;
     public HashMap<String, Boolean> filterResult;
     public HashMap<String, Boolean> filterResultTest;
@@ -46,8 +50,6 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     public boolean checked = false;
     HomeFragment homeFragment;
     SharedPreferences sharedPreferences;
-
-
 
     public Context mContext;
     @Override
@@ -78,6 +80,8 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mSavedBtn = (Button) findViewById(R.id.filter_save_btn);
         mFilterPositionTitle = (TextView) findViewById(R.id.filter_position_title);
         mFilterTypeTitle = (TextView) findViewById(R.id.filter_type_title);
+        mToolbar = (Toolbar) findViewById(R.id.filter_toolbar);
+        mFilterBackBtn = (ImageButton) mToolbar.findViewById(R.id.filter_tool_bar_back_btn);
 
 
         mFrontend.setOnCheckedChangeListener(this);
@@ -95,6 +99,8 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mRemote.setOnCheckedChangeListener(this);
 
         mSavedBtn.setOnClickListener(this);
+        mFilterBackBtn.setOnClickListener(this);
+
     }
 
 
@@ -174,10 +180,15 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     @Override
     public void onClick(View v) {
 //        filterResult.putAll(filterResult);
-        Log.d("Chloe", "saved clicked filter Result: " + filterResultTest);
-        //post value with API to backend
-        Intent intent = new Intent(FilterActivity.this, JeevaActivity.class);
-        startActivity(intent);
+        switch (v.getId()){
+            case R.id.filter_save_btn:
+                Log.d("Chloe", "saved clicked filter Result: " + filterResultTest);
+                //post value with API to backend
+                Intent intent = new Intent(FilterActivity.this, JeevaActivity.class);
+                startActivity(intent);
+            case R.id.filter_tool_bar_back_btn:
+                super.onBackPressed();
+        }
 
     }
 

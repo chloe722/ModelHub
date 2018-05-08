@@ -186,8 +186,8 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setToolbarTitle("Details");
     }
 
-    public void transToJobDetails(){ // Need to pass ID here after connect API
-        mPresenter.transToJobDetails(); // Need to pass ID here after connect API
+    public void transToJobDetails(String jobId){ // Need to pass ID here after connect API
+        mPresenter.transToJobDetails(jobId); // Need to pass ID here after connect API
     }
 
     @Override

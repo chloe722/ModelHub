@@ -34,7 +34,7 @@ public interface JeevaContract {
 
         void transToSignInTabPage();
 
-        void transToJobDetails();
+        void transToJobDetails(String jobId);
 
 //        void transToFilter();
 
