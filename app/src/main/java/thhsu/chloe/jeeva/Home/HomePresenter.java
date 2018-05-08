@@ -67,8 +67,13 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void openJobDetails(String jobId) {
-        mHomeView.showJobsDetailUi(jobId);
+    public void openJobDetails(Jobs job) {
+        mHomeView.showJobsDetailUi(job);
+    }
+
+    @Override
+    public void refresh() {
+        mHomeView.refreshUi();
     }
 
 }

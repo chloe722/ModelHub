@@ -66,7 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public int getItemCount() {return mJobs.size();}
+    public int getItemCount() {return mJobs.size()-1;}
 
     @Override
     public int getItemViewType(int position) {
@@ -145,8 +145,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 //setSOLite data here
                 mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
             }else{
-                Log.d("Chloe", "v.getId(): " + v.getId());
-                mPresenter.openJobDetails(mJobs.get(getAdapterPosition()).getId()); // setOpenJob here  getAdapterPosition()
+                Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
+                mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
             }
         }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,17 +33,25 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
 
     public static JobDetailsFragment newInstance(){return new JobDetailsFragment();}
 
+
     @Override
     public void setPresenter(JobDetailsContract.Presenter presenter) {
         if(presenter != null){
             mPresenter = presenter;
+        }else{
+            Log.d("Chloe", "Presenter is empty!!!!!!!!!");
         }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mJobDetailAdapter = new JobDetailsAdapter(getContext(), new ArrayList<Jobs>(), mPresenter);
+        mJobDetailAdapter = new JobDetailsAdapter(getContext(), new Jobs(), mPresenter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -64,29 +73,22 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//            mPresenter.start();
+            mPresenter.start();
     }
 
     @Override
     public void onDestroy() {  //When the fragment finish, run the code below.  onDestroy --> Fragment has finished or got destroyed
+        super.onDestroy();
         ((JeevaActivity) getActivity()).showBtnNavView();
         ((JeevaActivity) getActivity()).showFilterIcn();
         ((JeevaActivity) getActivity()).hideToolbarBackBtn();
-        super.onDestroy();
 
     }
+
+
 
     @Override
-    public void showJobDetails(ArrayList<Jobs> jobs) {
-        mJobDetailAdapter.updateJobs(jobs);
+    public void showJobDetails(Jobs job) {
+        mJobDetailAdapter.updateJobs(job);
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        if(v.getId() == R.id.tool_bar_back_btn){
-//
-//        }
-//    }
-
-
 }

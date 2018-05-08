@@ -1,5 +1,7 @@
 package thhsu.chloe.jeeva.JobDetails;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Jeeva;
@@ -14,35 +16,35 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
 
     private final JobDetailsContract.View mJobDetailsView;
     JeevaActivity mActivity;
-    private ArrayList<Jobs> jobs;
-    private String mJobId;
+    private Jobs mJob;
 
 
-    public JobDetailsPresenter(JobDetailsContract.View JobDetailsview, String jobId){
-        mJobDetailsView = JobDetailsview;
-        if (JobDetailsview != null){
+    public JobDetailsPresenter(JobDetailsContract.View JobDetailsView, Jobs job){
+        mJobDetailsView = JobDetailsView;
+        if (JobDetailsView != null){
             mJobDetailsView.setPresenter(this);
-            mJobId = jobId;
+            mJob = job;
+            Log.d("Chloe", "Job details mJob: " + mJob);
         }
-//        mJobDetailsView.setPresenter(this);
     }
 
 
     @Override
     public void start() {
-
+        loadJob();
     }
 
     @Override
     public void result(int requestCode, int resultCode) {
     }
 
-    @Override
-    public void showJobDetails(ArrayList<Jobs> jobs) {
-        mJobDetailsView.showJobDetails(jobs);
-    }
+//    @Override
+//    public void showJobDetails(Jobs job) {
+//        mJobDetailsView.showJobDetails(job);
+//    }
 
     @Override
     public void loadJob() {
+        mJobDetailsView.showJobDetails(mJob);
     }
 }

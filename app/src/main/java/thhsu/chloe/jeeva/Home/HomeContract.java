@@ -18,8 +18,9 @@ public interface HomeContract {
 
         void showJobs(ArrayList<Jobs> jobs);
 
-        void showJobsDetailUi(String jobId);
+        void showJobsDetailUi(Jobs job);
 
+        void refreshUi();
 
     }
 
@@ -35,7 +36,9 @@ public interface HomeContract {
 
         void onScrolled(RecyclerView.LayoutManager layoutManager);
 
-        void openJobDetails(String jobId);
+        void openJobDetails(Jobs job);
+
+        void refresh();
 
     }
 }

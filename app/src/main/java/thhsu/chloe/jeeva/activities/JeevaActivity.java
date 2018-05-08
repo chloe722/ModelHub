@@ -21,6 +21,7 @@ import thhsu.chloe.jeeva.Filter.FilterFragment;
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 import static thhsu.chloe.jeeva.JeevaPresenter.FILTER;
 import static thhsu.chloe.jeeva.JeevaPresenter.JOBDETAILS;
@@ -96,6 +97,15 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 //    }
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -186,8 +196,8 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setToolbarTitle("Details");
     }
 
-    public void transToJobDetails(String jobId){ // Need to pass ID here after connect API
-        mPresenter.transToJobDetails(jobId); // Need to pass ID here after connect API
+    public void transToJobDetails(Jobs job){ // Need to pass ID here after connect API
+        mPresenter.transToJobDetails(job); // Need to pass ID here after connect API
     }
 
     @Override
