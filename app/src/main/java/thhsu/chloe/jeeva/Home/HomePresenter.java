@@ -22,7 +22,6 @@ public class HomePresenter implements HomeContract.Presenter {
         if(homeView != null){
             mHomeView.setPresenter(this);
         }
-        mHomeView.setPresenter(this);
     }
 
 

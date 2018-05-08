@@ -183,14 +183,15 @@ public class HomeAdapter extends RecyclerView.Adapter {
             (holder.getHomeJobUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
             }
 
-        if(mJobs.get(position).getLogo() == null){
-            (holder.mHomeJobCompanyLogo).setVisibility(View.GONE);
-
-        }else{
+//        if(mJobs.get(position).getLogo() == null){
+//            (holder.mHomeJobCompanyLogo).setVisibility(View.GONE);
+//
+//        }else{
+//
+//        }
+        if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
             Picasso.get().load(mJobs.get(position).getLogo()).into(holder.getHomeJobCompanyLogo());
         }
-//        if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
-//        }
 
 
     }

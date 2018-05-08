@@ -30,9 +30,9 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     private JobDetailsAdapter mJobDetailAdapter;
     JeevaActivity mJeevaActivity;
 
-
-    public static JobDetailsFragment newInstance(){return new JobDetailsFragment();}
-
+    public static JobDetailsFragment newInstance(){
+        return new JobDetailsFragment();
+    }
 
     @Override
     public void setPresenter(JobDetailsContract.Presenter presenter) {
@@ -52,6 +52,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Override
     public void onResume() {
         super.onResume();
+        if(mPresenter != null) mPresenter.start();
     }
 
     @Override
@@ -73,7 +74,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-            mPresenter.start();
+        if(mPresenter != null) mPresenter.start();
     }
 
     @Override
