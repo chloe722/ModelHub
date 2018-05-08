@@ -188,7 +188,10 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
     @Override
     public void transToJobDetails() {
-        final FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        final FragmentTransaction transaction =
+                mFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right);
+
 
         mJobDetailsFragment = JobDetailsFragment.newInstance();
         if(mHomeFragment != null) {

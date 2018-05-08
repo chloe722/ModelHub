@@ -29,7 +29,7 @@ import static thhsu.chloe.jeeva.JeevaPresenter.JOBDETAILS;
  * Created by Chloe on 4/30/2018.
  */
 
-public class JeevaActivity extends BaseActivity implements JeevaContract.View, BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class JeevaActivity extends BaseActivity implements JeevaContract.View, BottomNavigationView.OnNavigationItemSelectedListener{
     private JeevaContract.Presenter mPresenter;
     private TextView mToolbarTitle;
     private Toolbar mToolbar;
@@ -93,23 +93,8 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         return true;
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        if(v.getId() == R.id.tool_bar_back_btn){
-//            jeevaActivity.onBackPressed();
-//        }
 //    }
 
-
-
-@Override
-public void onClick(View v) {
-    currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
-    if(currentFragment == getFragmentManager().findFragmentByTag(JOBDETAILS))
-        if (v.getId() == R.id.tool_bar_back_btn){
-            Toast.makeText(getApplicationContext(), "Button click", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
     @Override
@@ -120,7 +105,7 @@ public void onClick(View v) {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mToolBarBackBtn.setOnClickListener(this);
+//        mToolBarBackBtn.setOnClickListener(this);
         init();
     }
 

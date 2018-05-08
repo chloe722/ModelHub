@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintlayout_home_job_item"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="230dp">
 
 
     <TextView
@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
-        android:maxWidth="220dp"
+        android:maxWidth="300dp"
         android:text="Full Stack Ruby on Rails Developer"
         android:textColor="@color/colorJobTitle"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,8 +58,8 @@
 
     <ImageView
         android:id="@+id/job_details_company_logo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,35 +83,36 @@
         android:id="@+id/job_details_location_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Location"
         android:textColor="@color/job_company_location_title"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/job_details_company_title"
+        app:layout_constraintStart_toEndOf="@+id/job_details_company_name"
         app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text" />
 
     <TextView
         android:id="@+id/job_details_company_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
         android:layout_marginTop="8dp"
-        android:maxWidth="90dp"
+        android:maxWidth="100dp"
+        android:minWidth="90dp"
         android:text="Rockstar Games INC."
         android:textColor="@color/job_company_location_title"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/job_details_company_title"
         app:layout_constraintTop_toBottomOf="@+id/job_details_company_title" />
 
     <TextView
         android:id="@+id/home_job_location_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:maxWidth="120dp"
+        android:maxWidth="110dp"
+        android:minWidth="100dp"
         android:text="San Francisco, United States"
         android:textColor="@color/job_company_location_title"
         android:textSize="16sp"
@@ -121,16 +122,16 @@
     <TextView
         android:id="@+id/home_job_urgentornot_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_clock_green_24dp"
         android:drawablePadding="5dp"
         android:text="21 Days Left | Not Urgent"
         android:textColor="@color/colorJobDeadlineSafe"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/job_details_company_name" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/home_job_savedJob_icn_btn"
