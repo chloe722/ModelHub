@@ -28,7 +28,6 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
         }
     }
 
-
     @Override
     public void start() {
         loadJob();

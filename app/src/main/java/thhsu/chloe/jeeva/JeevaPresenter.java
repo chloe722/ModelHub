@@ -200,10 +200,9 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
-        if(mJobDetailsPresenter == null){
             mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job);
             Log.d("Chloe", "JeevaPresenter job: " + job);
-        }
+
 
         mJeevaContractView.showJobDetailsUi();
         mBottomNavigationView.setVisibility(View.GONE);
@@ -213,7 +212,6 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             @Override
             public void onClick(View v) {
                 mJobDetailsFragment.getFragmentManager().popBackStack();
-
             }
         });
 
