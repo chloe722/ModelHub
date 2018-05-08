@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,12 @@ import thhsu.chloe.jeeva.api.model.Jobs;
 public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.JobDetailsViewHolder> {
     public Context mContext;
     public JobDetailsContract.Presenter mJobDetailsPresenter;
-    private ArrayList<Jobs> jobs;
+    public Jobs mJob;
 
-    public JobDetailsAdapter(Context context, ArrayList<Jobs> jobs, JobDetailsContract.Presenter presenter){
+    public JobDetailsAdapter(Context context, Jobs job, JobDetailsContract.Presenter presenter){
         this.mContext = context;
         mJobDetailsPresenter = presenter;
-        this.jobs = jobs;
+        this.mJob = job == null ? new Jobs() : job;
     }
 
     @NonNull
@@ -43,8 +44,8 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
     @Override
     public void onBindViewHolder(@NonNull JobDetailsViewHolder holder, int position) {
-//        holder.getDetailsJobTitle().setText();
-
+        Log.d("Chloe", "job title:" + mJob.getTitle());
+        (holder.getDetailsJobTitle()).setText(mJob.getTitle());
 
     }
 
@@ -169,9 +170,10 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         }
     }
 
-    public void updateJobs(ArrayList<Jobs> jobs){
-
+    public void updateJobs(Jobs job){
+        mJob = job;
         notifyItemChanged(0);
+        Log.d("Chloe", "mJob title: " + mJob.getTitle());
     }
 
 

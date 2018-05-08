@@ -1,5 +1,7 @@
 package thhsu.chloe.jeeva;
 
+import thhsu.chloe.jeeva.api.model.Jobs;
+
 /**
  * Created by Chloe on 4/30/2018.
  */
@@ -34,7 +36,7 @@ public interface JeevaContract {
 
         void transToSignInTabPage();
 
-        void transToJobDetails(String jobId);
+        void transToJobDetails(Jobs job);
 
 //        void transToFilter();
 

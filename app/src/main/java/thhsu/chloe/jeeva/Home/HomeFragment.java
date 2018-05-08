@@ -3,6 +3,7 @@ package thhsu.chloe.jeeva.Home;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -79,8 +80,19 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
-    public void showJobsDetailUi(String jobId) {
-        ((JeevaActivity)getActivity()).transToJobDetails(jobId);
+    public void showJobsDetailUi(Jobs job) {
+        ((JeevaActivity)getActivity()).transToJobDetails(job);
+    }
+
+    @Override
+    public void refreshUi() {
+        // Save state
+        Parcelable recyclerViewState;
+        recyclerViewState = ((RecyclerView) getView().findViewById(R.id.home_fragment_recycler_vertical)).getLayoutManager().onSaveInstanceState();
+        mHomeAdapter.notifyDataSetChanged();
+        // Restore state
+        ((RecyclerView) getView().findViewById(R.id.home_fragment_recycler_vertical)).getLayoutManager().onRestoreInstanceState(recyclerViewState);
+
     }
 
 }

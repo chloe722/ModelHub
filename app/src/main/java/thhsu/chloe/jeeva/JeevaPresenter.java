@@ -25,6 +25,7 @@ import thhsu.chloe.jeeva.SavedJobs.SavedJobsPresenter;
 import thhsu.chloe.jeeva.SignInTab.SignInTabFragment;
 import thhsu.chloe.jeeva.SignInTab.SignInTabPresenter;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -187,7 +188,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     }
 
     @Override
-    public void transToJobDetails(String jobId) {
+    public void transToJobDetails(Jobs job) {
         final FragmentTransaction transaction =
                 mFragmentManager.beginTransaction()
                         .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right); //smooth animator while switching the fragment
@@ -200,7 +201,8 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
         if(mJobDetailsPresenter == null){
-            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, jobId);
+            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job);
+            Log.d("Chloe", "JeevaPresenter job: " + job);
         }
 
         mJeevaContractView.showJobDetailsUi();
@@ -210,7 +212,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mFragmentManager.popBackStack();
+                mJobDetailsFragment.getFragmentManager().popBackStack();
 
             }
         });
