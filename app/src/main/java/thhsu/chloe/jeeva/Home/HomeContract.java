@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.BasePresenter;
 import thhsu.chloe.jeeva.BaseView;
+//import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -18,9 +19,13 @@ public interface HomeContract {
 
         void showJobs(ArrayList<Jobs> jobs);
 
+//        void showFilterJobs(ArrayList<FilterJobs> filterJobs);
+
         void showJobsDetailUi(Jobs job);
 
         void refreshUi();
+
+        void clearJobs();
 
     }
 
@@ -32,6 +37,10 @@ public interface HomeContract {
 
         void loadJobs();
 
+        void loadFilterResult();
+
+//        void showFilterJobs(ArrayList<FilterJobs> filterJobs);
+
         void onScrollStateChanged(int visibleItemCount, int totalItemCount, int newState);
 
         void onScrolled(RecyclerView.LayoutManager layoutManager);
@@ -39,6 +48,9 @@ public interface HomeContract {
         void openJobDetails(Jobs job);
 
         void refresh();
+
+        void clearJobs();
+
 
     }
 }

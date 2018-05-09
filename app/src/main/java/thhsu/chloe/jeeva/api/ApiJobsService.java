@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import thhsu.chloe.jeeva.api.model.FilterJobs;
+//import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
 import thhsu.chloe.jeeva.api.model.Result;
 
@@ -18,12 +18,12 @@ public interface ApiJobsService {
     String PATH = "jobs";
 
     String PATH_JOBS = PATH;
-    String PATH_JOBS_TAGS = PATH + "?" + TAGS + "=";
+    String PATH_JOBS_TAGS = PATH + "?";
 
     @GET(PATH_JOBS)
     Call<Result<ArrayList<Jobs>>> getJobs();
 
     @GET(PATH_JOBS_TAGS)
-    Call<Result<ArrayList<FilterJobs>>> getFilterJobs();
+    Call<Result<ArrayList<Jobs>>> getFilterJobs(@Query("tags") String tags);
 
 }

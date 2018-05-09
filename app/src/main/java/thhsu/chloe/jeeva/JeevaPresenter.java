@@ -4,6 +4,8 @@ package thhsu.chloe.jeeva;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,7 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import thhsu.chloe.jeeva.Filter.FilterFragment;
+//import thhsu.chloe.jeeva.Filter.FilterFragment;
+import java.util.ArrayList;
+
 import thhsu.chloe.jeeva.Filter.FilterPresenter;
 import thhsu.chloe.jeeva.Home.HomeFragment;
 import thhsu.chloe.jeeva.Home.HomePresenter;
@@ -24,6 +28,7 @@ import thhsu.chloe.jeeva.SavedJobs.SavedJobsFragment;
 import thhsu.chloe.jeeva.SavedJobs.SavedJobsPresenter;
 import thhsu.chloe.jeeva.SignInTab.SignInTabFragment;
 import thhsu.chloe.jeeva.SignInTab.SignInTabPresenter;
+import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
@@ -51,7 +56,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     private SavedJobsFragment mSavedJobsFragment;
     private HomeFragment mHomeFragment;
     private ProfileFragment mProfileFragment;
-    private FilterFragment mFilterFragment;
+//    private FilterFragment mFilterFragment;
     private JobDetailsFragment mJobDetailsFragment;
 
     private SignInTabPresenter mSignInTabPresenter;
@@ -76,10 +81,23 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     }
 
     @Override
-    public void result(int requestCode, int resultCode) {
+    public void result(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case Constants.FILTER_REQUEST:
+                if(resultCode == Constants.RESULT_SUCCESS){
+                    Bundle bundle = data.getExtras();
+                    ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
+                    Log.d("Chloe", "filter bundle: " + jobs.size());
+                    mHomePresenter.updateJobs(jobs);
+//                    init();
+                }
+        }
 
     }
 
+//    public void updateJobs(ArrayList<Jobs> jobs){
+//        mHomePresenter.updateJobs(jobs);
+//    }
 
     @Override
     public void transToHome() {
@@ -98,16 +116,12 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             transaction.show(mHomeFragment);
         }
         transaction.commit();
-
         if(mHomePresenter == null){
             mHomePresenter = new HomePresenter(mHomeFragment);
         }
         mJeevaContractView.showHomeUi();
 
-
     }
-
-
 
     @Override
     public void transToSavedJob() {
@@ -131,7 +145,6 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             mSavedJobsPresenter = new SavedJobsPresenter(mSavedJobsFragment);
         }
         mJeevaContractView.showSavedJobUi();
-
     }
 
     @Override
@@ -161,7 +174,6 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             mProfilePresenter = new ProfilePresenter(mProfileFragment);
         }
         mJeevaContractView.showProfileUi();
-
     }
 
     @Override
@@ -170,7 +182,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
         if(mFragmentManager.findFragmentByTag(SIGNIN) != null)
             mFragmentManager.popBackStack();
-        if(mSignInTabFragment == null) mSignInTabFragment = SignInTabFragment.newInstance();
+        if(mSignInTabFragment == null) mSignInTabFragment = SignInTabFragment.newInstance(); //Create only one time
         if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
         if(mHomeFragment != null) transaction.remove(mHomeFragment);
         if (!mSignInTabFragment.isAdded()){
@@ -184,7 +196,6 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             mSignInTabPresenter = new SignInTabPresenter(mSignInTabFragment);
         }
         mJeevaContractView.showSignInTabPageUi();
-
     }
 
     @Override
@@ -200,9 +211,8 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
-            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job);
+            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job); //Create presenter instrance
             Log.d("Chloe", "JeevaPresenter job: " + job);
-
 
         mJeevaContractView.showJobDetailsUi();
         mBottomNavigationView.setVisibility(View.GONE);
@@ -211,10 +221,9 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mJobDetailsFragment.getFragmentManager().popBackStack();
+                mJobDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
             }
         });
-
     }
 
 //    @Override

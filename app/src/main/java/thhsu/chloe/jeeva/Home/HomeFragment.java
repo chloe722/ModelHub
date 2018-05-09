@@ -18,6 +18,7 @@ import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.adapters.HomeAdapter;
+//import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -79,6 +80,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mHomeAdapter.updateData(jobs);
     }
 
+//    @Override
+//    public void showFilterJobs(ArrayList<FilterJobs> filterJobs) {
+//        mHomeAdapter.updateData(filterJobs);
+//    }
+
     @Override
     public void showJobsDetailUi(Jobs job) {
         ((JeevaActivity)getActivity()).transToJobDetails(job);
@@ -93,6 +99,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         // Restore state
         ((RecyclerView) getView().findViewById(R.id.home_fragment_recycler_vertical)).getLayoutManager().onRestoreInstanceState(recyclerViewState);
 
+    }
+
+    @Override
+    public void clearJobs() {
+        mHomeAdapter.clearJobs();
     }
 
 }

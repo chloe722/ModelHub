@@ -5,7 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import retrofit2.Call;
-import thhsu.chloe.jeeva.api.model.FilterJobs;
+//import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
 import thhsu.chloe.jeeva.api.model.Result;
 
@@ -50,24 +50,23 @@ public class ApiJobManager {
         });
     }
 
-    public void getFilterJobs(final GetFilterJobsCallBack filterJobsCallBack){
+    public void getFilterJobs(String tags, final GetFilterJobsCallBack filterJobsCallBack){
 
-        Call<Result<ArrayList<FilterJobs>>> call = ApiManager.getInstance().apiJobsService.getFilterJobs();
-
-        call.enqueue(new Callback<Result<ArrayList<FilterJobs>>>() {
+        Call<Result<ArrayList<Jobs>>> call = ApiManager.getInstance().apiJobsService.getFilterJobs(tags);
+        call.enqueue(new Callback<Result<ArrayList<Jobs>>>() {
             @Override
-            public void onResponse(Call<Result<ArrayList<FilterJobs>>> call, Response<Result<ArrayList<FilterJobs>>> response) {
+            public void onResponse(Call<Result<ArrayList<Jobs>>> call, Response<Result<ArrayList<Jobs>>> response) {
                 Log.d("Chloe", "onResponse");
                 response.body();
-                if(response.body().filterJobs != null){
-                    filterJobsCallBack.onCompleted(response.body().filterJobs);
+                if(response.body().jobs != null){
+                    filterJobsCallBack.onCompleted(response.body().jobs);
                 }else{
                     Log.d("Chloe", "response.body.filterjobs is empty");
                 }
             }
 
             @Override
-            public void onFailure(Call<Result<ArrayList<FilterJobs>>> call, Throwable t) {
+            public void onFailure(Call<Result<ArrayList<Jobs>>> call, Throwable t) {
                 Log.d("Chloe", "onFailure");
                 filterJobsCallBack.onError(t.getLocalizedMessage());
             }

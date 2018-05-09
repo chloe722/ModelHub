@@ -9,6 +9,6 @@ import thhsu.chloe.jeeva.api.model.Jobs;
  */
 
 public interface GetJobsCallBack {
-    public void onCompleted(ArrayList<Jobs> jobs);
-    public void onError(String errorMessage);
+     void onCompleted(ArrayList<Jobs> jobs);
+     void onError(String errorMessage);
 }

@@ -104,9 +104,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         holder.getRecyclerRecommend().setOnFlingListener(null);
         new LinearSnapHelper().attachToRecyclerView(holder.getRecyclerRecommend());
         holder.getRecyclerRecommend().setAdapter(new HomeJobRecommedAdapter());
-
     }
-
 
 
     private class HomeJobsItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -134,7 +132,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
             mSavedJobIcnBtn.setOnClickListener(this);
             ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_home_job_item)).setOnClickListener(this);
-
         }
 
         @Override
@@ -196,6 +193,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     }
 
+
     public void updateData(ArrayList<Jobs> jobs){
         Log.d("Chloe", "HomeAdapter update data");
         for (Jobs job : jobs){
@@ -203,5 +201,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
         }
         notifyDataSetChanged();
     }
+
+    public void clearJobs(){
+        mJobs.clear();
+        notifyDataSetChanged();
+    }
+
 
 }

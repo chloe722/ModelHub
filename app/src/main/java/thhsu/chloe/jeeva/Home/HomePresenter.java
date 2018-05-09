@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.api.ApiJobManager;
 import thhsu.chloe.jeeva.api.GetJobsCallBack;
+//import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -16,6 +17,7 @@ import thhsu.chloe.jeeva.api.model.Jobs;
 public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mHomeView;
+    ArrayList<Jobs> mJobs;
 
     public HomePresenter(HomeContract.View homeView){
         mHomeView = homeView;
@@ -24,11 +26,18 @@ public class HomePresenter implements HomeContract.Presenter {
         }
     }
 
+    public void updateJobs(ArrayList<Jobs> jobs){
+        this.mJobs = jobs;
+        clearJobs();
+        loadFilterResult();
+    }
+
 
     @Override
     public void start() {
         loadJobs();
     }
+
 
     @Override
     public void result(int requestCode, int resultCode) {}
@@ -37,6 +46,8 @@ public class HomePresenter implements HomeContract.Presenter {
     public void showJobs(ArrayList<Jobs> jobs) {
         mHomeView.showJobs(jobs);
     }
+
+
 
     @Override
     public void loadJobs() {
@@ -53,6 +64,24 @@ public class HomePresenter implements HomeContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void loadFilterResult(){
+        ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
+            @Override
+            public void onCompleted(ArrayList<Jobs> jobs) {
+                showJobs(mJobs);
+                Log.d("Chloe", "filter jobs" + mJobs.size());
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.d("Chloe", "GetJobsErrorMessage, errorMessage:" + errorMessage);
+            }
+        });
+    }
+
+
 
 
     @Override
@@ -73,6 +102,11 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void refresh() {
         mHomeView.refreshUi();
+    }
+
+    @Override
+    public void clearJobs() {
+        mHomeView.clearJobs();
     }
 
 }

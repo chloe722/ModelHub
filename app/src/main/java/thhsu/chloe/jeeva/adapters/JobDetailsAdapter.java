@@ -1,6 +1,7 @@
 package thhsu.chloe.jeeva.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.squareup.picasso.Picasso;
 
 import thhsu.chloe.jeeva.JobDetails.JobDetailsContract;
 import thhsu.chloe.jeeva.R;
@@ -46,6 +47,21 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
     public void onBindViewHolder(@NonNull JobDetailsViewHolder holder, int position) {
         Log.d("Chloe", "job title:" + mJob.getTitle());
         (holder.getDetailsJobTitle()).setText(mJob.getTitle());
+        (holder.getDetailsJobDate()).setText(mJob.getDatePosted());
+        (holder.getDetailsJobDesContent()).setText(mJob.getDescription());
+        (holder.getDetailsCompanyName()).setText(mJob.getCompany());
+        (holder.getDetailsSalaryNum()).setText(mJob.getSalary());
+        if(holder.getDetailsCompanyLogo() != null && mJob.getLogo() != null) {
+            Picasso.get().load(mJob.getLogo()).into(holder.getDetailsCompanyLogo());
+        }
+        if (mJob.getType().equals("fulltime")){
+            (holder.getDetailsJobType()).setText("Full-time");
+            (holder.getDetailsJobType()).setBackgroundResource(R.drawable.yellow_rounded_shape);
+        }else if(mJob.getType().equals("parttime")){
+            (holder.getDetailsJobType()).setText("Part-time");
+        }else if(mJob.getType().equals("intern")){
+            (holder.getDetailsJobType()).setText("Intern");
+        }
 
     }
 
@@ -156,7 +172,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         public TextView getDetailsHiringContactNameText(){return mDetailsHiringContactNameText;}
         public TextView getDetailsHiringContactEmailText(){return mDetailsHiringContactEmailText;}
         public TextView getDetailsHiringOtherInfoText(){return mDetailsHiringOtherInfoText;}
-        public ImageView getmDetailsCompanyLogo(){return mDetailsCompanyLogo;}
+        public ImageView getDetailsCompanyLogo(){return mDetailsCompanyLogo;}
 
         @Override
         public void onClick(View v) {

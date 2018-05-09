@@ -19,5 +19,7 @@ public interface FilterContract {
 
 //        void transToHome();
 
+        void loadData();
+
     }
 }

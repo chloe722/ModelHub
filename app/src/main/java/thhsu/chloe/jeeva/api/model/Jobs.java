@@ -1,15 +1,19 @@
 package thhsu.chloe.jeeva.api.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Chloe on 5/7/2018.
  */
 
-public class Jobs {
+public class Jobs implements Serializable{
     @SerializedName("id")
     @Expose
     private String id;
@@ -176,6 +180,39 @@ public class Jobs {
         this.requirements = requirements;
     }
 
+//
+//    public Jobs(Parcel in) {
+//        super();
+//        readFromParcel(in);
+//    }
+//
+//    public static final Parcelable.Creator<Jobs> CREATOR = new Parcelable.Creator<Jobs>() {
+//        public Jobs createFromParcel(Parcel in) {
+//            return new Jobs(in);
+//        }
+//
+//        public Jobs[] newArray(int size) {
+//
+//            return new Jobs[size];
+//        }
+//
+//    };
+//
+//    public void readFromParcel(Parcel in) {
+//        Value1 = in.readInt();
+//        Value2 = in.readInt();
+//        Value3 = in.readInt();
+//
+//    }
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeInt(Value1);
+//        dest.writeInt(Value2);
+//        dest.writeInt(Value3);
+//    }
 }
 
 
