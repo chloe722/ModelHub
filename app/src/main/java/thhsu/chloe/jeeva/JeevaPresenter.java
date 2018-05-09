@@ -89,7 +89,9 @@ public class JeevaPresenter implements JeevaContract.Presenter {
                     ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
                     Log.d("Chloe", "filter bundle: " + jobs.size());
                     mHomePresenter.updateJobs(jobs);
-//                    init();
+
+                }else if (resultCode == 0){
+                    result(requestCode, 0,null); //Come back to check
                 }
         }
 

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import thhsu.chloe.jeeva.Home.HomeContract;
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.CircleTransform;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
@@ -103,7 +104,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 LinearLayoutManager.HORIZONTAL, false));
         holder.getRecyclerRecommend().setOnFlingListener(null);
         new LinearSnapHelper().attachToRecyclerView(holder.getRecyclerRecommend());
-        holder.getRecyclerRecommend().setAdapter(new HomeJobRecommedAdapter());
+        holder.getRecyclerRecommend().setAdapter(new HomeJobRecommendAdapter(mPresenter, mJobs));
     }
 
 
@@ -187,7 +188,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 //
 //        }
         if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
-            Picasso.get().load(mJobs.get(position).getLogo()).into(holder.getHomeJobCompanyLogo());
+            Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getHomeJobCompanyLogo());
         }
 
 

@@ -2,6 +2,10 @@ package thhsu.chloe.jeeva.Home;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -11,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
@@ -105,5 +111,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void clearJobs() {
         mHomeAdapter.clearJobs();
     }
+
 
 }

@@ -263,7 +263,6 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
             break;  //Dont forget to write break in Switch!! Otherwise the code gonna continue running to next case
             case R.id.filter_tool_bar_back_btn:
                 super.onBackPressed();
-                break;
         }
 
     }

@@ -41,6 +41,9 @@ public class Jobs implements Serializable{
     @SerializedName("location")
     @Expose
     private String location;
+    @SerializedName("image")
+    @Expose
+    private String image;
     @SerializedName("type")
     @Expose
     private String type;
@@ -178,6 +181,15 @@ public class Jobs implements Serializable{
 
     public void setRequirements(String requirements) {
         this.requirements = requirements;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 //
