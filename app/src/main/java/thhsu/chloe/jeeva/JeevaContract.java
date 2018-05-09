@@ -1,5 +1,7 @@
 package thhsu.chloe.jeeva;
 
+import android.content.Intent;
+
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -26,7 +28,7 @@ public interface JeevaContract {
 
     interface Presenter extends BasePresenter{
 
-        void result(int requestCode, int resultCode);
+        void result(int requestCode, int resultCode, Intent data);
 
         void transToHome();
 

@@ -17,10 +17,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import thhsu.chloe.jeeva.Filter.FilterFragment;
+//import thhsu.chloe.jeeva.Filter.FilterFragment;
+import java.util.ArrayList;
+
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 import static thhsu.chloe.jeeva.JeevaPresenter.FILTER;
@@ -37,7 +40,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
     private MenuItem mFilterItem;
-    private FilterFragment filterFragment;
+//    private FilterFragment filterFragment;
     private boolean isFilterInHome = true;
     private boolean shouldShowFilter = false;
     private Fragment currentFragment;
@@ -73,8 +76,8 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
                 mFilterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Intent intent = new Intent(jeevaActivity,FilterActivity.class);
-                        startActivity(intent);
+                        Intent intent = new Intent(jeevaActivity, FilterActivity.class);
+                        startActivityForResult(intent, Constants.FILTER_REQUEST); // start the activity for requesting result from next activity
                         return true;
                     }
                 });
@@ -115,8 +118,19 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        mToolBarBackBtn.setOnClickListener(this);
-        init();
+        Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
+        mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
+//        switch (requestCode){
+//            case Constants.FILTER_REQUEST:
+//                if(resultCode == Constants.RESULT_SUCCESS){
+//                    Bundle bundle = data.getExtras();
+//                    ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
+//                    Log.d("Chloe", "filter bundle: " + jobs.size());
+//
+////                    init();
+//                }
+//        }
+
     }
 
     private void setBottomNavigationView(){

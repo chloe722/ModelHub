@@ -12,7 +12,7 @@ import com.squareup.picasso.Transformation;
  */
 
 
-class CircleTransform implements Transformation {
+public  class CircleTransform implements Transformation {
     @Override
     public Bitmap transform(Bitmap source) {
         int size = Math.min(source.getWidth(), source.getHeight());

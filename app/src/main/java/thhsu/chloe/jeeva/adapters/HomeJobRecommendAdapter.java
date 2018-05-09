@@ -4,27 +4,47 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.security.PublicKey;
+import com.squareup.picasso.Picasso;
 
+import java.security.PublicKey;
+import java.util.ArrayList;
+
+import thhsu.chloe.jeeva.Home.HomeContract;
+import thhsu.chloe.jeeva.Profile.ProfileFragment;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.CircleTransform;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/2/2018.
  */
 
-public class HomeJobRecommedAdapter extends RecyclerView.Adapter{
+public class HomeJobRecommendAdapter extends RecyclerView.Adapter{
     private Context mContext;
+    private HomeContract.Presenter mPresenter;
+    private ArrayList<Jobs> mJobs;
 
-    public HomeJobRecommedAdapter(){
-    }  // pass parameter (write data)
+    public HomeJobRecommendAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
+        if (presenter != null){
+            this.mPresenter = presenter;
+        }
+        this.mJobs = new ArrayList<Jobs>();
 
+        for(Jobs job : jobs){
+            if(job.getRecommended()){
+                mJobs.add(job);
+            }
+        }
+        Log.d("Chloe", "recommend adapter jobs : " + mJobs.size());
+    }
 
     @NonNull
     @Override
@@ -39,18 +59,33 @@ public class HomeJobRecommedAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         if(holder instanceof HomeJobRecommendItemViewHolder){
+            if (mJobs.size() > 0){
+//                DisplayMetrics displayMetrics = new DisplayMetrics();
+//                ((JeevaActivity) mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                (((HomeJobRecommendItemViewHolder) holder).getRecommendedJobCompanyName()).setText(mJobs.get(position).getCompany());
+                (((HomeJobRecommendItemViewHolder) holder).getRecommendedJobPositionTitle()).setText(mJobs.get(position).getTitle());
+                if (mJobs.get(position).getImage().equals("")){
+                    Picasso.get().load(R.drawable.jeeva_color_font_edited).fit().into(((HomeJobRecommendItemViewHolder) holder).getRecommendedJobImage());
 
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            ((JeevaActivity) mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                }else {
+                    Picasso.get().load(mJobs.get(position).getImage()).fit().placeholder(R.drawable.jeeva_color_font_edited).into(((HomeJobRecommendItemViewHolder) holder).getRecommendedJobImage());
+                }
 
-            //Implemente data here
+                if (mJobs.get(position).getLogo().equals("")){
+                    Picasso.get().load(R.drawable.all_placeholder_avatar).transform(new CircleTransform()).into(((HomeJobRecommendItemViewHolder) holder).getRecommendedJobCompanyLogo());
+                }else{
+                    Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(((HomeJobRecommendItemViewHolder) holder).getRecommendedJobCompanyLogo());
+                }
+
+
+            }
         }
 
     }
 
     @Override
     public int getItemCount() {
-        return Integer.MAX_VALUE;
+        return mJobs.size();
     }
 
     private class HomeJobRecommendItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

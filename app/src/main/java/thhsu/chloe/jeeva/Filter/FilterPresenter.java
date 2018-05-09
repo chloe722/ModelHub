@@ -36,6 +36,11 @@ public class FilterPresenter implements FilterContract.Presenter {
 
     }
 
+    @Override
+    public void loadData() {
+
+    }
+
 //    @Override
 //    public void transToHome() {
 //        Intent intent = new Intent(, JeevaActivity.class);

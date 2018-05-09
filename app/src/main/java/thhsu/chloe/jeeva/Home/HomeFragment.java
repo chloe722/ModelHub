@@ -2,6 +2,10 @@ package thhsu.chloe.jeeva.Home;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -12,12 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Transformation;
+
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.adapters.HomeAdapter;
+//import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -79,6 +86,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         mHomeAdapter.updateData(jobs);
     }
 
+//    @Override
+//    public void showFilterJobs(ArrayList<FilterJobs> filterJobs) {
+//        mHomeAdapter.updateData(filterJobs);
+//    }
+
     @Override
     public void showJobsDetailUi(Jobs job) {
         ((JeevaActivity)getActivity()).transToJobDetails(job);
@@ -94,5 +106,11 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         ((RecyclerView) getView().findViewById(R.id.home_fragment_recycler_vertical)).getLayoutManager().onRestoreInstanceState(recyclerViewState);
 
     }
+
+    @Override
+    public void clearJobs() {
+        mHomeAdapter.clearJobs();
+    }
+
 
 }
