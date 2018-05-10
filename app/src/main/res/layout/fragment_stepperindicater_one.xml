@@ -172,6 +172,7 @@
         android:text="Personal Info"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/titleforall"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -185,6 +186,7 @@
         android:text="Current location"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/titleforall"
         android:drawablePadding="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stepper_one_textinputlayout_phone" />
@@ -197,6 +199,7 @@
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_work_black_24dp"
         android:drawablePadding="5dp"
+        android:textColor="@color/titleforall"
         android:text="Current job"
         android:textSize="18sp"
         android:textStyle="bold"

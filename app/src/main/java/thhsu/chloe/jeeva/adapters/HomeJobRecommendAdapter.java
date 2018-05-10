@@ -2,6 +2,8 @@ package thhsu.chloe.jeeva.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -100,12 +102,12 @@ public class HomeJobRecommendAdapter extends RecyclerView.Adapter{
             mRecommendedJobCompanyLogo = (ImageView) itemView.findViewById(R.id.recommend_company_logo);
             mRecommendedJobPositionTitle = (TextView) itemView.findViewById(R.id.recommend_job_title);
             mRecommendedJobCompanyName = (TextView) itemView.findViewById(R.id.recommend_company_name);
-            itemView.setOnClickListener(this);
+            ((CardView) itemView.findViewById(R.id.cardView_recommended_job_item)).setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+            if(v.getId() == R.id.cardView_recommended_job_item) mPresenter.openJobDetails(mJobs.get(getAdapterPosition())); // setOpenJob here  getAdapterPosition()
         }
 
         public ImageView getRecommendedJobImage(){return mRecommendedJobImage;}

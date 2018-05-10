@@ -35,6 +35,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:text="About Me"
+                    android:textColor="@color/titleforall"
                     android:textSize="22sp"
                     android:textStyle="bold" />
             </android.support.v7.widget.Toolbar>

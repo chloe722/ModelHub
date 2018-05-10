@@ -125,7 +125,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         }else{
             init();
         }
-        
     }
 
     private void setBottomNavigationView(){

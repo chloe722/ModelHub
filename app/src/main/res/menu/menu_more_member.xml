@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:iconTint="@color/titleforall">
 
     <item
         android:id="@+id/more_menu_about_item"
+        android:iconTint="@color/titleforall"
         android:title="About" />
     <item
         android:id="@+id/more_menu_logout_item"
+        android:iconTint="@color/titleforall"
         android:title="Log Out" />
 </menu>

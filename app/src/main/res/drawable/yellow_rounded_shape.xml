@@ -6,8 +6,8 @@
     <!--&lt;!&ndash;<corners android:radius="3dp"></corners>&ndash;&gt;-->
 
     <gradient
-        android:startColor="@color/colorYellow"
-        android:endColor="@color/colorYellow"
+        android:startColor="@color/yellowforbtn"
+        android:endColor="@color/yellowforbtn"
         android:angle="90">
     </gradient>
 
@@ -15,7 +15,7 @@
 
     <stroke
         android:width="1px"
-        android:color="@color/colorYellow" />
+        android:color="@color/yellowforbtn" />
 </shape>
 
 

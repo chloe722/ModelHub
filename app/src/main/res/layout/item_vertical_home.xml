@@ -73,8 +73,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Company"
-        android:textColor="@color/job_company_location_title"
-        android:textSize="18sp"
+        android:textColor="@color/titleforall"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_logo"
         app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
@@ -86,8 +86,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Location"
-        android:textColor="@color/job_company_location_title"
-        android:textSize="18sp"
+        android:textColor="@color/titleforall"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
         app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
@@ -96,12 +96,12 @@
         android:id="@+id/home_job_company_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
         android:maxWidth="100dp"
         android:minWidth="90dp"
         android:text="Rockstar Games INC."
-        android:textColor="@color/job_company_location_title"
-        android:textSize="16sp"
+        android:textColor="@color/textcolor"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/home_job_company_title"
         app:layout_constraintTop_toBottomOf="@+id/home_job_company_title" />
 
@@ -110,12 +110,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
         android:maxWidth="110dp"
         android:minWidth="100dp"
         android:text="San Francisco, United States"
-        android:textColor="@color/job_company_location_title"
-        android:textSize="16sp"
+        android:textColor="@color/textcolor"
+        android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
         app:layout_constraintTop_toBottomOf="@+id/home_job_location_title" />
 
