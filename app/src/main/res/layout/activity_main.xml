@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Home"
-                    android:textColor="@color/colorPageTitleGrayHintProgressionIcon"
+                    android:textColor="@color/titleforall"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 

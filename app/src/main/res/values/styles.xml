@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#ffffff</item>
-        <item name="colorPrimaryDark">@color/colorYellow</item>
+        <item name="colorPrimaryDark">@color/colorYellow2</item>
         <item name="colorAccent">@color/colorToggleBtn</item>
         <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
     </style>

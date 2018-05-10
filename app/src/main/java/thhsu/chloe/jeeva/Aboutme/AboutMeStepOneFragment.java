@@ -1,12 +1,14 @@
 package thhsu.chloe.jeeva.Aboutme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.Constants;
 
 /**
  * Created by Chloe on 5/4/2018.
@@ -22,12 +25,12 @@ import thhsu.chloe.jeeva.R;
 public class AboutMeStepOneFragment extends Fragment implements View.OnClickListener {
     private Button mNextBtn;
     private OnStepOneListener mOnStepOneListener;
-    EditText mFullName;
-    EditText mEmail;
-    EditText mPhone;
+    EditText mFullName, mEmail,mPhone, mJobTitle, mCurrentWorkCompany, mLocationCountry, mLocationCity;
     TextInputLayout mFullNameLayout;
     TextInputLayout mEmailLayout;
     TextInputLayout mPhoneLayout;
+    String fullName, number, email, jobTitle, userLocationCountry, userLocationCity,userLocation;
+    Bundle bundle;
 
     public AboutMeStepOneFragment() {}
 
@@ -47,6 +50,10 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mFullName = view.findViewById(R.id.stepper_one_textinput_fullname);
         mEmail = view.findViewById(R.id.stepper_one_textinput_email);
         mPhone = view.findViewById(R.id.stepper_one_textinput_phone);
+        mJobTitle =view.findViewById(R.id.stepper_one_textinput_jobtitle);
+        mCurrentWorkCompany = view.findViewById(R.id.stepper_one_textinput_companu);
+        mLocationCountry = view.findViewById(R.id.stepper_one_textinput_country);
+        mLocationCity =view.findViewById(R.id.stepper_one_textinput_city);
         mFullNameLayout = view.findViewById(R.id.stepper_one_textinputlayout_fullname);
         mEmailLayout = view.findViewById(R.id.stepper_one_textinputlayout_email);
         mPhoneLayout = view.findViewById(R.id.stepper_one_textinputlayout_phone);
@@ -103,12 +110,28 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        bundle = new Bundle();
         switch (v.getId()){
             case R.id.stepper_one_next_btn:
                 if(mOnStepOneListener != null && validateData()){
+                    fullName = mFullName.getText().toString();
+                    number = mPhone.getText().toString();
+                    email = mEmail.getText().toString();
+                    bundle.putString("fullName", fullName);
+                    bundle.putString("phone", number);
+                    bundle.putString("email", email);
+                    bundle.putString("jobtitle", jobTitle);
+                    bundle.putString("locationCountry", userLocationCountry);
+                    bundle.putString("locationCity", userLocationCity);
+                    Intent userInfo = new Intent();
+                    userInfo.putExtras(bundle);
+                    getActivity().setResult(Constants.RESULT_SUCCESS, userInfo);
+                    Log.d("Chloe", "profile info bundle: " + userInfo);
+                    Log.d("Chloe", " full name: " + fullName + " phone num: " + number + " email: " + email +
+                            " jobtitle: " + jobTitle + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
                     mOnStepOneListener.onNextPressed(this);
-                    break;
                 }
+                break;
         }
     }
 

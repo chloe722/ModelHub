@@ -50,9 +50,11 @@ public class Jobs implements Serializable{
     @SerializedName("tags")
     @Expose
     private List<String> tags = null;
+
     @SerializedName("benefits")
     @Expose
-    private List<Object> benefits = null;
+    private List<String> benefits = null;
+
     @SerializedName("salary")
     @Expose
     private String salary;
@@ -62,6 +64,52 @@ public class Jobs implements Serializable{
     @SerializedName("requirements")
     @Expose
     private String requirements;
+    @SerializedName("hiring_source_from")
+    @Expose
+    private String hiring_source_from;
+    @SerializedName("hiring_contact_name")
+    @Expose
+    private String hiring_contact_name;
+    @SerializedName("hiring_contact_email")
+    @Expose
+    private String hiring_contact_email;
+    @SerializedName("hiring_other_info")
+    @Expose
+    private String hiring_other_info;
+
+    public String getHiring_contact_name() {
+        return hiring_contact_name;
+    }
+
+    public void setHiring_contact_name(String hiring_contact_name) {
+        this.hiring_contact_name = hiring_contact_name;
+    }
+
+    public String getHiring_contact_email() {
+        return hiring_contact_email;
+    }
+
+    public void setHiring_contact_email(String hiring_contact_email) {
+        this.hiring_contact_email = hiring_contact_email;
+    }
+
+    public String getHiring_other_info() {
+        return hiring_other_info;
+    }
+
+    public void setHiring_other_info(String hiring_other_info) {
+        this.hiring_other_info = hiring_other_info;
+    }
+
+    public String getHiring_source_from() {
+        return hiring_source_from;
+    }
+
+    public void setHiring_source_from(String hiring_source_from) {
+        this.hiring_source_from = hiring_source_from;
+    }
+
+
 
     public String getId() {
         return id;
@@ -151,11 +199,11 @@ public class Jobs implements Serializable{
         this.tags = tags;
     }
 
-    public List<Object> getBenefits() {
+    public List<String> getBenefits() {
         return benefits;
     }
 
-    public void setBenefits(List<Object> benefits) {
+    public void setBenefits(List<String> benefits) {
         this.benefits = benefits;
     }
 

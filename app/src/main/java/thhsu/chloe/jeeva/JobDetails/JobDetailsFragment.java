@@ -83,6 +83,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
         ((JeevaActivity) getActivity()).showBtnNavView();
         ((JeevaActivity) getActivity()).showFilterIcn();
         ((JeevaActivity) getActivity()).hideToolbarBackBtn();
+        ((JeevaActivity) getActivity()).showHomeUi();
 
     }
 

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
     <ImageView
-        android:id="@+id/profile_user_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/profile_user_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
@@ -25,11 +26,11 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="Emily Wang"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_image" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_photo" />
 
     <TextView
         android:id="@+id/profile_user_email"
@@ -37,10 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="emilyWang23@gmail.com"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_user_name" />
@@ -51,10 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Full Stack Developer"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,42 +63,39 @@
 
     <TextView
         android:id="@+id/profile_user_location"
-        android:layout_width="132dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:singleLine="true"
         android:text="Taipei, Taiwan"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_user_job_title"
+        app:layout_constraintStart_toStartOf="@+id/profile_user_job_title"
         app:layout_constraintTop_toBottomOf="@+id/profile_user_job_title" />
 
     <Button
         android:id="@+id/profile_camera_btn"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/ic_camera_alt_black_24dp"
         android:text="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_image"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_image" />
+        app:layout_constraintStart_toEndOf="@+id/profile_user_photo"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/profile_edited_btn"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="6dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/ic_create_black_24dp"
         android:text="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toEndOf="@+id/profile_user_location"
         app:layout_constraintTop_toBottomOf="@+id/profile_user_job_title" />
 
@@ -105,13 +103,13 @@
         android:id="@+id/imageview_hr_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="17dp"
         android:background="@color/colorFilterContentTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_edited_btn" />
+        tools:layout_editor_absoluteY="265dp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

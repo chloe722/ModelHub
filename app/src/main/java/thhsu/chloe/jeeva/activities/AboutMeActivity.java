@@ -48,7 +48,6 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     @Override
     public void onNextPressed(Fragment fragment) {
         Log.d("Chloe", "Nextpress viewpager currentitem: " + mViewPager.getCurrentItem());
-
         mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1,true);
     }
 
@@ -73,9 +72,9 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     public void onCompletePressed(Fragment fragment) {
         if(fragment instanceof AboutMeStepThreeFragment){
             Toast.makeText(this, "Sweet! You've completed the profile! ", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(AboutMeActivity.this, JeevaActivity.class);
-            startActivity(intent);
-//            finish();
+//            Intent intent = new Intent(AboutMeActivity.this, JeevaActivity.class);
+//            startActivity(intent);
+            finish();
         }
     }
 }

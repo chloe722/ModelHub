@@ -16,7 +16,7 @@
     android:elevation="0dp"
     android:foreground="?android:selectableItemBackground"
     android:id="@+id/cardView_recommended_job_item"
-    card_view:cardBackgroundColor="#fffcf2"
+    card_view:cardBackgroundColor="#80e5e4e5"
     card_view:cardCornerRadius="3dp"
     card_view:contentPadding="5dp">
 
@@ -34,7 +34,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:background="#80d86b04"
+                android:background="#80A1887F"
                 android:foregroundGravity="bottom"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"

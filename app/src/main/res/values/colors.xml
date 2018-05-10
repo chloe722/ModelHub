@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorYellow">#FFCF1A</color>
+    <color name="colorYellow2">#fed539</color>
+    <color name="yellowforbtn">#f4cd37</color>
     <color name="colorPageTitleGrayHintProgressionIcon">#8D8D8D</color>
     <color name="colorPageIconFilterItem">#717171</color>
     <color name="colorJobTitle">#2799AB</color>
@@ -24,5 +26,7 @@
     <color name="black_alpha">#6d6d6d</color>
     <color name="colorButtonNavInactive">#8D8D8D</color>
     <color name="fullTime_tag">#2DB5FF</color>
-    <color name="job_company_location_title">#A5AAAD</color>
+    <color name="job_company_location_title">#515051</color>
+    <color name="titleforall">#383838</color>
+    <color name="textcolor">#504d41</color>
 </resources>

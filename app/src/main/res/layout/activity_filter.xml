@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Filter"
-                    android:textColor="@color/colorPageTitleGrayHintProgressionIcon"
+                    android:textColor="@color/titleforall"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/position"
-                android:textColor="@color/colorFilterContentTitle"
+                android:textColor="@color/titleforall"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -161,7 +161,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/type"
-                android:textColor="@color/colorFilterContentTitle"
+                android:textColor="@color/titleforall"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_product_m" />
