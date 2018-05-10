@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     ImageView mUserPhotoView;
     Uri fileUri;
     Context mContext;
-    String userName, userEmail, userJobTitle, userLocation;
+    String userName, userEmail, userJobTitle, userLocationCountry, userLocationCity, userLocation;
 
     public static ProfileFragment newInstance(){
         return new ProfileFragment();
@@ -72,6 +72,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mUserEmail = (TextView) root.findViewById(R.id.profile_user_email);
         mUserJobTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
+
 
         mContext = getActivity();
 
@@ -155,9 +156,15 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 Bundle bundle = data.getExtras();
                 userName= bundle.getString("fullName");
                 userEmail = bundle.getString("email");
+                userJobTitle = bundle.getString("jobtitle");
+                userLocationCountry = bundle.getString("locationCountry");
+                userLocationCity = bundle.getString("locationCity");
                 Log.d("Chloe", "get string in profile,  Name: " + userName + " userEmail: " + userEmail);
                 mUserName.setText(userName);
                 mUserEmail.setText(userEmail);
+                mUserJobTitle.setText(userJobTitle);
+                mUserLocation.setText(userLocationCity + ", " + userLocationCountry);
+
 
             }
         }
