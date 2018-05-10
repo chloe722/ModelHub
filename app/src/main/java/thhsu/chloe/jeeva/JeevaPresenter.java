@@ -1,6 +1,7 @@
 package thhsu.chloe.jeeva;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -29,6 +30,7 @@ import thhsu.chloe.jeeva.SavedJobs.SavedJobsPresenter;
 import thhsu.chloe.jeeva.SignInTab.SignInTabFragment;
 import thhsu.chloe.jeeva.SignInTab.SignInTabPresenter;
 import thhsu.chloe.jeeva.Utils.Constants;
+import thhsu.chloe.jeeva.activities.FilterActivity;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
@@ -82,17 +84,11 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
     @Override
     public void result(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
-            case Constants.FILTER_REQUEST:
-                if(resultCode == Constants.RESULT_SUCCESS){
-                    Bundle bundle = data.getExtras();
-                    ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
-                    Log.d("Chloe", "filter bundle: " + jobs.size());
-                    mHomePresenter.updateJobs(jobs);
-
-                }else if (resultCode == 0){
-                    result(requestCode, 0,null); //Come back to check
-                }
+        if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
+            Bundle bundle = data.getExtras();
+            ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
+            Log.d("Chloe", "filter bundle: " + jobs.size());
+            mHomePresenter.updateJobs(jobs);
         }
 
     }

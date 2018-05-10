@@ -1,5 +1,6 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -119,18 +120,12 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
-        mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
-//        switch (requestCode){
-//            case Constants.FILTER_REQUEST:
-//                if(resultCode == Constants.RESULT_SUCCESS){
-//                    Bundle bundle = data.getExtras();
-//                    ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
-//                    Log.d("Chloe", "filter bundle: " + jobs.size());
-//
-////                    init();
-//                }
-//        }
-
+        if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
+            mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
+        }else{
+            init();
+        }
+        
     }
 
     private void setBottomNavigationView(){

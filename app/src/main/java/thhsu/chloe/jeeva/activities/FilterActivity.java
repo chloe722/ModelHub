@@ -238,9 +238,9 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
 
     @Override
     public void onClick(View v) {
-        bundle = new Bundle();
         switch (v.getId()){
             case R.id.filter_save_btn:
+                bundle = new Bundle();
                 ApiJobManager.getInstance().getFilterJobs(tags, new GetFilterJobsCallBack() {
                     @Override
                     public void onCompleted(ArrayList<Jobs> jobs) {
@@ -263,6 +263,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
             break;  //Dont forget to write break in Switch!! Otherwise the code gonna continue running to next case
             case R.id.filter_tool_bar_back_btn:
                 super.onBackPressed();
+                break;
         }
 
     }
