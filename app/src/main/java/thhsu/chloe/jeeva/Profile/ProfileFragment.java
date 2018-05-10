@@ -24,10 +24,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -47,9 +50,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
     ProfileContract.Presenter mPresenter;
     Button mEditInfoBtn, mCameraBtn;
+    TextView mUserName, mUserEmail, mUserNumber, mUserJobTitle, mUserLocation;
     ImageView mUserPhotoView;
     Uri fileUri;
     Context mContext;
+    String userName, userEmail, userJobTitle, userLocation;
 
     public static ProfileFragment newInstance(){
         return new ProfileFragment();
@@ -63,7 +68,13 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mEditInfoBtn = (Button) root.findViewById(R.id.profile_edited_btn);
         mCameraBtn = (Button) root.findViewById(R.id.profile_camera_btn);
         mUserPhotoView = (ImageView) root.findViewById(R.id.profile_user_photo);
+        mUserName = (TextView) root.findViewById(R.id.profile_user_name);
+        mUserEmail = (TextView) root.findViewById(R.id.profile_user_email);
+        mUserJobTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
+        mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
+
         mContext = getActivity();
+
 
         mEditInfoBtn.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
@@ -84,6 +95,13 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 //                mCameraBtn.setEnabled(true);
 //            }
 //        }
+//    }
+
+
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
 //    }
 
     @Override
@@ -120,16 +138,26 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
         if (requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 Bitmap bmp = (Bitmap) data.getExtras().get("data");
-
 
                 Uri selectedImage = getImageUri(getActivity(), bmp);
                 String path = getRealPathFromURI(selectedImage);
                 selectedImage = Uri.parse(path);
                 Log.d("Chloe", "selected image: " + selectedImage);
                 mUserPhotoView.setImageBitmap(bmp);
+            }
+        }else if(requestCode == Constants.USER_INFO_REQUEST){
+            if(resultCode == Constants.RESULT_SUCCESS){
+                Bundle bundle = data.getExtras();
+                userName= bundle.getString("fullName");
+                userEmail = bundle.getString("email");
+                Log.d("Chloe", "get string in profile,  Name: " + userName + " userEmail: " + userEmail);
+                mUserName.setText(userName);
+                mUserEmail.setText(userEmail);
 
             }
         }
