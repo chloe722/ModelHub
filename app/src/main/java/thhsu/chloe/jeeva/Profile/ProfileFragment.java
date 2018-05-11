@@ -144,8 +144,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             }
         }
         else if (requestCode == Constants.CROP_IMAGE) {
-//            Bitmap crppedImage = (Bitmap) extras.getParcelable("data");
-//            mUserPhotoView.setImageBitmap(crppedImage);
             try {
                 Bitmap croppedImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), tempFileUri);
                 Log.d("Chloe", "croppedImage: " + croppedImage);
@@ -171,8 +169,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 mUserEmail.setText(userEmail);
                 mUserJobTitle.setText(userJobTitle);
                 mUserLocation.setText(userLocationCity + ", " + userLocationCountry);
-
-
+            }
+        }else if(requestCode == Constants.PICK_IMAGE_REQUEST){
+            if(requestCode == Activity.RESULT_OK){
+                Uri selectedImage = data.getData();
             }
         }
     }
@@ -245,4 +245,12 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
 
     }
+
+    public void pickImage(){
+        Intent intentGallery = new Intent(Intent.ACTION_GET_CONTENT);
+        intentGallery.setType("image/*");
+        startActivityForResult(intentGallery, Constants.PICK_IMAGE_REQUEST);
+    }
+
+
 }

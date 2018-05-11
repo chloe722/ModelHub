@@ -15,5 +15,6 @@ public class Constants {
     public static final int CAPTURE_IMAGE_FRAGMENT_REQUEST = 25;
     public static final int USER_INFO_REQUEST = 26;
     public static final int CROP_IMAGE = 27;
+    public static final int PICK_IMAGE_REQUEST = 28;
 
 }
