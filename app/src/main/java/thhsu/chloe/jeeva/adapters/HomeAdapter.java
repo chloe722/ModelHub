@@ -169,7 +169,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         holder.getHomeJobTitle().setText(mJobs.get(position).getTitle());
         if (mJobs.get(position).getType().equals("fulltime")){
             (holder.getHomeJobTypeTag()).setText("Full-time");
-            (holder.getHomeJobTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
+//            (holder.getHomeJobTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
         }else if(mJobs.get(position).getType().equals("parttime")){
             (holder.getHomeJobTypeTag()).setText("Part-time");
         }else if(mJobs.get(position).getType().equals("intern")){

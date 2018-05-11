@@ -16,7 +16,7 @@
     android:elevation="0dp"
     android:foreground="?android:selectableItemBackground"
     android:id="@+id/cardView_recommended_job_item"
-    card_view:cardBackgroundColor="#80e5e4e5"
+    card_view:cardBackgroundColor="#FEFEFE"
     card_view:cardCornerRadius="3dp"
     card_view:contentPadding="5dp">
 
@@ -34,7 +34,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:background="#80A1887F"
+                android:background="#80D3A931"
                 android:foregroundGravity="bottom"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
                 android:layout_marginStart="8dp"
                 android:singleLine="true"
                 android:text="UI/UX Designer"
-                android:textColor="#ffffff"
+                android:textColor="#FEFEFE"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 card_view:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +74,7 @@
                 android:layout_marginBottom="24dp"
                 android:layout_marginStart="8dp"
                 android:text="Linkedin"
-                android:textColor="#ffffff"
+                android:textColor="#FEFEFE"
                 android:textSize="14sp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintStart_toEndOf="@+id/recommend_company_logo"

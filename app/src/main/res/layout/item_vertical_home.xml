@@ -27,10 +27,10 @@
         android:layout_height="23dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/skyblue_rounded_shape"
+        android:background="@drawable/yellow_rounded_shape"
         android:text="Full-Time"
         android:textAlignment="center"
-        android:textColor="#ffffff"
+        android:textColor="@color/textcolor"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:text="Posted on"
-        android:textColor="@color/job_company_location_title"
+        android:textColor="#3F3F3E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
@@ -53,6 +53,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="October 24, 2018"
+        android:textColor="@color/job_company_location_title"
         app:layout_constraintStart_toEndOf="@+id/home_job_posted_text"
         app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
@@ -73,8 +74,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Company"
-        android:textColor="@color/titleforall"
-        android:textSize="17sp"
+        android:textColor="#3F3F3E"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_logo"
         app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
@@ -86,8 +87,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Location"
-        android:textColor="@color/titleforall"
-        android:textSize="17sp"
+        android:textColor="#3F3F3E"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
         app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
@@ -100,8 +101,8 @@
         android:maxWidth="100dp"
         android:minWidth="90dp"
         android:text="Rockstar Games INC."
-        android:textColor="@color/textcolor"
-        android:textSize="15sp"
+        android:textColor="@color/job_company_location_title"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/home_job_company_title"
         app:layout_constraintTop_toBottomOf="@+id/home_job_company_title" />
 
@@ -114,8 +115,8 @@
         android:maxWidth="110dp"
         android:minWidth="100dp"
         android:text="San Francisco, United States"
-        android:textColor="@color/textcolor"
-        android:textSize="15sp"
+        android:textColor="@color/job_company_location_title"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
         app:layout_constraintTop_toBottomOf="@+id/home_job_location_title" />
 
