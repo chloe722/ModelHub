@@ -3,6 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
@@ -73,7 +74,8 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/position"
                 android:textColor="@color/titleforall"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,11 +84,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/frontend_developer"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
@@ -99,7 +101,7 @@
                 android:text="@string/backend_developer"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_frontend" />
 
@@ -112,7 +114,7 @@
                 android:text="@string/product_manager"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fullstack" />
 
@@ -121,11 +123,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/web_designer"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
                 app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
@@ -137,7 +139,7 @@
                 android:text="@string/ui_ux_desinger"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/filter_checkbox_web_designer"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_web_designer" />
 
@@ -150,32 +152,41 @@
                 android:text="@string/project_manager"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_uiux_designer" />
+
+            <ImageView
+                android:id="@+id/home_hr_line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorHrLine"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_product_m"/>
 
             <TextView
                 android:id="@+id/filter_type_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/type"
                 android:textColor="@color/titleforall"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_product_m" />
+                app:layout_constraintTop_toBottomOf="@+id/home_hr_line" />
 
             <CheckBox
                 android:id="@+id/filter_checkbox_fulltime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/full_time"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
 
@@ -188,7 +199,7 @@
                 android:text="@string/contract"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fulltime" />
 
@@ -200,7 +211,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/internship"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_contract" />
 
@@ -209,11 +220,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/part_time"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
                 app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
 
@@ -225,7 +236,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/permanent"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_parttime" />
 
@@ -237,7 +248,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/remote"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_permanent" />
 
@@ -249,7 +260,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/fullstack_developer"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_backend" />
 

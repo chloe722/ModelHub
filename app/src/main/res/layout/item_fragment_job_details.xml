@@ -34,15 +34,15 @@
 
         <TextView
             android:id="@+id/job_details_type_tag"
-            android:layout_width="95dp"
-            android:layout_height="23dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/yellow_rounded_shape"
             android:text="Full-Time"
             android:textAlignment="center"
             android:textColor="@color/textcolor"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,8 +54,8 @@
             android:layout_marginTop="36dp"
             android:maxWidth="300dp"
             android:text="Full Stack Ruby on Rails Developer"
-            android:textColor="@color/colorJobTitle"
-            android:textSize="20sp"
+            android:textColor="#563c03"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -68,6 +68,7 @@
             android:layout_marginTop="5dp"
             android:text="Posted on"
             android:textColor="#3F3F3E"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
@@ -79,6 +80,7 @@
             android:layout_marginTop="5dp"
             android:text="October 24, 2018"
             android:textColor="@color/job_company_location_title"
+            android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/job_details_posted_text"
             app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
@@ -100,7 +102,7 @@
             android:layout_marginTop="8dp"
             android:text="Company"
             android:textColor="#3F3F3E"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
             app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text" />
@@ -113,7 +115,7 @@
             android:layout_marginTop="8dp"
             android:text="Location"
             android:textColor="#3F3F3E"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/job_details_company_name"
             app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text" />
@@ -123,12 +125,11 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:maxWidth="110dp"
             android:minWidth="90dp"
             android:text="Rockstar Games INC."
             android:textColor="@color/job_company_location_title"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
             app:layout_constraintTop_toBottomOf="@+id/job_details_company_title" />
 
@@ -137,12 +138,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:maxWidth="150dp"
             android:minWidth="120dp"
             android:text="San Francisco, United States"
             android:textColor="@color/job_company_location_title"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/job_details_company_name"
             app:layout_constraintTop_toBottomOf="@+id/job_details_location_title" />
 
@@ -154,7 +154,7 @@
             android:layout_marginTop="8dp"
             android:text="Salary"
             android:textColor="#3F3F3E"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
             app:layout_constraintTop_toBottomOf="@+id/job_details_company_name" />
@@ -167,7 +167,7 @@
             android:layout_marginTop="8dp"
             android:text="400000"
             android:textColor="@color/job_company_location_title"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
             app:layout_constraintTop_toBottomOf="@+id/job_details_salary_title" />
 
@@ -178,7 +178,7 @@
             android:layout_marginTop="8dp"
             android:text="NT/ Monthly"
             android:textColor="@color/job_company_location_title"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/job_details_salary_num"
             app:layout_constraintTop_toBottomOf="@+id/job_details_salary_title" />
 
@@ -233,8 +233,8 @@ This role will take strong leadership in technical aspect to guide client reinve
 Required Technical and Professional Expertise
 
 Master architectural and programming skill in Open environment (Java related) Fluent experience in mainstream application framework, open source packages. Hands-on experience in Web/Mobile/Cloud based system development for the recent 5 years of work. Lead and responsible for detail architectural design and implementation for at least 2+ completed projects (on production) Actual experience in system performance tuning by identify application architecture and infrastructure bottleneck. Familiar with practical DevOps implementation. Good Team player with strong leadership and ambition to achieve challenging targets. Enthusiasm for self-learning new technology and methodology, love to realized them in real world scenarios. "
-                android:textSize="16sp"
                 android:textColor="@color/textcolor"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -249,7 +249,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:background="@null"
                 android:text="Read More"
                 android:textColor="#3F3F3E"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -291,14 +291,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:layout_marginTop="16dp"
                 android:lineSpacingExtra="5dp"
                 android:maxWidth="320dp"
-                android:textColor="@color/textcolor"
                 android:text="Process improvement with WLAN/BT vendor in terms of design/implementation/validation perspective for better quality of module integration to meet HP platform shipment requirement.
        2. Process improvement within HP cross different function team for more efficient working model.
         Create/Enhance process to align cross COMM WLAN/BT team for requirement of design/implementation/validation.
         Join debug complex WLAN/BT technical issue and provide expertise advice to help issue resolution.
         Leading cross function team issue.
         Mentoring/Developing junior talent"
-                android:textSize="16sp"
+                android:textColor="@color/textcolor"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/job_details_requirement_title" />
@@ -711,12 +711,12 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14sp"
                 android:drawableLeft="@drawable/tag"
                 android:drawablePadding="5dp"
                 android:text="Source From:"
-                android:textSize="16sp"
                 android:textColor="@color/titleforall"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/job_details_hiring_resource_title" />
 
@@ -725,12 +725,12 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="21dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14sp"
                 android:drawableLeft="@drawable/ic_person_black_36dp"
                 android:drawablePadding="1dp"
                 android:text="Contact Name:"
-                android:textSize="16sp"
                 android:textColor="@color/titleforall"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/job_details_hiring_resource_source_from_title" />
 
@@ -739,7 +739,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14sp"
                 android:drawableLeft="@drawable/ic_contact_mail_black_24dp"
                 android:drawablePadding="5dp"
                 android:text="Contact Email:"
@@ -753,7 +753,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14sp"
                 android:drawableLeft="@drawable/ic_info_black_24dp"
                 android:drawablePadding="5dp"
                 android:text="Other info:"
@@ -766,7 +766,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:id="@+id/job_details_hiring_resource_source_from_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="14sp"
                 android:text="External Resource"
                 android:textSize="14sp"
                 android:textColor="@color/textcolor"

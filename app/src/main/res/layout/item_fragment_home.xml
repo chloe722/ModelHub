@@ -20,7 +20,7 @@
             android:text="Recommend"
             android:textAlignment="textStart"
             android:textColor="@color/titleforall"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold|italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
             android:text="Jobs"
             android:textAlignment="textStart"
             android:textColor="@color/titleforall"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -34,7 +34,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:background="#80D3A931"
+                android:background="#80aa8000"
                 android:foregroundGravity="bottom"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
