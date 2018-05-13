@@ -24,7 +24,7 @@ public class ApiManager {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor) // To register an application interceptor
+                .addInterceptor(interceptor) // To getRegister an application interceptor
                 .build();
 
 

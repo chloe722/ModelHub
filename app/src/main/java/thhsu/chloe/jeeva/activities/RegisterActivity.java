@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.api.ApiJobManager;
+import thhsu.chloe.jeeva.api.ApiManager;
+import thhsu.chloe.jeeva.api.PostRegisterCallBack;
 
 /**
  * Created by Chloe on 5/13/2018.
@@ -17,7 +20,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     TextInputLayout mRegisterEmailTextInputLayout, mRegisterPasswordTextInputLayout, mRegisterConfirmPasswordTextInputLayout;
     EditText mRegisterEmailText, mRegisterPasswordText, mRegisterConfirmPasswordText;
     Button mCreateAccountBtn, mRegisterBackBtn;
-    String mEmail, mPassword;
+    String userToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +77,22 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()){
             case R.id.signup_createaccount_btn:
                 if(validateRegisterData()){
-                    mEmail = mRegisterEmailText.getText().toString();
-                    mPassword = mRegisterPasswordText.getText().toString();
-                    Log.d("Chloe", "Email: " + mEmail + " Password: " + mPassword);
+                    String email, password;
+                    email = mRegisterEmailText.getText().toString();
+                    password = mRegisterPasswordText.getText().toString();
+                    Log.d("Chloe", "Email: " + email + " Password: " + password);
+                    ApiJobManager.getInstance().getRegister(email, password, new PostRegisterCallBack() {
+                        @Override
+                        public void onCompleted(String token) {
+                            userToken = token;
+                            Log.d("Chloe", "userToken: " + token);
+                        }
+
+                        @Override
+                        public void onError(String errorMessage) {
+
+                        }
+                    });
                 }
 
                 break;

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import retrofit2.Call;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
+import thhsu.chloe.jeeva.api.model.RegisterResult;
 import thhsu.chloe.jeeva.api.model.Result;
 
 
-import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -73,8 +73,24 @@ public class ApiJobManager {
         });
     }
 
-    public void getRegister(final PostRegisterCallBack postRegisterCallBack){
+    public void getRegister(String email, String password,final PostRegisterCallBack postRegisterCallBack){
+        Log.d("Chloe", "register");
+        Call<RegisterResult> call = ApiManager.getInstance().apiJobsService.getRegister("", email, password);
+        call.enqueue(new Callback<RegisterResult>() {
+            @Override
+            public void onResponse(Call<RegisterResult> call, Response<RegisterResult> response) {
+                response.body();
+                if(response.body().getToken() != null){
+                    postRegisterCallBack.onCompleted(response.body().getToken());
+                    Log.d("Chloe", "token: " + (response.body().getToken()));
+                }
+            }
 
+            @Override
+            public void onFailure(Call<RegisterResult> call, Throwable t) {
+                postRegisterCallBack.onError(t.getLocalizedMessage());
+            }
+        });
     }
 }
 

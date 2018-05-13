@@ -9,6 +9,6 @@ import thhsu.chloe.jeeva.api.model.Jobs;
  */
 
 public interface PostRegisterCallBack {
-    void onCompleted();
+    void onCompleted(String token);
     void onError(String errorMessage);
 }

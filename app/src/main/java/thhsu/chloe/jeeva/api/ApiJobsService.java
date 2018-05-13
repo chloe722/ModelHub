@@ -11,6 +11,7 @@ import retrofit2.http.Query;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.jeeva.api.model.Jobs;
 import thhsu.chloe.jeeva.api.model.Post;
+import thhsu.chloe.jeeva.api.model.RegisterResult;
 import thhsu.chloe.jeeva.api.model.Result;
 
 /**
@@ -20,7 +21,7 @@ import thhsu.chloe.jeeva.api.model.Result;
 public interface ApiJobsService {
     String  TAGS = "tags";
     String PATH = "jobs";
-    String REGISTER = "register";
+    String REGISTER = "getRegister";
 
     String PATH_JOBS = PATH;
     String PATH_JOBS_TAGS = PATH + "?";
@@ -31,11 +32,13 @@ public interface ApiJobsService {
     @GET(PATH_JOBS_TAGS)
     Call<Result<ArrayList<Jobs>>> getFilterJobs(@Query("tags") String tags);
 
-    @POST("/register")
+    @POST("/getRegister")
     @FormUrlEncoded
-    Call<Post> register(@Field("name") String name,
-                        @Field("email") String email,
-                        @Field("password") String password);
+    Call<RegisterResult> getRegister(@Field("name") String name,
+                                     @Field("email") String email,
+                                     @Field("password") String password);
+
+    // Call<return type>
 
 
 }
