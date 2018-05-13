@@ -7,6 +7,7 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".Jeeva"
@@ -28,6 +29,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
+
         <activity
             android:name=".activities.FirstPageActivity"
             android:exported="true"
@@ -46,6 +50,10 @@
 
         <activity
             android:name=".activities.AboutMeActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".activities.RegisterActivity"
             android:exported="true" />
 
         <activity

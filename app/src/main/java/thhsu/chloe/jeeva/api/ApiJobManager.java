@@ -72,5 +72,9 @@ public class ApiJobManager {
             }
         });
     }
+
+    public void getRegister(final PostRegisterCallBack postRegisterCallBack){
+
+    }
 }
 

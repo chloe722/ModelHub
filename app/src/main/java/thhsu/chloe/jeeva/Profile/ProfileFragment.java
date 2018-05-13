@@ -13,20 +13,26 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
@@ -42,11 +48,15 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     Button mEditInfoBtn, mCameraBtn;
     TextView mUserName, mUserEmail, mUserNumber, mUserJobTitle, mUserLocation;
     RoundedImageView mUserPhotoView;
-    Uri tempFileUri;
+    Uri tempFileUri, imageUri;
     Context mContext;
     String userName, userEmail, userJobTitle, userLocationCountry, userLocationCity, userLocation;
     Bitmap bitmap;
     Bundle extras;
+    BottomSheetDialog mBottomSheetDialog;
+    InputStream imageStream;
+
+
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -64,13 +74,24 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mUserEmail = (TextView) root.findViewById(R.id.profile_user_email);
         mUserJobTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
+        mBottomSheetDialog = new BottomSheetDialog(getActivity());
+        View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
+        mBottomSheetDialog.setContentView(sheetView);
+        CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(getActivity());
+        CropImage.activity(imageUri).start(getActivity());
+        CropImage.activity().start(getContext(), this);
 
+        LinearLayout camera = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_camera);
+        LinearLayout gallery = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_gallery);
 
         mContext = getActivity();
 
 
+        camera.setOnClickListener(this);
+        gallery.setOnClickListener(this);
         mEditInfoBtn.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
+
 
 //        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 //            mCameraBtn.setEnabled(false);
@@ -109,8 +130,19 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 Intent intent = new Intent(getActivity(), AboutMeActivity.class);
                 startActivityForResult(intent, Constants.USER_INFO_REQUEST);
                 break;
+
             case R.id.profile_camera_btn:
+                mBottomSheetDialog.show();
+                break;
+
+            case R.id.fragment_profile_camera:
+                mBottomSheetDialog.hide();
                 takePhoto();
+                break;
+
+            case R.id.fragment_profile_gallery:
+                mBottomSheetDialog.hide();
+                pickImage();
                 break;
         }
     }
@@ -138,19 +170,34 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 extras = data.getExtras();
                 bitmap = (Bitmap) extras.get("data");
                 tempFileUri = getImageUri(getContext(), bitmap);
-
                 Toast.makeText(getActivity(),"Here "+ getRealPathFromURI(tempFileUri), Toast.LENGTH_LONG).show();
-                performCrop();
+                performCrop(tempFileUri);
             }
-        }
-        else if (requestCode == Constants.CROP_IMAGE) {
+        }else if(requestCode == Constants.PICK_IMAGE_REQUEST){
+            if(resultCode == Activity.RESULT_OK){
+                imageUri = data.getData();
+//                tempFileUri = getRealPathFromURI(imageUri);
+                performCrop(imageUri);
+
+            }
+        } else if (requestCode == Constants.CROP_IMAGE) {
             try {
-                Bitmap croppedImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), tempFileUri);
-                Log.d("Chloe", "croppedImage: " + croppedImage);
-                Toast.makeText(getActivity(),"crapppedimage "+ croppedImage, Toast.LENGTH_LONG).show();
-                if(croppedImage != null){
-                    Log.d("Chloe", "croppedImage1111: " + croppedImage);
-                    mUserPhotoView.setImageBitmap(croppedImage);
+                if(tempFileUri != null){
+                    Bitmap croppedImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), tempFileUri);
+                    Log.d("Chloe", "croppedImage: " + croppedImage);
+                    Toast.makeText(getActivity(),"cropppedimage "+ croppedImage, Toast.LENGTH_LONG).show();
+                    if(croppedImage != null){
+                        Log.d("Chloe", "croppedImage: " + croppedImage);
+                        mUserPhotoView.setImageBitmap(croppedImage);
+                    }
+                }else if(imageUri != null){
+//                    imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+//                    Bitmap selectedBitmap = BitmapFactory.decodeStream(imageStream);
+                    Bitmap lalaimage =  MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+
+                    if(lalaimage != null) {
+                        mUserPhotoView.setImageBitmap(lalaimage);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -169,10 +216,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 mUserEmail.setText(userEmail);
                 mUserJobTitle.setText(userJobTitle);
                 mUserLocation.setText(userLocationCity + ", " + userLocationCountry);
-            }
-        }else if(requestCode == Constants.PICK_IMAGE_REQUEST){
-            if(requestCode == Activity.RESULT_OK){
-                Uri selectedImage = data.getData();
             }
         }
     }
@@ -215,14 +258,14 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         startActivityForResult(i, Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST);
     }
 
-    private void performCrop() {
+    private void performCrop(Uri uri) {
         // take care of exceptions
         try {
             // call the standard crop action intent (the user device may not
             // support it)
             Intent cropIntent = new Intent("com.android.camera.action.CROP");
             // indicate image type and Uri
-            cropIntent.setDataAndType(tempFileUri, "image/*");
+            cropIntent.setDataAndType(uri, "image/*");
             // set crop properties
             cropIntent.putExtra("crop", "true");
             // indicate aspect of desired crop
@@ -233,7 +276,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             cropIntent.putExtra("outputY", 256);
             // retrieve data on return
             cropIntent.putExtra("return-data", false); //
-            cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, tempFileUri); // Displayed cropped image
+            cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri); // Displayed cropped image
             // start the activity - we handle returning in onActivityResult
             startActivityForResult(cropIntent, Constants.CROP_IMAGE);
         }
@@ -246,10 +289,41 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
     }
 
+//    private void performCropGallery(String picUri) {
+//        try {
+//            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+//            // indicate image type and Uri
+//            File f = new File(picUri);
+//            Uri contentUri = Uri.fromFile(f);
+//
+//            cropIntent.setDataAndType(contentUri, "image/*");
+//            // set crop properties
+//            cropIntent.putExtra("crop", "true");
+//            // indicate aspect of desired crop
+//            cropIntent.putExtra("aspectX", 1);
+//            cropIntent.putExtra("aspectY", 1);
+//            // indicate output X and Y
+//            cropIntent.putExtra("outputX", 280);
+//            cropIntent.putExtra("outputY", 280);
+//
+//            // retrieve data on return
+//            cropIntent.putExtra("return-data", true);
+//            // start the activity - we handle returning in onActivityResult
+//            startActivityForResult(cropIntent, Constants.CROP_IMAGE);
+//        }
+//        // respond to users whose devices do not support the crop action
+//        catch (ActivityNotFoundException anfe) {
+//            // display an error message
+//            String errorMessage = "your device doesn't support the crop action!";
+//            Toast toast = Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT);
+//            toast.show();
+//        }
+//    }
+
     public void pickImage(){
-        Intent intentGallery = new Intent(Intent.ACTION_GET_CONTENT);
-        intentGallery.setType("image/*");
-        startActivityForResult(intentGallery, Constants.PICK_IMAGE_REQUEST);
+        Intent intentPhotoPicker = new Intent(Intent.ACTION_GET_CONTENT);
+        intentPhotoPicker.setType("image/*");
+        startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
     }
 
 

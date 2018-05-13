@@ -40,7 +40,7 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -62,7 +62,8 @@
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorAccent"
             android:hint="Password"
-            android:textSize="18sp" />
+            android:inputType="textPassword"
+            android:textSize="16sp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -84,7 +85,8 @@
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorAccent"
             android:hint="Confirm Password"
-            android:textSize="18sp" />
+            android:inputType="textPassword"
+            android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -97,7 +99,8 @@
         android:background="@drawable/yellow_rounded_shape"
         android:text="Create Account"
         android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_confirmpassword" />

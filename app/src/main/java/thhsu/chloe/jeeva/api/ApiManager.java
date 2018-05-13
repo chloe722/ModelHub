@@ -14,6 +14,8 @@ public class ApiManager {
     public ApiJobsService apiJobsService;
 
 
+
+
     private static final ApiManager ourInstance = new ApiManager();
     public static ApiManager getInstance(){return ourInstance;}
 
@@ -33,6 +35,8 @@ public class ApiManager {
                 .build();
 
         apiJobsService = retrofit.create(ApiJobsService.class);
+
     }
+
 
 }
