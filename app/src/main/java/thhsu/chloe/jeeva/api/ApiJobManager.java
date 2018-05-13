@@ -73,7 +73,7 @@ public class ApiJobManager {
         });
     }
 
-    public void getRegister(String email, String password,final PostRegisterCallBack postRegisterCallBack){
+    public void getRegister(String email, String password,final PostRegisterLoginCallBack postRegisterLoginCallBack){
         Log.d("Chloe", "register");
         Call<RegisterResult> call = ApiManager.getInstance().apiJobsService.getRegister("", email, password);
         call.enqueue(new Callback<RegisterResult>() {
@@ -81,14 +81,32 @@ public class ApiJobManager {
             public void onResponse(Call<RegisterResult> call, Response<RegisterResult> response) {
                 response.body();
                 if(response.body().getToken() != null){
-                    postRegisterCallBack.onCompleted(response.body().getToken());
-                    Log.d("Chloe", "token: " + (response.body().getToken()));
+                    postRegisterLoginCallBack.onCompleted(response.body().getToken());
+                    Log.d("Chloe", "Register get token: " + (response.body().getToken()));
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResult> call, Throwable t) {
-                postRegisterCallBack.onError(t.getLocalizedMessage());
+                postRegisterLoginCallBack.onError(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void getLogInResult(String email, String password, final PostRegisterLoginCallBack postRegisterLoginCallBack){
+        Call<RegisterResult> call = ApiManager.getInstance().apiJobsService.getLogInResult(email, password, "credentials");
+        call.enqueue(new Callback<RegisterResult>() {
+            @Override
+            public void onResponse(Call<RegisterResult> call, Response<RegisterResult> response) {
+                response.body();
+                if(response.body().getToken() != null){
+                    postRegisterLoginCallBack.onCompleted(response.body().getToken());
+                    Log.d("Chloe", "LogIn get token: " + (response.body().getToken()));
+                }
+            }
+            @Override
+            public void onFailure(Call<RegisterResult> call, Throwable t) {
+                postRegisterLoginCallBack.onError(t.getLocalizedMessage());
             }
         });
     }

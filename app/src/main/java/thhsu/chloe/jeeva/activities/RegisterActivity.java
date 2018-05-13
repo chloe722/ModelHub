@@ -9,8 +9,7 @@ import android.widget.EditText;
 
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.api.ApiJobManager;
-import thhsu.chloe.jeeva.api.ApiManager;
-import thhsu.chloe.jeeva.api.PostRegisterCallBack;
+import thhsu.chloe.jeeva.api.PostRegisterLoginCallBack;
 
 /**
  * Created by Chloe on 5/13/2018.
@@ -81,7 +80,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     email = mRegisterEmailText.getText().toString();
                     password = mRegisterPasswordText.getText().toString();
                     Log.d("Chloe", "Email: " + email + " Password: " + password);
-                    ApiJobManager.getInstance().getRegister(email, password, new PostRegisterCallBack() {
+                    ApiJobManager.getInstance().getRegister(email, password, new PostRegisterLoginCallBack() {
                         @Override
                         public void onCompleted(String token) {
                             userToken = token;

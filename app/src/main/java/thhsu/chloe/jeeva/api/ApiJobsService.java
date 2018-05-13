@@ -22,6 +22,7 @@ public interface ApiJobsService {
     String  TAGS = "tags";
     String PATH = "jobs";
     String REGISTER = "register";
+    String LOGIN = "token";
 
     String PATH_JOBS = PATH;
     String PATH_JOBS_TAGS = PATH + "?";
@@ -39,6 +40,12 @@ public interface ApiJobsService {
                                      @Field("password") String password);
 
     // Call<return type>
+
+    @POST(LOGIN)
+    @FormUrlEncoded
+    Call<RegisterResult> getLogInResult(@Field("email") String email,
+                                        @Field("password") String password,
+                                        @Field("grant_type") String grant_type);
 
 
 }

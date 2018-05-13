@@ -19,6 +19,10 @@ public class RegisterResult {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("grant_type")
+    @Expose
+    private String grant_type;
+
 
     public String getMessage() {
         return message;

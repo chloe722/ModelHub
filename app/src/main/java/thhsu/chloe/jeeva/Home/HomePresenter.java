@@ -73,16 +73,12 @@ public class HomePresenter implements HomeContract.Presenter {
                 showJobs(mJobs);
                 Log.d("Chloe", "filter jobs" + mJobs.size());
             }
-
             @Override
             public void onError(String errorMessage) {
                 Log.d("Chloe", "GetJobsErrorMessage, errorMessage:" + errorMessage);
             }
         });
     }
-
-
-
 
     @Override
     public void onScrollStateChanged(int visibleItemCount, int totalItemCount, int newState) {
