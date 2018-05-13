@@ -21,7 +21,7 @@ import thhsu.chloe.jeeva.api.model.Result;
 public interface ApiJobsService {
     String  TAGS = "tags";
     String PATH = "jobs";
-    String REGISTER = "getRegister";
+    String REGISTER = "register";
 
     String PATH_JOBS = PATH;
     String PATH_JOBS_TAGS = PATH + "?";
@@ -32,7 +32,7 @@ public interface ApiJobsService {
     @GET(PATH_JOBS_TAGS)
     Call<Result<ArrayList<Jobs>>> getFilterJobs(@Query("tags") String tags);
 
-    @POST("/getRegister")
+    @POST(REGISTER)
     @FormUrlEncoded
     Call<RegisterResult> getRegister(@Field("name") String name,
                                      @Field("email") String email,
