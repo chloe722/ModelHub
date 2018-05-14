@@ -117,6 +117,9 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     fullName = mFullName.getText().toString();
                     number = mPhone.getText().toString();
                     email = mEmail.getText().toString();
+                    jobTitle = mJobTitle.getText().toString();
+                    userLocationCountry = mLocationCountry.getText().toString();
+                    userLocationCity = mLocationCity.getText().toString();
                     bundle.putString("fullName", fullName);
                     bundle.putString("phone", number);
                     bundle.putString("email", email);

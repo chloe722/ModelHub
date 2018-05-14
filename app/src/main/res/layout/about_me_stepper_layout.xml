@@ -36,7 +36,7 @@
                     android:layout_gravity="center"
                     android:text="About Me"
                     android:textColor="@color/titleforall"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </android.support.v7.widget.Toolbar>
 
@@ -64,8 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/about_me_page_toolbar_container"
         app:stpi_stepCount="3"
-        app:stpi_circleColor="#F08684"
-        app:stpi_indicatorColor="#F08684"
+        app:stpi_lineDoneColor="#1dc444"
+        app:stpi_circleColor="#1dc444"
+        app:stpi_indicatorColor="#1dc444"
         app:stpi_showStepNumberInstead="true"
         app:stpi_showDoneIcon="true"/>
 

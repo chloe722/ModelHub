@@ -2,7 +2,9 @@ package thhsu.chloe.jeeva.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -40,20 +42,22 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private Toolbar mToolbar;
     private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
-    private MenuItem mFilterItem;
+    private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn;
 //    private FilterFragment filterFragment;
     private boolean isFilterInHome = true;
     private boolean shouldShowFilter = false;
     private Fragment currentFragment;
     private Button mToolBarBackBtn;
     JeevaActivity jeevaActivity;
+    private SharedPreferences mSharePref;
+    String token;
 
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
+            init();
     }
 
     private void init(){
@@ -62,7 +66,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setToolbar();
         mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar);
         mPresenter.start();
+        mSharePref = JeevaActivity.this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+        token = mSharePref.getString(Constants.USER_TOKEN, "");
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,6 +78,10 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         int currentItem = mBottomNavigationView.getSelectedItemId();
         currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
         MenuInflater inflater = getMenuInflater();
+        if(!(token.equals(""))){
+            mBottomNavigationView.getMenu().getItem(2).setTitle("Profile");
+        }
+
         if (currentItem == R.id.action_home){
             inflater.inflate(R.menu.menu_filter, menu);
                 mFilterItem = menu.findItem(R.id.home_filter).setVisible(true);
@@ -84,8 +96,39 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
                 });
         }else if(currentItem == R.id.action_profile){
             inflater.inflate(R.menu.menu_more_member, menu);
+            mAboutBtn = menu.findItem(R.id.more_menu_about_item);
+            mLogoutBtn = menu.findItem(R.id.more_menu_logout_item);
+            mAboutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Intent intent = new Intent(jeevaActivity, AboutpageActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+
+            if(!(token.equals(""))){
+                mLogoutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        mSharePref.edit().remove(Constants.USER_TOKEN)
+                                .apply();
+                        Log.d("Chloe", "shared status: " + mSharePref.getString(Constants.USER_TOKEN, ""));
+                        Toast.makeText(getApplicationContext(), "log out btn click", Toast.LENGTH_SHORT).show();
+                        init();
+                        return true;
+                    }
+                });
+            }
+            else{
+                mLogoutBtn.setVisible(false);
+            }
+        }else if(currentItem == R.id.action_saved_job){
 
         }
+
+
+
 //        if(currentFragment == getFragmentManager().findFragmentByTag(JOBDETAILS)){
 //            mToolBarBackBtn.setVisibility(View.VISIBLE);
 //            mToolBarBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +143,12 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
 //    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -129,6 +178,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     private void setBottomNavigationView(){
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
@@ -210,6 +260,8 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mSharePref = JeevaActivity.this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+        token = mSharePref.getString(Constants.USER_TOKEN, "");
         invalidateOptionsMenu();
         switch (item.getItemId()) {
             case R.id.action_home:
@@ -221,14 +273,15 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
                 mPresenter.transToSavedJob();
                 break;
 
-//            case R.id.action_profile:
-//                mPresenter.transToSignInTabPage();
-//                return true;
-
             case R.id.action_profile:
-                mPresenter.transToProfile();
+                if(token.equals("")){
+                    mPresenter.transToSignInTabPage();
+                    break;
+                }else {
 
-                break;
+                    mPresenter.transToProfile();
+                    break;
+                }
         }
         return true;
     }

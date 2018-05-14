@@ -14,6 +14,8 @@ public class ApiManager {
     public ApiJobsService apiJobsService;
 
 
+
+
     private static final ApiManager ourInstance = new ApiManager();
     public static ApiManager getInstance(){return ourInstance;}
 
@@ -22,7 +24,7 @@ public class ApiManager {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor) // To register an application interceptor
+                .addInterceptor(interceptor) // To getRegister an application interceptor
                 .build();
 
 
@@ -33,6 +35,8 @@ public class ApiManager {
                 .build();
 
         apiJobsService = retrofit.create(ApiJobsService.class);
+
     }
+
 
 }

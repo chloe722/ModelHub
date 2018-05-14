@@ -81,27 +81,28 @@
 
     <Button
         android:id="@+id/stepper_two_next_btn"
-        android:layout_width="86dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/yellow_rounded_shape"
         android:text="Next"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="#FEFEFE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/stepper_two_back_btn"
-        android:layout_width="86dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/yellow_rounded_shape"
         android:text="Back"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="#FEFEFE"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

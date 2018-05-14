@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/profile_human_icn"
+        android:id="@+id/profile_smile_icn"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginEnd="15dp"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_person_black_36dp" />
+        app:srcCompat="@drawable/ic_smile" />
 
     <TextView
         android:id="@+id/signin_tab_slogen"
@@ -24,30 +24,31 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/allerta"
         android:text="@string/join_us_be_the_memebr_for_free"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textColor="@color/titleforall"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_human_icn" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_smile_icn" />
 
     <Button
         android:id="@+id/signin_tab_signup_btn"
-        android:layout_width="280dp"
-        android:layout_height="45dp"
+        android:layout_width="180dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/yellow_rounded_shape"
-        android:fontFamily="serif"
+        android:fontFamily="@font/amiko_bold"
         android:text="@string/sign_up"
         android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:typeface="normal"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_tab_slogen" />
 
@@ -57,29 +58,31 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/allerta"
         android:text="@string/or"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textColor="@color/titleforall"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_tab_signup_btn" />
 
     <Button
         android:id="@+id/signin_tab_signin_btn"
-        android:layout_width="280dp"
-        android:layout_height="45dp"
+        android:layout_width="180dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/amiko_bold"
         android:background="@drawable/yellow_rounded_shape"
-        android:fontFamily="serif"
         android:text="@string/sign_in"
         android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
+        android:textColor="#fefefe"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_tab_or_text" />
 </android.support.constraint.ConstraintLayout>

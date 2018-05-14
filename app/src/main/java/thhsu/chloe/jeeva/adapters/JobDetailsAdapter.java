@@ -1,6 +1,8 @@
 package thhsu.chloe.jeeva.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -225,6 +227,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
             mDetailsReadMoreBtn.setOnClickListener(this);
             mDetailsBookMark.setOnClickListener(this);
+            mDetailsShareBtn.setOnClickListener(this);
 
 
         }
@@ -265,14 +268,26 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.job_details_readmore_btn){
-                mDetailsJobDesContent.setMaxLines(Integer.MAX_VALUE);
-                mDetailsReadMoreBtn.setVisibility(View.INVISIBLE);
-                mRequirementConstraint.setVisibility(View.VISIBLE);
-                mBenefitConstraint.setVisibility(View.VISIBLE);
-                mHiringResourceConstraint.setVisibility(View.VISIBLE);
-            }else if(v.getId() == R.id.job_details_bookmark_btn){
-                mDetailsBookMark.setImageResource(R.drawable.ic_bookmark_red_24dp);
+            switch (v.getId()){
+                case R.id.job_details_readmore_btn:
+                    mDetailsJobDesContent.setMaxLines(Integer.MAX_VALUE);
+                    mDetailsReadMoreBtn.setVisibility(View.INVISIBLE);
+                    mRequirementConstraint.setVisibility(View.VISIBLE);
+                    mBenefitConstraint.setVisibility(View.VISIBLE);
+                    mHiringResourceConstraint.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.job_details_bookmark_btn:
+                    mDetailsBookMark.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                    break;
+                case R.id.job_details_share_btn:
+                    Intent intentToShare = new Intent(Intent.ACTION_SEND);
+                    intentToShare.setType("text/plain");
+                    intentToShare.putExtra(Intent.EXTRA_SUBJECT, "Testing");
+                    intentToShare.putExtra(Intent.EXTRA_TEXT, "https://wetogether.skijur.com/jobs/123");
+                    mContext.startActivity(Intent.createChooser(intentToShare, "Title of the dialog the system will open"));
+                    break;
+
+
             }
         }
     }

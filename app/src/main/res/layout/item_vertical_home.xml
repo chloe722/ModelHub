@@ -15,23 +15,23 @@
         android:layout_marginTop="36dp"
         android:maxWidth="300dp"
         android:text="Full Stack Ruby on Rails Developer"
-        android:textColor="@color/colorJobTitle"
-        android:textSize="18sp"
+        android:textColor="#593123"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/home_job_type_tag"
-        android:layout_width="95dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/skyblue_rounded_shape"
+        android:background="@drawable/yellow_rounded_shape"
         android:text="Full-Time"
         android:textAlignment="center"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
+        android:textColor="@color/textcolor"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +42,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:text="Posted on"
-        android:textColor="@color/job_company_location_title"
+        android:textSize="14sp"
+        android:textColor="#3F3F3E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
@@ -53,6 +54,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="October 24, 2018"
+        android:textSize="14sp"
+        android:textColor="@color/job_company_location_title"
         app:layout_constraintStart_toEndOf="@+id/home_job_posted_text"
         app:layout_constraintTop_toBottomOf="@+id/home_job_title" />
 
@@ -73,8 +76,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Company"
-        android:textColor="@color/titleforall"
-        android:textSize="17sp"
+        android:textColor="#3F3F3E"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_logo"
         app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
@@ -86,8 +89,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Location"
-        android:textColor="@color/titleforall"
-        android:textSize="17sp"
+        android:textColor="#3F3F3E"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
         app:layout_constraintTop_toBottomOf="@+id/home_job_posted_text" />
@@ -100,8 +103,8 @@
         android:maxWidth="100dp"
         android:minWidth="90dp"
         android:text="Rockstar Games INC."
-        android:textColor="@color/textcolor"
-        android:textSize="15sp"
+        android:textColor="@color/job_company_location_title"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/home_job_company_title"
         app:layout_constraintTop_toBottomOf="@+id/home_job_company_title" />
 
@@ -114,8 +117,8 @@
         android:maxWidth="110dp"
         android:minWidth="100dp"
         android:text="San Francisco, United States"
-        android:textColor="@color/textcolor"
-        android:textSize="15sp"
+        android:textColor="@color/job_company_location_title"
+        android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/home_job_company_name"
         app:layout_constraintTop_toBottomOf="@+id/home_job_location_title" />
 
@@ -123,8 +126,7 @@
         android:id="@+id/home_job_urgentornot_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="1dp"
         android:text="Not Urgent"
         android:textColor="@color/colorJobDeadlineSafe"
         android:textSize="15sp"
@@ -158,7 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_job_company_name"

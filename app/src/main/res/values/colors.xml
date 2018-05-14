@@ -10,7 +10,7 @@
     <color name="colorPageIconFilterItem">#717171</color>
     <color name="colorJobTitle">#2799AB</color>
     <color name="colorJobDestTitle">#A5AAAD</color>
-    <color name="colorJobDeadlineSafe">#7ED321</color>
+    <color name="colorJobDeadlineSafe">#0bb73b</color>
     <color name="colorJobDeadlineUrgent">#F5658F</color>
     <color name="colorFilterContentTitle">#aaaaaa</color>
     <color name="colorRegLogIconHint">#C6C6C6</color>
@@ -25,7 +25,7 @@
     <color name="colorFilterItemSelected">#4DD0E1</color>
     <color name="black_alpha">#6d6d6d</color>
     <color name="colorButtonNavInactive">#8D8D8D</color>
-    <color name="fullTime_tag">#2DB5FF</color>
+    <color name="fullTime_tag">#0c5af7</color>
     <color name="job_company_location_title">#515051</color>
     <color name="titleforall">#383838</color>
     <color name="textcolor">#504d41</color>
