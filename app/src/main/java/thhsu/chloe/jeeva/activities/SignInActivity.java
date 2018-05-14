@@ -1,5 +1,8 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
@@ -7,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.ApiJobManager;
 import thhsu.chloe.jeeva.api.ApiManager;
 import thhsu.chloe.jeeva.api.PostRegisterLoginCallBack;
@@ -21,7 +26,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     private TextInputLayout mSignInEmailTextInputLayout, mSignInPasswordTextInputLayout;
     private EditText mSignInEmailText, mSignInPasswordText;
     private String mUserLogInToken;
-
+    private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         mSignInBtn = (Button) findViewById(R.id.signin_signin_btn);
         mSignInBtn.setOnClickListener(this);
         mBackBtn.setOnClickListener(this);
+        mSharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
     }
 
     public boolean validateLogInData(){
@@ -76,6 +82,14 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                             public void onCompleted(String token) {
                                 mUserLogInToken = token;
                                 Log.d("Chloe", "LogIn token: " + token);
+                                mSharedPreferences.edit()
+                                        .putString(Constants.USER_TOKEN, token)
+                                        .commit();
+                                Intent i = new Intent(SignInActivity.this, JeevaActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                                finish();
+
                             }
 
                             @Override
@@ -84,7 +98,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                             }
                         });
                     }
-
+                    break;
         }
     }
+
 }

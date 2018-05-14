@@ -1,5 +1,6 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.api.ApiJobManager;
 import thhsu.chloe.jeeva.api.PostRegisterLoginCallBack;
+import thhsu.chloe.jeeva.api.model.RegisterResult;
 
 /**
  * Created by Chloe on 5/13/2018.
@@ -37,6 +39,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
         mCreateAccountBtn.setOnClickListener(this);
         mRegisterBackBtn.setOnClickListener(this);
+
 
     }
 
@@ -85,6 +88,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         public void onCompleted(String token) {
                             userToken = token;
                             Log.d("Chloe", "userToken: " + token);
+                            Intent intent = new Intent(RegisterActivity.this, AboutMeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
                         }
 
                         @Override
@@ -96,6 +103,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                 break;
             case R.id.signin_back_btn:
+                super.onBackPressed();
                 break;
         }
     }

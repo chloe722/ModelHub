@@ -36,10 +36,10 @@
             android:name=".activities.FirstPageActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-             <!--<intent-filter> -->
-             <!--&lt;!&ndash;<action android:name="android.intent.action.VIEW" />&ndash;&gt; -->
-             <!--&lt;!&ndash;<category android:name="android.intent.category.DEFAULT" />&ndash;&gt; -->
-             <!--</intent-filter> -->
+             <intent-filter>
+                 <action android:name="android.intent.action.VIEW" />
+                 <category android:name="android.intent.category.DEFAULT" />
+             </intent-filter>
         </activity>
 
         <activity android:name=".activities.SignInActivity"

@@ -77,9 +77,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
         mBottomSheetDialog.setContentView(sheetView);
-        CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(getActivity());
-        CropImage.activity(imageUri).start(getActivity());
-        CropImage.activity().start(getContext(), this);
+//        CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(getActivity());
+//        CropImage.activity(imageUri).start(getActivity());
+//        CropImage.activity().start(getContext(), this);
 
         LinearLayout camera = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_camera);
         LinearLayout gallery = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_gallery);

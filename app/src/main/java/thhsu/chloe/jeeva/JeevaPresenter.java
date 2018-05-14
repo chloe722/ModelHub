@@ -107,7 +107,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         if(mHomeFragment == null) mHomeFragment = HomeFragment.newInstance();
         if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
         if(mProfileFragment != null) transaction.hide(mProfileFragment);
-//        if(mSignInTabFragment != null) transaction.remove(mSignInTabFragment);
+        if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
         if (!mHomeFragment.isAdded()){
             transaction.add(R.id.main_container_for_fragment, mHomeFragment, HOME);
         }else{
@@ -125,13 +125,11 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     public void transToSavedJob() {
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-
-//        if(mFragmentManager.findFragmentByTag(SAVEDJOBS) != null)
-//            mFragmentManager.popBackStack();
         if(mSavedJobsFragment == null) mSavedJobsFragment = SavedJobsFragment.newInstance();
         if(mHomeFragment != null) transaction.hide(mHomeFragment);
         if(mProfileFragment != null) transaction.hide(mProfileFragment);
-//        if(mSignInTabFragment != null) transaction.remove(mSignInTabFragment);
+        if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
+
         if (!mSavedJobsFragment.isAdded()){
             transaction.add(R.id.main_container_for_fragment, mSavedJobsFragment, SAVEDJOBS);
         }else{
@@ -150,17 +148,10 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
 
-//        if(mFragmentManager.findFragmentByTag(PROFILE) != null)
-//            mFragmentManager.popBackStack();
         if(mProfileFragment == null) mProfileFragment = ProfileFragment.newInstance();
-        if(mHomeFragment != null) {
-            transaction.hide(mHomeFragment);
-//            transaction.addToBackStack(HOME);
-        }
-        if(mSavedJobsFragment != null) {
-            transaction.hide(mSavedJobsFragment);
-//            transaction.addToBackStack(SAVEDJOBS);
-        }
+        if(mHomeFragment != null) transaction.hide(mHomeFragment);
+        if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
+        if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
         if (!mProfileFragment.isAdded()){
             transaction.add(R.id.main_container_for_fragment, mProfileFragment, PROFILE);
         }else{
@@ -178,11 +169,10 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     public void transToSignInTabPage() {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
 
-        if(mFragmentManager.findFragmentByTag(SIGNIN) != null)
-            mFragmentManager.popBackStack();
         if(mSignInTabFragment == null) mSignInTabFragment = SignInTabFragment.newInstance(); //Create only one time
+        if(mHomeFragment != null) transaction.hide(mHomeFragment);
         if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
-        if(mHomeFragment != null) transaction.remove(mHomeFragment);
+
         if (!mSignInTabFragment.isAdded()){
             transaction.add(R.id.main_container_for_fragment, mSignInTabFragment, SIGNIN);
         }else{

@@ -25,11 +25,14 @@ public class FirstPageActivity extends BaseActivity {
 //        background.setAlpha(90);
         mGetStartedBtn = (Button) findViewById(R.id.getStartedBtn);
         mFirstPageSignInBtn = (Button) findViewById(R.id.first_page_signIn_btn);
+
         mGetStartedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (FirstPageActivity.this, JeevaActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         });
 

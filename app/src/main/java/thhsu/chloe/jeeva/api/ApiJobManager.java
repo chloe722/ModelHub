@@ -1,11 +1,17 @@
 package thhsu.chloe.jeeva.api;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
+import thhsu.chloe.jeeva.Jeeva;
+import thhsu.chloe.jeeva.activities.JeevaActivity;
+import thhsu.chloe.jeeva.activities.SignInActivity;
 import thhsu.chloe.jeeva.api.model.Jobs;
 import thhsu.chloe.jeeva.api.model.RegisterResult;
 import thhsu.chloe.jeeva.api.model.Result;
@@ -20,11 +26,15 @@ import retrofit2.Response;
  */
 
 public class ApiJobManager {
+    SignInActivity mSignActivity;
+    JeevaActivity mJeevaActivity;
     private static final ApiJobManager ourInstance = new ApiJobManager();
 
     public static ApiJobManager getInstance(){return ourInstance;}
 
-    private ApiJobManager(){}
+    private ApiJobManager(){
+
+    }
 
     public void getJobs(final GetJobsCallBack jobsCallBack){
 
@@ -99,9 +109,13 @@ public class ApiJobManager {
             @Override
             public void onResponse(Call<RegisterResult> call, Response<RegisterResult> response) {
                 response.body();
-                if(response.body().getToken() != null){
-                    postRegisterLoginCallBack.onCompleted(response.body().getToken());
-                    Log.d("Chloe", "LogIn get token: " + (response.body().getToken()));
+                if (response.body() != null){
+                    if(response.body().getToken() != null){
+                        postRegisterLoginCallBack.onCompleted(response.body().getToken());
+                        Log.d("Chloe", "LogIn get token: " + (response.body().getToken()));
+                    }
+                }else{
+                    Toast.makeText(Jeeva.getAppContext(), "Email doesn't exist", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

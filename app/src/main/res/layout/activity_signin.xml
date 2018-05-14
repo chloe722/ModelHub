@@ -61,6 +61,7 @@
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorJobDeadlineUrgent"
             android:hint="Password"
+            android:inputType="textPassword"
             android:textSize="18sp" />
 
     </android.support.design.widget.TextInputLayout>

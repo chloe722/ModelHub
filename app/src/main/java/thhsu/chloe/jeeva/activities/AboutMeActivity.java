@@ -49,6 +49,7 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
         stepperIndicator.setViewPager(mViewPager);
         mAboutMeCloseBtn.setOnClickListener(this);
 
+
     }
 
     @Override
@@ -78,8 +79,6 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     public void onCompletePressed(Fragment fragment) {
         if(fragment instanceof AboutMeStepThreeFragment){
             Toast.makeText(this, "Sweet! You've completed the profile! ", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(AboutMeActivity.this, JeevaActivity.class);
-//            startActivity(intent);
             finish();
         }
     }
