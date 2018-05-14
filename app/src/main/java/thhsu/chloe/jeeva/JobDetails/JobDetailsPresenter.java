@@ -1,5 +1,7 @@
 package thhsu.chloe.jeeva.JobDetails;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -37,13 +39,10 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
     public void result(int requestCode, int resultCode) {
     }
 
-//    @Override
-//    public void showJobDetails(Jobs job) {
-//        mJobDetailsView.showJobDetails(job);
-//    }
-
     @Override
     public void loadJob() {
         mJobDetailsView.showJobDetails(mJob);
     }
+
+
 }
