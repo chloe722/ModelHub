@@ -5,12 +5,8 @@ package thhsu.chloe.jeeva.api.model;
  */
 
 public class UpdataUserRequest {
-    String token;
-    User user;
-
-    public UpdataUserRequest(String token, User user) {
-        this.token = token;
-        this.user = user;
-    }
+    public String token;
+    public UpdateUserFields user = new UpdateUserFields();
 
 }
+

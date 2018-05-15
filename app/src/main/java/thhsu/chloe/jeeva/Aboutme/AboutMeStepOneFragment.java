@@ -139,7 +139,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 if(mOnStepOneListener != null && validateData()){
 //                    HashMap<String, String> userdata = new HashMap<>();
                     JSONObject user;
-                    User userdata = new User();
+                    UpdataUserRequest request = new UpdataUserRequest();
                     fullName = mFullName.getText().toString();
                     number = mPhone.getText().toString();
 //                    email = mEmail.getText().toString();
@@ -154,18 +154,15 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     bundle.putString("locationCityCountry", userLocation);
                     bundle.putString("locationCountry", userLocationCountry);
                     bundle.putString("locationCity", userLocationCity);
-                    userdata.setName(fullName);
-                    userdata.setCountry(mLocationCountry);
-                    userdata.setCity(mLocationCity);
-                    userdata.setPhoneNumber(number);
-//                    userdata.add("name", fullName);
-//                    userdata.add("phone_number", number);
-//                    userdata.add("city", userLocationCity);
-//                    userdata.add("country", userLocationCountry);
-//                    user = new JSONObject(userdata);
-                    Log.d("Chloe", "user json object:" + userdata);
+                    request.token = userToken;
+                    request.user.name = fullName;
+                    request.user.country = userLocationCountry;
+                    request.user.city = userLocationCity;
+                    request.user.phone_number = number;
 
-                    ApiJobManager.getInstance().getPostUserInfoResult(new UpdataUserRequest(userToken, userdata), new PostUserInfoCallBack() {
+                    Log.d("Chloe", "user json object:" + request);
+
+                    ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
                                 @Override
                                 public void onComplete() {
                                     Intent userInfo = new Intent();
