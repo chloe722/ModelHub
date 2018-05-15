@@ -24,8 +24,6 @@ public class AboutMainFragment extends Fragment implements View.OnClickListener{
 
     public AboutMainFragment() {}
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

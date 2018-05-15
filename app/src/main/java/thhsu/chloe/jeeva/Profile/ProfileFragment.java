@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -34,6 +35,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.activities.AboutMeActivity;
@@ -55,6 +57,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     Bundle extras;
     BottomSheetDialog mBottomSheetDialog;
     InputStream imageStream;
+    SharedPreferences sharedPreferences;
 
 
 
@@ -84,11 +87,18 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         LinearLayout camera = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_camera);
         LinearLayout gallery = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_gallery);
 
+
+
         mContext = getActivity();
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
         mEditInfoBtn.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
+        sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
+        if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
+            userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
+            mUserEmail.setText(userEmail);
+        }
 
 //        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 //            mCameraBtn.setEnabled(false);
@@ -204,15 +214,26 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             if (resultCode == Constants.RESULT_SUCCESS) {
                 Bundle bundle = data.getExtras();
                 userName = bundle.getString("fullName");
-                userEmail = bundle.getString("email");
+//                userEmail = bundle.getString("email");
                 userJobTitle = bundle.getString("jobtitle");
+                userLocation = bundle.getString("locationCityCountry");
                 userLocationCountry = bundle.getString("locationCountry");
                 userLocationCity = bundle.getString("locationCity");
                 Log.d("Chloe", "get string in profile,  Name: " + userName + " userEmail: " + userEmail);
                 mUserName.setText(userName);
-                mUserEmail.setText(userEmail);
+//                mUserEmail.setText(userEmail);
                 mUserJobTitle.setText(userJobTitle);
-                mUserLocation.setText(userLocationCity + ", " + userLocationCountry);
+
+                if(!userLocation.equals("")){
+                    mUserLocation.setText(userLocation);
+                }else if((!userLocationCountry.equals("")) && userLocationCity.equals("")){
+                    mUserLocation.setText(userLocationCountry);
+                }else if((!userLocationCity.equals("")) && userLocationCountry.equals("")){
+                    mUserLocation.setText(userLocationCity);
+                }else{
+                    mUserLocation.setVisibility(View.GONE);
+                }
+
             }
         }
     }

@@ -1,6 +1,7 @@
 package thhsu.chloe.jeeva.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import thhsu.chloe.jeeva.Aboutme.AboutMeStepTwoFragment;
 
 import thhsu.chloe.jeeva.Aboutme.NonSwipeableViewPager;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.adapters.AboutMePagerAdapter;
 
 /**
@@ -33,6 +35,8 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     private StepperIndicator stepperIndicator;
     private NonSwipeableViewPager mViewPager;
     ImageButton mAboutMeCloseBtn;
+    SharedPreferences sharedPreferences;
+    String userEmail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
         stepperIndicator.showLabels(false);
         stepperIndicator.setViewPager(mViewPager);
         mAboutMeCloseBtn.setOnClickListener(this);
-
+        sharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
 
     }
 

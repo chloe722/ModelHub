@@ -14,7 +14,6 @@ import thhsu.chloe.jeeva.R;
 
 public class AboutPageTermOfUseAdapter extends RecyclerView.Adapter<AboutPageTermOfUseAdapter.termsOfUseViewHolder> {
 
-
     @NonNull
     @Override
     public termsOfUseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,7 +24,6 @@ public class AboutPageTermOfUseAdapter extends RecyclerView.Adapter<AboutPageTer
 
     @Override
     public void onBindViewHolder(@NonNull termsOfUseViewHolder holder, int position) {
-
     }
 
 
