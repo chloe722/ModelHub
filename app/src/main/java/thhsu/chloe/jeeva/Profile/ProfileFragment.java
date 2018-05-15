@@ -85,13 +85,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         LinearLayout gallery = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_gallery);
 
         mContext = getActivity();
-
-
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
         mEditInfoBtn.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
-
 
 //        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 //            mCameraBtn.setEnabled(false);

@@ -1,45 +1,49 @@
 package thhsu.chloe.jeeva.activities;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
+import java.security.PublicKey;
+
+import thhsu.chloe.jeeva.AboutPage.AboutPageContract;
+import thhsu.chloe.jeeva.AboutPage.AboutPagePresenter;
 import thhsu.chloe.jeeva.R;
 
 /**
  * Created by Chloe on 5/3/2018.
  */
 
-public class AboutpageActivity extends AppCompatActivity implements View.OnClickListener {
+public class AboutpageActivity extends AppCompatActivity implements AboutPageContract.View, View.OnClickListener {
+    private AboutPageContract.Presenter mPresenter;
+    private Toolbar mToolbar;
+    TextView mToolbarTitle;
     ImageButton mBackBtn;
-    Button mJeevaBtn, mTermOfUseBtn, mPrivacyPolicyBtn, mContactBtn;
+    private AboutpageActivity mActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_page);
-
-        mBackBtn = (ImageButton) findViewById(R.id.about_page_back_btn);
-        mJeevaBtn = (Button) findViewById(R.id.about_page_about_jeeva_btn);
-        mPrivacyPolicyBtn = (Button) findViewById(R.id.about_page_privacy_btn);
-        mTermOfUseBtn = (Button) findViewById(R.id.about_page_termofuse_btn);
-        mContactBtn = (Button) findViewById(R.id.about_page_contactus_btn);
-
-        mBackBtn.setOnClickListener(this);
-        mJeevaBtn.setOnClickListener(this);
-        mTermOfUseBtn.setOnClickListener(this);
-        mContactBtn.setOnClickListener(this);
-        mPrivacyPolicyBtn.setOnClickListener(this);
+        init();
 
     }
+
+    public void init(){
+        setContentView(R.layout.activity_about_page);
+        setToolbar();
+        mPresenter = new AboutPagePresenter(this, this.getFragmentManager(), mToolbar, mActivity);
+        mPresenter.start();
+        mBackBtn = (ImageButton) findViewById(R.id.about_page_back_btn);
+        mActivity = this;
+        mBackBtn.setOnClickListener(this);
+        }
 
 
     @Override
@@ -48,14 +52,64 @@ public class AboutpageActivity extends AppCompatActivity implements View.OnClick
             case R.id.about_page_back_btn:
                 super.onBackPressed();
                 break;
-            case R.id.about_page_about_jeeva_btn:
-                break;
-            case R.id.about_page_privacy_btn:
-                break;
-            case R.id.about_page_termofuse_btn:
-                break;
-            case R.id.about_page_contactus_btn:
-                break;
         }
+    }
+
+    private void setToolbar(){
+        mToolbar = (Toolbar) findViewById(R.id.aboutpage_toolbar);
+        getSupportActionBar();
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mToolbarTitle = (TextView) mToolbar.findViewById(R.id.aboutpage_toolbar_title);
+        mToolbarTitle.setText("About");
+    }
+
+    public void setToolbarTitle(String title){
+        mToolbarTitle.setText(title);
+    }
+
+    @Override
+    public void setPresenter(AboutPageContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void showAboutUi() {
+        setToolbarTitle("About");
+    }
+
+    @Override
+    public void showAboutJeevaUi() {
+        setToolbarTitle("About Jeeva");
+    }
+
+    @Override
+    public void showPrivacyPolicyUi() {
+        setToolbarTitle("Privacy Policy");
+    }
+
+    @Override
+    public void showTermOfUsUi() {
+        setToolbarTitle("Terms Of Use");
+    }
+
+    @Override
+    public void showContactUsUi() {
+        setToolbarTitle("Contact us");
+    }
+
+    public void transToAbout(){
+        mPresenter.transToAbout();
+    }
+
+    public void transToPrivacyPolicy(){
+        mPresenter.transToPrivacyPolicy();
+    }
+
+    public void transToTermOfUs(){
+        mPresenter.transToTermOfUs();
+    }
+
+    public void transToContactUs(){
+        mPresenter.transToContactUs();
     }
 }
