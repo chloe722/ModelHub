@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/about_jeeva_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:lineSpacingExtra="5sp"
+        android:text="WeTogether means we are together. In the journey of career growth, we are bound to meet people who could become our role models, someone who is willing to be our mentor, to share their know-how with us, so we can achieve our goals without stumbling unnecessarily. No one can succeed by fighting alone. WeTogether wants to become the hub of your career development, so we can all grow together.
+
+Before founding WeTogether.co, Jane worked for eBay in Silicon Valley for about six years. After moving back to Taiwan at the end of 2013, she saw lots of local talents with great potential lacking the channel to connect with the world. Seeing that local human resource websites generally don't focus on career development of specific industries or managing specific groups of the work force, Jane wanted to use the entrepreneurial spirit and management experience she learned from Silicon Valley to create a hub for industry veterans and newbies to interact with each other, and grow, succeed together.
+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

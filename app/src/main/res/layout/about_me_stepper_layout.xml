@@ -64,9 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/about_me_page_toolbar_container"
         app:stpi_stepCount="3"
-        app:stpi_lineDoneColor="#1dc444"
-        app:stpi_circleColor="#1dc444"
-        app:stpi_indicatorColor="#1dc444"
+        app:stpi_lineDoneColor="#f5658f"
+        app:stpi_circleColor="#f5658f"
+        app:stpi_indicatorColor="#f5658f"
         app:stpi_showStepNumberInstead="true"
         app:stpi_showDoneIcon="true"/>
 

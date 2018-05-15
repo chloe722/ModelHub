@@ -56,13 +56,11 @@ public class SignInTabFragment extends Fragment implements SignInTabContract.Vie
             case R.id.signin_tab_signup_btn:
                 Intent intentToRegister = new Intent(getActivity(), RegisterActivity.class);
                 startActivity(intentToRegister);
-                getActivity().finish();
                 break;
 
             case R.id.signin_tab_signin_btn:
                 Intent intentToSignIn = new Intent(getActivity(), SignInActivity.class);
                 startActivity(intentToSignIn);
-                getActivity().finish();
                 break;
 
         }

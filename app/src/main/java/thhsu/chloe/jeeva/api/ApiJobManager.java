@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -13,12 +15,15 @@ import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.activities.SignInActivity;
 import thhsu.chloe.jeeva.api.model.Jobs;
+import thhsu.chloe.jeeva.api.model.PostUserInfoResult;
 import thhsu.chloe.jeeva.api.model.RegisterResult;
 import thhsu.chloe.jeeva.api.model.Result;
 
 
 import retrofit2.Callback;
 import retrofit2.Response;
+import thhsu.chloe.jeeva.api.model.UpdataUserRequest;
+import thhsu.chloe.jeeva.api.model.User;
 
 
 /**
@@ -124,5 +129,27 @@ public class ApiJobManager {
             }
         });
     }
+
+    public void  getPostUserInfoResult(UpdataUserRequest updataUserRequest, final PostUserInfoCallBack postUserInfoCallBack){
+        Call<PostUserInfoResult> call = ApiManager.getInstance().apiJobsService.getPostUserInfoResult(updataUserRequest);
+        call.enqueue(new Callback<PostUserInfoResult>() {
+            @Override
+            public void onResponse(Call<PostUserInfoResult> call, Response<PostUserInfoResult> response) {
+                response.body();
+                if(response.body().getOk()){
+                    postUserInfoCallBack.onComplete();
+                    Log.d("Chloe", "Post user info success!: " + (response.body().getOk()));
+                }else{
+                    Toast.makeText(Jeeva.getAppContext(), "Post userinfo to server faild!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<PostUserInfoResult> call, Throwable t) {
+                    postUserInfoCallBack.onError(t.getLocalizedMessage());
+            }
+        });
+    }
+
+
 }
 
