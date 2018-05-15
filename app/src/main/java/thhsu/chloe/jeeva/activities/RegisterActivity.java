@@ -103,7 +103,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                         @Override
                         public void onError(String errorMessage) {
-
                         }
                     });
                 }

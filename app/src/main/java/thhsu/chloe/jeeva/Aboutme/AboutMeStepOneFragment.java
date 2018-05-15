@@ -16,11 +16,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONObject;
+
 import java.security.PublicKey;
+import java.util.HashMap;
 
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
+import thhsu.chloe.jeeva.api.ApiJobManager;
+import thhsu.chloe.jeeva.api.PostUserInfoCallBack;
+import thhsu.chloe.jeeva.api.model.UpdataUserRequest;
+import thhsu.chloe.jeeva.api.model.User;
 
 /**
  * Created by Chloe on 5/4/2018.
@@ -33,9 +40,10 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     TextInputLayout mFullNameLayout;
     TextInputLayout mEmailLayout;
     TextInputLayout mPhoneLayout;
-    String fullName, number, email, jobTitle, userLocationCountry, userLocationCity,userLocation, userEmail;
+    String fullName, number, email, jobTitle, userLocationCountry, userLocationCity,userLocation, userEmail, userToken;
     Bundle bundle;
     SharedPreferences sharedPreferences;
+    User user;
 
     public AboutMeStepOneFragment() {}
 
@@ -65,6 +73,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         isEmailFieldEdiable();
         sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString(Constants.USER_EMAIL,"");
+        userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
         mEmail.setText(userEmail);
     }
 
@@ -124,9 +133,13 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         bundle = new Bundle();
+
         switch (v.getId()){
             case R.id.stepper_one_next_btn:
                 if(mOnStepOneListener != null && validateData()){
+//                    HashMap<String, String> userdata = new HashMap<>();
+                    JSONObject user;
+                    User userdata = new User();
                     fullName = mFullName.getText().toString();
                     number = mPhone.getText().toString();
 //                    email = mEmail.getText().toString();
@@ -141,13 +154,34 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     bundle.putString("locationCityCountry", userLocation);
                     bundle.putString("locationCountry", userLocationCountry);
                     bundle.putString("locationCity", userLocationCity);
-                    Intent userInfo = new Intent();
-                    userInfo.putExtras(bundle);
-                    getActivity().setResult(Constants.RESULT_SUCCESS, userInfo);
-                    Log.d("Chloe", "profile info bundle: " + userInfo);
-                    Log.d("Chloe", " full name: " + fullName + " phone num: " + number + " email: " + userEmail +
-                            " jobtitle: " + jobTitle + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
-                    mOnStepOneListener.onNextPressed(this);
+                    userdata.setName(fullName);
+                    userdata.setCountry(mLocationCountry);
+                    userdata.setCity(mLocationCity);
+                    userdata.setPhoneNumber(number);
+//                    userdata.add("name", fullName);
+//                    userdata.add("phone_number", number);
+//                    userdata.add("city", userLocationCity);
+//                    userdata.add("country", userLocationCountry);
+//                    user = new JSONObject(userdata);
+                    Log.d("Chloe", "user json object:" + userdata);
+
+                    ApiJobManager.getInstance().getPostUserInfoResult(new UpdataUserRequest(userToken, userdata), new PostUserInfoCallBack() {
+                                @Override
+                                public void onComplete() {
+                                    Intent userInfo = new Intent();
+                                    userInfo.putExtras(bundle);
+                                    getActivity().setResult(Constants.RESULT_SUCCESS, userInfo);
+                                    Log.d("Chloe", "profile info bundle: " + userInfo);
+                                    Log.d("Chloe", " full name: " + fullName + " phone num: " + number + " email: " + userEmail +
+                                            " jobtitle: " + jobTitle + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
+                                }
+
+                                @Override
+                                public void onError(String errorMessage) {
+
+                                }
+                            });
+//                    mOnStepOneListener.onNextPressed(this);
                 }
                 break;
         }
