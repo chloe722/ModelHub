@@ -127,8 +127,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
         }
 
-
-
 //        if(currentFragment == getFragmentManager().findFragmentByTag(JOBDETAILS)){
 //            mToolBarBackBtn.setVisibility(View.VISIBLE);
 //            mToolBarBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -145,10 +143,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
+    protected void onResume() {super.onResume();}
 
     @Override
     public void onBackPressed() {
@@ -265,7 +260,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         invalidateOptionsMenu();
         switch (item.getItemId()) {
             case R.id.action_home:
-
                 mPresenter.transToHome();
                 break;
 
@@ -278,7 +272,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
                     mPresenter.transToSignInTabPage();
                     break;
                 }else {
-
                     mPresenter.transToProfile();
                     break;
                 }

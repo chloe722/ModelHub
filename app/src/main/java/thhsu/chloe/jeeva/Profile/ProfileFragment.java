@@ -70,6 +70,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        mContext = getActivity();
         mEditInfoBtn = (Button) root.findViewById(R.id.profile_edited_btn);
         mCameraBtn = (Button) root.findViewById(R.id.profile_camera_btn);
         mUserPhotoView = (RoundedImageView) root.findViewById(R.id.profile_user_photo);
@@ -86,10 +87,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         LinearLayout camera = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_camera);
         LinearLayout gallery = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_gallery);
-
-
-
-        mContext = getActivity();
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
         mEditInfoBtn.setOnClickListener(this);
@@ -277,7 +274,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     }
 
     private void performCrop(Uri uri) {
-        // take care of exceptions
         try {
             // call the standard crop action intent (the user device may not
             // support it)

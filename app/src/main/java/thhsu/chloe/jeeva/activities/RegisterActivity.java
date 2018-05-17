@@ -96,10 +96,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     .putString(Constants.USER_EMAIL, userEmail)
                                     .apply();
                             Log.d("Chloe", "userToken: " + token);
-                            Intent intent = new Intent(RegisterActivity.this, AboutMeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
+                            setResult(Constants.RESULT_SUCCESS);
+                            finish();}
 
                         @Override
                         public void onError(String errorMessage) {

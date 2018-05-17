@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
 import java.security.PublicKey;
@@ -72,14 +74,12 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mPhoneLayout = view.findViewById(R.id.stepper_one_textinputlayout_phone);
         isEmailFieldEdiable();
         sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
-        userEmail = sharedPreferences.getString(Constants.USER_EMAIL,"");
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
-        mEmail.setText(userEmail);
+        readUserData();
     }
 
     private boolean validateData() {
         boolean result = true;
-
         String name = mFullName.getText().toString();
         if (name == null || name.length() < 3) {
             //set the error message
@@ -89,14 +89,6 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
             // remove error message
             mFullNameLayout.setErrorEnabled(false);
         }
-
-//        String email = mEmail.getText().toString();
-//        if (email == null || !(email.contains("@"))) {
-//            mEmailLayout.setError(getString(R.string.invalidEmail));
-//            result = false;
-//        } else {
-//            mEmailLayout.setErrorEnabled(false);
-//        }
 
         String phone = mPhone.getText().toString();
         boolean digitsOnly = TextUtils.isDigitsOnly(phone); // Check if enter text is number/ digit. However since the inputtype is phone so it's validated itself no need this line
@@ -133,12 +125,9 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         bundle = new Bundle();
-
         switch (v.getId()){
             case R.id.stepper_one_next_btn:
                 if(mOnStepOneListener != null && validateData()){
-//                    HashMap<String, String> userdata = new HashMap<>();
-                    JSONObject user;
                     UpdataUserRequest request = new UpdataUserRequest();
                     fullName = mFullName.getText().toString();
                     number = mPhone.getText().toString();
@@ -155,13 +144,11 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     bundle.putString("locationCountry", userLocationCountry);
                     bundle.putString("locationCity", userLocationCity);
                     request.token = userToken;
-                    request.user.name = fullName;
-                    request.user.country = userLocationCountry;
-                    request.user.city = userLocationCity;
-                    request.user.phone_number = number;
+                    request.user.setName(fullName);
+                    request.user.setPhoneNumber(number);
+                    saveUserData();
 
                     Log.d("Chloe", "user json object:" + request);
-
                     ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
                                 @Override
                                 public void onComplete() {
@@ -172,13 +159,11 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                                     Log.d("Chloe", " full name: " + fullName + " phone num: " + number + " email: " + userEmail +
                                             " jobtitle: " + jobTitle + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
                                 }
-
                                 @Override
                                 public void onError(String errorMessage) {
-
                                 }
-                            });
-//                    mOnStepOneListener.onNextPressed(this);
+                             });
+                    mOnStepOneListener.onNextPressed(this);
                 }
                 break;
         }
@@ -205,4 +190,26 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     public interface OnStepOneListener {
         void onNextPressed(Fragment fragment);
     }
+
+    public void saveUserData(){
+
+        sharedPreferences.edit()
+                .putString(Constants.USER_NAME, fullName)
+                .putString(Constants.USER_PHONENUM, number)
+                .putString(Constants.USER_JOB_TITLE, jobTitle)
+                .putString(Constants.USER_LOCATION_COUNTRY, userLocationCountry)
+                .putString(Constants.USER_LOCATION_CITY, userLocationCity)
+                .putString(Constants.USER_LOCATION, userLocation)
+                .apply();
+    }
+
+    public void readUserData(){
+        mFullName.setText(sharedPreferences.getString(Constants.USER_NAME, ""));
+        mEmail.setText(sharedPreferences.getString(Constants.USER_EMAIL,""));
+        mPhone.setText(sharedPreferences.getString(Constants.USER_PHONENUM, ""));
+        mLocationCountry.setText(sharedPreferences.getString(Constants.USER_LOCATION_COUNTRY, ""));
+        mLocationCity.setText(sharedPreferences.getString(Constants.USER_LOCATION_CITY, ""));
+        mJobTitle.setText(sharedPreferences.getString(Constants.USER_JOB_TITLE, ""));
+    }
+
 }

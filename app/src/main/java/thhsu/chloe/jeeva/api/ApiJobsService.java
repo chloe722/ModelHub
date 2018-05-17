@@ -52,9 +52,7 @@ public interface ApiJobsService {
     Call<RegisterResult> getRegister(@Field("name") String name,
                                      @Field("email") String email,
                                      @Field("password") String password);
-
     // Call<return type>
-
     @POST(TOKEN)
     @FormUrlEncoded
     Call<RegisterResult> getLogInResult(@Field("email") String email,
@@ -62,12 +60,6 @@ public interface ApiJobsService {
                                         @Field("grant_type") String grant_type);
 
     @POST(USERS_ME)
-    @Headers({"Content-Type: application/json"})
+//    @Headers({"Content-Type: application/json"})
     Call<PostUserInfoResult> getPostUserInfoResult(@Body UpdataUserRequest updataUserRequest);
-
-
-
-
-
-
 }

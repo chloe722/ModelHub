@@ -23,7 +23,6 @@ public class RegisterResult {
     @Expose
     private String grant_type;
 
-
     public String getMessage() {
         return message;
     }

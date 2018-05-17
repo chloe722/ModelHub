@@ -29,7 +29,7 @@ import thhsu.chloe.jeeva.adapters.AboutMePagerAdapter;
  * Created by Chloe on 5/3/2018.
  */
 
-public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOneFragment.OnStepOneListener, AboutMeStepTwoFragment.OnStepTwoListener, AboutMeStepThreeFragment.OnStepThreeListener, View.OnClickListener {
+public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOneFragment.OnStepOneListener, AboutMeStepTwoFragment.OnStepTwoListener, AboutMeStepThreeFragment.OnStepThreeListener {
     private StepperLayout mStepperLayout;
     private AboutMePagerAdapter mAboutMePagerAdapter;
     private StepperIndicator stepperIndicator;
@@ -43,17 +43,12 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_me_stepper_layout);
         mAboutMePagerAdapter = new AboutMePagerAdapter(getSupportFragmentManager());
-
-        mAboutMeCloseBtn = findViewById(R.id.about_me_toolbar_close_btn);
         mViewPager = findViewById(R.id.nonSwapeable_viewpager_container);
         mViewPager.setAdapter(mAboutMePagerAdapter);
-
         stepperIndicator = findViewById(R.id.stepper_Indicater_layout);
         stepperIndicator.showLabels(false);
         stepperIndicator.setViewPager(mViewPager);
-        mAboutMeCloseBtn.setOnClickListener(this);
         sharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
-
     }
 
     @Override
@@ -83,14 +78,26 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     public void onCompletePressed(Fragment fragment) {
         if(fragment instanceof AboutMeStepThreeFragment){
             Toast.makeText(this, "Sweet! You've completed the profile! ", Toast.LENGTH_SHORT).show();
+            clearUserData();
+            setResult(Constants.RESULT_SUCCESS);
             finish();
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.about_me_toolbar_close_btn){
-            super.onBackPressed();
-        }
+    public void clearUserData(){
+        sharedPreferences.edit()
+                .remove(Constants.USER_NAME)
+                .remove(Constants.USER_PHONENUM)
+                .remove(Constants.USER_LOCATION_COUNTRY)
+                .remove(Constants.USER_LOCATION_CITY)
+                .remove(Constants.USER_JOB_TITLE)
+                .apply();
     }
+
+//    @Override
+//    public void onClick(View v) {
+//        if(v.getId() == R.id.about_me_toolbar_close_btn){
+//            super.onBackPressed();
+//        }
+//    }
 }

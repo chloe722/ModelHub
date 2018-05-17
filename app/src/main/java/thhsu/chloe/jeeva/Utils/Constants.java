@@ -9,7 +9,10 @@ public class Constants {
     public static final String USER_DATA = "user_data";
     public static final String USER_NAME = "user_name";
     public static final String USER_EMAIL = "user_email";
+    public static final String USER_PHONENUM = "user_phone_num";
     public static final String USER_IMAGE = "user_image";
+    public static final String USER_LOCATION_COUNTRY = "user_location_country";
+    public static final String USER_LOCATION_CITY = "user_locaton_city";
     public static final String USER_JOB_TITLE = "user_job_title";
     public static final String USER_LOCATION = "user_location";
     public static final String USER_TOKEN = "user_token";
@@ -27,5 +30,7 @@ public class Constants {
     public static final int PICK_IMAGE_REQUEST = 28;
     public static final int LOGIN_SUCCESS = 29;
     public static final int LOGIN_EXIT = 30;
+    public static final int REGISTER_REQUEST = 31;
+    public static final int ABOUT_ME_REQUEST = 32;
 
 }
