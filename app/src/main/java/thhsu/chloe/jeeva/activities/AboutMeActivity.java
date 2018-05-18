@@ -86,7 +86,6 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
 
     public void clearUserData(){
         sharedPreferences.edit()
-                .remove(Constants.USER_NAME)
                 .remove(Constants.USER_PHONENUM)
                 .remove(Constants.USER_LOCATION_COUNTRY)
                 .remove(Constants.USER_LOCATION_CITY)

@@ -119,7 +119,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             super(itemView);
 
             mHomeJobTypeTag = (TextView) itemView.findViewById(R.id.home_job_type_tag);
-            mHomeJobTitle = (TextView) itemView.findViewById(R.id.home_job_title);
+            mHomeJobTitle = (TextView) itemView.findViewById(R.id.saved_job_title);
             mHomeJobPostedOnText = (TextView) itemView.findViewById(R.id.home_job_posted_text);
             mHomeJobPostedDate = (TextView) itemView.findViewById(R.id.home_job_posted_date);
             mHomeJobCompanyTitle = (TextView) itemView.findViewById(R.id.home_job_company_title);
@@ -132,7 +132,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             mHomeJobClockIcn = (ImageView) itemView.findViewById(R.id.home_clock_icn);
 
             mSavedJobIcnBtn.setOnClickListener(this);
-            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_home_job_item)).setOnClickListener(this);
+            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_saved_job_item)).setOnClickListener(this);
         }
 
         @Override
@@ -140,8 +140,15 @@ public class HomeAdapter extends RecyclerView.Adapter {
             Log.d("Chloe", "adapterPosition: " + getAdapterPosition());
 
             if(v.getId() == R.id.home_job_savedJob_icn_btn){
-                //setSOLite data here
-                mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+
+                if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
+                    mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
+                    mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                }else{
+                    mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), true);
+                    mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                }
+
             }else{
                 Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
                 mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()

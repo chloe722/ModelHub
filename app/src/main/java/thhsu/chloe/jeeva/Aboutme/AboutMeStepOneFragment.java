@@ -16,13 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.gson.Gson;
-
-import org.json.JSONObject;
-
-import java.security.PublicKey;
-import java.util.HashMap;
-
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
@@ -72,7 +65,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mFullNameLayout = view.findViewById(R.id.stepper_one_textinputlayout_fullname);
         mEmailLayout = view.findViewById(R.id.stepper_one_textinputlayout_email);
         mPhoneLayout = view.findViewById(R.id.stepper_one_textinputlayout_phone);
-        isEmailFieldEdiable();
+        areFieldsEdiable();
         sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
         readUserData();
@@ -106,7 +99,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         return result;
     }
 
-    public void isEmailFieldEdiable(){
+    public void areFieldsEdiable(){
+        mFullName.setEnabled(false);
          mEmail.setEnabled(false);
     }
 
@@ -129,14 +123,14 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
             case R.id.stepper_one_next_btn:
                 if(mOnStepOneListener != null && validateData()){
                     UpdataUserRequest request = new UpdataUserRequest();
-                    fullName = mFullName.getText().toString();
+//                    fullName = mFullName.getText().toString();
                     number = mPhone.getText().toString();
 //                    email = mEmail.getText().toString();
                     jobTitle = mJobTitle.getText().toString();
                     userLocationCountry = mLocationCountry.getText().toString();
                     userLocationCity = mLocationCity.getText().toString();
                     userLocation = userLocationCity + ", " + userLocationCountry;
-                    bundle.putString("fullName", fullName);
+//                    bundle.putString("fullName", fullName);
                     bundle.putString("phone", number);
 //                    bundle.putString("email", userEmail);
                     bundle.putString("jobtitle", jobTitle);
@@ -144,8 +138,10 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     bundle.putString("locationCountry", userLocationCountry);
                     bundle.putString("locationCity", userLocationCity);
                     request.token = userToken;
-                    request.user.setName(fullName);
+//                    request.user.setName(fullName);
                     request.user.setPhoneNumber(number);
+                    request.user.setCity(userLocationCity);
+                    request.user.setCountry(userLocationCountry);
                     saveUserData();
 
                     Log.d("Chloe", "user json object:" + request);
@@ -156,8 +152,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                                     userInfo.putExtras(bundle);
                                     getActivity().setResult(Constants.RESULT_SUCCESS, userInfo);
                                     Log.d("Chloe", "profile info bundle: " + userInfo);
-                                    Log.d("Chloe", " full name: " + fullName + " phone num: " + number + " email: " + userEmail +
-                                            " jobtitle: " + jobTitle + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
+                                    Log.d("Chloe",  " phone num: " + number + " jobtitle: " + jobTitle + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
                                 }
                                 @Override
                                 public void onError(String errorMessage) {
@@ -194,7 +189,6 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     public void saveUserData(){
 
         sharedPreferences.edit()
-                .putString(Constants.USER_NAME, fullName)
                 .putString(Constants.USER_PHONENUM, number)
                 .putString(Constants.USER_JOB_TITLE, jobTitle)
                 .putString(Constants.USER_LOCATION_COUNTRY, userLocationCountry)

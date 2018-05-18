@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.w3c.dom.Text;
+
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
@@ -21,10 +23,10 @@ import thhsu.chloe.jeeva.api.model.RegisterResult;
  */
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
-    TextInputLayout mRegisterEmailTextInputLayout, mRegisterPasswordTextInputLayout, mRegisterConfirmPasswordTextInputLayout;
-    EditText mRegisterEmailText, mRegisterPasswordText, mRegisterConfirmPasswordText;
+    TextInputLayout mRegisterEmailTextInputLayout, mRegisterPasswordTextInputLayout, mRegisterConfirmPasswordTextInputLayout, mRegisterNameTextInputLayout;
+    EditText mRegisterEmailText, mRegisterPasswordText, mRegisterConfirmPasswordText, mRegisterNameText;
     Button mCreateAccountBtn, mRegisterBackBtn;
-    String userToken, userEmail;
+    String userToken, userEmail, userName;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -32,12 +34,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        mRegisterNameTextInputLayout = (TextInputLayout) findViewById(R.id.signup_textinputlayout_name);
         mRegisterEmailTextInputLayout = (TextInputLayout) findViewById(R.id.signup_textinputlayout_email);
         mRegisterPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.signup_textinputlayout_password);
         mRegisterConfirmPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.signup_textinputlayout_confirmpassword);
         mRegisterConfirmPasswordText = (EditText) findViewById(R.id.signup_textinput_confirmpassword);
         mRegisterEmailText = (EditText) findViewById(R.id.signup_textinput_email);
         mRegisterPasswordText = (EditText) findViewById(R.id.signup_textinput_password);
+        mRegisterNameText = (EditText) findViewById(R.id.signup_textinput_name);
         mCreateAccountBtn = (Button) findViewById(R.id.signup_createaccount_btn);
         mRegisterBackBtn = (Button) findViewById(R.id.signup_back_btn);
 
@@ -50,6 +54,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     public boolean validateRegisterData(){
         boolean result = true;
+
+        String name = mRegisterNameText.getText().toString();
+        if(name.equals("")|| name.length() < 6){
+            mRegisterNameTextInputLayout.setError("invalid Name");
+            result = false;
+        } else {
+            mRegisterNameTextInputLayout.setErrorEnabled(false);
+        }
 
         String email = mRegisterEmailText.getText().toString();
         if (email.equals("") || !(email.contains("@"))) {
@@ -84,19 +96,24 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             case R.id.signup_createaccount_btn:
                 if(validateRegisterData()){
                     String password;
+                    userName = mRegisterNameText.getText().toString();
                     userEmail = mRegisterEmailText.getText().toString();
                     password = mRegisterPasswordText.getText().toString();
                     Log.d("Chloe", "Email: " + userEmail + " Password: " + password);
                     ApiJobManager.getInstance().getRegister(userEmail, password, new PostRegisterLoginCallBack() {
                         @Override
                         public void onCompleted(String token) {
+                            Intent intent = new Intent(RegisterActivity.this, JeevaActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             userToken = token;
                             sharedPreferences.edit()
                                     .putString(Constants.USER_TOKEN, userToken)
                                     .putString(Constants.USER_EMAIL, userEmail)
+                                    .putString(Constants.USER_NAME, userName)
                                     .apply();
                             Log.d("Chloe", "userToken: " + token);
-                            setResult(Constants.RESULT_SUCCESS);
+//                            setResult(Constants.RESULT_SUCCESS);
+                            startActivity(intent);
                             finish();}
 
                         @Override

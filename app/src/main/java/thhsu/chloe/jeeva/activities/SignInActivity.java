@@ -89,12 +89,10 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(i);
                                 finish();
-
                             }
 
                             @Override
                             public void onError(String errorMessage) {
-
                             }
                         });
                     }

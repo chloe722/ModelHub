@@ -77,6 +77,8 @@ public class Jobs implements Serializable{
     @Expose
     private String hiring_other_info;
 
+    private boolean mIsSaved = false;
+
     public String getHiring_contact_name() {
         return hiring_contact_name;
     }
@@ -240,39 +242,11 @@ public class Jobs implements Serializable{
         this.image = image;
     }
 
-//
-//    public Jobs(Parcel in) {
-//        super();
-//        readFromParcel(in);
-//    }
-//
-//    public static final Parcelable.Creator<Jobs> CREATOR = new Parcelable.Creator<Jobs>() {
-//        public Jobs createFromParcel(Parcel in) {
-//            return new Jobs(in);
-//        }
-//
-//        public Jobs[] newArray(int size) {
-//
-//            return new Jobs[size];
-//        }
-//
-//    };
-//
-//    public void readFromParcel(Parcel in) {
-//        Value1 = in.readInt();
-//        Value2 = in.readInt();
-//        Value3 = in.readInt();
-//
-//    }
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeInt(Value1);
-//        dest.writeInt(Value2);
-//        dest.writeInt(Value3);
-//    }
+    public boolean isSaved(){return mIsSaved;}
+
+    public void setSaved(boolean isSaved){
+        mIsSaved = isSaved;
+    }
 }
 
 

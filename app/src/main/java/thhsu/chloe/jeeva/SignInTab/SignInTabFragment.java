@@ -50,11 +50,7 @@ public class SignInTabFragment extends Fragment implements SignInTabContract.Vie
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        mPresenter.result(requestCode, resultCode);
         if(requestCode == Constants.REGISTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
-            Intent intent = new Intent(getActivity(), AboutMeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivityForResult(intent, Constants.ABOUT_ME_REQUEST);
 
         }else if (requestCode == Constants.ABOUT_ME_REQUEST && resultCode == Constants.RESULT_SUCCESS){
 
@@ -66,7 +62,8 @@ public class SignInTabFragment extends Fragment implements SignInTabContract.Vie
         switch (v.getId()){
             case R.id.signin_tab_signup_btn:
                 Intent intentToRegister = new Intent(getActivity(), RegisterActivity.class);
-                startActivityForResult(intentToRegister, Constants.REGISTER_REQUEST);
+//                startActivityForResult(intentToRegister, Constants.REGISTER_REQUEST);
+                startActivity(intentToRegister);
                 break;
 
             case R.id.signin_tab_signin_btn:

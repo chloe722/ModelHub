@@ -62,4 +62,5 @@ public interface ApiJobsService {
     @POST(USERS_ME)
 //    @Headers({"Content-Type: application/json"})
     Call<PostUserInfoResult> getPostUserInfoResult(@Body UpdataUserRequest updataUserRequest);
+
 }

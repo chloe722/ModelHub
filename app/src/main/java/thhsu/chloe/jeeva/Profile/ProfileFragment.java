@@ -97,6 +97,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             mUserEmail.setText(userEmail);
         }
 
+        if(!sharedPreferences.getString(Constants.USER_NAME, "").equals("")){
+            userName = sharedPreferences.getString(Constants.USER_NAME, "");
+            mUserName.setText(userName);
+        }
+
 //        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 //            mCameraBtn.setEnabled(false);
 //            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
@@ -210,17 +215,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         else if (requestCode == Constants.USER_INFO_REQUEST) {
             if (resultCode == Constants.RESULT_SUCCESS) {
                 Bundle bundle = data.getExtras();
-                userName = bundle.getString("fullName");
-//                userEmail = bundle.getString("email");
                 userJobTitle = bundle.getString("jobtitle");
                 userLocation = bundle.getString("locationCityCountry");
                 userLocationCountry = bundle.getString("locationCountry");
                 userLocationCity = bundle.getString("locationCity");
-                Log.d("Chloe", "get string in profile,  Name: " + userName + " userEmail: " + userEmail);
-                mUserName.setText(userName);
-//                mUserEmail.setText(userEmail);
                 mUserJobTitle.setText(userJobTitle);
-
                 if(!userLocation.equals("")){
                     mUserLocation.setText(userLocation);
                 }else if((!userLocationCountry.equals("")) && userLocationCity.equals("")){
@@ -230,7 +229,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 }else{
                     mUserLocation.setVisibility(View.GONE);
                 }
-
             }
         }
     }

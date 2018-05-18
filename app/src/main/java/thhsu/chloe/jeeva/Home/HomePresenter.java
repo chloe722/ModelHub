@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.api.ApiJobManager;
 import thhsu.chloe.jeeva.api.GetJobsCallBack;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
@@ -98,6 +99,11 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void refresh() {
         mHomeView.refreshUi();
+    }
+
+    @Override
+    public void updateSavedJob(Jobs job, boolean isSaved) {
+        Jeeva.getJeevaSQLHelper().updateSavedJobs(job, isSaved);
     }
 
     @Override

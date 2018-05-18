@@ -1,10 +1,7 @@
 package thhsu.chloe.jeeva.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapRegionDecoder;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import thhsu.chloe.jeeva.JobDetails.JobDetailsContract;
 import thhsu.chloe.jeeva.R;
@@ -171,7 +162,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
             mDetailsRequirement = (TextView) itemView.findViewById(R.id.job_details_requirement_content);
             mDetailsJobType = (TextView) itemView.findViewById(R.id.job_details_type_tag);
-            mDetailsJobTitle = (TextView) itemView.findViewById(R.id.home_job_title);
+            mDetailsJobTitle = (TextView) itemView.findViewById(R.id.saved_job_title);
             mDetailsJobPostedText = (TextView) itemView.findViewById(R.id.job_details_posted_text);
             mDetailsJobDate = (TextView) itemView.findViewById(R.id.job_details_posted_date);
             mDetailsCompanyTitle = (TextView) itemView.findViewById(R.id.job_details_company_title);

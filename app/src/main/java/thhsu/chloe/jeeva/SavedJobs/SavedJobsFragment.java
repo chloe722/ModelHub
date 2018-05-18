@@ -7,14 +7,21 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.SignInTab.SignInTabFragment;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
+import thhsu.chloe.jeeva.adapters.SavedJobsAdapter;
+import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -22,11 +29,22 @@ import thhsu.chloe.jeeva.activities.JeevaActivity;
 
 public class SavedJobsFragment extends Fragment implements SavedJobContract.View {
 
-   SavedJobContract.Presenter mPresenter;
+
+   private SavedJobContract.Presenter mPresenter;
+   private SavedJobsAdapter mAdapter;
    SharedPreferences sharedPreferences;
    String token;
 
     public static SavedJobsFragment newInstance(){return new SavedJobsFragment();}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAdapter = new SavedJobsAdapter(new ArrayList<Jobs>(), mPresenter);
+    }
+
+    @Override
+    public void onResume() {super.onResume();}
 
     @Nullable
     @Override
@@ -39,15 +57,16 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
             return root;
         }else{
             View root = inflater.inflate(R.layout.fragment_saved_jobs, container, false);
+            RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.saved_job_recuclerview);
+            recyclerView.setLayoutManager(new LinearLayoutManager(Jeeva.getAppContext()));
+
             return root;
         }
-
     }
 
     @Override
     public void setPresenter(SavedJobContract.Presenter presenter) {
-        mPresenter = presenter;
-
+        if(presenter != null){mPresenter = presenter;}
     }
 
     @Override
@@ -55,4 +74,20 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
         mPresenter.result(requestCode, resultCode);
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.start();
+    }
+
+
+    @Override
+    public void showJobs(ArrayList<Jobs> jobs) {
+        mAdapter.updateData(jobs);
+    }
+
+    @Override
+    public void showJobsDetailUi(Jobs job) {
+        ((JeevaActivity) getActivity()).transToJobDetails(job);
+    }
 }
