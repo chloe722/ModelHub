@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
-import thhsu.chloe.jeeva.SignInTab.SignInTabFragment;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.adapters.SavedJobsAdapter;
@@ -31,7 +30,7 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
 
 
    private SavedJobContract.Presenter mPresenter;
-   private SavedJobsAdapter mAdapter;
+   private SavedJobsAdapter mSavedJobsAdapter;
    SharedPreferences sharedPreferences;
    String token;
 
@@ -40,7 +39,7 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new SavedJobsAdapter(new ArrayList<Jobs>(), mPresenter);
+        mSavedJobsAdapter = new SavedJobsAdapter(new ArrayList<Jobs>(), mPresenter);
     }
 
     @Override
@@ -57,8 +56,9 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
             return root;
         }else{
             View root = inflater.inflate(R.layout.fragment_saved_jobs, container, false);
-            RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.saved_job_recuclerview);
+            RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.saved_job_recyclerview);
             recyclerView.setLayoutManager(new LinearLayoutManager(Jeeva.getAppContext()));
+            recyclerView.setAdapter(mSavedJobsAdapter);
 
             return root;
         }
@@ -83,7 +83,7 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
 
     @Override
     public void showJobs(ArrayList<Jobs> jobs) {
-        mAdapter.updateData(jobs);
+        mSavedJobsAdapter.updateData(jobs);
     }
 
     @Override

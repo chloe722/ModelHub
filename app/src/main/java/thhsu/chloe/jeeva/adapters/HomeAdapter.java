@@ -1,5 +1,7 @@
 package thhsu.chloe.jeeva.adapters;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,6 +26,7 @@ import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
 import thhsu.chloe.jeeva.Utils.Constants;
+import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -33,6 +37,10 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     private HomeContract.Presenter mPresenter;
     private ArrayList<Jobs> mJobs;
+    SharedPreferences sharedPreferences;
+    String token;
+
+
 
 
     public HomeAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
@@ -45,6 +53,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
+        token = sharedPreferences.getString(Constants.USER_TOKEN, "");
 
         if(viewType == Constants.VIEWTYPE_HOME_MAIN){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fragment_home, parent, false);
@@ -141,14 +151,17 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
             if(v.getId() == R.id.home_job_savedJob_icn_btn){
 
-                if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
-                    mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
-                    mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                if(!token.equals("")){
+                    if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
+                        mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
+                        mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                    }else{
+                        mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), true);
+                        mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                    }
                 }else{
-                    mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), true);
-                    mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                    Toast.makeText(Jeeva.getAppContext(), "You are not logged in yet", Toast.LENGTH_SHORT).show();
                 }
-
             }else{
                 Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
                 mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
