@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.icu.text.LocaleDisplayNames;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class JeevaSQLHelper extends SQLiteOpenHelper{
 
     private final static String CREATE_TABLE = "CREATE TABLE " + JOBS_TABLE + " ("
             + " _id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + JOB_ID + " TEXT NOT NULL, "
+            + JOB_ID + " TEXT NOT NULL UNIQUE, "
             + JOB_TITLE + " TEXT NOT NULL, "
             + JOB_URGENT + " INTEGER NOT NULL, "
             + JOB_RECOMMENDED + " INTEGER NOT NULL, "
@@ -76,6 +77,8 @@ public class JeevaSQLHelper extends SQLiteOpenHelper{
     private void insertJob(Jobs job, boolean isSaved){
         ContentValues contentValues = new ContentValues();
 
+        Log.d("Chloe", "insert Job: " + job.getId());
+
         contentValues.put(JOB_ID, job.getId());
         contentValues.put(JOB_TITLE, job.getTitle());
         contentValues.put(JOB_URGENT, job.getUrgent());
@@ -109,20 +112,23 @@ public class JeevaSQLHelper extends SQLiteOpenHelper{
     public boolean getSavedJob(String jobId){
 
         if(isJobDataExist(jobId)){
+            Log.d("Chloe", "if job data exist: true");
             mCursor = getWritableDatabase().query(JOBS_TABLE,
                     new String[]{JOB_SAVED}, JOB_ID + "='" + jobId + "'",
                     null,null,null,null);
             mCursor.moveToFirst();
             return (mCursor.getInt(mCursor.getColumnIndex(JOB_SAVED)) == 1)? true : false;
         }else{
+            Log.d("Chloe", "if job data exist: false");
             return false;
         }
     }
 
 
     public boolean isJobDataExist(String jobId){
+        Log.d("Chloe", "isJobData exist ID:" + jobId);
         mCursor = getWritableDatabase().query(JOBS_TABLE,
-                new String[]{JOB_SAVED}, JOB_ID + "=' " + jobId.trim() + "'",
+                new String[]{JOB_SAVED}, JOB_ID + "='" + jobId + "'",
                 null, null,null,null);
         return (mCursor.getCount() > 0) ? true : false;
     }

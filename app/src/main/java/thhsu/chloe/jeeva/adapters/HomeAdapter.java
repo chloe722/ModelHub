@@ -146,23 +146,29 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public void onClick(View v) {
             Log.d("Chloe", "adapterPosition: " + getAdapterPosition());
 
-            if(v.getId() == R.id.home_job_savedJob_icn_btn){
-
-                if(!token.equals("")){
-                    if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
-                        mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
-                        mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+            switch (v.getId()){
+                case R.id.home_job_savedJob_icn_btn:
+                    if(!token.equals("")){
+                            if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
+                            mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
+                            mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                            break;
+                        }else{
+                            mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), true);
+                            Log.d("Chloe", "is saved: " +Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId()) );
+                            mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                            break;
+                        }
                     }else{
-                        mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), true);
-                        mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                        Toast.makeText(Jeeva.getAppContext(), "You are not logged in yet", Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(Jeeva.getAppContext(), "You are not logged in yet", Toast.LENGTH_SHORT).show();
-                }
-            }else{
-                Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
-                mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
+                break;
+                case R.id.constraintlayout_saved_job_item:
+                    Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
+                    mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
+                    break;
             }
+
         }
 
         public TextView getHomeJobTypeTag(){return mHomeJobTypeTag;}
@@ -201,12 +207,15 @@ public class HomeAdapter extends RecyclerView.Adapter {
             Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getHomeJobCompanyLogo());
         }
 
+        Log.d("Chloe", "postiton: " + position );
+        Log.d("Chloe", "postiton ID: " + mJobs.get(position).getId());
         if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(position).getId())){
+          Log.d("Chloe", "true");
             holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
         }else{
+            Log.d("Chloe", "false");
             holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
         }
-
 
     }
 
