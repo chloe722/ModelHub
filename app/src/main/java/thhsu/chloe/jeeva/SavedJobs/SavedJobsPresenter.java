@@ -2,6 +2,7 @@ package thhsu.chloe.jeeva.SavedJobs;
 
 import java.util.ArrayList;
 
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.api.GetSavedJobsCallBack;
 import thhsu.chloe.jeeva.api.GetSavedJobsTask;
 import thhsu.chloe.jeeva.api.model.Jobs;
@@ -49,5 +50,11 @@ public class SavedJobsPresenter implements SavedJobContract.Presenter{
     @Override
     public void openJobDetails(Jobs job) {
         mSavedJobView.showJobsDetailUi(job);
+    }
+
+    @Override
+    public void refreshJobs() {
+        loadJobs();
+        Jeeva.getJeevaSQLHelper().setSavedJobsChanged(false);
     }
 }

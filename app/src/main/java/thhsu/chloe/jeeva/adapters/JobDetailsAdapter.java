@@ -57,6 +57,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         (holder.getDetailsHiringContactEmailText()).setText(mJob.getHiring_contact_email());
         (holder.getDetailsHiringOtherInfoText()).setText(mJob.getHiring_other_info());
         (holder.getDetailsRequirement()).setText(mJob.getRequirements());
+
         for(String benefit :mJob.getBenefits()){
             switch (benefit){
                 case "child_care":

@@ -40,9 +40,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
     SharedPreferences sharedPreferences;
     String token;
 
-
-
-
     public HomeAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
         mPresenter = presenter;
         this.mJobs = jobs;
@@ -200,15 +197,14 @@ public class HomeAdapter extends RecyclerView.Adapter {
             (holder.getHomeJobUrgentOrNotText()).setText("Urgent");
             (holder.getHomeJobUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
             }
-
-//        if(mJobs.get(position).getLogo() == null){
-//            (holder.mHomeJobCompanyLogo).setVisibility(View.GONE);
-//
-//        }else{
-//
-//        }
         if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
             Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getHomeJobCompanyLogo());
+        }
+
+        if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(position).getId())){
+            holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
+        }else{
+            holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
         }
 
 

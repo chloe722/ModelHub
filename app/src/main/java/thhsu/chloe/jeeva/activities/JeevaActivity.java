@@ -76,7 +76,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     public boolean onCreateOptionsMenu(Menu menu) {
         jeevaActivity = this;
         int currentItem = mBottomNavigationView.getSelectedItemId();
-        currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
+//        currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
         MenuInflater inflater = getMenuInflater();
         if(!(token.equals(""))){
             mBottomNavigationView.getMenu().getItem(2).setTitle("Profile");

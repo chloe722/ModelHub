@@ -116,6 +116,7 @@ public class SavedJobsAdapter extends RecyclerView.Adapter<SavedJobsAdapter.Save
             }else{
                 Log.d("Chloe", "getTitle in saved adapter: " + mJobs.get(getAdapterPosition()).getTitle());
                 mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
+                Log.d("Chloe", "GET WHAT: " + mJobs.get(getAdapterPosition()-1));
             }
         }
 

@@ -1,7 +1,6 @@
 package thhsu.chloe.jeeva;
 
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -10,10 +9,8 @@ import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 //import thhsu.chloe.jeeva.Filter.FilterFragment;
 import java.util.ArrayList;
@@ -30,7 +27,6 @@ import thhsu.chloe.jeeva.SavedJobs.SavedJobsPresenter;
 import thhsu.chloe.jeeva.SignInTab.SignInTabFragment;
 import thhsu.chloe.jeeva.SignInTab.SignInTabPresenter;
 import thhsu.chloe.jeeva.Utils.Constants;
-import thhsu.chloe.jeeva.activities.FilterActivity;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
@@ -45,6 +41,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     public JeevaActivity mActivity;
     public BottomNavigationView mBottomNavigationView;
     public Toolbar mToolbar;
+    private Fragment mCurrentFragment;
 
     public static final String HOME = "HOME";
     public static final String SAVEDJOBS = "SAVEDJOBS";
@@ -188,30 +185,49 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
     @Override
     public void transToJobDetails(Jobs job) {
+//        mCurrentFragment = mFragmentManager.findFragmentById(R.id.main_container_for_fragment);
+        int currentNavItemId = mBottomNavigationView.getSelectedItemId();
         final FragmentTransaction transaction =
                 mFragmentManager.beginTransaction()
                         .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right); //smooth animator while switching the fragment
         mJobDetailsFragment = JobDetailsFragment.newInstance();
-        if(mHomeFragment != null) {
-            transaction.hide(mHomeFragment);
-            transaction.addToBackStack(HOME);
-        }
+      if(currentNavItemId == R.id.action_home){
+          if(mHomeFragment != null) {
+              transaction.hide(mHomeFragment);
+              transaction.addToBackStack(HOME);
+          }
+          mBottomNavigationView.setVisibility(View.GONE);
+          mToolbar.findViewById(R.id.home_filter).setVisibility(View.GONE);
+          mToolbar.findViewById(R.id.tool_bar_back_btn).setVisibility(View.VISIBLE);
+          mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  mJobDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
+              }
+          });
+
+      }else if(currentNavItemId == R.id.action_saved_job){
+          if(mSavedJobsFragment != null){
+              transaction.hide(mSavedJobsFragment);
+              transaction.addToBackStack(SAVEDJOBS);
+          }
+          mBottomNavigationView.setVisibility(View.GONE);
+          mToolbar.findViewById(R.id.tool_bar_back_btn).setVisibility(View.VISIBLE);
+          mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  mJobDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
+              }
+          });
+      }
 
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
-            mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job); //Create presenter instrance
-            Log.d("Chloe", "JeevaPresenter job: " + job);
+        mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job); //Create presenter instrance
+        Log.d("Chloe", "JeevaPresenter job: " + job);
 
         mJeevaContractView.showJobDetailsUi();
-        mBottomNavigationView.setVisibility(View.GONE);
-        mToolbar.findViewById(R.id.home_filter).setVisibility(View.GONE);
-        mToolbar.findViewById(R.id.tool_bar_back_btn).setVisibility(View.VISIBLE);
-        mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mJobDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
-            }
-        });
+
     }
 
 //    @Override

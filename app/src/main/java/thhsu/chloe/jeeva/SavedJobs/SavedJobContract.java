@@ -1,5 +1,7 @@
 package thhsu.chloe.jeeva.SavedJobs;
 
+import android.view.ViewOutlineProvider;
+
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.BasePresenter;
@@ -29,6 +31,8 @@ public interface SavedJobContract {
         void loadJobs();
 
         void openJobDetails(Jobs job);
+
+        void refreshJobs();
     }
 
 }
