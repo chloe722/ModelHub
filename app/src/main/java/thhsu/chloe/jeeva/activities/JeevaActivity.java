@@ -173,7 +173,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     private void setBottomNavigationView(){
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 

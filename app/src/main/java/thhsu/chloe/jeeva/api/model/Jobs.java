@@ -7,6 +7,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -202,12 +205,20 @@ public class Jobs implements Serializable{
     }
 
     public List<String> getBenefits() {
-        return benefits;
+        if(benefits != null)
+            return benefits;
+        else
+            return new ArrayList<String>();
     }
 
     public void setBenefits(List<String> benefits) {
         this.benefits = benefits;
     }
+
+    public void setBenefits(String[] benefits) {
+        this.benefits = Arrays.asList(benefits);
+    }
+
 
     public String getSalary() {
         return salary;

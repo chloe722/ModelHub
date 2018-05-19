@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.SavedJobs.SavedJobContract;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
@@ -71,6 +72,14 @@ public class SavedJobsAdapter extends RecyclerView.Adapter<SavedJobsAdapter.Save
             if (holder.getSavedJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
                 Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getSavedJobCompanyLogo());
             }
+
+            if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(position).getId())){
+                Log.d("Chloe", "true");
+                holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
+            }else{
+                Log.d("Chloe", "false");
+                holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+            }
         }
     }
 
@@ -115,8 +124,8 @@ public class SavedJobsAdapter extends RecyclerView.Adapter<SavedJobsAdapter.Save
                 mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
             }else{
                 Log.d("Chloe", "getTitle in saved adapter: " + mJobs.get(getAdapterPosition()).getTitle());
-                mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
-                Log.d("Chloe", "GET WHAT: " + mJobs.get(getAdapterPosition()-1));
+                mPresenter.openJobDetails(mJobs.get(getAdapterPosition())); // setOpenJob here  getAdapterPosition()
+                Log.d("Chloe", "GET WHAT: " + mJobs.get(getAdapterPosition()));
             }
         }
 

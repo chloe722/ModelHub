@@ -7,6 +7,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -169,6 +170,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         if(mSignInTabFragment == null) mSignInTabFragment = SignInTabFragment.newInstance(); //Create only one time
         if(mHomeFragment != null) transaction.hide(mHomeFragment);
         if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
+        if(mProfileFragment != null) transaction.hide(mProfileFragment);
 
         if (!mSignInTabFragment.isAdded()){
             transaction.add(R.id.main_container_for_fragment, mSignInTabFragment, SIGNIN);
@@ -223,7 +225,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
-        mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job); //Create presenter instrance
+        mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job, mBottomNavigationView); //Create presenter instrance
         Log.d("Chloe", "JeevaPresenter job: " + job);
 
         mJeevaContractView.showJobDetailsUi();

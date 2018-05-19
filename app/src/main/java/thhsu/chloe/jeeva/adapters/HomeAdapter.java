@@ -91,7 +91,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
             mRecyclerRecommend = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
             mRecommendedTitle = (TextView) itemView.findViewById(R.id.horizontal_recommend_title);
-            mJobTitle = (TextView) itemView.findViewById(R.id.vertical_job_title);
+//            mJobTitle = (TextView) itemView.findViewById(R.id.vertical_job_title);
             itemView.setOnClickListener(this);
 
         }
