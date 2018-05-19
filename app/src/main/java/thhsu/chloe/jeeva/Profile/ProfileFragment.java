@@ -71,7 +71,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         mContext = getActivity();
-        mEditInfoBtn = (Button) root.findViewById(R.id.profile_edited_btn);
+//        mEditInfoBtn = (Button) root.findViewById(R.id.profile_edited_btn);
         mCameraBtn = (Button) root.findViewById(R.id.profile_camera_btn);
         mUserPhotoView = (RoundedImageView) root.findViewById(R.id.profile_user_photo);
         mUserName = (TextView) root.findViewById(R.id.profile_user_name);
@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         LinearLayout gallery = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_gallery);
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
-        mEditInfoBtn.setOnClickListener(this);
+//        mEditInfoBtn.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
         sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
@@ -135,10 +135,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.profile_edited_btn:
-                Intent intent = new Intent(getActivity(), AboutMeActivity.class);
-                startActivityForResult(intent, Constants.USER_INFO_REQUEST);
-                break;
+//            case R.id.profile_edited_btn:
+//                Intent intent = new Intent(getActivity(), AboutMeActivity.class);
+//                startActivityForResult(intent, Constants.USER_INFO_REQUEST);
+//                break;
 
             case R.id.profile_camera_btn:
                 mBottomSheetDialog.show();

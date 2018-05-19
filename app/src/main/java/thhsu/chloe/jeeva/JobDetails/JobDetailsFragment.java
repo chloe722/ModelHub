@@ -104,16 +104,16 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
         super.onDestroy();
         int currentSelectedItem = mBottomNavigationView.getSelectedItemId();
         if (currentSelectedItem == R.id.action_home){
-            ((JeevaActivity) getActivity()).showBtnNavView();
-            ((JeevaActivity) getActivity()).showFilterIcn();
-            ((JeevaActivity) getActivity()).hideToolbarBackBtn();
-            ((JeevaActivity) getActivity()).showHomeUi();
 
+            ((JeevaActivity) getActivity()).showFilterIcn();
+            ((JeevaActivity) getActivity()).showHomeUi();
         }else {
-            ((JeevaActivity) getActivity()).showBtnNavView();
-            ((JeevaActivity) getActivity()).hideToolbarBackBtn();
             ((JeevaActivity) getActivity()).showSavedJobUi();
         }
+
+        ((JeevaActivity) getActivity()).refreshSavedJobsItemUi();
+        ((JeevaActivity) getActivity()).showBtnNavView();
+        ((JeevaActivity) getActivity()).hideToolbarBackBtn();
 
     }
 

@@ -24,6 +24,8 @@ public interface JeevaContract {
 
         void showJobDetailsUi();
 
+        void refreshSavedJobsItemUi();
+
     }
 
     interface Presenter extends BasePresenter{
@@ -39,6 +41,8 @@ public interface JeevaContract {
         void transToSignInTabPage();
 
         void transToJobDetails(Jobs job);
+
+        void refreshSavedJobsItem();
 
 //        void transToFilter();
 

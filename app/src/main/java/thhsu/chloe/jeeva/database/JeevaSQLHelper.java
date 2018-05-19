@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.icu.text.LocaleDisplayNames;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class JeevaSQLHelper extends SQLiteOpenHelper{
     private final static int DATABASE_VERSION = 1;
     private final static String JOBS_TABLE = "jobs_table";
 
+    private final static String USER_TOKEN = "user_token";
     private final static String JOB_ID = "job_id";
     private final static String JOB_TITLE = "job_title";
     private final static String JOB_URGENT = "job_urgent";
@@ -116,43 +118,52 @@ public class JeevaSQLHelper extends SQLiteOpenHelper{
         getWritableDatabase().insert(JOBS_TABLE, null, contentValues);
     }
 
-    public void updateSavedJobs(Jobs job, boolean isSaved){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(JOB_SAVED, (isSaved)? 1:0);
+    public void deleteJob(Jobs job){
+       Log.d("Chloe", "delete job: "+job.getId()+
+               getWritableDatabase().delete(JOBS_TABLE, JOB_ID + "=?", new String[] {job.getId()}));
+    }
 
-        if(isJobDataExist(job.getId())){
-            Log.d("Chloe", "Job: " + job.getId() + " exist, update is_saved is " + isSaved + ".");
-            getWritableDatabase().update(JOBS_TABLE, contentValues,
-                    JOB_ID + "='" + job.getId() + "'", null);
-        }else{
+
+    public void updateSavedJobs(Jobs job, boolean isSaved){
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(JOB_SAVED, (isSaved)? 1:0);
+
+        if(isSaved && !isJobDataExist(job.getId())){
             insertJob(job, isSaved);
+        } else {
+            deleteJob(job);
         }
-        setSavedJobsChanged(true);
+            setSavedJobsChanged(true);
+//                Log.d("Chloe", "Job: " + job.getId() + " exist, update is_saved is " + isSaved + ".");
+//                getWritableDatabase().update(JOBS_TABLE, contentValues,
+//                        JOB_ID + "='" + job.getId() + "'", null);
+
     }
 
     public boolean getSavedJob(String jobId){
-
-        if(isJobDataExist(jobId)){
-            Log.d("Chloe", "if job data exist: true");
-            mCursor = getWritableDatabase().query(JOBS_TABLE,
-                    new String[]{JOB_SAVED}, JOB_ID + "='" + jobId + "'",
-                    null,null,null,null);
-            mCursor.moveToFirst();
-            return (mCursor.getInt(mCursor.getColumnIndex(JOB_SAVED)) == 1)? true : false;
-        }else{
-            Log.d("Chloe", "if job data exist: false");
-            return false;
-        }
+        return  isJobDataExist(jobId);
+//        if(isJobDataExist(jobId)){
+//            Log.d("Chloe", "if job data exist: true");
+//            mCursor = getWritableDatabase().query(JOBS_TABLE,
+//                    new String[]{JOB_SAVED}, JOB_ID + "='" + jobId + "'",
+//                    null,null,null,null);
+//            mCursor.moveToFirst();
+//            return mCursor.getInt(mCursor.getColumnIndex(JOB_SAVED)) == 1;
+//        }else{
+//            Log.d("Chloe", "if job data exist: false");
+//            return false;
+//        }
     }
 
 
     public boolean isJobDataExist(String jobId){
-        Log.d("Chloe", "isJobData exist ID:" + jobId);
+        Log.d("Chloe", "isJobData exist ID: " + jobId);
         mCursor = getWritableDatabase().query(JOBS_TABLE,
                 new String[]{JOB_SAVED},
                 JOB_ID+"=?",
                 new String[]{jobId}
                 ,null,null,null);
+        Log.d("Chloe", "cursor count: " + mCursor.getCount());
         return (mCursor.getCount() > 0) ? true : false;
     }
 

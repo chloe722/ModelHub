@@ -33,4 +33,7 @@ public class Constants {
     public static final int REGISTER_REQUEST = 31;
     public static final int ABOUT_ME_REQUEST = 32;
 
+    public static final int FIRST_PAGING = -2;
+    public static final int NOR_MORE_PAGING = -1;
+
 }

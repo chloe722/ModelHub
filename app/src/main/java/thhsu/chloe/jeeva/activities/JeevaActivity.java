@@ -42,7 +42,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private Toolbar mToolbar;
     private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
-    private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn;
+    private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn, mEditedBtn;
 //    private FilterFragment filterFragment;
     private boolean isFilterInHome = true;
     private boolean shouldShowFilter = false;
@@ -98,6 +98,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
             inflater.inflate(R.menu.menu_more_member, menu);
             mAboutBtn = menu.findItem(R.id.more_menu_about_item);
             mLogoutBtn = menu.findItem(R.id.more_menu_logout_item);
+            mEditedBtn = menu.findItem(R.id.more_menu_about_edit);
             mAboutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -108,6 +109,16 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
             });
 
             if(!(token.equals(""))){
+
+                mEditedBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(JeevaActivity.this, AboutMeActivity.class);
+                        startActivityForResult(intent, Constants.USER_INFO_REQUEST);
+                        return false;
+                    }
+                });
+
                 mLogoutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -122,6 +133,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
             }
             else{
                 mLogoutBtn.setVisible(false);
+                mEditedBtn.setVisible(false);
             }
         }else if(currentItem == R.id.action_saved_job){
 
@@ -246,6 +258,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     @Override
     public void showJobDetailsUi() {
         setToolbarTitle("Details");
+    }
+
+    @Override
+    public void refreshSavedJobsItemUi() {
+        mPresenter.refreshSavedJobsItem();
     }
 
     public void transToJobDetails(Jobs job){ // Need to pass ID here after connect API

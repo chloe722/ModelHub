@@ -67,7 +67,7 @@
         app:stpi_lineDoneColor="#f5658f"
         app:stpi_circleColor="#f5658f"
         app:stpi_indicatorColor="#f5658f"
-        app:stpi_showStepNumberInstead="true"
+        app:stpi_showStepNumberInstead="false"
         app:stpi_showDoneIcon="true"/>
 
     <thhsu.chloe.jeeva.Aboutme.NonSwipeableViewPager

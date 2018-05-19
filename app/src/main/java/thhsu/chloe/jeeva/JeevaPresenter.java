@@ -232,6 +232,24 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 
     }
 
+    @Override
+    public void refreshSavedJobsItem() {
+        if(Jeeva.getJeevaSQLHelper().isSavedJobsChanged()){
+            if(mSavedJobsPresenter != null){
+                mSavedJobsPresenter.refreshJobs();
+            }
+
+            if(mHomePresenter != null){
+                mHomePresenter.refresh();
+            }
+        }
+    }
+
+    @Override
+    public void start() {
+        transToHome();
+    }
+
 //    @Override
 //    public void transToFilter() {
 //        FragmentTransaction transaction = mFragmentManager.beginTransaction();
@@ -267,10 +285,5 @@ public class JeevaPresenter implements JeevaContract.Presenter {
 //        mActivity.invalidateOptionsMenu();
 //        mJeevaContractView.showFilterPageUi();
 //    }
-
-    @Override
-    public void start() {
-        transToHome();
-    }
 
 }

@@ -11,4 +11,11 @@
         android:id="@+id/more_menu_logout_item"
         android:iconTint="@color/titleforall"
         android:title="Log Out" />
+
+    <item
+        android:id="@+id/more_menu_about_edit"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:iconTint="@color/titleforall"
+        android:title="About"
+        app:showAsAction="ifRoom" />
 </menu>

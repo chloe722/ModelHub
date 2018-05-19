@@ -39,10 +39,12 @@ public class HomeAdapter extends RecyclerView.Adapter {
     private ArrayList<Jobs> mJobs;
     SharedPreferences sharedPreferences;
     String token;
+    private int mNextPaging;
 
     public HomeAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
         mPresenter = presenter;
         this.mJobs = jobs;
+        this.mNextPaging = Constants.FIRST_PAGING;
 
     }
 
@@ -74,7 +76,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public int getItemCount() {return mJobs.size()-1;}
+    public int getItemCount() {
+        return (isNextPagingExist())? mJobs.size() +1 : mJobs.size();}
 
     @Override
     public int getItemViewType(int position) {
@@ -149,7 +152,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             switch (v.getId()){
                 case R.id.home_job_savedJob_icn_btn:
                     if(!token.equals("")){
-                            if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
+                        if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
                             mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
                             mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
                             break;
@@ -163,6 +166,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                         Toast.makeText(Jeeva.getAppContext(), "You are not logged in yet", Toast.LENGTH_SHORT).show();
                     }
                 break;
+
                 case R.id.constraintlayout_saved_job_item:
                     Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
                     mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
@@ -220,18 +224,29 @@ public class HomeAdapter extends RecyclerView.Adapter {
     }
 
 
+
+
     public void updateData(ArrayList<Jobs> jobs){
         Log.d("Chloe", "HomeAdapter update data");
-        for (Jobs job : jobs){
-            mJobs.add(job);
-        }
+//        for (Jobs job : jobs){
+//            mJobs.add(job);
+//        }
+        mJobs = jobs;
+        setNextPaging(Constants.FIRST_PAGING);
         notifyDataSetChanged();
+
     }
 
     public void clearJobs(){
         mJobs.clear();
         notifyDataSetChanged();
     }
+
+    public boolean isNextPagingExist(){
+        return (mNextPaging == -1)? false:true;
+    }
+
+    private void setNextPaging(int nextPaging){mNextPaging = nextPaging;}
 
 
 }

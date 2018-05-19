@@ -25,7 +25,7 @@ public interface HomeContract {
 
         void refreshUi();
 
-        void clearJobs();
+//        void clearJobs();
 
     }
 
@@ -51,7 +51,7 @@ public interface HomeContract {
 
         void updateSavedJob(Jobs jobs, boolean isSaved);
 
-        void clearJobs();
+//        void clearJobs();
 
 
     }

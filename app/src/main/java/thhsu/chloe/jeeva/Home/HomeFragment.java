@@ -35,6 +35,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     private HomeContract.Presenter mPresenter;
     private HomeAdapter mHomeAdapter;
+    private int mPaging = -1;
+    private  boolean isNotLoading = true;
 
 
     @Override
@@ -51,7 +53,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.loadJobs();
+//        mPresenter.loadJobs();
     }
 
     @Nullable
@@ -61,7 +63,27 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.home_fragment_recycler_vertical);
         recyclerView.setLayoutManager(new LinearLayoutManager(Jeeva.getAppContext()));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                mPresenter.onScrollStateChanged(
+                        recyclerView.getLayoutManager().getChildCount(),
+                        recyclerView.getLayoutManager().getItemCount(),
+                        newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                mPresenter.onScrolled(recyclerView.getLayoutManager());
+            }
+        });
+
         recyclerView.setAdapter(mHomeAdapter);
+
         return root;
     }
 
@@ -107,10 +129,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     }
 
-    @Override
-    public void clearJobs() {
-        mHomeAdapter.clearJobs();
-    }
+//    @Override
+//    public void clearJobs() {
+//        mHomeAdapter.clearJobs();
+//    }
 
 
 }
