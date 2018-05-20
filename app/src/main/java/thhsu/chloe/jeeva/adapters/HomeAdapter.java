@@ -147,18 +147,19 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
-            Log.d("Chloe", "adapterPosition: " + getAdapterPosition());
+            Jobs job = mJobs.get(getAdapterPosition()-1);
+            Log.d("Chloe", "adapterPosition: " + (getAdapterPosition()-1));
 
             switch (v.getId()){
                 case R.id.home_job_savedJob_icn_btn:
                     if(!token.equals("")){
-                        if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
-                            mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
+                        if(Jeeva.getJeevaSQLHelper().getSavedJob(job.getId())){
+                            mPresenter.updateSavedJob(job, false);
                             mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
                             break;
                         }else{
-                            mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), true);
-                            Log.d("Chloe", "is saved: " +Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId()) );
+                            mPresenter.updateSavedJob(job, true);
+                            Log.d("Chloe", "is saved: " +Jeeva.getJeevaSQLHelper().getSavedJob(job.getId()) );
                             mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
                             break;
                         }
@@ -213,6 +214,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         Log.d("Chloe", "postiton: " + position );
         Log.d("Chloe", "postiton ID: " + mJobs.get(position).getId());
+        Log.d("Chloe", "postiton title: " + mJobs.get(position).getTitle());
         if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(position).getId())){
           Log.d("Chloe", "true");
             holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);

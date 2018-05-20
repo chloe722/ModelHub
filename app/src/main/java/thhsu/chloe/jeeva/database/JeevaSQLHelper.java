@@ -129,6 +129,7 @@ public class JeevaSQLHelper extends SQLiteOpenHelper{
 //        contentValues.put(JOB_SAVED, (isSaved)? 1:0);
 
         if(isSaved && !isJobDataExist(job.getId())){
+            Log.d("Chloe", "insert job"+job.getId());
             insertJob(job, isSaved);
         } else {
             deleteJob(job);
