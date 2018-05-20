@@ -98,15 +98,10 @@ public class HomeAdapter extends RecyclerView.Adapter {
             mRecyclerRecommend = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
             indefinitePagerIndicator = (IndefinitePagerIndicator) itemView.findViewById(R.id.recyclerview_pager_indicator);
             mRecommendedTitle = (TextView) itemView.findViewById(R.id.horizontal_recommend_title);
-//            mJobTitle = (TextView) itemView.findViewById(R.id.vertical_job_title);
-//            itemView.setOnClickListener(this);
-
         }
-
         public RecyclerView getRecyclerRecommend(){return mRecyclerRecommend;}
         public TextView getRecommendedTitle(){return mRecommendedTitle;}
         private TextView getJobTitle(){return mJobTitle;}
-
     }
 
     private void bindMainItem(HomeMainItemViewHolder holder){
@@ -115,10 +110,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
         holder.getRecyclerRecommend().setOnFlingListener(null);
         new LinearSnapHelper().attachToRecyclerView(holder.getRecyclerRecommend());
         holder.getRecyclerRecommend().setAdapter(new HomeJobRecommendAdapter(mPresenter, mJobs));
-//        holder.getRecyclerRecommend().addItemDecoration(new LinePagerIndicatorDecoration());
         indefinitePagerIndicator.attachToRecyclerView(holder.getRecyclerRecommend());
     }
-
 
     private class HomeJobsItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView mHomeJobTypeTag, mHomeJobTitle, mHomeJobPostedOnText,
@@ -228,12 +221,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         }else{
             holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
         }
-
-
     }
-
-
-
 
     public void updateData(ArrayList<Jobs> jobs){
         Log.d("Chloe", "HomeAdapter update data");
@@ -254,8 +242,5 @@ public class HomeAdapter extends RecyclerView.Adapter {
     public boolean isNextPagingExist(){
         return (mNextPaging == -1)? false:true;
     }
-
     private void setNextPaging(int nextPaging){mNextPaging = nextPaging;}
-
-
 }

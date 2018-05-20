@@ -49,7 +49,7 @@
             indefinite_pager_indicator:selectedDotColor="@color/yellowforbtn"
             app:dotRadius="3dp"
             app:selectedDotRadius="4.5dp"
-            app:dotCount="3"/>
+            app:dotCount="4"/>
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
 
