@@ -68,7 +68,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         areFieldsEdiable();
         sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
-        readUserData();
+//        readUserData();
     }
 
     private boolean validateData() {
@@ -123,22 +123,17 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
             case R.id.stepper_one_next_btn:
                 if(mOnStepOneListener != null && validateData()){
                     UpdataUserRequest request = new UpdataUserRequest();
-//                    fullName = mFullName.getText().toString();
                     number = mPhone.getText().toString();
-//                    email = mEmail.getText().toString();
                     jobTitle = mJobTitle.getText().toString();
                     userLocationCountry = mLocationCountry.getText().toString();
                     userLocationCity = mLocationCity.getText().toString();
                     userLocation = userLocationCity + ", " + userLocationCountry;
-//                    bundle.putString("fullName", fullName);
                     bundle.putString("phone", number);
-//                    bundle.putString("email", userEmail);
                     bundle.putString("jobtitle", jobTitle);
                     bundle.putString("locationCityCountry", userLocation);
                     bundle.putString("locationCountry", userLocationCountry);
                     bundle.putString("locationCity", userLocationCity);
                     request.token = userToken;
-//                    request.user.setName(fullName);
                     request.user.setPhoneNumber(number);
                     request.user.setCity(userLocationCity);
                     request.user.setCountry(userLocationCountry);
@@ -158,6 +153,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                                 public void onError(String errorMessage) {
                                 }
                              });
+
                     mOnStepOneListener.onNextPressed(this);
                 }
                 break;
@@ -187,7 +183,6 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     }
 
     public void saveUserData(){
-
         sharedPreferences.edit()
                 .putString(Constants.USER_PHONENUM, number)
                 .putString(Constants.USER_JOB_TITLE, jobTitle)

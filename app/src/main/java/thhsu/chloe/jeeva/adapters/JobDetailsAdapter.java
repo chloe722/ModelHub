@@ -65,11 +65,15 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         (holder.getDetailsHiringOtherInfoText()).setText(mJob.getHiring_other_info());
         (holder.getDetailsRequirement()).setText(mJob.getRequirements());
 
-        if(Jeeva.getJeevaSQLHelper().getSavedJob(mJob.getId())){
-            Log.d("Chloe", "job details true");
-            holder.getDetailsBookMark().setImageResource(R.drawable.ic_bookmark_red_24dp);
+        if(!token.equals("")){
+            if(Jeeva.getJeevaSQLHelper().getSavedJob(mJob.getId())){
+                Log.d("Chloe", "job details true");
+                holder.getDetailsBookMark().setImageResource(R.drawable.ic_bookmark_red_24dp);
+            }else{
+                Log.d("Chloe", "false");
+                holder.getDetailsBookMark().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+            }
         }else{
-            Log.d("Chloe", "false");
             holder.getDetailsBookMark().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
         }
 
@@ -305,7 +309,6 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         notifyItemChanged(0);
         Log.d("Chloe", "mJob title: " + mJob.getTitle());
     }
-
 
     @Override
     public int getItemCount() {

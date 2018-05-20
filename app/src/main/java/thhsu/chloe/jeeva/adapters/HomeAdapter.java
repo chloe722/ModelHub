@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
 import thhsu.chloe.jeeva.Utils.Constants;
+import thhsu.chloe.jeeva.Utils.LinePagerIndicatorDecoration;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
@@ -40,6 +42,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
     SharedPreferences sharedPreferences;
     String token;
     private int mNextPaging;
+    public IndefinitePagerIndicator indefinitePagerIndicator;
 
     public HomeAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
         mPresenter = presenter;
@@ -84,18 +87,19 @@ public class HomeAdapter extends RecyclerView.Adapter {
         return (position == 0)? Constants.VIEWTYPE_HOME_MAIN : Constants.VIEWTYPE_HOME_JOB_LIST;
     }
 
-    private class HomeMainItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    private class HomeMainItemViewHolder extends RecyclerView.ViewHolder{
         private RecyclerView mRecyclerRecommend;
-        public TextView mRecommendedTitle, mJobTitle;;
+        public TextView mRecommendedTitle, mJobTitle;
 
 
         public HomeMainItemViewHolder(View itemView) {
             super(itemView);
 
             mRecyclerRecommend = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
+            indefinitePagerIndicator = (IndefinitePagerIndicator) itemView.findViewById(R.id.recyclerview_pager_indicator);
             mRecommendedTitle = (TextView) itemView.findViewById(R.id.horizontal_recommend_title);
 //            mJobTitle = (TextView) itemView.findViewById(R.id.vertical_job_title);
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
 
         }
 
@@ -103,10 +107,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public TextView getRecommendedTitle(){return mRecommendedTitle;}
         private TextView getJobTitle(){return mJobTitle;}
 
-        @Override
-        public void onClick(View v) {
-//           mPresenter.openJobDetails(mJobs.get(getAdapterPosition()).getId()); // Pass getAdapterPosition here
-        }
     }
 
     private void bindMainItem(HomeMainItemViewHolder holder){
@@ -115,6 +115,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
         holder.getRecyclerRecommend().setOnFlingListener(null);
         new LinearSnapHelper().attachToRecyclerView(holder.getRecyclerRecommend());
         holder.getRecyclerRecommend().setAdapter(new HomeJobRecommendAdapter(mPresenter, mJobs));
+//        holder.getRecyclerRecommend().addItemDecoration(new LinePagerIndicatorDecoration());
+        indefinitePagerIndicator.attachToRecyclerView(holder.getRecyclerRecommend());
     }
 
 
@@ -215,13 +217,18 @@ public class HomeAdapter extends RecyclerView.Adapter {
         Log.d("Chloe", "postiton: " + position );
         Log.d("Chloe", "postiton ID: " + mJobs.get(position).getId());
         Log.d("Chloe", "postiton title: " + mJobs.get(position).getTitle());
-        if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(position).getId())){
-          Log.d("Chloe", "true");
-            holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
+        if( !token.equals("")){
+            if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(position).getId())){
+                Log.d("Chloe", "true");
+                holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
+            }else{
+                Log.d("Chloe", "false");
+                holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+            }
         }else{
-            Log.d("Chloe", "false");
             holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
         }
+
 
     }
 
