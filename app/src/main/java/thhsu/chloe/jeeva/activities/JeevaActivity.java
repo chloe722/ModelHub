@@ -1,8 +1,6 @@
 package thhsu.chloe.jeeva.activities;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,20 +15,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 //import thhsu.chloe.jeeva.Filter.FilterFragment;
-import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.model.Jobs;
-
-import static thhsu.chloe.jeeva.JeevaPresenter.FILTER;
-import static thhsu.chloe.jeeva.JeevaPresenter.JOBDETAILS;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -51,7 +46,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     JeevaActivity jeevaActivity;
     private SharedPreferences mSharePref;
     String token;
-
+    private ProgressBar mProgressBar;
 
 
     @Override
@@ -64,11 +59,12 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setContentView(R.layout.activity_main);
         setBottomNavigationView();
         setToolbar();
-        mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar);
+        mProgressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
+        Log.d("Chloe", "if progressbar loaded?" + mProgressBar);
+        mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
         mPresenter.start();
-        mSharePref = JeevaActivity.this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+        mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
         token = mSharePref.getString(Constants.USER_TOKEN, "");
-
     }
 
 

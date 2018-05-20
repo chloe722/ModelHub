@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.squareup.picasso.Transformation;
 
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private HomeAdapter mHomeAdapter;
     private int mPaging = -1;
     private  boolean isNotLoading = true;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -61,6 +63,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        progressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar);
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.home_fragment_recycler_vertical);
         recyclerView.setLayoutManager(new LinearLayoutManager(Jeeva.getAppContext()));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -90,6 +93,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mPresenter.start();
     }
 

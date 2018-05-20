@@ -7,11 +7,11 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 //import thhsu.chloe.jeeva.Filter.FilterFragment;
 import java.util.ArrayList;
@@ -42,6 +42,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     public JeevaActivity mActivity;
     public BottomNavigationView mBottomNavigationView;
     public Toolbar mToolbar;
+    private ProgressBar mProgressBar;
     private Fragment mCurrentFragment;
 
     public static final String HOME = "HOME";
@@ -66,7 +67,9 @@ public class JeevaPresenter implements JeevaContract.Presenter {
     private FilterPresenter mFilterPresenter;
     private JobDetailsPresenter mJobDetailsPresenter;
 
-    public JeevaPresenter(JeevaContract.View jeevaView, FragmentManager fragmentManager, JeevaActivity activity, BottomNavigationView bottomNavigationView, Toolbar toolbar){
+
+    public JeevaPresenter(JeevaContract.View jeevaView, FragmentManager fragmentManager, JeevaActivity activity,
+                          BottomNavigationView bottomNavigationView, Toolbar toolbar, ProgressBar mProgressBar){
         this.mActivity = activity;
         mJeevaContractView = jeevaView;
         if(jeevaView != null){
@@ -77,6 +80,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         mFragmentManager = fragmentManager;
         mBottomNavigationView = bottomNavigationView;
         mToolbar = toolbar;
+        this.mProgressBar = mProgressBar;
 
     }
 
@@ -113,7 +117,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         }
         transaction.commit();
         if(mHomePresenter == null){
-            mHomePresenter = new HomePresenter(mHomeFragment);
+            mHomePresenter = new HomePresenter(mHomeFragment, mProgressBar);
         }
         mJeevaContractView.showHomeUi();
 

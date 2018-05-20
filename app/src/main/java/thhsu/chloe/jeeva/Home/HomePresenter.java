@@ -1,14 +1,13 @@
 package thhsu.chloe.jeeva.Home;
 
-import android.app.Activity;
-import android.support.v7.widget.GridLayout;
+import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import java.security.PrivilegedAction;
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Jeeva;
@@ -17,7 +16,6 @@ import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.ApiJobManager;
 import thhsu.chloe.jeeva.api.GetJobsCallBack;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
-import thhsu.chloe.jeeva.api.PostRegisterLoginCallBack;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -28,16 +26,20 @@ public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mHomeView;
     ArrayList<Jobs> mJobs;
+    private  JeevaActivity mActivtity;
+    private Context mContext;
     private boolean mLoading = false;
     private int mLastVisibleItemPosition;
     private int mFirstVisibleItemPosition;
     private int mPaging = Constants.FIRST_PAGING;
+    private ProgressBar mProgressBar;
 
-    public HomePresenter(HomeContract.View homeView){
+    public HomePresenter(HomeContract.View homeView, ProgressBar progressBar){
         mHomeView = homeView;
         if(homeView != null){
             mHomeView.setPresenter(this);
         }
+        mProgressBar = progressBar;
     }
 
     public void updateJobs(ArrayList<Jobs> jobs){
@@ -68,6 +70,7 @@ public class HomePresenter implements HomeContract.Presenter {
             ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
                 @Override
                 public void onCompleted(ArrayList<Jobs> jobs) {
+                    mProgressBar.setVisibility(View.GONE);
                     setLoading(false);
                     showJobs(jobs);
                     setPaging(0);
