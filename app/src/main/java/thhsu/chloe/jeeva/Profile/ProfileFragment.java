@@ -70,7 +70,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        mEditInfoBtn = (Button) root.findViewById(R.id.profile_edited_btn);
+        mContext = getActivity();
+//        mEditInfoBtn = (Button) root.findViewById(R.id.profile_edited_btn);
         mCameraBtn = (Button) root.findViewById(R.id.profile_camera_btn);
         mUserPhotoView = (RoundedImageView) root.findViewById(R.id.profile_user_photo);
         mUserName = (TextView) root.findViewById(R.id.profile_user_name);
@@ -86,18 +87,19 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         LinearLayout camera = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_camera);
         LinearLayout gallery = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_gallery);
-
-
-
-        mContext = getActivity();
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
-        mEditInfoBtn.setOnClickListener(this);
+//        mEditInfoBtn.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
         sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
             userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
             mUserEmail.setText(userEmail);
+        }
+
+        if(!sharedPreferences.getString(Constants.USER_NAME, "").equals("")){
+            userName = sharedPreferences.getString(Constants.USER_NAME, "");
+            mUserName.setText(userName);
         }
 
 //        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -133,10 +135,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.profile_edited_btn:
-                Intent intent = new Intent(getActivity(), AboutMeActivity.class);
-                startActivityForResult(intent, Constants.USER_INFO_REQUEST);
-                break;
+//            case R.id.profile_edited_btn:
+//                Intent intent = new Intent(getActivity(), AboutMeActivity.class);
+//                startActivityForResult(intent, Constants.USER_INFO_REQUEST);
+//                break;
 
             case R.id.profile_camera_btn:
                 mBottomSheetDialog.show();
@@ -213,17 +215,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         else if (requestCode == Constants.USER_INFO_REQUEST) {
             if (resultCode == Constants.RESULT_SUCCESS) {
                 Bundle bundle = data.getExtras();
-                userName = bundle.getString("fullName");
-//                userEmail = bundle.getString("email");
                 userJobTitle = bundle.getString("jobtitle");
                 userLocation = bundle.getString("locationCityCountry");
                 userLocationCountry = bundle.getString("locationCountry");
                 userLocationCity = bundle.getString("locationCity");
-                Log.d("Chloe", "get string in profile,  Name: " + userName + " userEmail: " + userEmail);
-                mUserName.setText(userName);
-//                mUserEmail.setText(userEmail);
                 mUserJobTitle.setText(userJobTitle);
-
                 if(!userLocation.equals("")){
                     mUserLocation.setText(userLocation);
                 }else if((!userLocationCountry.equals("")) && userLocationCity.equals("")){
@@ -233,7 +229,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 }else{
                     mUserLocation.setVisibility(View.GONE);
                 }
-
             }
         }
     }
@@ -277,7 +272,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     }
 
     private void performCrop(Uri uri) {
-        // take care of exceptions
         try {
             // call the standard crop action intent (the user device may not
             // support it)

@@ -1,10 +1,8 @@
 package thhsu.chloe.jeeva.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapRegionDecoder;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -19,15 +17,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.JobDetails.JobDetailsContract;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
+import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.model.Jobs;
 
 /**
@@ -38,6 +32,8 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
     public Context mContext;
     public JobDetailsContract.Presenter mJobDetailsPresenter;
     public Jobs mJob;
+    SharedPreferences sharedPreferences;
+    String token;
 
     public JobDetailsAdapter(Context context, Jobs job, JobDetailsContract.Presenter presenter){
         this.mContext = context;
@@ -50,6 +46,8 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         public JobDetailsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_fragment_job_details, parent, false);
+        sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
+        token = sharedPreferences.getString(Constants.USER_TOKEN, "");
         return new JobDetailsViewHolder(view);
     }
 
@@ -66,6 +64,19 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         (holder.getDetailsHiringContactEmailText()).setText(mJob.getHiring_contact_email());
         (holder.getDetailsHiringOtherInfoText()).setText(mJob.getHiring_other_info());
         (holder.getDetailsRequirement()).setText(mJob.getRequirements());
+
+        if(!token.equals("")){
+            if(Jeeva.getJeevaSQLHelper().getSavedJob(mJob.getId())){
+                Log.d("Chloe", "job details true");
+                holder.getDetailsBookMark().setImageResource(R.drawable.ic_bookmark_red_24dp);
+            }else{
+                Log.d("Chloe", "false");
+                holder.getDetailsBookMark().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+            }
+        }else{
+            holder.getDetailsBookMark().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+        }
+
         for(String benefit :mJob.getBenefits()){
             switch (benefit){
                 case "child_care":
@@ -171,7 +182,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
             mDetailsRequirement = (TextView) itemView.findViewById(R.id.job_details_requirement_content);
             mDetailsJobType = (TextView) itemView.findViewById(R.id.job_details_type_tag);
-            mDetailsJobTitle = (TextView) itemView.findViewById(R.id.home_job_title);
+            mDetailsJobTitle = (TextView) itemView.findViewById(R.id.saved_job_title);
             mDetailsJobPostedText = (TextView) itemView.findViewById(R.id.job_details_posted_text);
             mDetailsJobDate = (TextView) itemView.findViewById(R.id.job_details_posted_date);
             mDetailsCompanyTitle = (TextView) itemView.findViewById(R.id.job_details_company_title);
@@ -265,6 +276,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         public TextView getDetailsHiringOtherInfoText(){return mDetailsHiringOtherInfoText;}
         public TextView getDetailsRequirement(){return mDetailsRequirement;}
         public ImageView getDetailsCompanyLogo(){return mDetailsCompanyLogo;}
+        public ImageButton getDetailsBookMark(){return mDetailsBookMark;}
 
         @Override
         public void onClick(View v) {
@@ -297,7 +309,6 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
         notifyItemChanged(0);
         Log.d("Chloe", "mJob title: " + mJob.getTitle());
     }
-
 
     @Override
     public int getItemCount() {

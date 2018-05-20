@@ -78,8 +78,6 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
 //        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         homeFragment = new HomeFragment();
         mContext = this;
-//        filterResult = new HashMap<String, Boolean>();
-//        filterResultTest = new HashMap<String, Boolean>();
         items = new ArrayList<CheckBox>();
         tagListSet = new HashSet<String>();
         mJobs = new ArrayList<Jobs>();

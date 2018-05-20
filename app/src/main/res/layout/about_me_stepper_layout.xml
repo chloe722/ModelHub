@@ -40,15 +40,15 @@
                     android:textStyle="bold" />
             </android.support.v7.widget.Toolbar>
 
-            <ImageButton
-                android:id="@+id/about_me_toolbar_close_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="14dp"
-                android:background="@null"
-                app:srcCompat="@drawable/ic_close_black_24dp" />
+            <!--<ImageButton-->
+                <!--android:id="@+id/about_me_toolbar_close_btn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginEnd="14dp"-->
+                <!--android:background="@null"-->
+                <!--app:srcCompat="@drawable/ic_close_black_24dp" />-->
 
         </RelativeLayout>
 
@@ -67,7 +67,7 @@
         app:stpi_lineDoneColor="#f5658f"
         app:stpi_circleColor="#f5658f"
         app:stpi_indicatorColor="#f5658f"
-        app:stpi_showStepNumberInstead="true"
+        app:stpi_showStepNumberInstead="false"
         app:stpi_showDoneIcon="true"/>
 
     <thhsu.chloe.jeeva.Aboutme.NonSwipeableViewPager

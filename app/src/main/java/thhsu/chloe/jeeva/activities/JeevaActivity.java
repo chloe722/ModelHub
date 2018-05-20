@@ -1,8 +1,6 @@
 package thhsu.chloe.jeeva.activities;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,20 +15,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 //import thhsu.chloe.jeeva.Filter.FilterFragment;
-import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.model.Jobs;
-
-import static thhsu.chloe.jeeva.JeevaPresenter.FILTER;
-import static thhsu.chloe.jeeva.JeevaPresenter.JOBDETAILS;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -42,7 +37,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private Toolbar mToolbar;
     private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
-    private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn;
+    private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn, mEditedBtn;
 //    private FilterFragment filterFragment;
     private boolean isFilterInHome = true;
     private boolean shouldShowFilter = false;
@@ -51,7 +46,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     JeevaActivity jeevaActivity;
     private SharedPreferences mSharePref;
     String token;
-
+    private ProgressBar mProgressBar;
 
 
     @Override
@@ -64,11 +59,12 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setContentView(R.layout.activity_main);
         setBottomNavigationView();
         setToolbar();
-        mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar);
+        mProgressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
+        Log.d("Chloe", "if progressbar loaded?" + mProgressBar);
+        mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
         mPresenter.start();
-        mSharePref = JeevaActivity.this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+        mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
         token = mSharePref.getString(Constants.USER_TOKEN, "");
-
     }
 
 
@@ -76,7 +72,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     public boolean onCreateOptionsMenu(Menu menu) {
         jeevaActivity = this;
         int currentItem = mBottomNavigationView.getSelectedItemId();
-        currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
+//        currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
         MenuInflater inflater = getMenuInflater();
         if(!(token.equals(""))){
             mBottomNavigationView.getMenu().getItem(2).setTitle("Profile");
@@ -98,6 +94,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
             inflater.inflate(R.menu.menu_more_member, menu);
             mAboutBtn = menu.findItem(R.id.more_menu_about_item);
             mLogoutBtn = menu.findItem(R.id.more_menu_logout_item);
+            mEditedBtn = menu.findItem(R.id.more_menu_about_edit);
             mAboutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -108,6 +105,16 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
             });
 
             if(!(token.equals(""))){
+
+                mEditedBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(JeevaActivity.this, AboutMeActivity.class);
+                        startActivityForResult(intent, Constants.USER_INFO_REQUEST);
+                        return false;
+                    }
+                });
+
                 mLogoutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -122,12 +129,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
             }
             else{
                 mLogoutBtn.setVisible(false);
+                mEditedBtn.setVisible(false);
             }
         }else if(currentItem == R.id.action_saved_job){
 
         }
-
-
 
 //        if(currentFragment == getFragmentManager().findFragmentByTag(JOBDETAILS)){
 //            mToolBarBackBtn.setVisibility(View.VISIBLE);
@@ -145,10 +151,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
+    protected void onResume() {super.onResume();}
 
     @Override
     public void onBackPressed() {
@@ -178,7 +181,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     private void setBottomNavigationView(){
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
@@ -254,6 +256,11 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setToolbarTitle("Details");
     }
 
+    @Override
+    public void refreshSavedJobsItemUi() {
+        mPresenter.refreshSavedJobsItem();
+    }
+
     public void transToJobDetails(Jobs job){ // Need to pass ID here after connect API
         mPresenter.transToJobDetails(job); // Need to pass ID here after connect API
     }
@@ -265,7 +272,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         invalidateOptionsMenu();
         switch (item.getItemId()) {
             case R.id.action_home:
-
                 mPresenter.transToHome();
                 break;
 
@@ -278,7 +284,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
                     mPresenter.transToSignInTabPage();
                     break;
                 }else {
-
                     mPresenter.transToProfile();
                     break;
                 }

@@ -37,20 +37,4 @@ public class AboutMePagerAdapter extends FragmentPagerAdapter {
         return 3;
     }
 
-
-
-//    @Nullable
-//    @Override
-//    public CharSequence getPageTitle(int position) {
-//        switch (position){
-//            case 0:
-//                return "First Level";
-//            case 1:
-//                return "Second Level";
-//            case 2:
-//                return "Finish";
-//        }
-//        return null;
-//    }
-
 }

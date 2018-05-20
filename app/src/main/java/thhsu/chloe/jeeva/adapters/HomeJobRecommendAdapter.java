@@ -78,8 +78,6 @@ public class HomeJobRecommendAdapter extends RecyclerView.Adapter{
                 }else{
                     Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(((HomeJobRecommendItemViewHolder) holder).getRecommendedJobCompanyLogo());
                 }
-
-
             }
         }
 

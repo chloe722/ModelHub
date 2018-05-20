@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.Constants;
+import thhsu.chloe.jeeva.activities.AboutMeActivity;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.activities.RegisterActivity;
 import thhsu.chloe.jeeva.activities.SignInActivity;
@@ -47,7 +49,12 @@ public class SignInTabFragment extends Fragment implements SignInTabContract.Vie
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mPresenter.result(requestCode, resultCode);
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Constants.REGISTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
+
+        }else if (requestCode == Constants.ABOUT_ME_REQUEST && resultCode == Constants.RESULT_SUCCESS){
+
+        }
     }
 
     @Override
@@ -55,6 +62,7 @@ public class SignInTabFragment extends Fragment implements SignInTabContract.Vie
         switch (v.getId()){
             case R.id.signin_tab_signup_btn:
                 Intent intentToRegister = new Intent(getActivity(), RegisterActivity.class);
+//                startActivityForResult(intentToRegister, Constants.REGISTER_REQUEST);
                 startActivity(intentToRegister);
                 break;
 

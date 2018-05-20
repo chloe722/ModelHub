@@ -7,6 +7,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -76,6 +79,8 @@ public class Jobs implements Serializable{
     @SerializedName("hiring_other_info")
     @Expose
     private String hiring_other_info;
+
+    private boolean mIsSaved = false;
 
     public String getHiring_contact_name() {
         return hiring_contact_name;
@@ -200,12 +205,20 @@ public class Jobs implements Serializable{
     }
 
     public List<String> getBenefits() {
-        return benefits;
+        if(benefits != null)
+            return benefits;
+        else
+            return new ArrayList<String>();
     }
 
     public void setBenefits(List<String> benefits) {
         this.benefits = benefits;
     }
+
+    public void setBenefits(String[] benefits) {
+        this.benefits = Arrays.asList(benefits);
+    }
+
 
     public String getSalary() {
         return salary;
@@ -240,39 +253,11 @@ public class Jobs implements Serializable{
         this.image = image;
     }
 
-//
-//    public Jobs(Parcel in) {
-//        super();
-//        readFromParcel(in);
-//    }
-//
-//    public static final Parcelable.Creator<Jobs> CREATOR = new Parcelable.Creator<Jobs>() {
-//        public Jobs createFromParcel(Parcel in) {
-//            return new Jobs(in);
-//        }
-//
-//        public Jobs[] newArray(int size) {
-//
-//            return new Jobs[size];
-//        }
-//
-//    };
-//
-//    public void readFromParcel(Parcel in) {
-//        Value1 = in.readInt();
-//        Value2 = in.readInt();
-//        Value3 = in.readInt();
-//
-//    }
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeInt(Value1);
-//        dest.writeInt(Value2);
-//        dest.writeInt(Value3);
-//    }
+    public boolean isSaved(){return mIsSaved;}
+
+    public void setSaved(boolean isSaved){
+        mIsSaved = isSaved;
+    }
 }
 
 

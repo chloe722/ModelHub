@@ -1,5 +1,6 @@
 package thhsu.chloe.jeeva.JobDetails;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Jeeva;
+import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
@@ -40,6 +43,8 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     private Button mApplyBtn;
     private SharedPreferences sharedPreferences;
     String token;
+    BottomNavigationView mBottomNavigationView;
+
 
     public static JobDetailsFragment newInstance(){
         return new JobDetailsFragment();
@@ -60,6 +65,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
         mJobDetailAdapter = new JobDetailsAdapter(getContext(), new Jobs(), mPresenter);
         sharedPreferences = getActivity().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         token = sharedPreferences.getString(Constants.USER_TOKEN,"");
+        mBottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation);
     }
 
     @Override
@@ -96,10 +102,18 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Override
     public void onDestroy() {  //When the fragment finish, run the code below.  onDestroy --> Fragment has finished or got destroyed
         super.onDestroy();
+        int currentSelectedItem = mBottomNavigationView.getSelectedItemId();
+        if (currentSelectedItem == R.id.action_home){
+
+            ((JeevaActivity) getActivity()).showFilterIcn();
+            ((JeevaActivity) getActivity()).showHomeUi();
+        }else {
+            ((JeevaActivity) getActivity()).showSavedJobUi();
+        }
+
+        ((JeevaActivity) getActivity()).refreshSavedJobsItemUi();
         ((JeevaActivity) getActivity()).showBtnNavView();
-        ((JeevaActivity) getActivity()).showFilterIcn();
         ((JeevaActivity) getActivity()).hideToolbarBackBtn();
-        ((JeevaActivity) getActivity()).showHomeUi();
 
     }
 
