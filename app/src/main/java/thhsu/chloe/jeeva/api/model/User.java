@@ -25,7 +25,7 @@ public class User {
     private Object profilePic;
     @SerializedName("email")
     @Expose
-    private Object email;
+    private String email;
     @SerializedName("hosted_events_count")
     @Expose
     private String hostedEventsCount;
@@ -52,10 +52,10 @@ public class User {
     private Object address;
     @SerializedName("city")
     @Expose
-    private Object city;
+    private String city;
     @SerializedName("country")
     @Expose
-    private Object country;
+    private String country;
     @SerializedName("phone_number")
     @Expose
     private String phoneNumber;
@@ -101,11 +101,11 @@ public class User {
         this.profilePic = profilePic;
     }
 
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Object email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -173,19 +173,19 @@ public class User {
         this.address = address;
     }
 
-    public Object getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(Object city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
-    public Object getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Object country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 

@@ -1,11 +1,13 @@
 package thhsu.chloe.jeeva.Profile;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +17,9 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +44,11 @@ import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.activities.AboutMeActivity;
+import thhsu.chloe.jeeva.api.ApiJobManager;
+import thhsu.chloe.jeeva.api.GetUserInfoCallBack;
+import thhsu.chloe.jeeva.api.model.User;
+
+import static android.support.v4.content.FileProvider.getUriForFile;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -52,12 +62,16 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     RoundedImageView mUserPhotoView;
     Uri tempFileUri, imageUri;
     Context mContext;
-    String userName, userEmail, userJobTitle, userLocationCountry, userLocationCity, userLocation;
+    String userToken, userName, userEmail, userJobTitle, userLocationCountry, userLocationCity, userLocation, userFacebookUsername, userGithubUsername, userLinkedinUsername;
     Bitmap bitmap;
     Bundle extras;
     BottomSheetDialog mBottomSheetDialog;
     InputStream imageStream;
     SharedPreferences sharedPreferences;
+    private User mUser = new User();
+    File imagePath = new File(getContext().getFilesDir(), "images");
+    File newFile = new File(imagePath, "default_image.jpg");
+    Uri contentUri = getUriForFile(getContext(), "thhsu.chloe.jeeva.fileprovider", newFile);
 
 
 
@@ -72,6 +86,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         mContext = getActivity();
 //        mEditInfoBtn = (Button) root.findViewById(R.id.profile_edited_btn);
+        sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
+        userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
         mCameraBtn = (Button) root.findViewById(R.id.profile_camera_btn);
         mUserPhotoView = (RoundedImageView) root.findViewById(R.id.profile_user_photo);
         mUserName = (TextView) root.findViewById(R.id.profile_user_name);
@@ -91,7 +107,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         gallery.setOnClickListener(this);
 //        mEditInfoBtn.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
-        sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
             userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
             mUserEmail.setText(userEmail);
@@ -102,23 +117,48 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             mUserName.setText(userName);
         }
 
-//        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if(!userToken.equals("")){
+            ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
+                @Override
+                public void onCompleted(User user) {
+                    mUser = user;
+                    userLocationCity = mUser.getCity();
+                    userLocationCountry = mUser.getCountry();
+                    userLocation = userLocationCity + ", " + userLocationCountry;
+                    mUserLocation.setText(userLocation);
+                    if(mUserJobTitle.equals("") ||  mUserJobTitle.equals(null)){
+                        mUserJobTitle.setVisibility(View.GONE);
+                    }else if(mUserLocation.equals("") || mUserLocation.equals(null)){
+                        mUserLocation.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                    mUserLocation.setText("");
+                }
+            });
+        }
+
+//        if ((ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) ||
+//                (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+//
 //            mCameraBtn.setEnabled(false);
-//            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+//            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
 //        }
 
         return root;
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        if (requestCode == 0) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-//                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-//                mCameraBtn.setEnabled(true);
-//            }
-//        }
-//    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 100) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                mCameraBtn.setEnabled(true);
+            }
+        }
+    }
 
 
 //    @Override
@@ -142,6 +182,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
             case R.id.profile_camera_btn:
                 mBottomSheetDialog.show();
+
                 break;
 
             case R.id.fragment_profile_camera:
@@ -151,7 +192,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
             case R.id.fragment_profile_gallery:
                 mBottomSheetDialog.hide();
-                pickImage();
+//                pickImage();
                 break;
         }
     }
@@ -185,6 +226,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }else if(requestCode == Constants.PICK_IMAGE_REQUEST){
             if(resultCode == Activity.RESULT_OK){
                 imageUri = data.getData();
+
 //                tempFileUri = getRealPathFromURI(imageUri);
                 performCrop(imageUri);
 
@@ -214,21 +256,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if (requestCode == Constants.USER_INFO_REQUEST) {
             if (resultCode == Constants.RESULT_SUCCESS) {
-                Bundle bundle = data.getExtras();
-                userJobTitle = bundle.getString("jobtitle");
-                userLocation = bundle.getString("locationCityCountry");
-                userLocationCountry = bundle.getString("locationCountry");
-                userLocationCity = bundle.getString("locationCity");
-                mUserJobTitle.setText(userJobTitle);
-                if(!userLocation.equals("")){
-                    mUserLocation.setText(userLocation);
-                }else if((!userLocationCountry.equals("")) && userLocationCity.equals("")){
-                    mUserLocation.setText(userLocationCountry);
-                }else if((!userLocationCity.equals("")) && userLocationCountry.equals("")){
-                    mUserLocation.setText(userLocationCity);
-                }else{
-                    mUserLocation.setVisibility(View.GONE);
-                }
             }
         }
     }
@@ -332,11 +359,16 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 //        }
 //    }
 
-    public void pickImage(){
-        Intent intentPhotoPicker = new Intent(Intent.ACTION_GET_CONTENT);
-        intentPhotoPicker.setType("image/*");
-        startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
-    }
+//    public void pickImage(){
+//        Intent intentPhotoPicker = new Intent(Intent.ACTION_GET_CONTENT);
+//        intentPhotoPicker.addCategory(Intent.CATEGORY_OPENABLE);
+//        intentPhotoPicker.setType("image/*");
+////        Uri uriForFile = FileProvider.getUriForFile(this, "thhsu.chloe.jeeva.fileprovider", mGalleryFile );
+////        intentPhotoPicker.putExtra(MediaStore.EXTRA_OUTPUT, uriForFile);
+//        intentPhotoPicker.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+//        intentPhotoPicker.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
+//    }
 
 
 }

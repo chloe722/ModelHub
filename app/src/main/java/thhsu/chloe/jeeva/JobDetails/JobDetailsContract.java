@@ -22,5 +22,7 @@ public interface JobDetailsContract {
 
         void loadJob();
 
+        void updateSavedJob(Jobs jobs, boolean isSaved);
+
     }
 }

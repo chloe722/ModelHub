@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -289,7 +290,20 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
                     mHiringResourceConstraint.setVisibility(View.VISIBLE);
                     break;
                 case R.id.job_details_bookmark_btn:
-                    mDetailsBookMark.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                    if(!token.equals("")){
+                        if(Jeeva.getJeevaSQLHelper().getSavedJob(mJob.getId())){
+                            mJobDetailsPresenter.updateSavedJob(mJob, false);
+                            mDetailsBookMark.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                            break;
+                        }else{
+                            mJobDetailsPresenter.updateSavedJob(mJob, true);
+                            Log.d("Chloe", "is saved: " +Jeeva.getJeevaSQLHelper().getSavedJob(mJob.getId()) );
+                            mDetailsBookMark.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                            break;
+                        }
+                    }else{
+                        Toast.makeText(Jeeva.getAppContext(), "You are not logged in yet", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.job_details_share_btn:
                     Intent intentToShare = new Intent(Intent.ACTION_SEND);

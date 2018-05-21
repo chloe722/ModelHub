@@ -1,6 +1,7 @@
 package thhsu.chloe.jeeva.Aboutme;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +16,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
+import thhsu.chloe.jeeva.Utils.Constants;
+import thhsu.chloe.jeeva.api.ApiJobManager;
+import thhsu.chloe.jeeva.api.GetUserInfoCallBack;
+import thhsu.chloe.jeeva.api.PostRegisterLoginCallBack;
+import thhsu.chloe.jeeva.api.PostUserInfoCallBack;
+import thhsu.chloe.jeeva.api.model.UpdataUserRequest;
+import thhsu.chloe.jeeva.api.model.User;
 
 /**
  * Created by Chloe on 5/4/2018.
@@ -23,9 +32,12 @@ import thhsu.chloe.jeeva.R;
 
 public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener {
     private Button mNextBtn, mBackBtn;
-    private EditText mFacebookUrlText, mGithubUrlText, mLinkedinUrlText;
+    private EditText mFacebookUserNamelText, mGithubUserNameText, mLinkedinUserNameText;
     private TextInputLayout mFacebookTextLayout, mGithubTextLayout, mLinkedinTextLayout;
     private OnStepTwoListener mOnStepTwoListener;
+    private String mFacebookUsername, mGithubUsername, mLinkedinUsername, mUserToken;
+    SharedPreferences sharedPreferences;
+    private User mUser = new User();
 
     public AboutMeStepTwoFragment() {
     }
@@ -45,14 +57,33 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
+        mUserToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
         mNextBtn = view.findViewById(R.id.stepper_two_next_btn);
         mBackBtn = view.findViewById(R.id.stepper_two_back_btn);
-        mFacebookUrlText = view.findViewById(R.id.stepper_two_textinput_fb_url);
-        mGithubUrlText = view.findViewById(R.id.stepper_two_textinput_githuburl);
-        mLinkedinUrlText = view.findViewById(R.id.stepper_two_textinput_linkedin_url);
+        mFacebookUserNamelText = view.findViewById(R.id.stepper_two_textinput_fb_url);
+        mGithubUserNameText = view.findViewById(R.id.stepper_two_textinput_githuburl);
+        mLinkedinUserNameText = view.findViewById(R.id.stepper_two_textinput_linkedin_url);
         mFacebookTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_fb);
         mGithubTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_github);
         mLinkedinTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_linkedin);
+
+        ApiJobManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
+            @Override
+            public void onCompleted(User user) {
+                mUser = user;
+                mFacebookUserNamelText.setText(mUser.getFacebookAccount());
+                mGithubUserNameText.setText(mUser.getGithubAccount());
+                mLinkedinUserNameText.setText(mUser.getLinkedinAccount());
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                mFacebookUserNamelText.setText("");
+                mGithubUserNameText.setText("");
+                mLinkedinUserNameText.setText("");
+            }
+        });
     }
 
 //    public boolean validateUrl(){
@@ -87,6 +118,25 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         switch (v.getId()){
             case R.id.stepper_two_next_btn:
                 if(mOnStepTwoListener != null){
+                    UpdataUserRequest request = new UpdataUserRequest();
+                    mFacebookUsername = mFacebookUserNamelText.getText().toString();
+                    mGithubUsername = mGithubUserNameText.getText().toString();
+                    mLinkedinUsername = mLinkedinUserNameText.getText().toString();
+                    request.token = mUserToken;
+                    request.user.setFacebookAccount(mFacebookUsername);
+                    request.user.setGithubAccount(mGithubUsername);
+                    request.user.setLinkedinAccount(mLinkedinUsername);
+                    saveUserData();
+
+                    ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
+                        @Override
+                        public void onComplete() {
+                        }
+                        @Override
+                        public void onError(String errorMessage) {
+                        }
+                    });
+
                     mOnStepTwoListener.onNextPressed(this);
                 }
                 break;
@@ -120,5 +170,13 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     public interface OnStepTwoListener {
         void onNextPressed(Fragment fragment);
         void onBackPressed(Fragment fragment);
+    }
+
+    public void saveUserData(){
+        sharedPreferences.edit()
+                .putString(Constants.USER_FACEBOOK_USERNAME, mFacebookUsername)
+                .putString(Constants.USER_GITHUB_USERNAME, mGithubUsername)
+                .putString(Constants.USER_LINKEDIN_USERNAME, mLinkedinUsername)
+                .apply();
     }
 }

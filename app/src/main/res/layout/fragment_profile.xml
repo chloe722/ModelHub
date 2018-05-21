@@ -54,6 +54,7 @@
         tools:text="emilyWang23@gmail.com" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/profile_user_job_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,7 +101,7 @@
         android:id="@+id/imageview_hr_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="320dp"
         android:background="@color/colorFilterContentTitle"
         app:layout_constraintTop_toTopOf="parent" />
 

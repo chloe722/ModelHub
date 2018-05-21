@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
 
 
+
         <activity
             android:name=".activities.JeevaActivity"
             android:exported="true"
@@ -76,6 +77,17 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="thhsu.chloe.jeeva.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/path"/>
+        </provider>
+
 
     </application>
 
