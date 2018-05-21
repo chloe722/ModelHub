@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
+import retrofit2.http.PUT;
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.activities.SignInActivity;
@@ -24,6 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import thhsu.chloe.jeeva.api.model.UpdataUserRequest;
 import thhsu.chloe.jeeva.api.model.User;
+import thhsu.chloe.jeeva.api.model.UserInfo;
 
 
 /**
@@ -71,7 +73,7 @@ public class ApiJobManager {
         call.enqueue(new Callback<Result<ArrayList<Jobs>>>() {
             @Override
             public void onResponse(Call<Result<ArrayList<Jobs>>> call, Response<Result<ArrayList<Jobs>>> response) {
-                Log.d("Chloe", "onResponse");
+                Log.d("Chloe", "onResponse" + response.body());
                 response.body();
                 if(response.body().jobs != null){
                     filterJobsCallBack.onCompleted(response.body().jobs);
@@ -88,9 +90,31 @@ public class ApiJobManager {
         });
     }
 
-    public void getRegister(String email, String password,final PostRegisterLoginCallBack postRegisterLoginCallBack){
+    public void getUserData(String token, final GetUserInfoCallBack getUserInfoCallBack){
+        Log.d("Chloe", "get user info");
+        Call<UserInfo> call = ApiManager.getInstance().apiJobsService.getUserData(token);
+        call.enqueue(new Callback<UserInfo>() {
+            @Override
+            public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                response.body().getUser();
+                if((response.body().getUser()) != null){
+                    getUserInfoCallBack.onCompleted(response.body().getUser());
+                }else{
+                    Log.d("Chloe", "response body is empty");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserInfo> call, Throwable t) {
+                    getUserInfoCallBack.onError(t.getLocalizedMessage());
+            }
+        });
+    }
+
+
+    public void getRegister(String name, String email, String password,final PostRegisterLoginCallBack postRegisterLoginCallBack){
         Log.d("Chloe", "register");
-        Call<RegisterResult> call = ApiManager.getInstance().apiJobsService.getRegister("", email, password);
+        Call<RegisterResult> call = ApiManager.getInstance().apiJobsService.getRegister(name, email, password);
         call.enqueue(new Callback<RegisterResult>() {
             @Override
             public void onResponse(Call<RegisterResult> call, Response<RegisterResult> response) {

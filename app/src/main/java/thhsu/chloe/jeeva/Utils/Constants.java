@@ -16,6 +16,24 @@ public class Constants {
     public static final String USER_JOB_TITLE = "user_job_title";
     public static final String USER_LOCATION = "user_location";
     public static final String USER_TOKEN = "user_token";
+    public static final String USER_FACEBOOK_USERNAME = "user_facbook_username";
+    public static final String USER_GITHUB_USERNAME = "user_github_username";
+    public static final String USER_LINKEDIN_USERNAME = "user_linkedin_username";
+
+    public static final String  FILTER_STATUS = "filter_status";
+    public static final String FILTER_FRONTEND = "filter_frontend";
+    public static final String FILTER_BACKEND = "filter_backend";
+    public static final String FILTER_FULLSTACK = "filter_fullstack";
+    public static final String FILTER_WEBDESIGNER = "filter_webdesigner";
+    public static final String FILTER_UIUXDESIGNER = "filter_uiuxdesigner";
+    public static final String FILTER_PROJECTMANAGER = "filter_projectmanager";
+    public static final String FILTER_PRODUCTMANAGER = "filter_productmanager";
+    public static final String FILTER_FULLTIME = "filter_fulltime";
+    public static final String FILTER_PARTTIME = "filter_parttime";
+    public static final String FILTER_CONTRACT = "filter_contract";
+    public static final String FILTER_INTERNSHIP = "filter_intern";
+    public static final String FILTER_PERMANENT = "filter_permanent";
+    public static final String FILTER_REMOTE = "filter_remote";
 
 
     public static final int VIEWTYPE_HOME_MAIN = 20;

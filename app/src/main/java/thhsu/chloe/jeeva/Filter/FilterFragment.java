@@ -27,7 +27,7 @@ package thhsu.chloe.jeeva.Filter;
 //    private FilterContract.Presenter mPresenter;
 //
 //    public CheckBox mFrontend, mBackend, mFullStack, mWebD,
-//            mUiUxD, mProductM, mProjectM, mFullTime,
+//            mUiUxD, mProductM, mProjectManager, mFullTime,
 //            mPartTime, mContract, mPermanent, mIntern, mRemote;
 //    public Button mSavedBtn;
 //    public TextView mFilterPositionTitle, mFilterTypeTitle;
@@ -48,7 +48,7 @@ package thhsu.chloe.jeeva.Filter;
 //        mWebD = (CheckBox) root.findViewById(R.id.filter_checkbox_web_designer);
 //        mUiUxD = (CheckBox) root.findViewById(R.id.filter_checkbox_uiux_designer);
 //        mProductM = (CheckBox) root.findViewById(R.id.filter_checkbox_product_m);
-//        mProjectM = (CheckBox) root.findViewById(R.id.filter_checkbox_project_m);
+//        mProjectManager = (CheckBox) root.findViewById(R.id.filter_checkbox_project_m);
 //        mFullTime = (CheckBox) root.findViewById(R.id.filter_checkbox_fulltime);
 //        mPartTime = (CheckBox) root.findViewById(R.id.filter_checkbox_parttime);
 //        mContract = (CheckBox) root.findViewById(R.id.filter_checkbox_contract);
@@ -95,7 +95,7 @@ package thhsu.chloe.jeeva.Filter;
 //                filterResult.put(mProductM.getTag().toString(), checked);
 //                break;
 //            case R.id.filter_checkbox_project_m:
-//                filterResult.put(mProjectM.getTag().toString(), checked);
+//                filterResult.put(mProjectManager.getTag().toString(), checked);
 //                break;
 //            case R.id.filter_checkbox_fulltime:
 //                filterResult.put(mFullTime.getTag().toString(), checked);

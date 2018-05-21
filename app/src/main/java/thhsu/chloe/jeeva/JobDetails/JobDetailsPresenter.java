@@ -47,5 +47,10 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
         mJobDetailsView.showJobDetails(mJob);
     }
 
+    @Override
+    public void updateSavedJob(Jobs jobs, boolean isSaved) {
+        Jeeva.getJeevaSQLHelper().updateSavedJobs(mJob, isSaved);
+    }
+
 
 }

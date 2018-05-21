@@ -121,7 +121,16 @@ public class SavedJobsAdapter extends RecyclerView.Adapter<SavedJobsAdapter.Save
 
             if(v.getId() == R.id.saved_job_savedJob_icn_btn){
                 //setSOLite data here
-                mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+//                if(Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId())){
+//                    mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), false);
+//                    mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+//
+//                }else{
+//                    mPresenter.updateSavedJob(mJobs.get(getAdapterPosition()), true);
+//                    Log.d("Chloe", "is saved: " +Jeeva.getJeevaSQLHelper().getSavedJob(mJobs.get(getAdapterPosition()).getId()) );
+//                    mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+//                }
+
             }else{
                 Log.d("Chloe", "getTitle in saved adapter: " + mJobs.get(getAdapterPosition()).getTitle());
                 mPresenter.openJobDetails(mJobs.get(getAdapterPosition())); // setOpenJob here  getAdapterPosition()

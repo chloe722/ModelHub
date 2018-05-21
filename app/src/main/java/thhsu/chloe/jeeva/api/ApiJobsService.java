@@ -20,6 +20,7 @@ import thhsu.chloe.jeeva.api.model.RegisterResult;
 import thhsu.chloe.jeeva.api.model.Result;
 import thhsu.chloe.jeeva.api.model.UpdataUserRequest;
 import thhsu.chloe.jeeva.api.model.User;
+import thhsu.chloe.jeeva.api.model.UserInfo;
 
 /**
  * Created by Chloe on 5/7/2018.
@@ -44,14 +45,15 @@ public interface ApiJobsService {
     @GET(PATH_JOBS_TAGS)
     Call<Result<ArrayList<Jobs>>> getFilterJobs(@Query("tags") String tags);
 
-    @GET(USERS_ME_TOKEN)
-    Call<User> getUserData(@Query("token") String token);
+    @GET(USERS_ME)
+    Call<UserInfo> getUserData(@Query("token") String token);
 
     @POST(REGISTER)
     @FormUrlEncoded
     Call<RegisterResult> getRegister(@Field("name") String name,
                                      @Field("email") String email,
                                      @Field("password") String password);
+
     // Call<return type>
     @POST(TOKEN)
     @FormUrlEncoded

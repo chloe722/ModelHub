@@ -100,7 +100,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     userEmail = mRegisterEmailText.getText().toString();
                     password = mRegisterPasswordText.getText().toString();
                     Log.d("Chloe", "Email: " + userEmail + " Password: " + password);
-                    ApiJobManager.getInstance().getRegister(userEmail, password, new PostRegisterLoginCallBack() {
+                    ApiJobManager.getInstance().getRegister(userName, userEmail, password, new PostRegisterLoginCallBack() {
                         @Override
                         public void onCompleted(String token) {
                             Intent intent = new Intent(RegisterActivity.this, JeevaActivity.class);

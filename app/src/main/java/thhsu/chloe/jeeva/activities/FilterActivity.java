@@ -1,18 +1,12 @@
 package thhsu.chloe.jeeva.activities;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -21,17 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import thhsu.chloe.jeeva.BasePresenter;
 import thhsu.chloe.jeeva.Filter.FilterContract;
 //import thhsu.chloe.jeeva.Filter.FilterFragment;
 import thhsu.chloe.jeeva.Home.HomeContract;
 import thhsu.chloe.jeeva.Home.HomeFragment;
-import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.ApiJobManager;
@@ -49,7 +40,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     private HomeContract.Presenter mHomePresenter;
 
     public CheckBox mFrontend, mBackend, mFullStack, mWebD,
-            mUiUxD, mProductM, mProjectM, mFullTime,
+            mUiUxD, mProductManager, mProjectManager, mFullTime,
             mPartTime, mContract, mPermanent, mIntern, mRemote;
     public Button mSavedBtn;
     public ImageButton mFilterBackBtn;
@@ -86,8 +77,8 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mFullStack = (CheckBox) findViewById(R.id.filter_checkbox_fullstack);
         mWebD = (CheckBox) findViewById(R.id.filter_checkbox_web_designer);
         mUiUxD = (CheckBox) findViewById(R.id.filter_checkbox_uiux_designer);
-        mProductM = (CheckBox) findViewById(R.id.filter_checkbox_product_m);
-        mProjectM = (CheckBox) findViewById(R.id.filter_checkbox_project_m);
+        mProductManager = (CheckBox) findViewById(R.id.filter_checkbox_product_m);
+        mProjectManager = (CheckBox) findViewById(R.id.filter_checkbox_project_m);
         mFullTime = (CheckBox) findViewById(R.id.filter_checkbox_fulltime);
         mPartTime = (CheckBox) findViewById(R.id.filter_checkbox_parttime);
         mContract = (CheckBox) findViewById(R.id.filter_checkbox_contract);
@@ -99,23 +90,39 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mFilterTypeTitle = (TextView) findViewById(R.id.filter_type_title);
         mToolbar = (Toolbar) findViewById(R.id.filter_toolbar);
         mFilterBackBtn = (ImageButton) mToolbar.findViewById(R.id.filter_tool_bar_back_btn);
+        sharedPreferences = this.getSharedPreferences(Constants.FILTER_STATUS, MODE_PRIVATE);
 
         mFrontend.setOnCheckedChangeListener(this);
+        mFrontend.setChecked(getPreferences(Constants.FILTER_FRONTEND));
+        Log.d("Chloe", "mFrontend: getSP: " + getPreferences(Constants.FILTER_FRONTEND));
         mBackend.setOnCheckedChangeListener(this);
+        mBackend.setChecked(getPreferences(Constants.FILTER_BACKEND));
+        Log.d("Chloe", "mBackend getSP: " + getPreferences(Constants.FILTER_BACKEND));
         mFullStack.setOnCheckedChangeListener(this);
+        mFullStack.setChecked(getPreferences(Constants.FILTER_FULLSTACK));
+        Log.d("Chloe", "mFullstack getSP: " + getPreferences(Constants.FILTER_FULLSTACK));
         mWebD.setOnCheckedChangeListener(this);
+        mWebD.setChecked(getPreferences(Constants.FILTER_WEBDESIGNER));
         mUiUxD.setOnCheckedChangeListener(this);
-        mProductM.setOnCheckedChangeListener(this);
-        mProjectM.setOnCheckedChangeListener(this);
+        mUiUxD.setChecked(getPreferences(Constants.FILTER_UIUXDESIGNER));
+        mProductManager.setOnCheckedChangeListener(this);
+        mProductManager.setChecked(getPreferences(Constants.FILTER_PRODUCTMANAGER));
+        mProjectManager.setOnCheckedChangeListener(this);
+        mProjectManager.setChecked(getPreferences(Constants.FILTER_PROJECTMANAGER));
         mFullTime.setOnCheckedChangeListener(this);
+        mFullTime.setChecked(getPreferences(Constants.FILTER_FULLTIME));
         mPartTime.setOnCheckedChangeListener(this);
+        mPartTime.setChecked(getPreferences(Constants.FILTER_PARTTIME));
         mContract.setOnCheckedChangeListener(this);
+        mContract.setChecked(getPreferences(Constants.FILTER_CONTRACT));
         mPermanent.setOnCheckedChangeListener(this);
+        mPermanent.setChecked(getPreferences(Constants.FILTER_PERMANENT));
         mIntern.setOnCheckedChangeListener(this);
+        mIntern.setChecked(getPreferences(Constants.FILTER_INTERNSHIP));
         mRemote.setOnCheckedChangeListener(this);
+        mRemote.setChecked(getPreferences(Constants.FILTER_REMOTE));
         mSavedBtn.setOnClickListener(this);
         mFilterBackBtn.setOnClickListener(this);
-
     }
 
     @Override
@@ -123,13 +130,16 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mPresenter = presenter;
     }
 
-    //If user checked the box, Add key and value into HashMap
-
     private void savePreferences(String key, Boolean value){
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key, value);
-        editor.commit();
+       sharedPreferences.edit().putBoolean(key, value).apply();
+    }
+
+    private void removeFromPreferences(String key){
+        sharedPreferences.edit().remove(key).apply();
+    }
+
+    private boolean getPreferences(String key){
+        return sharedPreferences.getBoolean(key, false);
     }
 
     @Override
@@ -139,91 +149,121 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         if(mFrontend.isChecked()){
             tagListSet.add("frontend");
             checkedResult += "\n  Frontend Checked!";
+            savePreferences(Constants.FILTER_FRONTEND, isChecked);
+            Log.d("Chloe", "mFrontend is checked? " + mFrontend.isChecked());
+
         }else{
             tagListSet.remove("frontend");
+//            removeFromPreferences(Constants.FILTER_FRONTEND);
         }
 
         if(mBackend.isChecked()){
             tagListSet.add("backend");
             checkedResult += "\n  Backend Checked!";
+            savePreferences(Constants.FILTER_BACKEND, isChecked);
+            Log.d("Chloe", "mBackend is checked? " + mBackend.isChecked());
         }else{
             tagListSet.remove("backend");
+//            removeFromPreferences(Constants.FILTER_BACKEND);
         }
 
         if(mFullStack.isChecked()){
             tagListSet.add("fullstack");
             checkedResult += "\n  FullStack Checked!";
+            savePreferences(Constants.FILTER_FULLSTACK, isChecked);
+            Log.d("Chloe", "mFullStack is checked? " + mFullStack.isChecked());
         }else{
             tagListSet.remove("fullstack");
+//            removeFromPreferences(Constants.FILTER_FULLSTACK);
         }
 
-        if(mProductM.isChecked()){
+        if(mProductManager.isChecked()){
             tagListSet.add("product_manager");
             checkedResult += "\n  Product manager Checked!";
+            savePreferences(Constants.FILTER_PRODUCTMANAGER, isChecked);
         }else{
             tagListSet.remove("product_manager");
+//            removeFromPreferences(Constants.FILTER_PRODUCTMANAGER);
         }
 
-        if(mProjectM.isChecked()){
+        if(mProjectManager.isChecked()){
             tagListSet.add("project_manager");
             checkedResult += "\n  Project Manager Checked!";
+            savePreferences(Constants.FILTER_PROJECTMANAGER, isChecked);
         }else{
             tagListSet.remove("project_manager");
+//            removeFromPreferences(Constants.FILTER_PROJECTMANAGER);
         }
 
         if(mWebD.isChecked()){
             tagListSet.add("web_designer");
             checkedResult += "\n  Web designer Checked!";
+            savePreferences(Constants.FILTER_WEBDESIGNER, isChecked);
         }else{
             tagListSet.remove("web_designer");
+//            removeFromPreferences(Constants.FILTER_WEBDESIGNER);
         }
         if(mUiUxD.isChecked()){
             tagListSet.add("uiux_designer");
             checkedResult += "\n  UIUX Checked!";
+            savePreferences(Constants.FILTER_UIUXDESIGNER, isChecked);
         }else{
             tagListSet.remove("uiux_designer");
+//            removeFromPreferences(Constants.FILTER_UIUXDESIGNER);
         }
 
         if(mFullTime.isChecked()){
             tagListSet.add("fulltime");
             checkedResult += "\n  FullTime Checked!";
+            savePreferences(Constants.FILTER_FULLTIME, isChecked);
         }else{
             tagListSet.remove("fulltime");
+//            removeFromPreferences(Constants.FILTER_FULLTIME);
         }
 
         if(mPartTime.isChecked()){
             tagListSet.add("parttime");
             checkedResult += "\n  Part time Checked!";
+            savePreferences(Constants.FILTER_PARTTIME, isChecked);
         }else{
             tagListSet.remove("parttime");
+//            removeFromPreferences(Constants.FILTER_PARTTIME);
         }
 
         if(mContract.isChecked()){
             tagListSet.add("contract");
             checkedResult += "\n  Contract Checked!";
+            savePreferences(Constants.FILTER_CONTRACT, isChecked);
         }else{
             tagListSet.remove("contract");
+//            removeFromPreferences(Constants.FILTER_CONTRACT);
         }
 
         if(mPermanent.isChecked()){
             tagListSet.add("permanent");
             checkedResult += "\n  Permanent Checked!";
+            savePreferences(Constants.FILTER_PERMANENT, isChecked);
         }else{
             tagListSet.remove("permanent");
+//            removeFromPreferences(Constants.FILTER_PERMANENT);
         }
 
         if(mIntern.isChecked()){
             tagListSet.add("intern");
             checkedResult += "\n  Intern Checked!";
+            savePreferences(Constants.FILTER_INTERNSHIP, isChecked);
         }else{
             tagListSet.remove("intern");
+//            removeFromPreferences(Constants.FILTER_INTERNSHIP);
         }
 
         if(mRemote.isChecked()){
             tagListSet.add("remote");
             checkedResult += "\n  Remote Checked!";
+            savePreferences(Constants.FILTER_REMOTE, isChecked);
         }else{
             tagListSet.remove("remote");
+//            removeFromPreferences(Constants.FILTER_REMOTE);
         }
 
         tagListResult = new ArrayList<>(tagListSet);
@@ -238,67 +278,36 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.filter_save_btn:
-                bundle = new Bundle();
-                ApiJobManager.getInstance().getFilterJobs(tags, new GetFilterJobsCallBack() {
-                    @Override
-                    public void onCompleted(ArrayList<Jobs> jobs) {
-                        mJobs = jobs;
-                        if(jobs.size() > 0){
-                            bundle.putSerializable("filterResult", jobs);
-                            Intent filterResult = new Intent();
-                            filterResult.putExtras(bundle);
-                            setResult(Constants.RESULT_SUCCESS, filterResult );  //set the result. Intent the data back to startActivityForResult;
-                            Log.d("Chloe", "jobs in filter result: " + bundle);
-                            finish();
-                        }
-
-                    }
-                    @Override
-                    public void onError(String errorMessage) {
-                    }
-                });
-
-            break;  //Dont forget to write break in Switch!! Otherwise the code gonna continue running to next case
+                Log.d("Chloe", "In onclick scope");
+                sentResult(tags);
+                break;  //Dont forget to write break in Switch!! Otherwise the code gonna continue running to next case
             case R.id.filter_tool_bar_back_btn:
                 super.onBackPressed();
                 break;
         }
-
     }
 
+    private void sentResult(String tags){
+        bundle = new Bundle();
+        Log.d("Chloe", "Where is tags? " + tags);
+        ApiJobManager.getInstance().getFilterJobs(tags, new GetFilterJobsCallBack() {
+            @Override
+            public void onCompleted(ArrayList<Jobs> jobs) {
+                mJobs = jobs;
+                if(jobs.size() >= 0){
+                    Log.d("Chloe", "Success!");
+                    bundle.putSerializable("filterResult", jobs);
+                    Intent filterResult = new Intent();
+                    filterResult.putExtras(bundle);
+                    setResult(Constants.RESULT_SUCCESS, filterResult );  //set the result. Intent the data back to startActivityForResult;
+                    Log.d("Chloe", "jobs in filter result: " + bundle);
+                    finish();
+                }
+
+            }
+            @Override
+            public void onError(String errorMessage) {
+            }
+        });
+    }
 }
-
-
-
-
-
-
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mFrontend.getId()), mFrontend.isChecked());
-//        checkedResult += "\n  Frontend Checked!";
-////            savePreferences(mFrontend.getText().toString(),mFrontend.isChecked());
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mBackend.getId()), mBackend.isChecked());
-//            checkedResult += "\n  Backend Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mFullStack.getId()), mFullStack.isChecked());
-//
-//
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mUiUxD.getId()), mUiUxD.isChecked());
-//            checkedResult += "\n  UiUxD Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mWebD.getId()), mWebD.isChecked());
-//            checkedResult += "\n  mWebD Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mProductM.getId()), mProductM.isChecked());
-//            checkedResult += "\n  ProductM Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mProjectM.getId()), mProjectM.isChecked());
-//            checkedResult += "\n  ProjectM Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mFullTime.getId()), mFullTime.isChecked());
-//            checkedResult += "\n  FullTime Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mPartTime.getId()), mPartTime.isChecked());
-//            checkedResult += "\n  PartTime Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mPermanent.getId()), mPermanent.isChecked());
-//
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mContract.getId()), mContract.isChecked());
-//
-//            checkedResult += "\n  Contract Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mIntern.getId()), mIntern.isChecked());
-//            checkedResult += "\n  Intern Chcecked!";
-//            filterResultTest.put(getApplicationContext().getResources().getResourceEntryName(mRemote.getId()), mRemote.isChecked());
-//            checkedResult += "\n  Remote Chcecked!";

@@ -14,7 +14,7 @@ import thhsu.chloe.jeeva.api.model.Jobs;
 public class SavedJobsPresenter implements SavedJobContract.Presenter{
 
     private SavedJobContract.View mSavedJobView;
-
+    ArrayList<Jobs> mJobs;
     public SavedJobsPresenter(SavedJobContract.View savedJobView){
         mSavedJobView = savedJobView;
         if(savedJobView != null){
@@ -43,6 +43,7 @@ public class SavedJobsPresenter implements SavedJobContract.Presenter{
             @Override
             public void onCompleted(ArrayList<Jobs> jobs) {
                 showJobs(jobs);
+
             }
         }).execute();
     }
@@ -57,4 +58,9 @@ public class SavedJobsPresenter implements SavedJobContract.Presenter{
         loadJobs();
         Jeeva.getJeevaSQLHelper().setSavedJobsChanged(false);
     }
+
+//    @Override
+//    public void updateSavedJob(Jobs jobs, boolean isSaved) {
+//        Jeeva.getJeevaSQLHelper().updateSavedJobs(mJobs, isSaved);
+//    }
 }

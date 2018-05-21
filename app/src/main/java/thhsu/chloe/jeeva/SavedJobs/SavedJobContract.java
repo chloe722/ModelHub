@@ -33,6 +33,8 @@ public interface SavedJobContract {
         void openJobDetails(Jobs job);
 
         void refreshJobs();
+
+//        void updateSavedJob(Jobs jobs, boolean isSaved);
     }
 
 }

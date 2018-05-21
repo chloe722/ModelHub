@@ -20,6 +20,8 @@ import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.Constants;
 import thhsu.chloe.jeeva.api.ApiJobManager;
+import thhsu.chloe.jeeva.api.ApiManager;
+import thhsu.chloe.jeeva.api.GetUserInfoCallBack;
 import thhsu.chloe.jeeva.api.PostUserInfoCallBack;
 import thhsu.chloe.jeeva.api.model.UpdataUserRequest;
 import thhsu.chloe.jeeva.api.model.User;
@@ -38,7 +40,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     String fullName, number, email, jobTitle, userLocationCountry, userLocationCity,userLocation, userEmail, userToken;
     Bundle bundle;
     SharedPreferences sharedPreferences;
-    User user;
+    private User mUser = new User();
 
     public AboutMeStepOneFragment() {}
 
@@ -68,8 +70,35 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         areFieldsEdiable();
         sharedPreferences = Jeeva.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
-//        readUserData();
+
+
+        ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
+            @Override
+            public void onCompleted(User user) {
+                mUser = user;
+                mFullName.setText(mUser.getName());
+                mEmail.setText(mUser.getEmail());
+                mPhone.setText(mUser.getPhoneNumber());
+                mLocationCity.setText(mUser.getCity());
+                mLocationCountry.setText(mUser.getCountry());
+
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                mFullName.setText("");
+                mEmail.setText("");
+                mPhone.setText("");
+                mLocationCity.setText("");
+                mLocationCountry.setText("");
+            }
+        });
+
+
     }
+//        readUserData();
+
+
 
     private boolean validateData() {
         boolean result = true;
