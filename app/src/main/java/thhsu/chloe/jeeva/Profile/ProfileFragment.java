@@ -8,11 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,6 +41,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
@@ -187,19 +191,29 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if(requestCode == Constants.PICK_IMAGE_REQUEST){
             if(resultCode == Activity.RESULT_OK){
-                mImageUri = data.getData();
-                performCrop(mImageUri);
+//                mImageUri = data.getData();
+                Log.d("Chloe", "image uri: " + mImageUri);
+                Log.d("Chloe", "data.getdata:" + data.getData());
+                String path = getRealPathFromURI(data.getData());
+                Log.d("Chloe", "path: " + path);
+                File imageFile = new File(path);
+//                imageFile.getAbsolutePath();
+                    Log.d("Chloe", "imageFile: " + imageFile);
+                    Log.d("Chloe", "imageFile: " + imageFile.getAbsolutePath());
+
+                Log.d("Chloe", "other image uri: " + mImageUri);
+                performCrop(mImageUri, FileProvider.getUriForFile(getContext(),"thhsu.chloe.jeeva.fileprovider", imageFile));
             }
         }
         else if (requestCode == Constants.CROP_IMAGE) {
             if(!mImageUri.equals("")){
-                try {
-                    Bitmap croppedImageFromGalleryBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mImageUri);
-                    Uri croppedImageFromGalleryUri = getImageUri(getContext(), croppedImageFromGalleryBitmap);
-                    Picasso.get().load(croppedImageFromGalleryUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Bitmap croppedImageFromGalleryBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mImageUri);
+//                    Uri croppedImageFromGalleryUri = getImageUri(getContext(), croppedImageFromGalleryBitmap);
+                    Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
         }
     }
@@ -208,6 +222,70 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Image", null);
         return Uri.parse(path);
     }
+
+    public String getRealPathFromURI(Uri uri){
+        final String docId = DocumentsContract.getDocumentId(uri);
+        final String[] split = docId.split(":");
+        final String type = split[0];
+
+        Uri contentUri = null;
+        if ("image".equals(type)) {
+            contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        } else if ("video".equals(type)) {
+            contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        } else if ("audio".equals(type)) {
+            contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        }
+
+        final String selection = "_id=?";
+        final String[] selectionArgs = new String[]{
+                split[1]
+        };
+
+        return getDataColumn(getContext(), contentUri, selection, selectionArgs);
+    }
+
+
+
+
+    public static String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+
+
+//    public String getRealPathFromURI(Uri contentUri) {
+//        Cursor cursor = null;
+//        try {
+//            String[] proj = { MediaStore.Images.Media.DATA };
+//            cursor = getActivity().getContentResolver().query(contentUri,  proj, null, null, null);
+//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//            cursor.moveToFirst();
+//            return cursor.getString(column_index);
+//        } finally {
+//            if (cursor != null) {
+//                cursor.close();
+//            }
+//        }
+//    }
 
 
     public void takePhoto() {
@@ -230,7 +308,20 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     public void pickImage(){
         Intent intentPhotoPicker = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intentPhotoPicker.setType("image/*");
-        startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
+        if(intentPhotoPicker.resolveActivity(getActivity().getPackageManager())!= null){
+            File imageFile = null;
+            try {
+                imageFile = createImageFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(imageFile != null){
+                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.jeeva.fileprovider", imageFile); //mImageCameraTempUri
+
+//                intentPhotoPicker.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+                startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
+            }
+        }
     }
 
     private void performCrop(Uri uri) {
@@ -253,6 +344,35 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             toast.show();
         }
     }
+
+    private void performCrop(Uri uri, Uri galleryUri) {
+        try {
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            cropIntent.setDataAndType(galleryUri, "image/*");
+            cropIntent.putExtra("crop", "true");
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);
+            cropIntent.putExtra("return-data", false);
+            cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+            List<ResolveInfo> resInfoList= getActivity().getPackageManager().queryIntentActivities(cropIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                getContext().grantUriPermission(packageName, uri,
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            }
+//            getContext().grantUriPermission("thhsu.chloe.jeeva", uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            cropIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION); //For android 8.0 and after
+            startActivityForResult(cropIntent, Constants.CROP_IMAGE);
+        }
+        catch (ActivityNotFoundException anfe) {
+            Toast toast = Toast
+                    .makeText(getActivity(), "This device doesn't support the crop action!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
 
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
