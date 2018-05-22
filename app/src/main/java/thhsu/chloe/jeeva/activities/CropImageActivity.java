@@ -1,7 +1,7 @@
 package thhsu.chloe.jeeva.activities;
 
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+//import com.theartofdev.edmodo.cropper.CropImage;
+//import com.theartofdev.edmodo.cropper.CropImageView;
 
 /**
  * Created by Chloe on 5/12/2018.

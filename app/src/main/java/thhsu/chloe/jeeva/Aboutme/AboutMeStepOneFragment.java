@@ -98,8 +98,6 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     }
 //        readUserData();
 
-
-
     private boolean validateData() {
         boolean result = true;
         String name = mFullName.getText().toString();

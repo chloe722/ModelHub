@@ -1,9 +1,13 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -20,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //import thhsu.chloe.jeeva.Filter.FilterFragment;
+
+import java.io.File;
 
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
@@ -174,7 +180,12 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
         if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
             mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
-        }else{
+        }
+//        else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST && resultCode == Activity.RESULT_OK){
+//
+////            mPresenter.result(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, photo);
+//        }
+        else{
             init();
         }
     }

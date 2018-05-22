@@ -19,7 +19,7 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 
 import thhsu.chloe.jeeva.Home.HomeContract;
-import thhsu.chloe.jeeva.Profile.ProfileFragment;
+//import thhsu.chloe.jeeva.Profile.ProfileFragment;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
 import thhsu.chloe.jeeva.activities.JeevaActivity;

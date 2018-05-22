@@ -1,6 +1,7 @@
 package thhsu.chloe.jeeva;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -22,6 +23,7 @@ import thhsu.chloe.jeeva.Home.HomePresenter;
 import thhsu.chloe.jeeva.JobDetails.JobDetailsFragment;
 import thhsu.chloe.jeeva.JobDetails.JobDetailsPresenter;
 import thhsu.chloe.jeeva.Profile.ProfileFragment;
+//import thhsu.chloe.jeeva.Profile.ProfileFragmentTesting;
 import thhsu.chloe.jeeva.Profile.ProfilePresenter;
 import thhsu.chloe.jeeva.SavedJobs.SavedJobsFragment;
 import thhsu.chloe.jeeva.SavedJobs.SavedJobsPresenter;
@@ -92,6 +94,9 @@ public class JeevaPresenter implements JeevaContract.Presenter {
             Log.d("Chloe", "filter bundle: " + jobs.size());
             mHomePresenter.updateJobs(jobs);
         }
+//        else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST){
+//            mProfileFragment.onActivityResult(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, data);
+//        }
 
     }
 
@@ -162,7 +167,7 @@ public class JeevaPresenter implements JeevaContract.Presenter {
         transaction.commit();
 
         if(mProfilePresenter == null){
-            mProfilePresenter = new ProfilePresenter(mProfileFragment);
+            mProfilePresenter = new ProfilePresenter(mProfileFragment, mActivity);
         }
         mJeevaContractView.showProfileUi();
     }
