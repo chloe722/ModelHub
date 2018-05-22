@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <com.makeramen.roundedimageview.RoundedImageView
+
+    <ImageView
         android:id="@+id/profile_user_photo"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -14,15 +15,11 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
         android:scaleType="fitCenter"
-        app:riv_corner_radius="10dip"
-        app:riv_border_width="2dip"
-        app:riv_mutate_background="true"
-        app:riv_oval="true"
-        app:riv_border_color="@color/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/all_placeholder_avatar" />
+        app:srcCompat="@drawable/all_placeholder_avatar" />
+
 
     <TextView
         android:id="@+id/profile_user_name"
@@ -117,6 +114,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line"
         app:layout_constraintVertical_bias="0.0">
+
+
 
         <Button
             android:id="@+id/about_page_about_jeeva_btn"
