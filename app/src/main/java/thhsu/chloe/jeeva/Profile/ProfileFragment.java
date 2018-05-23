@@ -132,26 +132,40 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     mUserName.setText(userName);
                     mUserEmail.setText(userEmail);
                     userLocationCountry = mUser.getCountry();
-                    userLocation = userLocationCity + ", " + userLocationCountry;
+                    userLocation = (userLocationCity != null ? userLocationCity + ",  " : "") + userLocationCountry != null ?userLocationCity : "";
                     mUserLocation.setText(userLocation);
                     mUserJobTitle.setText(userJobTitle);
+//                    mUserFacebook.setVisibility(View.GONE);
+//                    mUserGithub.setVisibility(View.GONE);
+//                    mUserLinkedin.setVisibility(View.GONE);
                     if(mUserJobTitle.equals("") ||  mUserJobTitle.equals(null)){
                         mUserJobTitle.setVisibility(View.GONE);
                     }else if(mUserLocation.equals("") || mUserLocation.equals(null)){
                         mUserLocation.setVisibility(View.GONE);
                     }
 
-                    if(mUser.getFacebookAccount().equals("") || mUser.getFacebookAccount().equals(null)){
+//                    if(!userFacebookUsername.equals("")){
+//                        mUserFacebook.setImageResource(R.drawable.facebook_box_blue);
+//                    }
+//
+//                    if(!userGithubUsername.equals("")){
+//                        mUserGithub.setImageResource(R.drawable.github_circle_black);
+//                    }
+//
+//                    if(!userLinkedinUsername.equals("")){
+//                        mUserLinkedin.setImageResource(R.drawable.linkedin_box_blue);
+//                    }
+                    if( userFacebookUsername == null||userFacebookUsername.equals("")){
                         mUserLinkedin.setVisibility(View.GONE);
                     }{
                         mUserFacebook.setImageResource(R.drawable.facebook_box_blue);
                     }
-                    if(mUser.getGithubAccount().equals("") || mUser.getGithubAccount().equals(null)){
+                    if( userGithubUsername == null || userGithubUsername.equals("") ){
                         mUserGithub.setVisibility(View.GONE);
                     }else{
                         mUserGithub.setImageResource(R.drawable.github_circle_black);
                     }
-                    if(mUser.getLinkedinAccount().equals("") || mUser.getLinkedinAccount().equals(null)){
+                    if( userLinkedinUsername == null || userLinkedinUsername.equals("")){
                         mUserLinkedin.setVisibility(View.GONE);
 
                     }else{
