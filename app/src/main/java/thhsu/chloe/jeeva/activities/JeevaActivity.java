@@ -243,7 +243,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     @Override
     public void showSavedJobUi() {
-        setToolbarTitle("");
+        setToolbarTitle("Bookmark");
         isFilterInHome = false;
 //        hideFilter();
     }

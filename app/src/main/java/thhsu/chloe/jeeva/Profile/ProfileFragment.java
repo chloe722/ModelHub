@@ -140,14 +140,23 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     }else if(mUserLocation.equals("") || mUserLocation.equals(null)){
                         mUserLocation.setVisibility(View.GONE);
                     }
-                    if(!mUser.getFacebookAccount().equals("")){
+
+                    if(mUser.getFacebookAccount().equals("") || mUser.getFacebookAccount().equals(null)){
+                        mUserLinkedin.setVisibility(View.GONE);
+                    }{
                         mUserFacebook.setImageResource(R.drawable.facebook_box_blue);
                     }
-                    if(!mUser.getGithubAccount().equals("")){
+                    if(mUser.getGithubAccount().equals("") || mUser.getGithubAccount().equals(null)){
+                        mUserGithub.setVisibility(View.GONE);
+                    }else{
                         mUserGithub.setImageResource(R.drawable.github_circle_black);
                     }
-                    if(!mUser.getLinkedinAccount().equals("")){
+                    if(mUser.getLinkedinAccount().equals("") || mUser.getLinkedinAccount().equals(null)){
+                        mUserLinkedin.setVisibility(View.GONE);
+
+                    }else{
                         mUserLinkedin.setImageResource(R.drawable.linkedin_box_blue);
+
                     }
                 }
                 @Override
