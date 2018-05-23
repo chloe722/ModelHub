@@ -9,11 +9,11 @@
 
     <ImageView
         android:id="@+id/profile_user_photo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/textcolor"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,6 @@
         tools:text="emilyWang23@gmail.com" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/profile_user_job_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,22 +84,24 @@
         android:id="@+id/profile_camera_btn"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginEnd="175dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/ic_camera_alt_black_24dp"
         android:text="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toEndOf="@+id/profile_user_photo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/profile_user_photo" />
 
     <ImageView
         android:id="@+id/imageview_hr_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="260dp"
         android:background="@color/colorFilterContentTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profile_user_photo" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -168,6 +169,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_two" />
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/profile_user_github"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        app:layout_constraintEnd_toStartOf="@+id/profile_user_linkedin"
+        app:layout_constraintStart_toEndOf="@+id/profile_user_facebook"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_location"
+        app:srcCompat="@drawable/github_circle" />
+
+    <ImageButton
+        android:id="@+id/profile_user_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
+        app:layout_constraintTop_toTopOf="@+id/profile_user_github"
+        app:srcCompat="@drawable/facebook_box" />
+
+    <ImageButton
+        android:id="@+id/profile_user_linkedin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="@+id/profile_user_photo"
+        app:layout_constraintTop_toTopOf="@+id/profile_user_github"
+        app:srcCompat="@drawable/linkedin_box" />
 
 
 </android.support.constraint.ConstraintLayout>

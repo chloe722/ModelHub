@@ -63,6 +63,8 @@ public class SavedJobsAdapter extends RecyclerView.Adapter<SavedJobsAdapter.Save
             } else if (mJobs.get(position).getType().equals("intern")) {
                 (holder.getSavedJobTypeTag()).setText("Intern");
             }
+
+
             if (mJobs.get(position).getUrgent()) {
                 (holder.mSavedJobClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
                 (holder.getSavedJobUrgentOrNotText()).setText("Urgent");

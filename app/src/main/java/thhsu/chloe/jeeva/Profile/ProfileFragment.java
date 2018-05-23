@@ -22,26 +22,21 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-//import com.theartofdev.edmodo.cropper.CropImage;
-//import com.theartofdev.edmodo.cropper.CropImageView;
-
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -55,8 +50,6 @@ import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
 import thhsu.chloe.jeeva.Utils.Constants;
-//import thhsu.chloe.jeeva.activities.JeevaActivityPermissionsDispatcher;
-import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.ApiJobManager;
 import thhsu.chloe.jeeva.api.GetUserInfoCallBack;
 import thhsu.chloe.jeeva.api.model.User;
@@ -70,6 +63,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
     ProfileContract.Presenter mPresenter;
     Button mEditInfoBtn, mCameraBtn;
+    private ImageButton mUserFacebook, mUserGithub, mUserLinkedin;
     TextView mUserName, mUserEmail, mUserNumber, mUserJobTitle, mUserLocation;
     ImageView mUserPhotoView;
     private Uri mImageUri;
@@ -79,6 +73,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     SharedPreferences sharedPreferences;
     private User mUser = new User();
     private String mCurrentPhotoPath;
+    boolean isIconActivate = false;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -97,6 +92,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mUserEmail = (TextView) root.findViewById(R.id.profile_user_email);
         mUserJobTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
+        mUserFacebook = (ImageButton) root.findViewById(R.id.profile_user_facebook);
+        mUserGithub = (ImageButton) root.findViewById(R.id.profile_user_github);
+        mUserLinkedin = (ImageButton) root.findViewById(R.id.profile_user_linkedin);
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
         mBottomSheetDialog.setContentView(sheetView);
@@ -105,6 +103,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
+        mUserFacebook.setOnClickListener(this);
+        mUserGithub.setOnClickListener(this);
+        mUserLinkedin.setOnClickListener(this);
 
         if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
             userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
@@ -124,20 +125,33 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     userName = mUser.getName();
                     userLocationCity = mUser.getCity();
                     userEmail = mUser.getEmail();
+                    userJobTitle = mUser.getJobTitle();
+                    userFacebookUsername = mUser.getFacebookAccount();
+                    userGithubUsername = mUser.getGithubAccount();
+                    userLinkedinUsername = mUser.getLinkedinAccount();
                     mUserName.setText(userName);
                     mUserEmail.setText(userEmail);
                     userLocationCountry = mUser.getCountry();
                     userLocation = userLocationCity + ", " + userLocationCountry;
                     mUserLocation.setText(userLocation);
+                    mUserJobTitle.setText(userJobTitle);
                     if(mUserJobTitle.equals("") ||  mUserJobTitle.equals(null)){
                         mUserJobTitle.setVisibility(View.GONE);
                     }else if(mUserLocation.equals("") || mUserLocation.equals(null)){
                         mUserLocation.setVisibility(View.GONE);
                     }
+                    if(!mUser.getFacebookAccount().equals("")){
+                        mUserFacebook.setImageResource(R.drawable.facebook_box_blue);
+                    }
+                    if(!mUser.getGithubAccount().equals("")){
+                        mUserGithub.setImageResource(R.drawable.github_circle_black);
+                    }
+                    if(!mUser.getLinkedinAccount().equals("")){
+                        mUserLinkedin.setImageResource(R.drawable.linkedin_box_blue);
+                    }
                 }
                 @Override
                 public void onError(String errorMessage) {
-                    mUserLocation.setText("");
                 }
             });
         }
@@ -176,6 +190,29 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             case R.id.fragment_profile_gallery:
                 mBottomSheetDialog.hide();
                 pickImage();
+                break;
+            case R.id.profile_user_facebook:
+                isIconActivate = true;
+                String url = Constants.FACEBOOK_URL + "houhou.xu";
+                Intent intentToFacebook = new Intent(Intent.ACTION_VIEW);
+                intentToFacebook.setData(Uri.parse(url));
+                startActivity(intentToFacebook);
+                break;
+
+            case R.id.profile_user_github:
+                isIconActivate = true;
+                String githubUrl = Constants.GITHUB_URL + "chloe722";
+                Intent intentToGithub = new Intent(Intent.ACTION_VIEW);
+                intentToGithub.setData(Uri.parse(githubUrl));
+                startActivity(intentToGithub);
+                break;
+
+            case R.id.profile_user_linkedin:
+                isIconActivate = true;
+                String linkedinUrl = Constants.LINKEDIN_URL + "skijur/";
+                Intent intenToLinkedin = new Intent(Intent.ACTION_VIEW);
+                intenToLinkedin.setData(Uri.parse(linkedinUrl));
+                startActivity(intenToLinkedin);
                 break;
         }
     }

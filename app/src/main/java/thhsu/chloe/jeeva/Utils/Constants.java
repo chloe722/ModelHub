@@ -6,6 +6,11 @@ package thhsu.chloe.jeeva.Utils;
 
 public class Constants {
 
+
+    public static final String FACEBOOK_URL = "https://www.facebook.com/";
+    public static final String GITHUB_URL = "https://github.com/";
+    public static final String LINKEDIN_URL = "https://www.linkedin.com/in/";
+
     public static final String USER_DATA = "user_data";
     public static final String USER_NAME = "user_name";
     public static final String USER_EMAIL = "user_email";
@@ -19,6 +24,7 @@ public class Constants {
     public static final String USER_FACEBOOK_USERNAME = "user_facbook_username";
     public static final String USER_GITHUB_USERNAME = "user_github_username";
     public static final String USER_LINKEDIN_USERNAME = "user_linkedin_username";
+    public static final String USER_CURRENT_COMPANY = "user_current_company";
 
     public static final String  FILTER_STATUS = "filter_status";
     public static final String FILTER_FRONTEND = "filter_frontend";

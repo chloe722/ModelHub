@@ -133,10 +133,6 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
        sharedPreferences.edit().putBoolean(key, value).apply();
     }
 
-    private void removeFromPreferences(String key){
-        sharedPreferences.edit().remove(key).apply();
-    }
-
     private boolean getPreferences(String key){
         return sharedPreferences.getBoolean(key, false);
     }
@@ -286,7 +282,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         Log.d("Chloe", "Tag list result: " + tagListResult);
         tags = String.join(",", tagListResult);
         Log.d("Chloe", "Tags: " + tags);
-        Toast.makeText(FilterActivity.this, checkedResult, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(FilterActivity.this, checkedResult, Toast.LENGTH_SHORT).show();
     }
 
     @Override
