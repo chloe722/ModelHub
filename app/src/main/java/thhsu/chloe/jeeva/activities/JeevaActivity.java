@@ -1,7 +1,10 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -27,6 +30,12 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
@@ -53,6 +62,8 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private SharedPreferences mSharePref;
     String token;
     private ProgressBar mProgressBar;
+
+
 
 
     @Override

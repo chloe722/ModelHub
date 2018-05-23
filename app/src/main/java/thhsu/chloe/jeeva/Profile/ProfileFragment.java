@@ -2,9 +2,11 @@ package thhsu.chloe.jeeva.Profile;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -43,10 +45,18 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
 import thhsu.chloe.jeeva.Utils.Constants;
+//import thhsu.chloe.jeeva.activities.JeevaActivityPermissionsDispatcher;
+import thhsu.chloe.jeeva.activities.JeevaActivity;
 import thhsu.chloe.jeeva.api.ApiJobManager;
 import thhsu.chloe.jeeva.api.GetUserInfoCallBack;
 import thhsu.chloe.jeeva.api.model.User;
@@ -55,6 +65,7 @@ import thhsu.chloe.jeeva.api.model.User;
  * Created by Chloe on 4/30/2018.
  */
 
+@RuntimePermissions
 public class ProfileFragment extends Fragment implements ProfileContract.View, View.OnClickListener {
 
     ProfileContract.Presenter mPresenter;
@@ -135,13 +146,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 100) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[2] == PackageManager.PERMISSION_GRANTED)  {
-                mCameraBtn.setEnabled(true);
-            }
-        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        ProfileFragmentPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+
     }
 
     @Override
@@ -158,14 +165,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.profile_camera_btn:
-                mBottomSheetDialog.show();
-                if ((ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) ||
-                        (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) ||
-                        (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
-                    mCameraBtn.setEnabled(false);
-                    ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
-                }
+                ProfileFragmentPermissionsDispatcher.requestPermissionsWithPermissionCheck(this);
                 break;
 
             case R.id.fragment_profile_camera:
@@ -191,13 +191,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if(requestCode == Constants.PICK_IMAGE_REQUEST){
             if(resultCode == Activity.RESULT_OK){
-//                mImageUri = data.getData();
                 Log.d("Chloe", "image uri: " + mImageUri);
                 Log.d("Chloe", "data.getdata:" + data.getData());
                 String path = getRealPathFromURI(data.getData());
                 Log.d("Chloe", "path: " + path);
                 File imageFile = new File(path);
-//                imageFile.getAbsolutePath();
                     Log.d("Chloe", "imageFile: " + imageFile);
                     Log.d("Chloe", "imageFile: " + imageFile.getAbsolutePath());
 
@@ -207,13 +205,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if (requestCode == Constants.CROP_IMAGE) {
             if(!mImageUri.equals("")){
-//                try {
-//                    Bitmap croppedImageFromGalleryBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mImageUri);
-//                    Uri croppedImageFromGalleryUri = getImageUri(getContext(), croppedImageFromGalleryBitmap);
-                    Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
             }
         }
     }
@@ -245,9 +237,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         return getDataColumn(getContext(), contentUri, selection, selectionArgs);
     }
 
-
-
-
     public static String getDataColumn(Context context, Uri uri, String selection,
                                        String[] selectionArgs) {
         Cursor cursor = null;
@@ -272,26 +261,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
 
 
-//    public String getRealPathFromURI(Uri contentUri) {
-//        Cursor cursor = null;
-//        try {
-//            String[] proj = { MediaStore.Images.Media.DATA };
-//            cursor = getActivity().getContentResolver().query(contentUri,  proj, null, null, null);
-//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//            cursor.moveToFirst();
-//            return cursor.getString(column_index);
-//        } finally {
-//            if (cursor != null) {
-//                cursor.close();
-//            }
-//        }
-//    }
-
-
     public void takePhoto() {
         Intent takePicIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(takePicIntent.resolveActivity(getActivity().getPackageManager()) != null){
-            File photoFile = null;
+            File photoFile = null; // Create an file
             try {
                 photoFile = createImageFile();
             }catch (IOException ex){
@@ -317,8 +290,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             }
             if(imageFile != null){
                 mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.jeeva.fileprovider", imageFile); //mImageCameraTempUri
-
-//                intentPhotoPicker.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
                 startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
             }
         }
@@ -387,4 +358,42 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         Log.i("Wayne", "mCurrentPhotoPath: " + mCurrentPhotoPath);
         return image;
     }
+
+
+
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void requestPermissions() {
+        mBottomSheetDialog.show();
+    }
+
+    @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onPermissionDenied() {
+        Toast.makeText(getContext(), "You've denied access request", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnNeverAskAgain({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onNeverAskAgain() {
+        Toast.makeText(getContext(), "You need to allow Jeeva access to use camera. Please go to SETTING to allow the access. ", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnShowRationale({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void showRationalForCamera(final PermissionRequest request) {
+        new AlertDialog.Builder(getContext())
+                .setMessage("You need to allow access to Camera and Gallery. ")
+                .setPositiveButton(R.string.button_allow, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.button_deny, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+
 }
