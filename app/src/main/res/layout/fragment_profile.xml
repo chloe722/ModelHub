@@ -51,22 +51,23 @@
         tools:text="emilyWang23@gmail.com" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/profile_user_job_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:textAlignment="center"
         android:textColor="@color/textcolor"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/profile_user_photo"
+        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
         app:layout_constraintTop_toBottomOf="@+id/profile_user_email"
         tools:text="Full Stack Developer" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/profile_user_location"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -75,8 +76,8 @@
         android:layout_marginTop="4dp"
         android:singleLine="true"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/profile_user_job_title"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_job_title"
+        app:layout_constraintEnd_toEndOf="@+id/profile_user_photo"
+        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
         app:layout_constraintTop_toBottomOf="@+id/profile_user_job_title"
         tools:text="Taipei, Taiwan" />
 
@@ -170,36 +171,53 @@
             app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_two" />
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/profile_user_github"
-        android:layout_width="0dp"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@null"
-        app:layout_constraintEnd_toStartOf="@+id/profile_user_linkedin"
-        app:layout_constraintStart_toEndOf="@+id/profile_user_facebook"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_location"
-        app:srcCompat="@drawable/github_circle" />
-
-    <ImageButton
-        android:id="@+id/profile_user_facebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_github"
-        app:srcCompat="@drawable/facebook_box" />
-
-    <ImageButton
-        android:id="@+id/profile_user_linkedin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/profile_user_photo"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_github"
-        app:srcCompat="@drawable/linkedin_box" />
+        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_location">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <ImageButton
+                android:id="@+id/profile_user_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="5dp"
+                app:srcCompat="@drawable/facebook_box_blue" />
+
+            <ImageButton
+                android:id="@+id/profile_user_github"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="5dp"
+                app:srcCompat="@drawable/github_circle_black" />
+
+            <ImageButton
+                android:id="@+id/profile_user_linkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="5dp"
+                app:srcCompat="@drawable/linkedin_box_blue" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 
 </android.support.constraint.ConstraintLayout>
