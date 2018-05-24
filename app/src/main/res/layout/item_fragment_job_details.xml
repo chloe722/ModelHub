@@ -329,7 +329,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <thhsu.chloe.jeeva.Utils.ReplaceSpacingGridLayout
+            <thhsu.chloe.ModelHub.Utils.ReplaceSpacingGridLayout
                 android:id="@+id/job_details_benifit_content_gridlayout_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -680,7 +680,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
-            </thhsu.chloe.jeeva.Utils.ReplaceSpacingGridLayout>
+            </thhsu.chloe.ModelHub.Utils.ReplaceSpacingGridLayout>
 
         </android.support.constraint.ConstraintLayout>
 

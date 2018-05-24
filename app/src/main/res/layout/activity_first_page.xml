@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/jeeva_first_page2"
-    tools:context="thhsu.chloe.jeeva.activities.FirstPageActivity">
+    tools:context="thhsu.chloe.ModelHub.activities.FirstPageActivity">
 
     <TextView
         android:id="@+id/JeevaTitle"

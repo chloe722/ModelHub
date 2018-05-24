@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="thhsu.chloe.jeeva">
+    package="thhsu.chloe.ModelHub">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".Jeeva"
+        android:name="thhsu.chloe.ModelHub.ModelHub"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
 
 
         <activity
-            android:name=".activities.JeevaActivity"
+            android:name="thhsu.chloe.ModelHub.activities.ModelHubActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan">
@@ -41,7 +41,7 @@
         </activity>
 
         <activity
-            android:name=".activities.FirstPageActivity"
+            android:name="thhsu.chloe.ModelHub.activities.FirstPageActivity"
             android:exported="true"
             android:screenOrientation="portrait">
              <intent-filter>
@@ -50,25 +50,25 @@
              </intent-filter>
         </activity>
 
-        <activity android:name=".activities.SignInActivity"
+        <activity android:name="thhsu.chloe.ModelHub.activities.SignInActivity"
             android:exported="true"/>
         <activity
-            android:name=".activities.FilterActivity"
+            android:name="thhsu.chloe.ModelHub.activities.FilterActivity"
             android:exported="true" />
 
         <activity
-            android:name=".activities.AboutMeActivity"
+            android:name="thhsu.chloe.ModelHub.activities.AboutMeActivity"
             android:exported="true" />
 
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name="thhsu.chloe.ModelHub.activities.RegisterActivity"
             android:exported="true" />
 
         <activity
-            android:name=".activities.AboutpageActivity"
+            android:name="thhsu.chloe.ModelHub.activities.AboutpageActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.BaseActivity"
+            android:name="thhsu.chloe.ModelHub.activities.BaseActivity"
             android:exported="true" />
 
         <meta-data
@@ -77,7 +77,7 @@
 
         <provider
         android:name="android.support.v4.content.FileProvider"
-        android:authorities="thhsu.chloe.jeeva.fileprovider"
+        android:authorities="thhsu.chloe.ModelHub.fileprovider"
         android:exported="false"
         android:grantUriPermissions="true">
         <meta-data

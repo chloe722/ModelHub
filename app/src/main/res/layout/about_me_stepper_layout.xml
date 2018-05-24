@@ -70,7 +70,7 @@
         app:stpi_showStepNumberInstead="false"
         app:stpi_showDoneIcon="true"/>
 
-    <thhsu.chloe.jeeva.Aboutme.NonSwipeableViewPager
+    <thhsu.chloe.ModelHub.Aboutme.NonSwipeableViewPager
         android:id="@+id/nonSwapeable_viewpager_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
