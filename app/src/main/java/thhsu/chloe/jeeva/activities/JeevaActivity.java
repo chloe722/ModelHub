@@ -1,7 +1,10 @@
 package thhsu.chloe.jeeva.activities;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -27,6 +30,12 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 import thhsu.chloe.jeeva.JeevaContract;
 import thhsu.chloe.jeeva.JeevaPresenter;
 import thhsu.chloe.jeeva.R;
@@ -55,6 +64,8 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     private ProgressBar mProgressBar;
 
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +76,13 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         setContentView(R.layout.activity_main);
         setBottomNavigationView();
         setToolbar();
+        mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+        token = mSharePref.getString(Constants.USER_TOKEN, "");
         mProgressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
         Log.d("Chloe", "if progressbar loaded?" + mProgressBar);
         mPresenter = new JeevaPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
         mPresenter.start();
-        mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
-        token = mSharePref.getString(Constants.USER_TOKEN, "");
+
     }
 
 
@@ -78,7 +90,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     public boolean onCreateOptionsMenu(Menu menu) {
         jeevaActivity = this;
         int currentItem = mBottomNavigationView.getSelectedItemId();
-//        currentFragment = getFragmentManager().findFragmentById(R.id.main_container_for_fragment);
         MenuInflater inflater = getMenuInflater();
         if(!(token.equals(""))){
             mBottomNavigationView.getMenu().getItem(2).setTitle("Profile");
@@ -167,6 +178,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        clearData();
     }
 
     @Override
@@ -181,10 +193,6 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
             mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
         }
-//        else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST && resultCode == Activity.RESULT_OK){
-//
-////            mPresenter.result(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, photo);
-//        }
         else{
             init();
         }
@@ -227,7 +235,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     @Override
     public void showHomeUi() {
-        setToolbarTitle("Home");
+        setToolbarTitle("");
         isFilterInHome = true;
 //        showFilter();
 
@@ -235,7 +243,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     @Override
     public void showSavedJobUi() {
-        setToolbarTitle("Saved Jobs");
+        setToolbarTitle("Bookmark");
         isFilterInHome = false;
 //        hideFilter();
     }
@@ -249,7 +257,7 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
 
     @Override
     public void showSignInTabPageUi() {
-        setToolbarTitle("Sign Up or Sign In");
+        setToolbarTitle("Join Jeeva!");
         isFilterInHome = false;
 //        hideFilter();
     }
@@ -257,14 +265,14 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
     @Override
     public void showFilterPageUi() {
         invalidateOptionsMenu();
-        setToolbarTitle("Filter");
+        setToolbarTitle("");
         isFilterInHome = false;
 //        hideFilter();
     }
 
     @Override
     public void showJobDetailsUi() {
-        setToolbarTitle("Details");
+        setToolbarTitle("");
     }
 
     @Override
@@ -315,6 +323,24 @@ public class JeevaActivity extends BaseActivity implements JeevaContract.View, B
         this.findViewById(R.id.tool_bar_back_btn).setVisibility(View.GONE);
     }
 
+    private void clearData(){
+        mSharePref.edit()
+                .remove(Constants.FILTER_FRONTEND)
+                .remove(Constants.FILTER_BACKEND)
+                .remove(Constants.FILTER_FULLSTACK)
+                .remove(Constants.FILTER_PROJECTMANAGER)
+                .remove(Constants.FILTER_PRODUCTMANAGER)
+                .remove(Constants.FILTER_WEBDESIGNER)
+                .remove(Constants.FILTER_UIUXDESIGNER)
+                .remove(Constants.FILTER_FULLTIME)
+                .remove(Constants.FILTER_PARTTIME)
+                .remove(Constants.FILTER_PERMANENT)
+                .remove(Constants.FILTER_REMOTE)
+                .remove(Constants.FILTER_CONTRACT)
+                .remove(Constants.FILTER_INTERNSHIP)
+                .apply();
+
+    }
 
 
 }

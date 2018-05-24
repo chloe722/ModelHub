@@ -9,9 +9,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -59,6 +61,13 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
             RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.saved_job_recyclerview);
             recyclerView.setLayoutManager(new LinearLayoutManager(Jeeva.getAppContext()));
             recyclerView.setAdapter(mSavedJobsAdapter);
+            TextView saveJobsText = root.findViewById(R.id.saved_jobs_text);
+
+//            if(mSavedJobsAdapter.getItemCount() == 0){
+//                saveJobsText.setVisibility(View.VISIBLE);
+//            } (mSavedJobsAdapter.getItemCount() > 0){
+//                saveJobsText.setVisibility(View.GONE);
+//            }
 
             return root;
         }

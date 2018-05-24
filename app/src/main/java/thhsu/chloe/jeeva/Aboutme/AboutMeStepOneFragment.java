@@ -37,7 +37,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     TextInputLayout mFullNameLayout;
     TextInputLayout mEmailLayout;
     TextInputLayout mPhoneLayout;
-    String fullName, number, email, jobTitle, userLocationCountry, userLocationCity,userLocation, userEmail, userToken;
+    String fullName, number, email, jobTitle, userLocationCountry, userLocationCity,userLocation, userEmail, userToken, userJobTitle, userCurrentCompany;
     Bundle bundle;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
@@ -81,6 +81,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 mPhone.setText(mUser.getPhoneNumber());
                 mLocationCity.setText(mUser.getCity());
                 mLocationCountry.setText(mUser.getCountry());
+                mJobTitle.setText(mUser.getJobTitle());
+                mCurrentWorkCompany.setText(mUser.getCurrentCompany());
 
             }
 
@@ -91,6 +93,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 mPhone.setText("");
                 mLocationCity.setText("");
                 mLocationCountry.setText("");
+                mJobTitle.setText("");
+                mCurrentWorkCompany.setText("");
             }
         });
 
@@ -155,6 +159,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     userLocationCountry = mLocationCountry.getText().toString();
                     userLocationCity = mLocationCity.getText().toString();
                     userLocation = userLocationCity + ", " + userLocationCountry;
+                    userJobTitle = mJobTitle.getText().toString();
+                    userCurrentCompany = mCurrentWorkCompany.getText().toString();
                     bundle.putString("phone", number);
                     bundle.putString("jobtitle", jobTitle);
                     bundle.putString("locationCityCountry", userLocation);
@@ -164,6 +170,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     request.user.setPhoneNumber(number);
                     request.user.setCity(userLocationCity);
                     request.user.setCountry(userLocationCountry);
+                    request.user.setJobTitle(userJobTitle);
+                    request.user.setCurrentCompany(userCurrentCompany);
                     saveUserData();
 
                     Log.d("Chloe", "user json object:" + request);
@@ -216,6 +224,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 .putString(Constants.USER_LOCATION_COUNTRY, userLocationCountry)
                 .putString(Constants.USER_LOCATION_CITY, userLocationCity)
                 .putString(Constants.USER_LOCATION, userLocation)
+                .putString(Constants.USER_JOB_TITLE, userJobTitle)
+                .putString(Constants.USER_CURRENT_COMPANY, userCurrentCompany)
                 .apply();
     }
 

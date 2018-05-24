@@ -37,15 +37,17 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.android.support:support-v13:27.1.1'
     compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.8'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    implementation('com.github.hotchemi:permissionsdispatcher:2.4.0') {
+    implementation('com.github.hotchemi:permissionsdispatcher:3.1.0') {
         exclude module: "support-v13"
     }
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+
+
 }
 
 configurations.all {

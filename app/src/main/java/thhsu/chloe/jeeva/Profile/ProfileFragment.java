@@ -2,9 +2,11 @@ package thhsu.chloe.jeeva.Profile;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -20,29 +22,30 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-//import com.theartofdev.edmodo.cropper.CropImage;
-//import com.theartofdev.edmodo.cropper.CropImageView;
-
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 import thhsu.chloe.jeeva.Jeeva;
 import thhsu.chloe.jeeva.R;
 import thhsu.chloe.jeeva.Utils.CircleTransform;
@@ -55,10 +58,12 @@ import thhsu.chloe.jeeva.api.model.User;
  * Created by Chloe on 4/30/2018.
  */
 
+@RuntimePermissions
 public class ProfileFragment extends Fragment implements ProfileContract.View, View.OnClickListener {
 
     ProfileContract.Presenter mPresenter;
     Button mEditInfoBtn, mCameraBtn;
+    private ImageButton mUserFacebook, mUserGithub, mUserLinkedin;
     TextView mUserName, mUserEmail, mUserNumber, mUserJobTitle, mUserLocation;
     ImageView mUserPhotoView;
     private Uri mImageUri;
@@ -68,6 +73,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     SharedPreferences sharedPreferences;
     private User mUser = new User();
     private String mCurrentPhotoPath;
+    boolean isIconActivate = false;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -86,6 +92,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mUserEmail = (TextView) root.findViewById(R.id.profile_user_email);
         mUserJobTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
+        mUserFacebook = (ImageButton) root.findViewById(R.id.profile_user_facebook);
+        mUserGithub = (ImageButton) root.findViewById(R.id.profile_user_github);
+        mUserLinkedin = (ImageButton) root.findViewById(R.id.profile_user_linkedin);
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
         mBottomSheetDialog.setContentView(sheetView);
@@ -94,6 +103,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
+        mUserFacebook.setOnClickListener(this);
+        mUserGithub.setOnClickListener(this);
+        mUserLinkedin.setOnClickListener(this);
 
         if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
             userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
@@ -113,20 +125,36 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     userName = mUser.getName();
                     userLocationCity = mUser.getCity();
                     userEmail = mUser.getEmail();
+                    userJobTitle = mUser.getJobTitle();
+                    userFacebookUsername = mUser.getFacebookAccount();
+                    userGithubUsername = mUser.getGithubAccount();
+                    userLinkedinUsername = mUser.getLinkedinAccount();
                     mUserName.setText(userName);
                     mUserEmail.setText(userEmail);
                     userLocationCountry = mUser.getCountry();
-                    userLocation = userLocationCity + ", " + userLocationCountry;
+                    userLocation = (userLocationCity != null ? userLocationCity + ",  " : "") + userLocationCountry != null ?userLocationCity : "";
                     mUserLocation.setText(userLocation);
-                    if(mUserJobTitle.equals("") ||  mUserJobTitle.equals(null)){
-                        mUserJobTitle.setVisibility(View.GONE);
-                    }else if(mUserLocation.equals("") || mUserLocation.equals(null)){
-                        mUserLocation.setVisibility(View.GONE);
+                    mUserJobTitle.setText(userJobTitle);
+
+                    if(!(mUserJobTitle == null || mUserJobTitle.equals(""))){
+                        mUserJobTitle.setVisibility(View.VISIBLE);
+                    }
+
+                    if( !(mUserLocation == null || mUserLocation.equals(""))){
+                        mUserLocation.setVisibility(View.VISIBLE);}
+
+                    if( userFacebookUsername == null||userFacebookUsername.equals("")){
+                        mUserFacebook.setVisibility(View.GONE);
+                    }
+                    if( userGithubUsername == null || userGithubUsername.equals("") ){
+                        mUserGithub.setVisibility(View.GONE);
+                    }
+                    if( userLinkedinUsername == null || userLinkedinUsername.equals("")){
+                        mUserLinkedin.setVisibility(View.GONE);
                     }
                 }
                 @Override
                 public void onError(String errorMessage) {
-                    mUserLocation.setText("");
                 }
             });
         }
@@ -135,13 +163,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 100) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[2] == PackageManager.PERMISSION_GRANTED)  {
-                mCameraBtn.setEnabled(true);
-            }
-        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        ProfileFragmentPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+
     }
 
     @Override
@@ -158,14 +182,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.profile_camera_btn:
-                mBottomSheetDialog.show();
-                if ((ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) ||
-                        (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) ||
-                        (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
-                    mCameraBtn.setEnabled(false);
-                    ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
-                }
+                ProfileFragmentPermissionsDispatcher.requestPermissionsWithPermissionCheck(this);
                 break;
 
             case R.id.fragment_profile_camera:
@@ -176,6 +193,29 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             case R.id.fragment_profile_gallery:
                 mBottomSheetDialog.hide();
                 pickImage();
+                break;
+            case R.id.profile_user_facebook:
+                isIconActivate = true;
+                String url = Constants.FACEBOOK_URL + "houhou.xu";
+                Intent intentToFacebook = new Intent(Intent.ACTION_VIEW);
+                intentToFacebook.setData(Uri.parse(url));
+                startActivity(intentToFacebook);
+                break;
+
+            case R.id.profile_user_github:
+                isIconActivate = true;
+                String githubUrl = Constants.GITHUB_URL + "chloe722";
+                Intent intentToGithub = new Intent(Intent.ACTION_VIEW);
+                intentToGithub.setData(Uri.parse(githubUrl));
+                startActivity(intentToGithub);
+                break;
+
+            case R.id.profile_user_linkedin:
+                isIconActivate = true;
+                String linkedinUrl = Constants.LINKEDIN_URL + "skijur/";
+                Intent intenToLinkedin = new Intent(Intent.ACTION_VIEW);
+                intenToLinkedin.setData(Uri.parse(linkedinUrl));
+                startActivity(intenToLinkedin);
                 break;
         }
     }
@@ -191,13 +231,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if(requestCode == Constants.PICK_IMAGE_REQUEST){
             if(resultCode == Activity.RESULT_OK){
-//                mImageUri = data.getData();
                 Log.d("Chloe", "image uri: " + mImageUri);
                 Log.d("Chloe", "data.getdata:" + data.getData());
                 String path = getRealPathFromURI(data.getData());
                 Log.d("Chloe", "path: " + path);
                 File imageFile = new File(path);
-//                imageFile.getAbsolutePath();
                     Log.d("Chloe", "imageFile: " + imageFile);
                     Log.d("Chloe", "imageFile: " + imageFile.getAbsolutePath());
 
@@ -207,13 +245,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if (requestCode == Constants.CROP_IMAGE) {
             if(!mImageUri.equals("")){
-//                try {
-//                    Bitmap croppedImageFromGalleryBitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), mImageUri);
-//                    Uri croppedImageFromGalleryUri = getImageUri(getContext(), croppedImageFromGalleryBitmap);
-                    Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
             }
         }
     }
@@ -245,9 +277,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         return getDataColumn(getContext(), contentUri, selection, selectionArgs);
     }
 
-
-
-
     public static String getDataColumn(Context context, Uri uri, String selection,
                                        String[] selectionArgs) {
         Cursor cursor = null;
@@ -272,26 +301,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
 
 
-//    public String getRealPathFromURI(Uri contentUri) {
-//        Cursor cursor = null;
-//        try {
-//            String[] proj = { MediaStore.Images.Media.DATA };
-//            cursor = getActivity().getContentResolver().query(contentUri,  proj, null, null, null);
-//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//            cursor.moveToFirst();
-//            return cursor.getString(column_index);
-//        } finally {
-//            if (cursor != null) {
-//                cursor.close();
-//            }
-//        }
-//    }
-
-
     public void takePhoto() {
         Intent takePicIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(takePicIntent.resolveActivity(getActivity().getPackageManager()) != null){
-            File photoFile = null;
+            File photoFile = null; // Create an file
             try {
                 photoFile = createImageFile();
             }catch (IOException ex){
@@ -317,8 +330,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             }
             if(imageFile != null){
                 mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.jeeva.fileprovider", imageFile); //mImageCameraTempUri
-
-//                intentPhotoPicker.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
                 startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
             }
         }
@@ -387,4 +398,42 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         Log.i("Wayne", "mCurrentPhotoPath: " + mCurrentPhotoPath);
         return image;
     }
+
+
+
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void requestPermissions() {
+        mBottomSheetDialog.show();
+    }
+
+    @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onPermissionDenied() {
+        Toast.makeText(getContext(), "You've denied access request", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnNeverAskAgain({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onNeverAskAgain() {
+        Toast.makeText(getContext(), "You need to allow Jeeva access to use camera. Please go to SETTING to allow the access. ", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnShowRationale({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void showRationalForCamera(final PermissionRequest request) {
+        new AlertDialog.Builder(getContext())
+                .setMessage("You need to allow access to Camera and Gallery. ")
+                .setPositiveButton(R.string.button_allow, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.proceed();
+                    }
+                })
+                .setNegativeButton(R.string.button_deny, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        request.cancel();
+                    }
+                })
+                .show();
+    }
+
+
 }

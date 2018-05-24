@@ -69,6 +69,29 @@ public class User {
     @Expose
     private String githubAccount;
 
+    @SerializedName("current_company")
+    @Expose
+    private String currentCompany;
+    @SerializedName("job_title")
+    @Expose
+    private String jobTitle;
+
+    public String getCurrentCompany() {
+        return currentCompany;
+    }
+
+    public void setCurrentCompany(String currentCompany) {
+        this.currentCompany = currentCompany;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
     public Integer getId() {
         return id;
     }
