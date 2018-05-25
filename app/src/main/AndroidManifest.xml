@@ -41,7 +41,7 @@
         </activity>
 
         <activity
-            android:name="thhsu.chloe.ModelHub.activities.FirstPageActivity"
+            android:name="thhsu.chloe.ModelHub.activities.CoverPageActivity"
             android:exported="true"
             android:screenOrientation="portrait">
              <intent-filter>

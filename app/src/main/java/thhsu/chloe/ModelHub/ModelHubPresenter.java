@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import thhsu.chloe.ModelHub.Filter.FilterPresenter;
 import thhsu.chloe.ModelHub.Home.HomeFragment;
 import thhsu.chloe.ModelHub.Home.HomePresenter;
-import thhsu.chloe.ModelHub.JobDetails.JobDetailsFragment;
-import thhsu.chloe.ModelHub.JobDetails.JobDetailsPresenter;
+import thhsu.chloe.ModelHub.CaseDetails.CaseDetailsFragment;
+import thhsu.chloe.ModelHub.CaseDetails.CaseDetailsPresenter;
 import thhsu.chloe.ModelHub.Profile.ProfileFragment;
 import thhsu.chloe.ModelHub.Profile.ProfilePresenter;
-import thhsu.chloe.ModelHub.SavedJobs.SavedJobsFragment;
-import thhsu.chloe.ModelHub.SavedJobs.SavedJobsPresenter;
+import thhsu.chloe.ModelHub.Interest.InterestFragment;
+import thhsu.chloe.ModelHub.Interest.InterestPresenter;
 import thhsu.chloe.ModelHub.SignInTab.SignInTabFragment;
 import thhsu.chloe.ModelHub.SignInTab.SignInTabPresenter;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -45,26 +45,26 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     private Fragment mCurrentFragment;
 
     public static final String HOME = "HOME";
-    public static final String SAVEDJOBS = "SAVEDJOBS";
+    public static final String INTEREST = "INTEREST";
     public static final String PROFILE = "PROFILE";
     public static final String SIGNIN = "SIGNIN";
     public static final String FILTER = "FILTER";
-    public static final String JOBDETAILS = "JOBDETAILS";
+    public static final String CASEDETAILS = "CASEDETAILS";
 
 
     private SignInTabFragment mSignInTabFragment;
-    private SavedJobsFragment mSavedJobsFragment;
+    private InterestFragment mInterestFragment;
     private HomeFragment mHomeFragment;
     private ProfileFragment mProfileFragment;
 //    private FilterFragment mFilterFragment;
-    private JobDetailsFragment mJobDetailsFragment;
+    private CaseDetailsFragment mCaseDetailsFragment;
 
     private SignInTabPresenter mSignInTabPresenter;
-    private SavedJobsPresenter mSavedJobsPresenter;
+    private InterestPresenter mInterestPresenter;
     private HomePresenter mHomePresenter;
     private ProfilePresenter mProfilePresenter;
     private FilterPresenter mFilterPresenter;
-    private JobDetailsPresenter mJobDetailsPresenter;
+    private CaseDetailsPresenter mCaseDetailsPresenter;
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
@@ -87,7 +87,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     public void result(int requestCode, int resultCode, Intent data) {
         if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
             Bundle bundle = data.getExtras();
-            ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
+            ArrayList<Cases> jobs = (ArrayList<Cases>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
             Log.d("Chloe", "filter bundle: " + jobs.size());
             mHomePresenter.updateJobs(jobs);
         }
@@ -97,8 +97,8 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
     }
 
-//    public void updateJobs(ArrayList<Jobs> jobs){
-//        mHomePresenter.updateJobs(jobs);
+//    public void updateCases(ArrayList<Cases> cases){
+//        mHomePresenter.updateCases(cases);
 //    }
 
     @Override
@@ -109,7 +109,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 //        if(mFragmentManager.findFragmentByTag(HOME) != null)
 //            mFragmentManager.popBackStack();
         if(mHomeFragment == null) mHomeFragment = HomeFragment.newInstance();
-        if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
+        if(mInterestFragment != null) transaction.hide(mInterestFragment);
         if(mProfileFragment != null) transaction.hide(mProfileFragment);
         if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
         if (!mHomeFragment.isAdded()){
@@ -126,25 +126,25 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     }
 
     @Override
-    public void transToSavedJob() {
+    public void transToInterest() {
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        if(mSavedJobsFragment == null) mSavedJobsFragment = SavedJobsFragment.newInstance();
+        if(mInterestFragment == null) mInterestFragment = InterestFragment.newInstance();
         if(mHomeFragment != null) transaction.hide(mHomeFragment);
         if(mProfileFragment != null) transaction.hide(mProfileFragment);
         if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
 
-        if (!mSavedJobsFragment.isAdded()){
-            transaction.add(R.id.main_container_for_fragment, mSavedJobsFragment, SAVEDJOBS);
+        if (!mInterestFragment.isAdded()){
+            transaction.add(R.id.main_container_for_fragment, mInterestFragment, INTEREST);
         }else{
-            transaction.show(mSavedJobsFragment);
+            transaction.show(mInterestFragment);
         }
         transaction.commit();
 
-        if(mSavedJobsPresenter == null){
-            mSavedJobsPresenter = new SavedJobsPresenter(mSavedJobsFragment);
+        if(mInterestPresenter == null){
+            mInterestPresenter = new InterestPresenter(mInterestFragment);
         }
-        mModelHubContractView.showSavedJobUi();
+        mModelHubContractView.showInterestUi();
     }
 
     @Override
@@ -154,7 +154,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
         if(mProfileFragment == null) mProfileFragment = ProfileFragment.newInstance();
         if(mHomeFragment != null) transaction.hide(mHomeFragment);
-        if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
+        if(mInterestFragment != null) transaction.hide(mInterestFragment);
         if(mSignInTabFragment != null) transaction.hide(mSignInTabFragment);
         if (!mProfileFragment.isAdded()){
             transaction.add(R.id.main_container_for_fragment, mProfileFragment, PROFILE);
@@ -175,7 +175,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
         if(mSignInTabFragment == null) mSignInTabFragment = SignInTabFragment.newInstance(); //Create only one time
         if(mHomeFragment != null) transaction.hide(mHomeFragment);
-        if(mSavedJobsFragment != null) transaction.hide(mSavedJobsFragment);
+        if(mInterestFragment != null) transaction.hide(mInterestFragment);
         if(mProfileFragment != null) transaction.hide(mProfileFragment);
 
         if (!mSignInTabFragment.isAdded()){
@@ -192,13 +192,13 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     }
 
     @Override
-    public void transToJobDetails(Jobs job) {
+    public void transToCaseDetails(Cases acase) {
 //        mCurrentFragment = mFragmentManager.findFragmentById(R.id.main_container_for_fragment);
         int currentNavItemId = mBottomNavigationView.getSelectedItemId();
         final FragmentTransaction transaction =
                 mFragmentManager.beginTransaction()
                         .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right); //smooth animator while switching the fragment
-        mJobDetailsFragment = JobDetailsFragment.newInstance();
+        mCaseDetailsFragment = CaseDetailsFragment.newInstance();
       if(currentNavItemId == R.id.action_home){
           if(mHomeFragment != null) {
               transaction.hide(mHomeFragment);
@@ -210,39 +210,39 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
           mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  mJobDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
+                  mCaseDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
               }
           });
 
-      }else if(currentNavItemId == R.id.action_saved_job){
-          if(mSavedJobsFragment != null){
-              transaction.hide(mSavedJobsFragment);
-              transaction.addToBackStack(SAVEDJOBS);
+      }else if(currentNavItemId == R.id.action_interest){
+          if(mInterestFragment != null){
+              transaction.hide(mInterestFragment);
+              transaction.addToBackStack(INTEREST);
           }
           mBottomNavigationView.setVisibility(View.GONE);
           mToolbar.findViewById(R.id.tool_bar_back_btn).setVisibility(View.VISIBLE);
           mToolbar.findViewById(R.id.tool_bar_back_btn).setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  mJobDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
+                  mCaseDetailsFragment.getFragmentManager().popBackStack(); //Back to previous fragment (not new fragment)
               }
           });
       }
 
-        transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
+        transaction.add(R.id.main_container_for_fragment, mCaseDetailsFragment, CASEDETAILS);
         transaction.commit();
-        mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, job, mBottomNavigationView); //Create presenter instrance
-        Log.d("Chloe", "ModelHubPresenter job: " + job);
+        mCaseDetailsPresenter = new CaseDetailsPresenter(mCaseDetailsFragment, acase, mBottomNavigationView); //Create presenter instrance
+        Log.d("Chloe", "ModelHubPresenter job: " + acase);
 
-        mModelHubContractView.showJobDetailsUi();
+        mModelHubContractView.showCaseDetailsUi();
 
     }
 
     @Override
-    public void refreshSavedJobsItem() {
-        if(ModelHub.getModelHubSQLHelper().isSavedJobsChanged()){
-            if(mSavedJobsPresenter != null){
-                mSavedJobsPresenter.refreshJobs();
+    public void refreshInterestItem() {
+        if(ModelHub.getModelHubSQLHelper().isInterestChanged()){
+            if(mInterestPresenter != null){
+                mInterestPresenter.refreshCases();
             }
 
             if(mHomePresenter != null){
@@ -262,9 +262,9 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 //        if(mFragmentManager.findFragmentByTag(FILTER) != null)
 //            mFragmentManager.popBackStack();
 //        if(mFilterFragment == null) mFilterFragment = FilterFragment.newInstance();
-//        if(mSavedJobsFragment != null) {
-//            transaction.hide(mSavedJobsFragment);
-//            transaction.addToBackStack(SAVEDJOBS);
+//        if(mInterestFragment != null) {
+//            transaction.hide(mInterestFragment);
+//            transaction.addToBackStack(INTEREST);
 //        }
 //        if(mHomeFragment != null) {
 //            transaction.remove(mHomeFragment);

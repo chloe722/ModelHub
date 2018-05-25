@@ -19,13 +19,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import thhsu.chloe.jeeva.Filter.FilterFragment;
 
 import thhsu.chloe.ModelHub.ModelHubContract;
 import thhsu.chloe.ModelHub.ModelHubPresenter;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -38,7 +37,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
     private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn, mEditedBtn;
-//    private FilterFragment filterFragment;
     private boolean isFilterInHome = true;
     private boolean shouldShowFilter = false;
     private Fragment currentFragment;
@@ -133,23 +131,12 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                 mLogoutBtn.setVisible(false);
                 mEditedBtn.setVisible(false);
             }
-        }else if(currentItem == R.id.action_saved_job){
+        }else if(currentItem == R.id.action_interest){
 
         }
-
-//        if(currentFragment == getFragmentManager().findFragmentByTag(JOBDETAILS)){
-//            mToolBarBackBtn.setVisibility(View.VISIBLE);
-//            mToolBarBackBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Toast.makeText(getApplicationContext(), "Button click", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
         return true;
     }
 
-//    }
 
 
     @Override
@@ -202,15 +189,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         mToolbarTitle.setText(title);
     }
 
-//    public void hideFilter(){
-//        shouldShowFilter = false;
-//        invalidateOptionsMenu();
-//    }
-//
-//    public void showFilter(){
-//        shouldShowFilter = true;
-//        invalidateOptionsMenu();
-//    }
 
     @Override
     public void setPresenter(ModelHubContract.Presenter presenter) {
@@ -222,29 +200,25 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     public void showHomeUi() {
         setToolbarTitle("");
         isFilterInHome = true;
-//        showFilter();
 
     }
 
     @Override
-    public void showSavedJobUi() {
+    public void showInterestUi() {
         setToolbarTitle("Bookmark");
         isFilterInHome = false;
-//        hideFilter();
     }
 
     @Override
     public void showProfileUi() {
         setToolbarTitle("Profile");
         isFilterInHome = false;
-//        hideFilter();
     }
 
     @Override
     public void showSignInTabPageUi() {
         setToolbarTitle("Join ModelHub!");
         isFilterInHome = false;
-//        hideFilter();
     }
 
     @Override
@@ -252,21 +226,20 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         invalidateOptionsMenu();
         setToolbarTitle("");
         isFilterInHome = false;
-//        hideFilter();
     }
 
     @Override
-    public void showJobDetailsUi() {
+    public void showCaseDetailsUi() {
         setToolbarTitle("");
     }
 
     @Override
-    public void refreshSavedJobsItemUi() {
-        mPresenter.refreshSavedJobsItem();
+    public void refreshInterestItemUi() {
+        mPresenter.refreshInterestItem();
     }
 
-    public void transToJobDetails(Jobs job){ // Need to pass ID here after connect API
-        mPresenter.transToJobDetails(job); // Need to pass ID here after connect API
+    public void transToCaseDetails(Cases acase){ // Need to pass ID here after connect API
+        mPresenter.transToCaseDetails(acase); // Need to pass ID here after connect API
     }
 
     @Override
@@ -279,8 +252,8 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                 mPresenter.transToHome();
                 break;
 
-            case R.id.action_saved_job:
-                mPresenter.transToSavedJob();
+            case R.id.action_interest:
+                mPresenter.transToInterest();
                 break;
 
             case R.id.action_profile:

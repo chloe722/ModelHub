@@ -1,26 +1,26 @@
-package thhsu.chloe.ModelHub.JobDetails;
+package thhsu.chloe.ModelHub.CaseDetails;
 
 import thhsu.chloe.ModelHub.BasePresenter;
 import thhsu.chloe.ModelHub.BaseView;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 5/6/2018.
  */
 
-public interface JobDetailsContract {
+public interface CaseDetailsContract {
 
     interface View extends BaseView<Presenter>{
 
-        void showJobDetails(Jobs job);
+        void showCaseDetails(Cases acase);
     }
 
     interface Presenter extends BasePresenter{
         void result(int requestCode, int resultCode);
 
-        void loadJob();
+        void loadCase();
 
-        void updateSavedJob(Jobs jobs, boolean isSaved);
+        void updateInterestCase(Cases cases, boolean isSaved);
 
     }
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import thhsu.chloe.ModelHub.BasePresenter;
 import thhsu.chloe.ModelHub.BaseView;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 5/1/2018.
@@ -17,15 +17,15 @@ public interface HomeContract {
 
     interface View extends BaseView<Presenter>{
 
-        void showJobs(ArrayList<Jobs> jobs);
+        void showCases(ArrayList<Cases> cases);
 
 //        void showFilterJobs(ArrayList<FilterJobs> filterJobs);
 
-        void showJobsDetailUi(Jobs job);
+        void showCasesDetailUi(Cases acase);
 
         void refreshUi();
 
-//        void clearJobs();
+//        void clearCases();
 
     }
 
@@ -33,9 +33,9 @@ public interface HomeContract {
 
         void result(int requestCode, int resultCode);
 
-        void showJobs(ArrayList<Jobs> jobs);
+        void showCases(ArrayList<Cases> cases);
 
-        void loadJobs();
+        void loadCases();
 
         void loadFilterResult();
 
@@ -45,13 +45,13 @@ public interface HomeContract {
 
         void onScrolled(RecyclerView.LayoutManager layoutManager);
 
-        void openJobDetails(Jobs job);
+        void openCaseDetails(Cases acase);
 
         void refresh();
 
-        void updateSavedJob(Jobs jobs, boolean isSaved);
+        void updateInterest(Cases cases, boolean isSaved);
 
-//        void clearJobs();
+//        void clearCases();
 
 
     }

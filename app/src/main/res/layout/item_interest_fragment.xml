@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/constraintlayout_saved_job_item"
+    android:id="@+id/constraintlayout_interest_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/saved_job_title"
+        android:id="@+id/interest_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/saved_job_type_tag"
+        android:id="@+id/interest_type_tag"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/saved_job_posted_text"
+        android:id="@+id/interest_posted_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -43,32 +43,32 @@
         android:textSize="14sp"
         android:textColor="#3F3F3E"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_title" />
+        app:layout_constraintTop_toBottomOf="@+id/interest_title" />
 
     <TextView
-        android:id="@+id/saved_job_posted_date"
+        android:id="@+id/interest_posted_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:text="October 24, 2018"
         android:textSize="14sp"
-        android:textColor="@color/job_company_location_title"
-        app:layout_constraintStart_toEndOf="@+id/saved_job_posted_text"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_title" />
+        android:textColor="@color/case_company_location_title"
+        app:layout_constraintStart_toEndOf="@+id/interest_posted_text"
+        app:layout_constraintTop_toBottomOf="@+id/interest_title" />
 
     <ImageView
-        android:id="@+id/saved_job_company_logo"
+        android:id="@+id/interest_company_logo"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_posted_text"
+        app:layout_constraintTop_toBottomOf="@+id/interest_posted_text"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/saved_job_company_title"
+        android:id="@+id/interest_company_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -77,11 +77,11 @@
         android:textColor="#3F3F3E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/saved_job_company_logo"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_posted_text" />
+        app:layout_constraintStart_toEndOf="@+id/interest_company_logo"
+        app:layout_constraintTop_toBottomOf="@+id/interest_posted_text" />
 
     <TextView
-        android:id="@+id/saved_job_location_title"
+        android:id="@+id/interest_location_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -90,24 +90,24 @@
         android:textColor="#3F3F3E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/saved_job_company_name"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_posted_text" />
+        app:layout_constraintStart_toEndOf="@+id/interest_company_name"
+        app:layout_constraintTop_toBottomOf="@+id/interest_posted_text" />
 
     <TextView
-        android:id="@+id/saved_job_company_name"
+        android:id="@+id/interest_company_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:maxWidth="100dp"
         android:minWidth="90dp"
         android:text="Rockstar Games INC."
-        android:textColor="@color/job_company_location_title"
+        android:textColor="@color/case_company_location_title"
         android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/saved_job_company_title"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_company_title" />
+        app:layout_constraintStart_toStartOf="@+id/interest_company_title"
+        app:layout_constraintTop_toBottomOf="@+id/interest_company_title" />
 
     <TextView
-        android:id="@+id/saved_job_location_name"
+        android:id="@+id/interest_location_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -115,13 +115,13 @@
         android:maxWidth="110dp"
         android:minWidth="100dp"
         android:text="San Francisco, United States"
-        android:textColor="@color/job_company_location_title"
+        android:textColor="@color/case_company_location_title"
         android:textSize="13sp"
-        app:layout_constraintStart_toEndOf="@+id/saved_job_company_name"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_location_title" />
+        app:layout_constraintStart_toEndOf="@+id/interest_company_name"
+        app:layout_constraintTop_toBottomOf="@+id/interest_location_title" />
 
     <TextView
-        android:id="@+id/saved_job_urgentornot_text"
+        android:id="@+id/interest_urgentornot_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -129,11 +129,11 @@
         android:textColor="@color/colorJobDeadlineSafe"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/saved_clock_icn"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_company_name" />
+        app:layout_constraintStart_toEndOf="@+id/interest_clock_icn"
+        app:layout_constraintTop_toBottomOf="@+id/interest_company_name" />
 
     <ImageButton
-        android:id="@+id/saved_job_savedJob_icn_btn"
+        android:id="@+id/interest_interest_icn_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -144,16 +144,16 @@
         app:srcCompat="@drawable/ic_bookmark_border_red_24dp" />
 
     <ImageView
-        android:id="@+id/saved_hr_line"
+        android:id="@+id/interest_hr_line"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorHrLine"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_urgentornot_text" />
+        app:layout_constraintTop_toBottomOf="@+id/interest_urgentornot_text" />
 
     <ImageView
-        android:id="@+id/saved_clock_icn"
+        android:id="@+id/interest_clock_icn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -161,7 +161,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saved_job_company_name"
+        app:layout_constraintTop_toBottomOf="@+id/interest_company_name"
         app:srcCompat="@drawable/ic_clock_green_24dp" />
 
 </android.support.constraint.ConstraintLayout>

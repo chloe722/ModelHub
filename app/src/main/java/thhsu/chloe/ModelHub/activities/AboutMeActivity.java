@@ -85,7 +85,7 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
                 .remove(Constants.USER_PHONENUM)
                 .remove(Constants.USER_LOCATION_COUNTRY)
                 .remove(Constants.USER_LOCATION_CITY)
-                .remove(Constants.USER_JOB_TITLE)
+                .remove(Constants.USER_CASE_TITLE)
                 .apply();
     }
 

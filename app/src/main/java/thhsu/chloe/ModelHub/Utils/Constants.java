@@ -18,7 +18,7 @@ public class Constants {
     public static final String USER_IMAGE = "user_image";
     public static final String USER_LOCATION_COUNTRY = "user_location_country";
     public static final String USER_LOCATION_CITY = "user_locaton_city";
-    public static final String USER_JOB_TITLE = "user_job_title";
+    public static final String USER_CASE_TITLE = "user_case_title";
     public static final String USER_LOCATION = "user_location";
     public static final String USER_TOKEN = "user_token";
     public static final String USER_FACEBOOK_USERNAME = "user_facbook_username";

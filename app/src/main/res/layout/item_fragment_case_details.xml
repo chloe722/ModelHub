@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_job_details_container"
+    android:id="@+id/item_case_details_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,18 +11,18 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/job_details_share_btn"
+            android:id="@+id/case_details_share_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
             android:background="@null"
-            app:layout_constraintEnd_toStartOf="@+id/job_details_bookmark_btn"
+            app:layout_constraintEnd_toStartOf="@+id/case_details_bookmark_btn"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_share_black_24dp" />
 
         <ImageButton
-            android:id="@+id/job_details_bookmark_btn"
+            android:id="@+id/case_details_bookmark_btn"
             android:layout_width="31dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -33,7 +33,7 @@
             app:srcCompat="@drawable/ic_bookmark_border_red_24dp" />
 
         <TextView
-            android:id="@+id/job_details_type_tag"
+            android:id="@+id/case_details_type_tag"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/saved_job_title"
+            android:id="@+id/interest_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/job_details_posted_text"
+            android:id="@+id/case_details_posted_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -70,32 +70,32 @@
             android:textColor="#3F3F3E"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/saved_job_title" />
+            app:layout_constraintTop_toBottomOf="@+id/interest_title" />
 
         <TextView
-            android:id="@+id/job_details_posted_date"
+            android:id="@+id/case_details_posted_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:text="October 24, 2018"
-            android:textColor="@color/job_company_location_title"
+            android:textColor="@color/case_company_location_title"
             android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/job_details_posted_text"
-            app:layout_constraintTop_toBottomOf="@+id/saved_job_title" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_posted_text"
+            app:layout_constraintTop_toBottomOf="@+id/interest_title" />
 
         <ImageView
-            android:id="@+id/job_details_company_logo"
+            android:id="@+id/case_details_company_logo"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_posted_text"
             app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
-            android:id="@+id/job_details_company_title"
+            android:id="@+id/case_details_company_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -104,11 +104,11 @@
             android:textColor="#3F3F3E"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_posted_text" />
 
         <TextView
-            android:id="@+id/job_details_location_title"
+            android:id="@+id/case_details_location_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -117,37 +117,37 @@
             android:textColor="#3F3F3E"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/job_details_company_name"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_posted_text" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_company_name"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_posted_text" />
 
         <TextView
-            android:id="@+id/job_details_company_name"
+            android:id="@+id/case_details_company_name"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:maxWidth="110dp"
             android:minWidth="90dp"
             android:text="Rockstar Games INC."
-            android:textColor="@color/job_company_location_title"
+            android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_company_title" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_company_title" />
 
         <TextView
-            android:id="@+id/job_details_location_name"
+            android:id="@+id/case_details_location_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:maxWidth="150dp"
             android:minWidth="120dp"
             android:text="San Francisco, United States"
-            android:textColor="@color/job_company_location_title"
+            android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/job_details_company_name"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_location_title" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_company_name"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_location_title" />
 
         <TextView
-            android:id="@+id/job_details_salary_title"
+            android:id="@+id/case_details_salary_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -156,34 +156,34 @@
             android:textColor="#3F3F3E"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_company_name" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_company_name" />
 
         <TextView
-            android:id="@+id/job_details_salary_num"
+            android:id="@+id/case_details_salary_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="400000"
-            android:textColor="@color/job_company_location_title"
+            android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/job_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_salary_title" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_salary_title" />
 
         <TextView
-            android:id="@+id/job_details_salary_unit"
+            android:id="@+id/case_details_salary_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="NT/ Monthly"
-            android:textColor="@color/job_company_location_title"
+            android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/job_details_salary_num"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_salary_title" />
+            app:layout_constraintStart_toEndOf="@+id/case_details_salary_num"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_salary_title" />
 
         <ImageView
-            android:id="@+id/job_details_hr_line"
+            android:id="@+id/case_details_hr_line"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="8dp"
@@ -191,10 +191,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_salary_unit" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_salary_unit" />
 
         <TextView
-            android:id="@+id/job_details_des_title"
+            android:id="@+id/case_details_des_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -204,18 +204,18 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_hr_line" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_hr_line" />
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/job_details_des_constraintLayout"
+            android:id="@+id/case_details_des_constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_des_title">
+            app:layout_constraintTop_toBottomOf="@+id/case_details_des_title">
 
             <TextView
-                android:id="@+id/job_details_des_content"
+                android:id="@+id/case_details_des_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -240,7 +240,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/job_details_readmore_btn"
+                android:id="@+id/case_details_readmore_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="39dp"
                 android:layout_marginBottom="8dp"
@@ -253,7 +253,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/job_details_des_content" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_des_content" />
 
 
 
@@ -261,17 +261,17 @@ Master architectural and programming skill in Open environment (Java related) Fl
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/job_details_requirement_constraint"
+            android:id="@+id/case_details_requirement_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_des_constraintLayout">
+            app:layout_constraintTop_toBottomOf="@+id/case_details_des_constraintLayout">
 
             <TextView
-                android:id="@+id/job_details_requirement_title"
+                android:id="@+id/case_details_requirement_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -283,7 +283,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/job_details_requirement_content"
+                android:id="@+id/case_details_requirement_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -301,13 +301,13 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/job_details_requirement_title" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_requirement_title" />
 
 
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/job_details_benefit_container_constraint"
+            android:id="@+id/case_details_benefit_container_constraint"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -315,10 +315,10 @@ Master architectural and programming skill in Open environment (Java related) Fl
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_requirement_constraint">
+            app:layout_constraintTop_toBottomOf="@+id/case_details_requirement_constraint">
 
             <TextView
-                android:id="@+id/job_details_benifit_title"
+                android:id="@+id/case_details_benifit_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -330,7 +330,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintTop_toTopOf="parent" />
 
             <thhsu.chloe.ModelHub.Utils.ReplaceSpacingGridLayout
-                android:id="@+id/job_details_benifit_content_gridlayout_container"
+                android:id="@+id/case_details_benifit_content_gridlayout_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -342,10 +342,10 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/job_details_benifit_title">
+                app:layout_constraintTop_toBottomOf="@+id/case_details_benifit_title">
 
                 <TextView
-                    android:id="@+id/job_details_benefit_childcare"
+                    android:id="@+id/case_details_benefit_childcare"
                     android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -356,12 +356,12 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Child Care"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_cafe"
+                    android:id="@+id/case_details_benefit_cafe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_local_cafe_black_24dp"
@@ -370,13 +370,13 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Coffee"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_commute"
+                    android:id="@+id/case_details_benefit_commute"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -386,13 +386,13 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Commute"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_dental"
+                    android:id="@+id/case_details_benefit_dental"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -402,7 +402,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Dental Insurance"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
@@ -410,7 +410,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
 
 
                 <TextView
-                    android:id="@+id/job_details_benefit_gym"
+                    android:id="@+id/case_details_benefit_gym"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -420,13 +420,13 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Gym"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"/>
 
                 <TextView
-                    android:id="@+id/job_details_benefit_life_insurance"
+                    android:id="@+id/case_details_benefit_life_insurance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -436,14 +436,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Life Insurance"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_preganent"
+                    android:id="@+id/case_details_benefit_preganent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -453,14 +453,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Maternity Leave"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_hospital"
+                    android:id="@+id/case_details_benefit_hospital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -470,14 +470,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Medical Insurance"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_mentor"
+                    android:id="@+id/case_details_benefit_mentor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -487,14 +487,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Mentor Program"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_movie"
+                    android:id="@+id/case_details_benefit_movie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -504,14 +504,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Movie"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_vacation"
+                    android:id="@+id/case_details_benefit_vacation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -521,14 +521,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Paid Vacation"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_parental"
+                    android:id="@+id/case_details_benefit_parental"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -538,14 +538,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Parental Leave"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_reading"
+                    android:id="@+id/case_details_benefit_reading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -555,14 +555,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Reading Room"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_saving_plan"
+                    android:id="@+id/case_details_benefit_saving_plan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -572,14 +572,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Saving Plan"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_food"
+                    android:id="@+id/case_details_benefit_food"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -589,14 +589,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Snacks  Drinks"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_tuition"
+                    android:id="@+id/case_details_benefit_tuition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -606,7 +606,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Tuition"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
@@ -614,7 +614,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
 
 
                 <TextView
-                    android:id="@+id/job_details_benefit_vision"
+                    android:id="@+id/case_details_benefit_vision"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -624,14 +624,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Vision Insurance"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_workfromhome"
+                    android:id="@+id/case_details_benefit_workfromhome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -641,14 +641,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Work from Home"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_disability"
+                    android:id="@+id/case_details_benefit_disability"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -658,14 +658,14 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Disability Insurance"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                   />
 
                 <TextView
-                    android:id="@+id/job_details_benefit_training"
+                    android:id="@+id/case_details_benefit_training"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -675,7 +675,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                     android:maxWidth="150dp"
                     android:paddingBottom="10dp"
                     android:text="Unconscious Bias Traning"
-                    android:textColor="@color/job_company_location_title"
+                    android:textColor="@color/case_company_location_title"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="gone"
@@ -685,16 +685,16 @@ Master architectural and programming skill in Open environment (Java related) Fl
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/job_details_hiring_resource_container_constraint"
+            android:id="@+id/case_details_hiring_resource_container_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:paddingBottom="50dp"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/job_details_benefit_container_constraint">
+            app:layout_constraintTop_toBottomOf="@+id/case_details_benefit_container_constraint">
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_title"
+                android:id="@+id/case_details_hiring_resource_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -707,7 +707,7 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_source_from_title"
+                android:id="@+id/case_details_hiring_resource_source_from_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -718,10 +718,10 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:textColor="@color/titleforall"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/job_details_hiring_resource_title" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_title" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_contact_name_title"
+                android:id="@+id/case_details_hiring_resource_contact_name_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="21dp"
@@ -732,10 +732,10 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:textColor="@color/titleforall"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/job_details_hiring_resource_source_from_title" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_source_from_title" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_contact_email_title"
+                android:id="@+id/case_details_hiring_resource_contact_email_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -746,10 +746,10 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:textSize="16sp"
                 android:textColor="@color/titleforall"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/job_details_hiring_resource_contact_name_title" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_contact_name_title" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_other_info_title"
+                android:id="@+id/case_details_hiring_resource_other_info_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -760,32 +760,32 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:textSize="16sp"
                 android:textColor="@color/titleforall"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/job_details_hiring_resource_contact_email_title" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_contact_email_title" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_source_from_text"
+                android:id="@+id/case_details_hiring_resource_source_from_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14sp"
                 android:text="External Resource"
                 android:textSize="14sp"
                 android:textColor="@color/textcolor"
-                app:layout_constraintStart_toEndOf="@+id/job_details_hiring_resource_source_from_title"
-                app:layout_constraintTop_toTopOf="@+id/job_details_hiring_resource_source_from_title" />
+                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_source_from_title"
+                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_source_from_title" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_contact_name_text"
+                android:id="@+id/case_details_hiring_resource_contact_name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Chloe Hsu"
                 android:textSize="14sp"
                 android:textColor="@color/textcolor"
-                app:layout_constraintStart_toEndOf="@+id/job_details_hiring_resource_contact_name_title"
-                app:layout_constraintTop_toTopOf="@+id/job_details_hiring_resource_contact_name_title" />
+                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_contact_name_title"
+                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_contact_name_title" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_contact_email_text"
+                android:id="@+id/case_details_hiring_resource_contact_email_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -793,11 +793,11 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:maxWidth="200dp"
                 android:textSize="14sp"
                 android:textColor="@color/textcolor"
-                app:layout_constraintStart_toEndOf="@+id/job_details_hiring_resource_contact_email_title"
-                app:layout_constraintTop_toTopOf="@+id/job_details_hiring_resource_contact_email_title" />
+                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_contact_email_title"
+                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_contact_email_title" />
 
             <TextView
-                android:id="@+id/job_details_hiring_resource_other_info_text"
+                android:id="@+id/case_details_hiring_resource_other_info_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -806,8 +806,8 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 android:textSize="14sp"
                 android:textColor="@color/textcolor"
                 android:layout_marginTop="2dp"
-                app:layout_constraintStart_toEndOf="@+id/job_details_hiring_resource_other_info_title"
-                app:layout_constraintTop_toTopOf="@+id/job_details_hiring_resource_other_info_title" />
+                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_other_info_title"
+                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_other_info_title" />
 
         </android.support.constraint.ConstraintLayout>
 

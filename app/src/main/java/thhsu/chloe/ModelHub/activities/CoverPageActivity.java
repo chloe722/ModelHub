@@ -8,37 +8,37 @@ import android.widget.Button;
 
 import thhsu.chloe.ModelHub.R;
 
-public class FirstPageActivity extends BaseActivity {
-    private Button mGetStartedBtn, mFirstPageSignInBtn;
+public class CoverPageActivity extends BaseActivity {
+    private Button mGetStartedBtn, mCoverPageSignInBtn;
     private View backgroundImage;
     private Drawable background;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_page);
+        setContentView(R.layout.activity_cover_page);
 
 
 
-        backgroundImage = (View) findViewById(R.id.firstpage_constraint);
+        backgroundImage = (View) findViewById(R.id.coverpage_constraint);
         background = backgroundImage.getBackground();
 //        background.setAlpha(90);
         mGetStartedBtn = (Button) findViewById(R.id.getStartedBtn);
-        mFirstPageSignInBtn = (Button) findViewById(R.id.first_page_signIn_btn);
+        mCoverPageSignInBtn = (Button) findViewById(R.id.cover_page_signIn_btn);
 
         mGetStartedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (FirstPageActivity.this, ModelHubActivity.class);
+                Intent intent = new Intent (CoverPageActivity.this, ModelHubActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
         });
 
-        mFirstPageSignInBtn.setOnClickListener(new View.OnClickListener() {
+        mCoverPageSignInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FirstPageActivity.this, SignInActivity.class);
+                Intent intent = new Intent(CoverPageActivity.this, SignInActivity.class);
                 startActivity(intent);
             }
         });

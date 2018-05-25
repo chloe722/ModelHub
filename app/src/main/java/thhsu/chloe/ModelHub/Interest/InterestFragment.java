@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.SavedJobs;
+package thhsu.chloe.ModelHub.Interest;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -20,27 +20,27 @@ import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.adapters.SavedJobsAdapter;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.adapters.InterestAdapter;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 4/30/2018.
  */
 
-public class SavedJobsFragment extends Fragment implements SavedJobContract.View {
+public class InterestFragment extends Fragment implements InterestContract.View {
 
 
-   private SavedJobContract.Presenter mPresenter;
-   private SavedJobsAdapter mSavedJobsAdapter;
+   private InterestContract.Presenter mPresenter;
+   private InterestAdapter mInterestAdapter;
    SharedPreferences sharedPreferences;
    String token;
 
-    public static SavedJobsFragment newInstance(){return new SavedJobsFragment();}
+    public static InterestFragment newInstance(){return new InterestFragment();}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSavedJobsAdapter = new SavedJobsAdapter(new ArrayList<Jobs>(), mPresenter);
+        mInterestAdapter = new InterestAdapter(new ArrayList<Cases>(), mPresenter);
     }
 
     @Override
@@ -53,19 +53,19 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
         token = sharedPreferences.getString(Constants.USER_TOKEN,"");
 
         if(token.equals("")){
-            View root = inflater.inflate(R.layout.fragment_saved_jobs_visitor, container, false);
+            View root = inflater.inflate(R.layout.fragment_interest_visitor, container, false);
             return root;
         }else{
-            View root = inflater.inflate(R.layout.fragment_saved_jobs, container, false);
-            RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.saved_job_recyclerview);
+            View root = inflater.inflate(R.layout.fragment_interest, container, false);
+            RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.interest_recyclerview);
             recyclerView.setLayoutManager(new LinearLayoutManager(ModelHub.getAppContext()));
-            recyclerView.setAdapter(mSavedJobsAdapter);
-            TextView saveJobsText = root.findViewById(R.id.saved_jobs_text);
+            recyclerView.setAdapter(mInterestAdapter);
+            TextView interestText = root.findViewById(R.id.interest_text);
 
-//            if(mSavedJobsAdapter.getItemCount() == 0){
-//                saveJobsText.setVisibility(View.VISIBLE);
-//            } (mSavedJobsAdapter.getItemCount() > 0){
-//                saveJobsText.setVisibility(View.GONE);
+//            if(mInterestAdapter.getItemCount() == 0){
+//                interestText.setVisibility(View.VISIBLE);
+//            } (mInterestAdapter.getItemCount() > 0){
+//                interestText.setVisibility(View.GONE);
 //            }
 
             return root;
@@ -73,7 +73,7 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
     }
 
     @Override
-    public void setPresenter(SavedJobContract.Presenter presenter) {
+    public void setPresenter(InterestContract.Presenter presenter) {
         if(presenter != null){mPresenter = presenter;}
     }
 
@@ -90,12 +90,12 @@ public class SavedJobsFragment extends Fragment implements SavedJobContract.View
 
 
     @Override
-    public void showJobs(ArrayList<Jobs> jobs) {
-        mSavedJobsAdapter.updateData(jobs);
+    public void showCases(ArrayList<Cases> cases) {
+        mInterestAdapter.updateData(cases);
     }
 
     @Override
-    public void showJobsDetailUi(Jobs job) {
-        ((ModelHubActivity) getActivity()).transToJobDetails(job);
+    public void showCasesDetailUi(Cases acase) {
+        ((ModelHubActivity) getActivity()).transToCaseDetails(acase);
     }
 }

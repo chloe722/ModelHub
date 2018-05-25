@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.api.ApiJobManager;
-import thhsu.chloe.ModelHub.api.GetJobsCallBack;
+import thhsu.chloe.ModelHub.api.ApiCaseManager;
+import thhsu.chloe.ModelHub.api.GetCasesCallBack;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 5/1/2018.
@@ -25,7 +25,7 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mHomeView;
-    ArrayList<Jobs> mJobs;
+    ArrayList<Cases> mCases;
     private ModelHubActivity mActivtity;
     private Context mContext;
     private boolean mLoading = false;
@@ -42,16 +42,16 @@ public class HomePresenter implements HomeContract.Presenter {
         mProgressBar = progressBar;
     }
 
-    public void updateJobs(ArrayList<Jobs> jobs){
-        this.mJobs = jobs;
-//        clearJobs();
+    public void updateJobs(ArrayList<Cases> cases){
+        this.mCases = cases;
+//        clearCases();
         loadFilterResult();
     }
 
 
     @Override
     public void start() {
-        loadJobs();
+        loadCases();
     }
 
 
@@ -59,28 +59,28 @@ public class HomePresenter implements HomeContract.Presenter {
     public void result(int requestCode, int resultCode) {}
 
     @Override
-    public void showJobs(ArrayList<Jobs> jobs) {
-        mHomeView.showJobs(jobs);
+    public void showCases(ArrayList<Cases> cases) {
+        mHomeView.showCases(cases);
     }
 
     @Override
-    public void loadJobs() {
+    public void loadCases() {
         if(!isLoading() && hasNextPaging()){
             setLoading(true);
-            ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
+            ApiCaseManager.getInstance().getCases(new GetCasesCallBack() {
                 @Override
-                public void onCompleted(ArrayList<Jobs> jobs) {
+                public void onCompleted(ArrayList<Cases> cases) {
                     mProgressBar.setVisibility(View.GONE);
                     setLoading(false);
-                    showJobs(jobs);
+                    showCases(cases);
                     setPaging(0);
-                    Log.d("Chloe", "jobs" + jobs);
+                    Log.d("Chloe", "cases" + cases);
                 }
 
                 @Override
                 public void onError(String errorMessage) {
                     setLoading(false);
-                    Log.d("Chloe", "GetJobsErrorMessage, errorMessage:" + errorMessage);
+                    Log.d("Chloe", "GetCasesErrorMessage, errorMessage:" + errorMessage);
                 }
             });
         }
@@ -90,11 +90,11 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void loadFilterResult(){
-        ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
+        ApiCaseManager.getInstance().getCases(new GetCasesCallBack() {
             @Override
-            public void onCompleted(ArrayList<Jobs> jobs) {
-                showJobs(mJobs);
-                Log.d("Chloe", "filter jobs" + mJobs.size());
+            public void onCompleted(ArrayList<Cases> cases) {
+                showCases(mCases);
+                Log.d("Chloe", "filter cases" + mCases.size());
             }
             @Override
             public void onError(String errorMessage) {
@@ -110,7 +110,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
             if(mLastVisibleItemPosition == totalItemCount -1){
                 Log.d("Chloe", "Scroll to bottom");
-                loadJobs();
+                loadCases();
             } else if (mFirstVisibleItemPosition == 0){}
             }
         }
@@ -136,8 +136,8 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void openJobDetails(Jobs job) {
-        mHomeView.showJobsDetailUi(job);
+    public void openCaseDetails(Cases acase) {
+        mHomeView.showCasesDetailUi(acase);
     }
 
     @Override
@@ -146,13 +146,13 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void updateSavedJob(Jobs job, boolean isSaved) {
-        ModelHub.getModelHubSQLHelper().updateSavedJobs(job, isSaved);
+    public void updateInterest(Cases cases, boolean isSaved) {
+        ModelHub.getModelHubSQLHelper().updateCases(cases, isSaved);
     }
 
 //    @Override
-//    public void clearJobs() {
-//        mHomeView.clearJobs();
+//    public void clearCases() {
+//        mHomeView.clearCases();
 //    }
 
     public boolean isLoading(){return mLoading; }

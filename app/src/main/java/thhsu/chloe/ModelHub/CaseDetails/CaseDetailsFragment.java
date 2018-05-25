@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.JobDetails;
+package thhsu.chloe.ModelHub.CaseDetails;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -23,17 +23,17 @@ import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.adapters.JobDetailsAdapter;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.adapters.CaseDetailsAdapter;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 5/6/2018.
  */
 
-public class JobDetailsFragment extends Fragment implements JobDetailsContract.View, View.OnClickListener{
+public class CaseDetailsFragment extends Fragment implements CaseDetailsContract.View, View.OnClickListener{
 
-    private JobDetailsContract.Presenter mPresenter;
-    private JobDetailsAdapter mJobDetailAdapter;
+    private CaseDetailsContract.Presenter mPresenter;
+    private CaseDetailsAdapter mCaseDetailAdapter;
     ModelHubActivity mModelHubActivity;
     private Button mApplyBtn;
     private SharedPreferences sharedPreferences;
@@ -41,12 +41,12 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     BottomNavigationView mBottomNavigationView;
 
 
-    public static JobDetailsFragment newInstance(){
-        return new JobDetailsFragment();
+    public static CaseDetailsFragment newInstance(){
+        return new CaseDetailsFragment();
     }
 
     @Override
-    public void setPresenter(JobDetailsContract.Presenter presenter) {
+    public void setPresenter(CaseDetailsContract.Presenter presenter) {
         if(presenter != null){
             mPresenter = presenter;
         }else{
@@ -57,7 +57,7 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mJobDetailAdapter = new JobDetailsAdapter(getContext(), new Jobs(), mPresenter);
+        mCaseDetailAdapter = new CaseDetailsAdapter(getContext(), new Cases(), mPresenter);
         sharedPreferences = getActivity().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         token = sharedPreferences.getString(Constants.USER_TOKEN,"");
         mBottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation);
@@ -77,13 +77,13 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_job_details, container,false);
+        View root = inflater.inflate(R.layout.fragment_case_details, container,false);
 
 
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.job_details_recyclerview);
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.case_details_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(ModelHub.getAppContext()));
-        recyclerView.setAdapter(mJobDetailAdapter);
-        mApplyBtn = (Button) root.findViewById(R.id.job_details_apply_btn);
+        recyclerView.setAdapter(mCaseDetailAdapter);
+        mApplyBtn = (Button) root.findViewById(R.id.case_details_apply_btn);
         mApplyBtn.setOnClickListener(this);
         return root;
     }
@@ -103,10 +103,10 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
             ((ModelHubActivity) getActivity()).showFilterIcn();
             ((ModelHubActivity) getActivity()).showHomeUi();
         }else {
-            ((ModelHubActivity) getActivity()).showSavedJobUi();
+            ((ModelHubActivity) getActivity()).showInterestUi();
         }
 
-        ((ModelHubActivity) getActivity()).refreshSavedJobsItemUi();
+        ((ModelHubActivity) getActivity()).refreshInterestItemUi();
         ((ModelHubActivity) getActivity()).showBtnNavView();
         ((ModelHubActivity) getActivity()).hideToolbarBackBtn();
 
@@ -115,14 +115,14 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
 
 
     @Override
-    public void showJobDetails(Jobs job) {
-        mJobDetailAdapter.updateJobs(job);
+    public void showCaseDetails(Cases acase) {
+        mCaseDetailAdapter.updateCases(acase);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.job_details_apply_btn:
+            case R.id.case_details_apply_btn:
                 if(!(token.equals(""))){
                     composeEmail();
                 }else{

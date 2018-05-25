@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiJobManager;
+import thhsu.chloe.ModelHub.api.ApiCaseManager;
 import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
 
 /**
@@ -96,7 +96,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     userEmail = mRegisterEmailText.getText().toString();
                     password = mRegisterPasswordText.getText().toString();
                     Log.d("Chloe", "Email: " + userEmail + " Password: " + password);
-                    ApiJobManager.getInstance().getRegister(userName, userEmail, password, new PostRegisterLoginCallBack() {
+                    ApiCaseManager.getInstance().getRegister(userName, userEmail, password, new PostRegisterLoginCallBack() {
                         @Override
                         public void onCompleted(String token) {
                             Intent intent = new Intent(RegisterActivity.this, ModelHubActivity.class);

@@ -8,7 +8,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_saved_job"
+        android:id="@+id/action_interest"
         android:icon="@drawable/ic_list_black_36dp"
         android:title="Bookmark"
         app:showAsAction="ifRoom" />

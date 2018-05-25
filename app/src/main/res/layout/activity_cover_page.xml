@@ -2,14 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/firstpage_constraint"
+    android:id="@+id/coverpage_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jeeva_first_page2"
-    tools:context="thhsu.chloe.ModelHub.activities.FirstPageActivity">
+    android:background="@drawable/modelhub_cover_page2"
+    tools:context="thhsu.chloe.ModelHub.activities.CoverPageActivity">
 
     <TextView
-        android:id="@+id/JeevaTitle"
+        android:id="@+id/ModelhubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
@@ -60,11 +60,11 @@
         android:textColor="#ffffff"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/first_page_signIn_btn"
+        app:layout_constraintEnd_toStartOf="@+id/cover_page_signIn_btn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/first_page_signIn_btn"
+        android:id="@+id/cover_page_signIn_btn"
         android:layout_width="0dp"
         android:layout_height="22dp"
         android:layout_marginBottom="4dp"

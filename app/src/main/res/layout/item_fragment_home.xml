@@ -12,12 +12,12 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/horizontal_recommend_title"
+            android:id="@+id/horizontal_urgent_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Recommend"
+            android:text="Urgent"
             android:textAlignment="textStart"
             android:textColor="@color/titleforall"
             android:textSize="20sp"
@@ -34,7 +34,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_recommend_title"/>
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_urgent_title"/>
 
         <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
             android:id="@+id/recyclerview_pager_indicator"

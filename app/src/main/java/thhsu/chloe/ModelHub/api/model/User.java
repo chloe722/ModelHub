@@ -84,7 +84,7 @@ public class User {
         this.currentCompany = currentCompany;
     }
 
-    public String getJobTitle() {
+    public String getCaseTitle() {
         return jobTitle;
     }
 

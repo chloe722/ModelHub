@@ -16,7 +16,7 @@ import android.widget.EditText;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiJobManager;
+import thhsu.chloe.ModelHub.api.ApiCaseManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.PostUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.model.UpdataUserRequest;
@@ -64,7 +64,7 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         mGithubTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_github);
         mLinkedinTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_linkedin);
 
-        ApiJobManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
+        ApiCaseManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
             @Override
             public void onCompleted(User user) {
                 mUser = user;
@@ -124,7 +124,7 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
                     request.user.setLinkedinAccount(mLinkedinUsername);
                     saveUserData();
 
-                    ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
+                    ApiCaseManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
                         @Override
                         public void onComplete() {
                         }

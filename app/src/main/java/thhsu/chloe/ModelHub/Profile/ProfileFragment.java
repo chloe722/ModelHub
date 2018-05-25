@@ -50,7 +50,7 @@ import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.CircleTransform;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiJobManager;
+import thhsu.chloe.ModelHub.api.ApiCaseManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.model.User;
 
@@ -64,11 +64,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     ProfileContract.Presenter mPresenter;
     Button mEditInfoBtn, mCameraBtn;
     private ImageButton mUserFacebook, mUserGithub, mUserLinkedin;
-    TextView mUserName, mUserEmail, mUserNumber, mUserJobTitle, mUserLocation;
+    TextView mUserName, mUserEmail, mUserNumber, mUserCaseTitle, mUserLocation;
     ImageView mUserPhotoView;
     private Uri mImageUri;
     Context mContext;
-    String userToken, userName, userEmail, userJobTitle, userLocationCountry, userLocationCity, userLocation, userFacebookUsername, userGithubUsername, userLinkedinUsername;
+    String userToken, userName, userEmail, userCaseTitle, userLocationCountry, userLocationCity, userLocation, userFacebookUsername, userGithubUsername, userLinkedinUsername;
     BottomSheetDialog mBottomSheetDialog;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
@@ -90,7 +90,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mUserPhotoView = (ImageView) root.findViewById(R.id.profile_user_photo);
         mUserName = (TextView) root.findViewById(R.id.profile_user_name);
         mUserEmail = (TextView) root.findViewById(R.id.profile_user_email);
-        mUserJobTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
+        mUserCaseTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
         mUserFacebook = (ImageButton) root.findViewById(R.id.profile_user_facebook);
         mUserGithub = (ImageButton) root.findViewById(R.id.profile_user_github);
@@ -118,14 +118,14 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
 
         if(!userToken.equals("")){
-            ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
+            ApiCaseManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
                 @Override
                 public void onCompleted(User user) {
                     mUser = user;
                     userName = mUser.getName();
                     userLocationCity = mUser.getCity();
                     userEmail = mUser.getEmail();
-                    userJobTitle = mUser.getJobTitle();
+                    userCaseTitle = mUser.getCaseTitle();
                     userFacebookUsername = mUser.getFacebookAccount();
                     userGithubUsername = mUser.getGithubAccount();
                     userLinkedinUsername = mUser.getLinkedinAccount();
@@ -134,10 +134,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     userLocationCountry = mUser.getCountry();
                     userLocation = (userLocationCity != null ? userLocationCity + ",  " : "") + userLocationCountry != null ?userLocationCity : "";
                     mUserLocation.setText(userLocation);
-                    mUserJobTitle.setText(userJobTitle);
+                    mUserCaseTitle.setText(userCaseTitle);
 
-                    if(!(mUserJobTitle == null || mUserJobTitle.equals(""))){
-                        mUserJobTitle.setVisibility(View.VISIBLE);
+                    if(!(mUserCaseTitle == null || mUserCaseTitle.equals(""))){
+                        mUserCaseTitle.setVisibility(View.VISIBLE);
                     }
 
                     if( !(mUserLocation == null || mUserLocation.equals(""))){
@@ -240,7 +240,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     Log.d("Chloe", "imageFile: " + imageFile.getAbsolutePath());
 
                 Log.d("Chloe", "other image uri: " + mImageUri);
-                performCrop(mImageUri, FileProvider.getUriForFile(getContext(),"thhsu.chloe.jeeva.fileprovider", imageFile));
+                performCrop(mImageUri, FileProvider.getUriForFile(getContext(),"thhsu.chloe.modelhub.fileprovider", imageFile));
             }
         }
         else if (requestCode == Constants.CROP_IMAGE) {
@@ -311,7 +311,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 ex.printStackTrace();
             }
             if(photoFile != null){
-                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.jeeva.fileprovider", photoFile); //mImageCameraTempUri
+                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.modelhub.fileprovider", photoFile); //mImageCameraTempUri
                 takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
                 startActivityForResult(takePicIntent, Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST);
             }
@@ -329,7 +329,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 e.printStackTrace();
             }
             if(imageFile != null){
-                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.jeeva.fileprovider", imageFile); //mImageCameraTempUri
+                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.modelhub.fileprovider", imageFile); //mImageCameraTempUri
                 startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
             }
         }
@@ -373,7 +373,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 getContext().grantUriPermission(packageName, uri,
                         Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             }
-//            getContext().grantUriPermission("thhsu.chloe.jeeva", uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+//            getContext().grantUriPermission("thhsu.chloe.modelhub", uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             cropIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION); //For android 8.0 and after
             startActivityForResult(cropIntent, Constants.CROP_IMAGE);
         }

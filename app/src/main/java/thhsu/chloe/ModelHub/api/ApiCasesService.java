@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.api.model.Cases;
 import thhsu.chloe.ModelHub.api.model.PostUserInfoResult;
 import thhsu.chloe.ModelHub.api.model.RegisterResult;
 import thhsu.chloe.ModelHub.api.model.Result;
@@ -21,9 +21,9 @@ import thhsu.chloe.ModelHub.api.model.UserInfo;
  * Created by Chloe on 5/7/2018.
  */
 
-public interface ApiJobsService {
+public interface ApiCasesService {
     String  TAGS = "tags";
-    String PATH = "jobs";
+    String PATH = "cases";
     String REGISTER = "register";
     String TOKEN = "token";
     String USERS = "users";
@@ -35,10 +35,10 @@ public interface ApiJobsService {
     String PATH_JOBS_TAGS = PATH + "?";
 
     @GET(PATH_JOBS)
-    Call<Result<ArrayList<Jobs>>> getJobs();
+    Call<Result<ArrayList<Cases>>> getCases();
 
     @GET(PATH_JOBS_TAGS)
-    Call<Result<ArrayList<Jobs>>> getFilterJobs(@Query("tags") String tags);
+    Call<Result<ArrayList<Cases>>> getFilterCases(@Query("tags") String tags);
 
     @GET(USERS_ME)
     Call<UserInfo> getUserData(@Query("token") String token);

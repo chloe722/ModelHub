@@ -26,7 +26,7 @@
     <color name="black_alpha">#6d6d6d</color>
     <color name="colorButtonNavInactive">#8D8D8D</color>
     <color name="fullTime_tag">#0c5af7</color>
-    <color name="job_company_location_title">#515051</color>
+    <color name="case_company_location_title">#515051</color>
     <color name="titleforall">#383838</color>
     <color name="textcolor">#504d41</color>
 </resources>

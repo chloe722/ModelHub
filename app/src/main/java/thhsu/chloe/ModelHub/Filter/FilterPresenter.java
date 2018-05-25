@@ -12,12 +12,12 @@ import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 public class FilterPresenter implements FilterContract.Presenter {
     FilterContract.View mFilterView;
     public ModelHubActivity mModelHubActivity;
-    public ModelHubContract.Presenter mJeevaPresenter;
+    public ModelHubContract.Presenter mPresenter;
     Activity activity;
 
-    public FilterPresenter(FilterContract.View filterView, ModelHubActivity modelHubActivity, ModelHubContract.Presenter jeevaPresenter){
+    public FilterPresenter(FilterContract.View filterView, ModelHubActivity modelHubActivity, ModelHubContract.Presenter modelHubPresenter){
         this.mModelHubActivity = modelHubActivity;
-        this.mJeevaPresenter = jeevaPresenter;
+        this.mPresenter = modelHubPresenter;
         this.mFilterView = filterView;
         if(filterView != null){
             mFilterView.setPresenter(this);
@@ -43,7 +43,7 @@ public class FilterPresenter implements FilterContract.Presenter {
 //    @Override
 //    public void transToHome() {
 //        Intent intent = new Intent(, ModelHubActivity.class);
-////        mJeevaPresenter.transToHome();
+////        mPresenter.transToHome();
 ////        mModelHubActivity.showHomeUi();
 //    }
 }

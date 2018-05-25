@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_job_details_container_layout"
+    android:id="@+id/fragment_case_details_container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/job_details_recyclerview"
+        android:id="@+id/case_details_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/job_details_apply_btn"
+        android:layout_above="@+id/case_details_apply_btn"
         />
 
     <Button
-        android:id="@+id/job_details_apply_btn"
+        android:id="@+id/case_details_apply_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

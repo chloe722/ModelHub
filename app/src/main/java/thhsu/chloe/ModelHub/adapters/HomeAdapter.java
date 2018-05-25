@@ -27,7 +27,7 @@ import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.CircleTransform;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.model.Jobs;
+import thhsu.chloe.ModelHub.api.model.Cases;
 
 /**
  * Created by Chloe on 5/1/2018.
@@ -36,15 +36,15 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class HomeAdapter extends RecyclerView.Adapter {
 
     private HomeContract.Presenter mPresenter;
-    private ArrayList<Jobs> mJobs;
+    private ArrayList<Cases> mCases;
     SharedPreferences sharedPreferences;
     String token;
     private int mNextPaging;
     public IndefinitePagerIndicator indefinitePagerIndicator;
 
-    public HomeAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
+    public HomeAdapter(HomeContract.Presenter presenter, ArrayList<Cases> cases){
         mPresenter = presenter;
-        this.mJobs = jobs;
+        this.mCases = cases;
         this.mNextPaging = Constants.FIRST_PAGING;
 
     }
@@ -61,7 +61,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             return new HomeMainItemViewHolder(view);
         }else{
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vertical_home, parent, false);
-            return new HomeJobsItemViewHolder(view);
+            return new HomeCasesItemViewHolder(view);
         }
     }
 
@@ -71,14 +71,14 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         if(holder instanceof HomeMainItemViewHolder){
             bindMainItem((HomeMainItemViewHolder) holder);
-        }else if (holder instanceof HomeJobsItemViewHolder){
-            bindHomeJobsItem((HomeJobsItemViewHolder) holder, position-1);
+        }else if (holder instanceof HomeCasesItemViewHolder){
+            bindHomeJobsItem((HomeCasesItemViewHolder) holder, position-1);
         }
     }
 
     @Override
     public int getItemCount() {
-        return (isNextPagingExist())? mJobs.size() +1 : mJobs.size();}
+        return (isNextPagingExist())? mCases.size() +1 : mCases.size();}
 
     @Override
     public int getItemViewType(int position) {
@@ -95,7 +95,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
             mRecyclerRecommend = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
             indefinitePagerIndicator = (IndefinitePagerIndicator) itemView.findViewById(R.id.recyclerview_pager_indicator);
-            mRecommendedTitle = (TextView) itemView.findViewById(R.id.horizontal_recommend_title);
+            mRecommendedTitle = (TextView) itemView.findViewById(R.id.horizontal_urgent_title);
         }
         public RecyclerView getRecyclerRecommend(){return mRecyclerRecommend;}
         public TextView getRecommendedTitle(){return mRecommendedTitle;}
@@ -107,53 +107,53 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 LinearLayoutManager.HORIZONTAL, false));
         holder.getRecyclerRecommend().setOnFlingListener(null);
         new LinearSnapHelper().attachToRecyclerView(holder.getRecyclerRecommend());
-        holder.getRecyclerRecommend().setAdapter(new HomeJobRecommendAdapter(mPresenter, mJobs));
+        holder.getRecyclerRecommend().setAdapter(new HomeCaseUrgentAdapter(mPresenter, mCases));
         indefinitePagerIndicator.attachToRecyclerView(holder.getRecyclerRecommend());
     }
 
-    private class HomeJobsItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView mHomeJobTypeTag, mHomeJobTitle, mHomeJobPostedOnText,
-                mHomeJobPostedDate, mHomeJobCompanyTitle, mHomeJobLocationTitle,
-                mHomeJobCompanyName, mHomeJobLocationName, mHomeJobUrgentOrNotText ;
-        public ImageView mHomeJobCompanyLogo, mHomeJobClockIcn;
-        public ImageButton mSavedJobIcnBtn;
+    private class HomeCasesItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView mHomeCaseTypeTag, mHomeCaseTitle, mHomeCasePostedOnText,
+                mHomeCasePostedDate, mHomeCaseCompanyTitle, mHomeCaseLocationTitle,
+                mHomeCaseCompanyName, mHomeCaseLocationName, mHomeCaseUrgentOrNotText;
+        public ImageView mHomeCaseCompanyLogo, mHomeJobClockIcn;
+        public ImageButton mInterestIcnBtn;
 
-        public HomeJobsItemViewHolder(View itemView) {
+        public HomeCasesItemViewHolder(View itemView) {
             super(itemView);
 
-            mHomeJobTypeTag = (TextView) itemView.findViewById(R.id.home_job_type_tag);
-            mHomeJobTitle = (TextView) itemView.findViewById(R.id.saved_job_title);
-            mHomeJobPostedOnText = (TextView) itemView.findViewById(R.id.home_job_posted_text);
-            mHomeJobPostedDate = (TextView) itemView.findViewById(R.id.home_job_posted_date);
-            mHomeJobCompanyTitle = (TextView) itemView.findViewById(R.id.home_job_company_title);
-            mHomeJobLocationTitle = (TextView) itemView.findViewById(R.id.home_job_location_title);
-            mHomeJobCompanyName = (TextView) itemView.findViewById(R.id.home_job_company_name);
-            mHomeJobLocationName = (TextView) itemView.findViewById(R.id.home_job_location_name);
-            mHomeJobUrgentOrNotText = (TextView) itemView.findViewById(R.id.home_job_urgentornot_text);
-            mHomeJobCompanyLogo = (ImageView) itemView.findViewById(R.id.home_job_company_logo);
-            mSavedJobIcnBtn = (ImageButton) itemView.findViewById(R.id.home_job_savedJob_icn_btn);
+            mHomeCaseTypeTag = (TextView) itemView.findViewById(R.id.home_case_type_tag);
+            mHomeCaseTitle = (TextView) itemView.findViewById(R.id.interest_title);
+            mHomeCasePostedOnText = (TextView) itemView.findViewById(R.id.home_case_posted_text);
+            mHomeCasePostedDate = (TextView) itemView.findViewById(R.id.home_case_posted_date);
+            mHomeCaseCompanyTitle = (TextView) itemView.findViewById(R.id.home_case_company_title);
+            mHomeCaseLocationTitle = (TextView) itemView.findViewById(R.id.home_case_location_title);
+            mHomeCaseCompanyName = (TextView) itemView.findViewById(R.id.home_case_company_name);
+            mHomeCaseLocationName = (TextView) itemView.findViewById(R.id.home_case_location_name);
+            mHomeCaseUrgentOrNotText = (TextView) itemView.findViewById(R.id.home_case_urgentornot_text);
+            mHomeCaseCompanyLogo = (ImageView) itemView.findViewById(R.id.home_case_company_logo);
+            mInterestIcnBtn = (ImageButton) itemView.findViewById(R.id.home_case_interest_icn_btn);
             mHomeJobClockIcn = (ImageView) itemView.findViewById(R.id.home_clock_icn);
 
-            mSavedJobIcnBtn.setOnClickListener(this);
-            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_saved_job_item)).setOnClickListener(this);
+            mInterestIcnBtn.setOnClickListener(this);
+            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_interest_item)).setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Jobs job = mJobs.get(getAdapterPosition()-1);
+            Cases cases = mCases.get(getAdapterPosition()-1);
             Log.d("Chloe", "adapterPosition: " + (getAdapterPosition()-1));
 
             switch (v.getId()){
-                case R.id.home_job_savedJob_icn_btn:
+                case R.id.home_case_interest_icn_btn:
                     if(!token.equals("")){
-                        if(ModelHub.getModelHubSQLHelper().getSavedJob(job.getId())){
-                            mPresenter.updateSavedJob(job, false);
-                            mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                        if(ModelHub.getModelHubSQLHelper().getInterest(cases.getId())){
+                            mPresenter.updateInterest(cases, false);
+                            mInterestIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
                             break;
                         }else{
-                            mPresenter.updateSavedJob(job, true);
-                            Log.d("Chloe", "is saved: " + ModelHub.getModelHubSQLHelper().getSavedJob(job.getId()) );
-                            mSavedJobIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                            mPresenter.updateInterest(cases, true);
+                            Log.d("Chloe", "is saved: " + ModelHub.getModelHubSQLHelper().getInterest(cases.getId()) );
+                            mInterestIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
                             break;
                         }
                     }else{
@@ -161,79 +161,79 @@ public class HomeAdapter extends RecyclerView.Adapter {
                     }
                 break;
 
-                case R.id.constraintlayout_saved_job_item:
-                    Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
-                    mPresenter.openJobDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
+                case R.id.constraintlayout_interest_item:
+                    Log.d("Chloe", "getTitle in home adapter: " + mCases.get(getAdapterPosition()).getTitle());
+                    mPresenter.openCaseDetails(mCases.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
                     break;
             }
 
         }
 
-        public TextView getHomeJobTypeTag(){return mHomeJobTypeTag;}
-        public TextView getHomeJobTitle(){return mHomeJobTitle;}
-        public TextView getHomeJobPostedOnText(){return mHomeJobPostedOnText;}
-        public TextView getHomeJobPostedDate(){return mHomeJobPostedDate;}
-        public TextView getHomeJobCompanyTitle(){return mHomeJobCompanyTitle;}
-        public TextView getHomeJobLocationTitle(){return mHomeJobLocationTitle;}
-        public TextView getHomeJobCompanyName(){return mHomeJobCompanyName;}
-        public TextView getHomeJobLocationName(){return mHomeJobLocationName;}
-        public TextView getHomeJobUrgentOrNotText(){return mHomeJobUrgentOrNotText;}
-        public ImageView getHomeJobCompanyLogo(){return mHomeJobCompanyLogo;}
-        public ImageButton getSavedJobIcnBtn(){return mSavedJobIcnBtn;}
+        public TextView getHomeCaseTypeTag(){return mHomeCaseTypeTag;}
+        public TextView getHomeCaseTitle(){return mHomeCaseTitle;}
+        public TextView getHomeCasePostedOnText(){return mHomeCasePostedOnText;}
+        public TextView getHomeCasePostedDate(){return mHomeCasePostedDate;}
+        public TextView getHomeCaseCompanyTitle(){return mHomeCaseCompanyTitle;}
+        public TextView getHomeCaseLocationTitle(){return mHomeCaseLocationTitle;}
+        public TextView getHomeCaseCompanyName(){return mHomeCaseCompanyName;}
+        public TextView getHomeCaseLocationName(){return mHomeCaseLocationName;}
+        public TextView getHomeCaseUrgentOrNotText(){return mHomeCaseUrgentOrNotText;}
+        public ImageView getHomeCaseCompanyLogo(){return mHomeCaseCompanyLogo;}
+        public ImageButton getInterestIcnBtn(){return mInterestIcnBtn;}
     }
 
-    private void bindHomeJobsItem(HomeJobsItemViewHolder holder, int position){
-        holder.getHomeJobTypeTag().setText(mJobs.get(position).getType());
-        holder.getHomeJobCompanyName().setText(mJobs.get(position).getCompany());
-        holder.getHomeJobLocationName().setText(mJobs.get(position).getLocation());
-        holder.getHomeJobPostedDate().setText(mJobs.get(position).getDatePosted());
-        holder.getHomeJobTitle().setText(mJobs.get(position).getTitle());
-        if (mJobs.get(position).getType().equals("fulltime")){
-            (holder.getHomeJobTypeTag()).setText("Full-time");
-//            (holder.getHomeJobTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
-        }else if(mJobs.get(position).getType().equals("parttime")){
-            (holder.getHomeJobTypeTag()).setText("Part-time");
-        }else if(mJobs.get(position).getType().equals("intern")){
-            (holder.getHomeJobTypeTag()).setText("Intern");
+    private void bindHomeJobsItem(HomeCasesItemViewHolder holder, int position){
+        holder.getHomeCaseTypeTag().setText(mCases.get(position).getType());
+        holder.getHomeCaseCompanyName().setText(mCases.get(position).getCompany());
+        holder.getHomeCaseLocationName().setText(mCases.get(position).getLocation());
+        holder.getHomeCasePostedDate().setText(mCases.get(position).getDatePosted());
+        holder.getHomeCaseTitle().setText(mCases.get(position).getTitle());
+        if (mCases.get(position).getType().equals("fulltime")){
+            (holder.getHomeCaseTypeTag()).setText("Full-time");
+//            (holder.getHomeCaseTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
+        }else if(mCases.get(position).getType().equals("parttime")){
+            (holder.getHomeCaseTypeTag()).setText("Part-time");
+        }else if(mCases.get(position).getType().equals("intern")){
+            (holder.getHomeCaseTypeTag()).setText("Intern");
         }
-        if(mJobs.get(position).getUrgent()){
+        if(mCases.get(position).getUrgent()){
             (holder.mHomeJobClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
-            (holder.getHomeJobUrgentOrNotText()).setText("Urgent");
-            (holder.getHomeJobUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
+            (holder.getHomeCaseUrgentOrNotText()).setText("Urgent");
+            (holder.getHomeCaseUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
             }
-        if(holder.getHomeJobCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
-            Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getHomeJobCompanyLogo());
+        if(holder.getHomeCaseCompanyLogo() != null && mCases.get(position).getLogo() != null) {
+            Picasso.get().load(mCases.get(position).getLogo()).transform(new CircleTransform()).into(holder.getHomeCaseCompanyLogo());
         }
 
         Log.d("Chloe", "postiton: " + position );
-        Log.d("Chloe", "postiton ID: " + mJobs.get(position).getId());
-        Log.d("Chloe", "postiton title: " + mJobs.get(position).getTitle());
+        Log.d("Chloe", "postiton ID: " + mCases.get(position).getId());
+        Log.d("Chloe", "postiton title: " + mCases.get(position).getTitle());
         if( !token.equals("")){
-            if(ModelHub.getModelHubSQLHelper().getSavedJob(mJobs.get(position).getId())){
+            if(ModelHub.getModelHubSQLHelper().getInterest(mCases.get(position).getId())){
                 Log.d("Chloe", "true");
-                holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
+                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
             }else{
                 Log.d("Chloe", "false");
-                holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
             }
         }else{
-            holder.getSavedJobIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+            holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
         }
     }
 
-    public void updateData(ArrayList<Jobs> jobs){
+    public void updateData(ArrayList<Cases> cases){
         Log.d("Chloe", "HomeAdapter update data");
-//        for (Jobs job : jobs){
-//            mJobs.add(job);
+//        for (Cases job : cases){
+//            mCases.add(job);
 //        }
-        mJobs = jobs;
+        mCases = cases;
         setNextPaging(Constants.FIRST_PAGING);
         notifyDataSetChanged();
 
     }
 
-    public void clearJobs(){
-        mJobs.clear();
+    public void clearCases(){
+        mCases.clear();
         notifyDataSetChanged();
     }
 
