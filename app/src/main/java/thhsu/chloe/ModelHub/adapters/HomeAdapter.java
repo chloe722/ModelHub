@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -72,7 +72,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         if(holder instanceof HomeMainItemViewHolder){
             bindMainItem((HomeMainItemViewHolder) holder);
         }else if (holder instanceof HomeCasesItemViewHolder){
-            bindHomeJobsItem((HomeCasesItemViewHolder) holder, position-1);
+            bindHomeCasesItem((HomeCasesItemViewHolder) holder, position-1);
         }
     }
 
@@ -82,24 +82,24 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        return (position == 0)? Constants.VIEWTYPE_HOME_MAIN : Constants.VIEWTYPE_HOME_JOB_LIST;
+        return (position == 0)? Constants.VIEWTYPE_HOME_MAIN : Constants.VIEWTYPE_HOME_CASE_LIST;
     }
 
     private class HomeMainItemViewHolder extends RecyclerView.ViewHolder{
-        private RecyclerView mRecyclerRecommend;
-        public TextView mRecommendedTitle, mJobTitle;
+        private RecyclerView mRecyclerUrgent;
+        public TextView mUrgentTitle, mCaseTitle;
 
 
         public HomeMainItemViewHolder(View itemView) {
             super(itemView);
 
-            mRecyclerRecommend = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
+            mRecyclerUrgent = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
             indefinitePagerIndicator = (IndefinitePagerIndicator) itemView.findViewById(R.id.recyclerview_pager_indicator);
-            mRecommendedTitle = (TextView) itemView.findViewById(R.id.horizontal_urgent_title);
+            mUrgentTitle = (TextView) itemView.findViewById(R.id.horizontal_urgent_title);
         }
-        public RecyclerView getRecyclerRecommend(){return mRecyclerRecommend;}
-        public TextView getRecommendedTitle(){return mRecommendedTitle;}
-        private TextView getJobTitle(){return mJobTitle;}
+        public RecyclerView getRecyclerRecommend(){return mRecyclerUrgent;}
+        public TextView getRecommendedTitle(){return mUrgentTitle;}
+        private TextView getCaseTitle(){return mCaseTitle;}
     }
 
     private void bindMainItem(HomeMainItemViewHolder holder){
@@ -115,7 +115,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public TextView mHomeCaseTypeTag, mHomeCaseTitle, mHomeCasePostedOnText,
                 mHomeCasePostedDate, mHomeCaseCompanyTitle, mHomeCaseLocationTitle,
                 mHomeCaseCompanyName, mHomeCaseLocationName, mHomeCaseUrgentOrNotText;
-        public ImageView mHomeCaseCompanyLogo, mHomeJobClockIcn;
+        public ImageView mHomeCaseCompanyLogo, mHomecCaseClockIcn;
         public ImageButton mInterestIcnBtn;
 
         public HomeCasesItemViewHolder(View itemView) {
@@ -132,10 +132,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
             mHomeCaseUrgentOrNotText = (TextView) itemView.findViewById(R.id.home_case_urgentornot_text);
             mHomeCaseCompanyLogo = (ImageView) itemView.findViewById(R.id.home_case_company_logo);
             mInterestIcnBtn = (ImageButton) itemView.findViewById(R.id.home_case_interest_icn_btn);
-            mHomeJobClockIcn = (ImageView) itemView.findViewById(R.id.home_clock_icn);
+            mHomecCaseClockIcn = (ImageView) itemView.findViewById(R.id.home_clock_icn);
 
             mInterestIcnBtn.setOnClickListener(this);
-            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_interest_item)).setOnClickListener(this);
+//            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_interest_item)).setOnClickListener(this);
+            ((CardView) itemView.findViewById(R.id.cardView_main_case_item)).setOnClickListener(this);
         }
 
         @Override
@@ -182,7 +183,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public ImageButton getInterestIcnBtn(){return mInterestIcnBtn;}
     }
 
-    private void bindHomeJobsItem(HomeCasesItemViewHolder holder, int position){
+    private void bindHomeCasesItem(HomeCasesItemViewHolder holder, int position){
         holder.getHomeCaseTypeTag().setText(mCases.get(position).getType());
         holder.getHomeCaseCompanyName().setText(mCases.get(position).getCompany());
         holder.getHomeCaseLocationName().setText(mCases.get(position).getLocation());
@@ -197,7 +198,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             (holder.getHomeCaseTypeTag()).setText("Intern");
         }
         if(mCases.get(position).getUrgent()){
-            (holder.mHomeJobClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
+            (holder.mHomecCaseClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
             (holder.getHomeCaseUrgentOrNotText()).setText("Urgent");
             (holder.getHomeCaseUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
             }
