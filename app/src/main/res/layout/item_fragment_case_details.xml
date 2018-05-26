@@ -30,30 +30,16 @@
             android:background="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_bookmark_border_red_24dp" />
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
 
         <TextView
-            android:id="@+id/case_details_type_tag"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/yellow_rounded_shape"
-            android:text="Full-Time"
-            android:textAlignment="center"
-            android:textColor="@color/textcolor"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/interest_title"
+            android:id="@+id/home_case_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="16dp"
             android:maxWidth="300dp"
-            android:text="Full Stack Ruby on Rails Developer"
+            android:text="Car TV commercial"
             android:textColor="#563c03"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -61,137 +47,70 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/case_details_posted_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="5dp"
-            android:text="Posted on"
-            android:textColor="#3F3F3E"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/interest_title" />
-
-        <TextView
             android:id="@+id/case_details_posted_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:text="October 24, 2018"
+            android:drawableLeft="@drawable/ic_date_range_black_24dp"
+            android:text="Shooting date:"
             android:textColor="@color/case_company_location_title"
             android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/case_details_posted_text"
-            app:layout_constraintTop_toBottomOf="@+id/interest_title" />
+            tools:layout_editor_absoluteX="42dp"
+            tools:layout_editor_absoluteY="51dp" />
 
-        <ImageView
-            android:id="@+id/case_details_company_logo"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_posted_text"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-
-        <TextView
-            android:id="@+id/case_details_company_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Company"
-            android:textColor="#3F3F3E"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_posted_text" />
-
-        <TextView
-            android:id="@+id/case_details_location_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Location"
-            android:textColor="#3F3F3E"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/case_details_company_name"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_posted_text" />
+        <!--<ImageView-->
+            <!--android:id="@+id/case_details_company_logo"-->
+            <!--android:layout_width="35dp"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:srcCompat="@mipmap/ic_launcher_round"-->
+            <!--tools:layout_editor_absoluteY="63dp" />-->
 
         <TextView
             android:id="@+id/case_details_company_name"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="192dp"
+            android:layout_height="34dp"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
             android:maxWidth="110dp"
             android:minWidth="90dp"
-            android:text="Rockstar Games INC."
+            android:text="Taipei, Taiwan"
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_company_title" />
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="86dp" />
 
         <TextView
             android:id="@+id/case_details_location_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:maxWidth="150dp"
             android:minWidth="120dp"
             android:text="San Francisco, United States"
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/case_details_company_name"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_location_title" />
-
-        <TextView
-            android:id="@+id/case_details_salary_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Salary"
-            android:textColor="#3F3F3E"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_company_name" />
+            tools:layout_editor_absoluteX="59dp"
+            tools:layout_editor_absoluteY="121dp" />
 
         <TextView
             android:id="@+id/case_details_salary_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="400000"
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_salary_title" />
-
-        <TextView
-            android:id="@+id/case_details_salary_unit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="NT/ Monthly"
-            android:textColor="@color/case_company_location_title"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/case_details_salary_num"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_salary_title" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="158dp" />
 
         <ImageView
             android:id="@+id/case_details_hr_line"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="8dp"
             android:background="@color/colorHrLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_salary_unit" />
+            tools:layout_editor_absoluteY="209dp" />
 
         <TextView
             android:id="@+id/case_details_des_title"

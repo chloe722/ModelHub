@@ -100,7 +100,7 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
             super(itemView);
 
             mInterestTypeTag = (TextView) itemView.findViewById(R.id.interest_type_tag);
-            mInterestTitle = (TextView) itemView.findViewById(R.id.interest_title);
+            mInterestTitle = (TextView) itemView.findViewById(R.id.home_case_title);
             mInterestPostedOnText = (TextView) itemView.findViewById(R.id.interest_posted_text);
             mInterestPostedDate = (TextView) itemView.findViewById(R.id.interest_posted_date);
             mInterestCompanyTitle = (TextView) itemView.findViewById(R.id.interest_company_title);

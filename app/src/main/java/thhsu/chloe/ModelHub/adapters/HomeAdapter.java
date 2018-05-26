@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -72,7 +72,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         if(holder instanceof HomeMainItemViewHolder){
             bindMainItem((HomeMainItemViewHolder) holder);
         }else if (holder instanceof HomeCasesItemViewHolder){
-            bindHomeJobsItem((HomeCasesItemViewHolder) holder, position-1);
+            bindHomeCasesItem((HomeCasesItemViewHolder) holder, position-1);
         }
     }
 
@@ -82,24 +82,24 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        return (position == 0)? Constants.VIEWTYPE_HOME_MAIN : Constants.VIEWTYPE_HOME_JOB_LIST;
+        return (position == 0)? Constants.VIEWTYPE_HOME_MAIN : Constants.VIEWTYPE_HOME_CASE_LIST;
     }
 
     private class HomeMainItemViewHolder extends RecyclerView.ViewHolder{
-        private RecyclerView mRecyclerRecommend;
-        public TextView mRecommendedTitle, mJobTitle;
+        private RecyclerView mRecyclerUrgent;
+        public TextView mUrgentTitle, mCaseTitle;
 
 
         public HomeMainItemViewHolder(View itemView) {
             super(itemView);
 
-            mRecyclerRecommend = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
+            mRecyclerUrgent = (RecyclerView) itemView.findViewById(R.id.home_horizontal_recyclerview);
             indefinitePagerIndicator = (IndefinitePagerIndicator) itemView.findViewById(R.id.recyclerview_pager_indicator);
-            mRecommendedTitle = (TextView) itemView.findViewById(R.id.horizontal_urgent_title);
+            mUrgentTitle = (TextView) itemView.findViewById(R.id.horizontal_urgent_title);
         }
-        public RecyclerView getRecyclerRecommend(){return mRecyclerRecommend;}
-        public TextView getRecommendedTitle(){return mRecommendedTitle;}
-        private TextView getJobTitle(){return mJobTitle;}
+        public RecyclerView getRecyclerRecommend(){return mRecyclerUrgent;}
+        public TextView getUrgentTitle(){return mUrgentTitle;}
+        private TextView getCaseTitle(){return mCaseTitle;}
     }
 
     private void bindMainItem(HomeMainItemViewHolder holder){
@@ -112,30 +112,24 @@ public class HomeAdapter extends RecyclerView.Adapter {
     }
 
     private class HomeCasesItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView mHomeCaseTypeTag, mHomeCaseTitle, mHomeCasePostedOnText,
-                mHomeCasePostedDate, mHomeCaseCompanyTitle, mHomeCaseLocationTitle,
-                mHomeCaseCompanyName, mHomeCaseLocationName, mHomeCaseUrgentOrNotText;
-        public ImageView mHomeCaseCompanyLogo, mHomeJobClockIcn;
+        public TextView mHomeCaseTitle, mHomeCaseDate, mHomeCaseLocation, mHomeCaseWhom, mHomeCasePay;
+        public ImageView mHomeCaseCompanyLogo;
         public ImageButton mInterestIcnBtn;
 
         public HomeCasesItemViewHolder(View itemView) {
             super(itemView);
 
-            mHomeCaseTypeTag = (TextView) itemView.findViewById(R.id.home_case_type_tag);
-            mHomeCaseTitle = (TextView) itemView.findViewById(R.id.interest_title);
-            mHomeCasePostedOnText = (TextView) itemView.findViewById(R.id.home_case_posted_text);
-            mHomeCasePostedDate = (TextView) itemView.findViewById(R.id.home_case_posted_date);
-            mHomeCaseCompanyTitle = (TextView) itemView.findViewById(R.id.home_case_company_title);
-            mHomeCaseLocationTitle = (TextView) itemView.findViewById(R.id.home_case_location_title);
-            mHomeCaseCompanyName = (TextView) itemView.findViewById(R.id.home_case_company_name);
-            mHomeCaseLocationName = (TextView) itemView.findViewById(R.id.home_case_location_name);
-            mHomeCaseUrgentOrNotText = (TextView) itemView.findViewById(R.id.home_case_urgentornot_text);
+            mHomeCaseTitle = (TextView) itemView.findViewById(R.id.home_case_title);
+            mHomeCaseDate = (TextView) itemView.findViewById(R.id.home_case_date);
+            mHomeCaseLocation = (TextView) itemView.findViewById(R.id.home_case_location);
+            mHomeCaseWhom = (TextView) itemView.findViewById(R.id.home_case_whom);
+            mHomeCasePay = (TextView) itemView.findViewById(R.id.home_case_pay);
             mHomeCaseCompanyLogo = (ImageView) itemView.findViewById(R.id.home_case_company_logo);
             mInterestIcnBtn = (ImageButton) itemView.findViewById(R.id.home_case_interest_icn_btn);
-            mHomeJobClockIcn = (ImageView) itemView.findViewById(R.id.home_clock_icn);
 
             mInterestIcnBtn.setOnClickListener(this);
-            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_interest_item)).setOnClickListener(this);
+//            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_interest_item)).setOnClickListener(this);
+            ((CardView) itemView.findViewById(R.id.cardView_main_case_item)).setOnClickListener(this);
         }
 
         @Override
@@ -148,12 +142,12 @@ public class HomeAdapter extends RecyclerView.Adapter {
                     if(!token.equals("")){
                         if(ModelHub.getModelHubSQLHelper().getInterest(cases.getId())){
                             mPresenter.updateInterest(cases, false);
-                            mInterestIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                            mInterestIcnBtn.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                             break;
                         }else{
                             mPresenter.updateInterest(cases, true);
                             Log.d("Chloe", "is saved: " + ModelHub.getModelHubSQLHelper().getInterest(cases.getId()) );
-                            mInterestIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
+                            mInterestIcnBtn.setImageResource(R.drawable.ic_favorite_black_24dp);
                             break;
                         }
                     }else{
@@ -169,41 +163,24 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         }
 
-        public TextView getHomeCaseTypeTag(){return mHomeCaseTypeTag;}
         public TextView getHomeCaseTitle(){return mHomeCaseTitle;}
-        public TextView getHomeCasePostedOnText(){return mHomeCasePostedOnText;}
-        public TextView getHomeCasePostedDate(){return mHomeCasePostedDate;}
-        public TextView getHomeCaseCompanyTitle(){return mHomeCaseCompanyTitle;}
-        public TextView getHomeCaseLocationTitle(){return mHomeCaseLocationTitle;}
-        public TextView getHomeCaseCompanyName(){return mHomeCaseCompanyName;}
-        public TextView getHomeCaseLocationName(){return mHomeCaseLocationName;}
-        public TextView getHomeCaseUrgentOrNotText(){return mHomeCaseUrgentOrNotText;}
+        public TextView getHomeCaseDate(){return mHomeCaseDate;}
+        public TextView getHomeCaseLocation(){return mHomeCaseLocation;}
+        public TextView getHomeCaseWhom(){return mHomeCaseWhom;}
+        public TextView getHomeCasePay(){return mHomeCasePay;}
         public ImageView getHomeCaseCompanyLogo(){return mHomeCaseCompanyLogo;}
         public ImageButton getInterestIcnBtn(){return mInterestIcnBtn;}
     }
 
-    private void bindHomeJobsItem(HomeCasesItemViewHolder holder, int position){
-        holder.getHomeCaseTypeTag().setText(mCases.get(position).getType());
-        holder.getHomeCaseCompanyName().setText(mCases.get(position).getCompany());
-        holder.getHomeCaseLocationName().setText(mCases.get(position).getLocation());
-        holder.getHomeCasePostedDate().setText(mCases.get(position).getDatePosted());
+    private void bindHomeCasesItem(HomeCasesItemViewHolder holder, int position){
         holder.getHomeCaseTitle().setText(mCases.get(position).getTitle());
-        if (mCases.get(position).getType().equals("fulltime")){
-            (holder.getHomeCaseTypeTag()).setText("Full-time");
+
 //            (holder.getHomeCaseTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
-        }else if(mCases.get(position).getType().equals("parttime")){
-            (holder.getHomeCaseTypeTag()).setText("Part-time");
-        }else if(mCases.get(position).getType().equals("intern")){
-            (holder.getHomeCaseTypeTag()).setText("Intern");
-        }
-        if(mCases.get(position).getUrgent()){
-            (holder.mHomeJobClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
-            (holder.getHomeCaseUrgentOrNotText()).setText("Urgent");
-            (holder.getHomeCaseUrgentOrNotText()).setTextColor(Color.rgb(247,59,59));
-            }
+
         if(holder.getHomeCaseCompanyLogo() != null && mCases.get(position).getLogo() != null) {
             Picasso.get().load(mCases.get(position).getLogo()).transform(new CircleTransform()).into(holder.getHomeCaseCompanyLogo());
         }
+
 
         Log.d("Chloe", "postiton: " + position );
         Log.d("Chloe", "postiton ID: " + mCases.get(position).getId());
@@ -211,13 +188,13 @@ public class HomeAdapter extends RecyclerView.Adapter {
         if( !token.equals("")){
             if(ModelHub.getModelHubSQLHelper().getInterest(mCases.get(position).getId())){
                 Log.d("Chloe", "true");
-                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
+                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_favorite_black_24dp);
             }else{
                 Log.d("Chloe", "false");
-                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_favorite_border_black_24dp);
             }
         }else{
-            holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+            holder.getInterestIcnBtn().setImageResource(R.drawable.ic_favorite_border_black_24dp);
         }
     }
 
