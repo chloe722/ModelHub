@@ -183,7 +183,7 @@ public class CaseDetailsAdapter extends RecyclerView.Adapter<CaseDetailsAdapter.
 
             mDetailsRequirement = (TextView) itemView.findViewById(R.id.case_details_requirement_content);
             mDetailsCaseType = (TextView) itemView.findViewById(R.id.case_details_type_tag);
-            mDetailsCaseTitle = (TextView) itemView.findViewById(R.id.interest_title);
+            mDetailsCaseTitle = (TextView) itemView.findViewById(R.id.home_case_title);
             mDetailsCasePostedText = (TextView) itemView.findViewById(R.id.case_details_posted_text);
             mDetailsCaseDate = (TextView) itemView.findViewById(R.id.case_details_posted_date);
             mDetailsCompanyTitle = (TextView) itemView.findViewById(R.id.case_details_company_title);

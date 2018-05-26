@@ -20,7 +20,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:background="#424242">
+                android:background="#EEEEEE">
 
                 <ImageButton
                     android:visibility="gone"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:indeterminate="true"
-            android:indeterminateTint="@color/colorYellow2" />
+            android:indeterminateTint="@color/pinkthemeColor" />
 
         <TextView
             android:id="@+id/toolbar_title"

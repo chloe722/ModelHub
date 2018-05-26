@@ -47,7 +47,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/interest_title"
+            android:id="@+id/home_case_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -70,7 +70,7 @@
             android:textColor="#3F3F3E"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/interest_title" />
+            app:layout_constraintTop_toBottomOf="@+id/home_case_title" />
 
         <TextView
             android:id="@+id/case_details_posted_date"
@@ -82,7 +82,7 @@
             android:textColor="@color/case_company_location_title"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/case_details_posted_text"
-            app:layout_constraintTop_toBottomOf="@+id/interest_title" />
+            app:layout_constraintTop_toBottomOf="@+id/home_case_title" />
 
         <ImageView
             android:id="@+id/case_details_company_logo"

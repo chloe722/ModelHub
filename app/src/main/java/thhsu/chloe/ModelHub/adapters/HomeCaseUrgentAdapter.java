@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import retrofit2.http.PUT;
 import thhsu.chloe.ModelHub.Home.HomeContract;
 //import thhsu.chloe.jeeva.Profile.ProfileFragment;
 import thhsu.chloe.ModelHub.R;
@@ -58,10 +59,10 @@ public class HomeCaseUrgentAdapter extends RecyclerView.Adapter{
 
         if(holder instanceof HomeCaseUrgentItemViewHolder){
             if (mCases.size() > 0){
-//                DisplayMetrics displayMetrics = new DisplayMetrics();
-//                ((ModelHubActivity) mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseCompanyName()).setText(mCases.get(position).getCompany());
-                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCasePositionTitle()).setText(mCases.get(position).getTitle());
+                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseTitle()).setText(mCases.get(position).getTitle());
+                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseLocation()).setText(mCases.get(position).getLocation());
+//                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseDate()).setText(mCases.get(position).getDate());
+
                 if (mCases.get(position).getImage().equals("")){
                     Picasso.get().load(R.drawable.modelhub_color_font_edited).fit().into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseImage());
 
@@ -86,16 +87,17 @@ public class HomeCaseUrgentAdapter extends RecyclerView.Adapter{
 
     private class HomeCaseUrgentItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public ImageView mUrgentCaseImage, mUrgentCaseCompanyLogo;
-        public TextView mUrgentCasePositionTitle, mUrgentCaseCompanyName;
+        private ImageView mUrgentCaseImage, mUrgentCaseCompanyLogo;
+        private TextView mUrgentCaseTitle, mUrgentCaseLocation, mUrgentCaseDate;
 
-        public HomeCaseUrgentItemViewHolder(View itemView) {
+        private HomeCaseUrgentItemViewHolder(View itemView) {
             super(itemView);
 
             mUrgentCaseImage = (ImageView) itemView.findViewById(R.id.urgent_case_image);
             mUrgentCaseCompanyLogo = (ImageView) itemView.findViewById(R.id.urgent_company_logo);
-            mUrgentCasePositionTitle = (TextView) itemView.findViewById(R.id.urgent_case_title);
-            mUrgentCaseCompanyName = (TextView) itemView.findViewById(R.id.urgent_company_name);
+            mUrgentCaseTitle = (TextView) itemView.findViewById(R.id.urgent_case_title);
+            mUrgentCaseLocation = (TextView) itemView.findViewById(R.id.urgent_case_location);
+            mUrgentCaseDate = (TextView) itemView.findViewById(R.id.urgent_case_date);
             ((CardView) itemView.findViewById(R.id.cardView_urgent_case_item)).setOnClickListener(this);
         }
 
@@ -104,9 +106,10 @@ public class HomeCaseUrgentAdapter extends RecyclerView.Adapter{
             if(v.getId() == R.id.cardView_urgent_case_item) mPresenter.openCaseDetails(mCases.get(getAdapterPosition())); // setOpenCase here  getAdapterPosition()
         }
 
-        public ImageView getUrgentCaseImage(){return mUrgentCaseImage;}
-        public ImageView getUrgentCaseCompanyLogo(){return mUrgentCaseCompanyLogo;}
-        public TextView getUrgentCasePositionTitle(){return mUrgentCasePositionTitle;}
-        public TextView getUrgentCaseCompanyName(){return mUrgentCaseCompanyName;}
+        private ImageView getUrgentCaseImage(){return mUrgentCaseImage;}
+        private ImageView getUrgentCaseCompanyLogo(){return mUrgentCaseCompanyLogo;}
+        private TextView getUrgentCaseTitle(){return mUrgentCaseTitle;}
+        private TextView getUrgentCaseLocation(){return mUrgentCaseLocation;}
+        private TextView getUrgentCaseDate(){return mUrgentCaseDate;}
     }
 }
