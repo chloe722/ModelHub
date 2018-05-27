@@ -57,12 +57,7 @@ public class Jobs implements Serializable{
     @SerializedName("salary")
     @Expose
     private String salary;
-    @SerializedName("description")
-    @Expose
-    private String description;
-    @SerializedName("requirements")
-    @Expose
-    private String requirements;
+
     @SerializedName("hiring_source_from")
     @Expose
     private String hiring_source_from;
@@ -75,6 +70,106 @@ public class Jobs implements Serializable{
     @SerializedName("hiring_other_info")
     @Expose
     private String hiring_other_info;
+
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("requirements")
+    @Expose
+    private String requirements;
+    @SerializedName("whom")
+    @Expose
+    private String whom;
+    @SerializedName("is_paid")
+    @Expose
+    private String isPaid;
+    @SerializedName("shooting_date")
+    @Expose
+    private String shootingDate;
+    @SerializedName("shooting_duration")
+    @Expose
+    private String shootingDuration;
+    @SerializedName("whom_content")
+    @Expose
+    private String whomContent;
+    @SerializedName("job_compensation")
+    @Expose
+    private String jobCompensation;
+//    @SerializedName("travel_expenses_content")
+//    @Expose
+//    private String travelExpensesContent;
+//
+//    public String getTravelExpensesContent() {
+//        return travelExpensesContent;
+//    }
+//
+//    public void setTravelExpensesContent(String travelExpensesContent) {
+//        this.travelExpensesContent = travelExpensesContent;
+//    }
+
+    public String getWhom() {
+        return whom;
+    }
+
+    public void setWhom(String whom) {
+        this.whom = whom;
+    }
+
+    public String getIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(String isPaid) {
+        this.isPaid = isPaid;
+    }
+
+    public String getShootingDate() {
+        return shootingDate;
+    }
+
+    public void setShootingDate(String shootingDate) {
+        this.shootingDate = shootingDate;
+    }
+
+    public String getShootingDuration() {
+        return shootingDuration;
+    }
+
+    public void setShootingDuration(String shootingDuration) {
+        this.shootingDuration = shootingDuration;
+    }
+
+    public String getWhomContent() {
+        return whomContent;
+    }
+
+    public void setWhomContent(String whomContent) {
+        this.whomContent = whomContent;
+    }
+
+    public String getJobCompensation() {
+        return jobCompensation;
+    }
+
+    public void setJobCompensation(String jobCompensation) {
+        this.jobCompensation = jobCompensation;
+    }
+
+    public boolean ismIsSaved() {
+        return mIsSaved;
+    }
+
+    public void setmIsSaved(boolean mIsSaved) {
+        this.mIsSaved = mIsSaved;
+    }
+
+    @SerializedName("travel_expenses_content")
+    @Expose
+
+
+
+
+
 
     private boolean mIsSaved = false;
 

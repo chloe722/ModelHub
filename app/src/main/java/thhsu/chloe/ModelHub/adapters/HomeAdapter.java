@@ -119,7 +119,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
             super(itemView);
 
             mHomeCaseTitle = (TextView) itemView.findViewById(R.id.case_details_title);
-            mHomeCaseDate = (TextView) itemView.findViewById(R.id.home_case_date);
+//            mHomeCaseDate = (TextView) itemView.findViewById(R.id.home_case_date);
             mHomeCaseLocation = (TextView) itemView.findViewById(R.id.home_case_location);
             mHomeCaseWhom = (TextView) itemView.findViewById(R.id.home_case_whom);
             mHomeCasePay = (TextView) itemView.findViewById(R.id.home_case_pay);
@@ -163,7 +163,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         }
 
         private TextView getHomeCaseTitle(){return mHomeCaseTitle;}
-        private TextView getHomeCaseDate(){return mHomeCaseDate;}
+//        private TextView getHomeCaseDate(){return mHomeCaseDate;}
         private TextView getHomeCaseLocation(){return mHomeCaseLocation;}
         private TextView getHomeCaseWhom(){return mHomeCaseWhom;}
         private TextView getHomeCasePay(){return mHomeCasePay;}
@@ -173,6 +173,10 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     public void bindHomeCasesItem(HomeCasesItemViewHolder holder, int position){
         holder.getHomeCaseTitle().setText(mJobs.get(position).getTitle());
+        holder.getHomeCaseLocation().setText(mJobs.get(position).getLocation());
+        holder.getHomeCaseWhom().setText(mJobs.get(position).getWhom());
+        holder.getHomeCasePay().setText(mJobs.get(position).getIsPaid());
+
 
 //            (holder.getHomeCaseTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
 

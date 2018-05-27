@@ -60,7 +60,7 @@ public class HomeJobUrgentAdapter extends RecyclerView.Adapter{
             if (mJobs.size() > 0){
                 (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseTitle()).setText(mJobs.get(position).getTitle());
                 (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseLocation()).setText(mJobs.get(position).getLocation());
-//                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseDate()).setText(mJobs.get(position).getDate());
+                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseDate()).setText(mJobs.get(position).getShootingDate());
 
                 if (mJobs.get(position).getImage().equals("")){
                     Picasso.get().load(R.drawable.modelhub_color_font_edited).fit().into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseImage());

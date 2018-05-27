@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,11 +57,14 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
     public void onBindViewHolder(@NonNull CaseDetailsViewHolder holder, int position) {
         Log.d("Chloe", "job title:" + mJobs.getTitle());
         (holder.getDetailsCaseTitle()).setText(mJobs.getTitle());
-        (holder.getDetailsCaseShootingDateText()).setText(mJobs.getDatePosted());
         (holder.getDetailsCaseDesContent()).setText(mJobs.getDescription());
         (holder.getDetailsAdvertiserName()).setText(mJobs.getCompany());
         (holder.getDetailsLocationName()).setText(mJobs.getLocation());
-        (holder.getDetailsOtherInfoContactNameText()).setText(mJobs.getHiring_contact_name());
+        (holder.getDetailsCaseShootingDateText()).setText(mJobs.getShootingDate());
+        (holder.getDetailsCaseShootingDurationText()).setText(mJobs.getShootingDuration());
+        (holder.getDetailsCaseWantedContent()).setText(mJobs.getWhomContent());
+        (holder.getDetailsCaseCompensationContent()).setText(mJobs.getJobCompensation());
+//        (holder.getmDetailsOtherInfoCoverTravelExpenseText()).setText(mJobs.getTravelExpensesContent());
 
         if(!token.equals("")){
             if(ModelHub.getModelHubSQLHelper().getInterest(mJobs.getId())){
@@ -75,28 +79,36 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
         }
 
 
-        if(mJobs.getLogo() == "" &&  (holder.getDetailsCompanyLogo() != null) ){
+        if(mJobs.getLogo().equals("") &&  (holder.getDetailsCompanyLogo() != null) ){
             Picasso.get().load(R.drawable.all_placeholder_avatar).transform(new CircleTransform()).into(holder.getDetailsCompanyLogo());
         }else{
             Picasso.get().load(mJobs.getLogo()).transform(new CircleTransform()).into(holder.getDetailsCompanyLogo());
         }
 
+        if(mJobs.getImage() == null || mJobs.getImage().equals("")){
+            holder.getImageFramlayout().setVisibility(View.GONE);
+        }else{
+            Picasso.get().load(mJobs.getImage()).into(holder.getDetailCaseImage());
+        }
+
+
+
     }
 
     public class CaseDetailsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView mDetailsCaseTitle, mDetailsCaseShootingDateTitle, mDetailsAdvertiserName, mDetailsLocationText,mDetailsCaseOtherInfoTravelExpensesTitle,
+        private TextView mDetailsCaseTitle, mDetailsCaseShootingDateTitle, mDetailsAdvertiserName, mDetailsLocationText,mDetailsCaseOtherInfoTravelExpensesTitle,
                 mDetailsWantedTitle, mDetailsCaseDesContent, mDetailsCaseShootingDateText, mDetailsCaseShootingDurationTitle, mDetailsCaseShootingDurationText,
                 mDetailsCasePay, mDetailsOtherInfoCoverTravelExpenseText, mDetailsOtherInfoContactNameText, mDetailsOtherInfoContactNameTitle,
-                mDetailsCaseWantedContent;
+                mDetailsCaseWantedContent, mDetailsCaseCompensationTitle, mDetailsCaseCompensationContent;
 //        mDetailsOtherInfoContactEmailTitle, mDetailsOtherInfoContactEmailText
-        public ImageButton mDetailsShareBtn, mDetailsBookMark;
-        public ImageView mDetailsCompanyLogo;
-        public Button mDetailsReadMoreBtn, mDetailsApplyBtn;
-        public ConstraintLayout mDesConstraint, mOtherInfoConstraint;
+        private ImageButton mDetailsShareBtn, mDetailsBookMark;
+        private ImageView mDetailsCompanyLogo, mDetailsCaseImage;
+        private Button mDetailsReadMoreBtn, mDetailsApplyBtn;
+        private ConstraintLayout mDesConstraint, mOtherInfoConstraint, mCompensationConstraint;
+        private FrameLayout mImageConstraint;
 
         public CaseDetailsViewHolder(View itemView) {
             super(itemView);
-
 
             mDetailsCaseTitle = (TextView) itemView.findViewById(R.id.case_details_title);
             mDetailsCaseShootingDateTitle = (TextView) itemView.findViewById(R.id.case_details_shooting_day_title);
@@ -115,53 +127,60 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
             mDetailsOtherInfoContactNameText = (TextView) itemView.findViewById(R.id.case_details_other_info_contact_name_text);
 //            mDetailsOtherInfoContactEmailTitle = (TextView) itemView.findViewById(R.id.case_details_other_info_contact_email_title);
 //            mDetailsOtherInfoContactEmailText = (TextView) itemView.findViewById(R.id.case_details_hiring_resource_contact_email_text);
+            mDetailsCaseCompensationTitle = (TextView) itemView.findViewById(R.id.case_details_compensation_title);
+            mDetailsCaseCompensationContent = (TextView) itemView.findViewById(R.id.case_details_compensation_content);
 
 
             mDetailsShareBtn = (ImageButton) itemView.findViewById(R.id.case_details_share_btn);
             mDetailsBookMark = (ImageButton) itemView.findViewById(R.id.case_details_bookmark_btn);
             mDetailsApplyBtn = (Button) itemView.findViewById(R.id.case_details_apply_btn);
-            mDetailsReadMoreBtn = (Button) itemView.findViewById(R.id.case_details_readmore_btn);
+//            mDetailsReadMoreBtn = (Button) itemView.findViewById(R.id.case_details_readmore_btn);
 
             mDetailsCompanyLogo = (ImageView) itemView.findViewById(R.id.case_details_company_logo);
+            mDetailsCaseImage = (ImageView) itemView.findViewById(R.id.case_details_image);
 
             mDesConstraint = (ConstraintLayout) itemView.findViewById(R.id.case_details_des_constraint);
             mOtherInfoConstraint = (ConstraintLayout) itemView.findViewById(R.id.case_details_other_info_container_constraint);
+            mCompensationConstraint = (ConstraintLayout) itemView.findViewById(R.id.case_details_compensation_constraint);
+            mImageConstraint = (FrameLayout) itemView.findViewById(R.id.case_details_image_framlayout);
 
-            mDetailsReadMoreBtn.setOnClickListener(this);
+//            mDetailsReadMoreBtn.setOnClickListener(this);
             mDetailsBookMark.setOnClickListener(this);
             mDetailsShareBtn.setOnClickListener(this);
 
-
         }
 
-        public TextView getDetailsCaseTitle(){return mDetailsCaseTitle;}
-        public TextView getDetailsCaseDateTitle(){return mDetailsCaseShootingDateTitle;}
-        public TextView getDetailsAdvertiserName(){return mDetailsAdvertiserName;}
-        public TextView getDetailsLocationName(){return mDetailsLocationText;}
-        public TextView getDetailsCaseDesContent(){return mDetailsCaseDesContent;}
-        public TextView getDetailsWantedTitle(){return  mDetailsWantedTitle;}
-        public TextView getmDetailsCaseWantedContent(){return mDetailsCaseWantedContent;}
-        public TextView getDetailsCaseShootingDateTitle(){return  mDetailsCaseShootingDateTitle;}
-        public TextView getDetailsCaseShootingDateText(){return  mDetailsCaseShootingDateText;}
-        public TextView getDetailsCaseShootingDurationTitle(){return  mDetailsCaseShootingDurationTitle;}
-        public TextView getDetailsCaseShootingDurationText(){return  mDetailsCaseShootingDurationText;}
-        public TextView getDetailsCasePay(){return mDetailsCasePay;}
-        public TextView getmDetailsOtherInfoCoverTravelExpenseText(){return mDetailsOtherInfoCoverTravelExpenseText;}
-
-
-        public TextView getDetailsOtherInfoContactNameText(){return mDetailsOtherInfoContactNameText;}
-        public ImageView getDetailsCompanyLogo(){return mDetailsCompanyLogo;}
-        public ImageButton getDetailsBookMark(){return mDetailsBookMark;}
+        private TextView getDetailsCaseTitle(){return mDetailsCaseTitle;}
+        private TextView getDetailsCaseDateTitle(){return mDetailsCaseShootingDateTitle;}
+        private TextView getDetailsAdvertiserName(){return mDetailsAdvertiserName;}
+        private TextView getDetailsLocationName(){return mDetailsLocationText;}
+        private TextView getDetailsCaseDesContent(){return mDetailsCaseDesContent;}
+        private TextView getDetailsWantedTitle(){return  mDetailsWantedTitle;}
+        private TextView getDetailsCaseWantedContent(){return mDetailsCaseWantedContent;}
+        private TextView getDetailsCaseShootingDateTitle(){return  mDetailsCaseShootingDateTitle;}
+        private TextView getDetailsCaseShootingDateText(){return  mDetailsCaseShootingDateText;}
+        private TextView getDetailsCaseShootingDurationTitle(){return  mDetailsCaseShootingDurationTitle;}
+        private TextView getDetailsCaseShootingDurationText(){return  mDetailsCaseShootingDurationText;}
+        private TextView getDetailsCasePay(){return mDetailsCasePay;}
+        private TextView getDetailsOtherInfoCoverTravelExpenseText(){return mDetailsOtherInfoCoverTravelExpenseText;}
+        private TextView getDetailsCaseCompensationContent(){return  mDetailsCaseCompensationContent;}
+        private ImageView getDetailCaseImage(){return mDetailsCaseImage;}
+        private TextView getDetailsOtherInfoContactNameText(){return mDetailsOtherInfoContactNameText;}
+        private ImageView getDetailsCompanyLogo(){return mDetailsCompanyLogo;}
+        private ImageButton getDetailsBookMark(){return mDetailsBookMark;}
+        private FrameLayout getImageFramlayout(){return mImageConstraint;}
 
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.case_details_readmore_btn:
-                    mDetailsCaseDesContent.setMaxLines(Integer.MAX_VALUE);
-                    mDetailsReadMoreBtn.setVisibility(View.INVISIBLE);
-                    mDesConstraint.setVisibility(View.VISIBLE);
-                    mOtherInfoConstraint.setVisibility(View.VISIBLE);
-                    break;
+//                case R.id.case_details_readmore_btn:
+//                    mDetailsCaseDesContent.setMaxLines(Integer.MAX_VALUE);
+//                    mDetailsReadMoreBtn.setVisibility(View.INVISIBLE);
+//                    mDesConstraint.setVisibility(View.VISIBLE);
+//                    mOtherInfoConstraint.setVisibility(View.VISIBLE);
+//                    mCompensationConstraint.setVisibility(View.VISIBLE);
+//
+//                    break;
                 case R.id.case_details_bookmark_btn:
                     if(!token.equals("")){
                         if(ModelHub.getModelHubSQLHelper().getInterest(mJobs.getId())){

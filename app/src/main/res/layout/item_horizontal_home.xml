@@ -27,10 +27,11 @@
                 android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:background="#50880E4F"
+                android:background="#408e0053"
                 android:foregroundGravity="bottom"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintHorizontal_bias="0.0"
                 card_view:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
