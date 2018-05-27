@@ -20,7 +20,7 @@ import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 import thhsu.chloe.ModelHub.adapters.HomeAdapter;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/1/2018.
@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHomeAdapter = new HomeAdapter(mPresenter, new ArrayList<Cases>());
+        mHomeAdapter = new HomeAdapter(mPresenter, new ArrayList<Jobs>());
 
     }
 
@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onResume() {
         super.onResume();
-//        mPresenter.loadCases();
+//        mPresenter.loadJobs();
     }
 
     @Nullable
@@ -102,8 +102,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
-    public void showCases(ArrayList<Cases> cases) {
-        mHomeAdapter.updateData(cases);
+    public void showJobs(ArrayList<Jobs> jobs) {
+        mHomeAdapter.updateData(jobs);
     }
 
 //    @Override
@@ -112,8 +112,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 //    }
 
     @Override
-    public void showCasesDetailUi(Cases acase) {
-        ((ModelHubActivity)getActivity()).transToCaseDetails(acase);
+    public void showJobsDetailUi(Jobs job) {
+        ((ModelHubActivity)getActivity()).transToCaseDetails(job);
     }
 
     @Override
@@ -128,8 +128,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
 //    @Override
-//    public void clearCases() {
-//        mHomeAdapter.clearCases();
+//    public void clearJobs() {
+//        mHomeAdapter.clearJobs();
 //    }
 
 

@@ -24,7 +24,7 @@ import thhsu.chloe.ModelHub.ModelHubContract;
 import thhsu.chloe.ModelHub.ModelHubPresenter;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -180,13 +180,13 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText("Home");
+//        mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
+//        mToolbarTitle.setText("Home");
 
     }
 
     private void setToolbarTitle(String title) {
-        mToolbarTitle.setText(title);
+//        mToolbarTitle.setText(title);
     }
 
 
@@ -229,7 +229,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     }
 
     @Override
-    public void showCaseDetailsUi() {
+    public void showJobDetailsUi() {
         setToolbarTitle("");
     }
 
@@ -238,8 +238,8 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         mPresenter.refreshInterestItem();
     }
 
-    public void transToCaseDetails(Cases acase){ // Need to pass ID here after connect API
-        mPresenter.transToCaseDetails(acase); // Need to pass ID here after connect API
+    public void transToCaseDetails(Jobs job){ // Need to pass ID here after connect API
+        mPresenter.transToCaseDetails(job); // Need to pass ID here after connect API
     }
 
     @Override

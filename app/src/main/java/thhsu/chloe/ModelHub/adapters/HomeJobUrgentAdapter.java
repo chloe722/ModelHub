@@ -15,34 +15,33 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import retrofit2.http.PUT;
 import thhsu.chloe.ModelHub.Home.HomeContract;
 //import thhsu.chloe.jeeva.Profile.ProfileFragment;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.CircleTransform;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/2/2018.
  */
 
-public class HomeCaseUrgentAdapter extends RecyclerView.Adapter{
+public class HomeJobUrgentAdapter extends RecyclerView.Adapter{
     private Context mContext;
     private HomeContract.Presenter mPresenter;
-    private ArrayList<Cases> mCases;
+    private ArrayList<Jobs> mJobs;
 
-    public HomeCaseUrgentAdapter(HomeContract.Presenter presenter, ArrayList<Cases> cases){
+    public HomeJobUrgentAdapter(HomeContract.Presenter presenter, ArrayList<Jobs> jobs){
         if (presenter != null){
             this.mPresenter = presenter;
         }
-        this.mCases = new ArrayList<Cases>();
+        this.mJobs = new ArrayList<Jobs>();
 
-        for(Cases acase : cases){
-            if(acase.getRecommended()){
-                mCases.add(acase);
+        for(Jobs job : jobs){
+            if(job.getRecommended()){
+                mJobs.add(job);
             }
         }
-        Log.d("Chloe", "recommend adapter cases : " + mCases.size());
+        Log.d("Chloe", "recommend adapter jobs : " + mJobs.size());
     }
 
     @NonNull
@@ -58,22 +57,22 @@ public class HomeCaseUrgentAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         if(holder instanceof HomeCaseUrgentItemViewHolder){
-            if (mCases.size() > 0){
-                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseTitle()).setText(mCases.get(position).getTitle());
-                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseLocation()).setText(mCases.get(position).getLocation());
-//                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseDate()).setText(mCases.get(position).getDate());
+            if (mJobs.size() > 0){
+                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseTitle()).setText(mJobs.get(position).getTitle());
+                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseLocation()).setText(mJobs.get(position).getLocation());
+                (((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseDate()).setText(mJobs.get(position).getShootingDate());
 
-                if (mCases.get(position).getImage().equals("")){
+                if (mJobs.get(position).getImage().equals("")){
                     Picasso.get().load(R.drawable.modelhub_color_font_edited).fit().into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseImage());
 
                 }else {
-                    Picasso.get().load(mCases.get(position).getImage()).fit().placeholder(R.drawable.modelhub_color_font_edited).into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseImage());
+                    Picasso.get().load(mJobs.get(position).getImage()).fit().placeholder(R.drawable.modelhub_color_font_edited).into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseImage());
                 }
 
-                if (mCases.get(position).getLogo().equals("")){
+                if (mJobs.get(position).getLogo().equals("")){
                     Picasso.get().load(R.drawable.all_placeholder_avatar).transform(new CircleTransform()).into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseCompanyLogo());
                 }else{
-                    Picasso.get().load(mCases.get(position).getLogo()).transform(new CircleTransform()).into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseCompanyLogo());
+                    Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(((HomeCaseUrgentItemViewHolder) holder).getUrgentCaseCompanyLogo());
                 }
             }
         }
@@ -82,7 +81,7 @@ public class HomeCaseUrgentAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return mCases.size();
+        return mJobs.size();
     }
 
     private class HomeCaseUrgentItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -103,7 +102,7 @@ public class HomeCaseUrgentAdapter extends RecyclerView.Adapter{
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.cardView_urgent_case_item) mPresenter.openCaseDetails(mCases.get(getAdapterPosition())); // setOpenCase here  getAdapterPosition()
+            if(v.getId() == R.id.cardView_urgent_case_item) mPresenter.openCaseDetails(mJobs.get(getAdapterPosition())); // setOpenCase here  getAdapterPosition()
         }
 
         private ImageView getUrgentCaseImage(){return mUrgentCaseImage;}

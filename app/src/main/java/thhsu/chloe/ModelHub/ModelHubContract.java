@@ -2,7 +2,7 @@ package thhsu.chloe.ModelHub;
 
 import android.content.Intent;
 
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -22,7 +22,7 @@ public interface ModelHubContract {
 
         void showFilterPageUi();
 
-        void showCaseDetailsUi();
+        void showJobDetailsUi();
 
         void refreshInterestItemUi();
 
@@ -40,7 +40,7 @@ public interface ModelHubContract {
 
         void transToSignInTabPage();
 
-        void transToCaseDetails(Cases acase);
+        void transToCaseDetails(Jobs jobs);
 
         void refreshInterestItem();
 

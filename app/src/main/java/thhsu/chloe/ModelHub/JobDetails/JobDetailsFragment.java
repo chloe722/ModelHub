@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.CaseDetails;
+package thhsu.chloe.ModelHub.JobDetails;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -23,17 +23,17 @@ import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.adapters.CaseDetailsAdapter;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.adapters.JobDetailsAdapter;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/6/2018.
  */
 
-public class CaseDetailsFragment extends Fragment implements CaseDetailsContract.View, View.OnClickListener{
+public class JobDetailsFragment extends Fragment implements JobDetailsContract.View, View.OnClickListener{
 
-    private CaseDetailsContract.Presenter mPresenter;
-    private CaseDetailsAdapter mCaseDetailAdapter;
+    private JobDetailsContract.Presenter mPresenter;
+    private JobDetailsAdapter mCaseDetailAdapter;
     ModelHubActivity mModelHubActivity;
     private Button mApplyBtn;
     private SharedPreferences sharedPreferences;
@@ -41,12 +41,12 @@ public class CaseDetailsFragment extends Fragment implements CaseDetailsContract
     BottomNavigationView mBottomNavigationView;
 
 
-    public static CaseDetailsFragment newInstance(){
-        return new CaseDetailsFragment();
+    public static JobDetailsFragment newInstance(){
+        return new JobDetailsFragment();
     }
 
     @Override
-    public void setPresenter(CaseDetailsContract.Presenter presenter) {
+    public void setPresenter(JobDetailsContract.Presenter presenter) {
         if(presenter != null){
             mPresenter = presenter;
         }else{
@@ -57,7 +57,7 @@ public class CaseDetailsFragment extends Fragment implements CaseDetailsContract
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCaseDetailAdapter = new CaseDetailsAdapter(getContext(), new Cases(), mPresenter);
+        mCaseDetailAdapter = new JobDetailsAdapter(getContext(), new Jobs(), mPresenter);
         sharedPreferences = getActivity().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         token = sharedPreferences.getString(Constants.USER_TOKEN,"");
         mBottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation);
@@ -115,8 +115,8 @@ public class CaseDetailsFragment extends Fragment implements CaseDetailsContract
 
 
     @Override
-    public void showCaseDetails(Cases acase) {
-        mCaseDetailAdapter.updateCases(acase);
+    public void showJobDetails(Jobs job) {
+        mCaseDetailAdapter.updateCases(job);
     }
 
     @Override

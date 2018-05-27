@@ -5,17 +5,34 @@
     android:id="@+id/item_case_details_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/case_details_image_framlayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/case_details_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/skyblue_rounded_shape" />
+    </FrameLayout>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/case_details_image_framlayout">
 
         <ImageButton
             android:id="@+id/case_details_share_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:background="@null"
             app:layout_constraintEnd_toStartOf="@+id/case_details_bookmark_btn"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,112 +43,188 @@
             android:layout_width="31dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:background="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
 
         <TextView
-            android:id="@+id/home_case_title"
+            android:id="@+id/case_details_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:maxWidth="300dp"
-            android:text="Car TV commercial"
+            android:text="Car TV commercial111111111111111111111111111"
             android:textColor="#563c03"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/case_details_share_btn"
+            app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/case_details_posted_date"
+            android:id="@+id/case_details_shooting_day_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:drawableLeft="@drawable/ic_date_range_black_24dp"
+            android:drawablePadding="5dp"
             android:text="Shooting date:"
             android:textColor="@color/case_company_location_title"
-            android:textSize="13sp"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="51dp" />
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_title" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/case_details_company_logo"-->
-            <!--android:layout_width="35dp"-->
-            <!--android:layout_height="35dp"-->
-            <!--android:layout_marginStart="16dp"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:srcCompat="@mipmap/ic_launcher_round"-->
-            <!--tools:layout_editor_absoluteY="63dp" />-->
+        <ImageView
+            android:id="@+id/case_details_company_logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
-            android:id="@+id/case_details_company_name"
-            android:layout_width="192dp"
-            android:layout_height="34dp"
-            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:id="@+id/case_details_advertiser_name"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_company"
+            android:drawablePadding="5dp"
             android:maxWidth="110dp"
             android:minWidth="90dp"
+            android:text="Halo Model"
+            android:textColor="@color/case_company_location_title"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_duration_title" />
+
+        <TextView
+            android:id="@+id/case_details_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:drawablePadding="5dp"
+            android:minWidth="120dp"
             android:text="Taipei, Taiwan"
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
-            tools:layout_editor_absoluteX="99dp"
-            tools:layout_editor_absoluteY="86dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_advertiser_name" />
 
         <TextView
-            android:id="@+id/case_details_location_name"
+            android:id="@+id/case_details_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="150dp"
-            android:minWidth="120dp"
-            android:text="San Francisco, United States"
-            android:textColor="@color/case_company_location_title"
-            android:textSize="14sp"
-            tools:layout_editor_absoluteX="59dp"
-            tools:layout_editor_absoluteY="121dp" />
-
-        <TextView
-            android:id="@+id/case_details_salary_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
+            android:drawablePadding="5dp"
             android:text="400000"
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="158dp" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_location" />
 
         <ImageView
             android:id="@+id/case_details_hr_line"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginTop="24dp"
             android:background="@color/colorHrLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="209dp" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_pay" />
 
         <TextView
-            android:id="@+id/case_details_des_title"
+            android:id="@+id/case_details_wanted_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Description"
+            android:layout_marginTop="8dp"
+            android:text="We're looking for.."
             android:textColor="#3F3F3E"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/case_details_hr_line" />
 
+
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/case_details_des_constraintLayout"
+            android:id="@+id/case_details_wanted_constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_des_title">
+            app:layout_constraintTop_toBottomOf="@+id/case_details_wanted_title">
+
+            <TextView
+                android:id="@+id/case_details_wanted_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:lineSpacingExtra="5dp"
+                android:maxLines="20"
+                android:maxWidth="320dp"
+                android:text=" pem performance tuning by identify application architecture and infrastructure bottleneck. Familiar with practical DevOps implementation. Good Team player with strong leadership and ambition to achieve challenging targets. Enthusiasm for self-learning new technology and methodology, love to realized them in real world scenarios. "
+                android:textColor="@color/textcolor"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--<Button-->
+            <!--android:id="@+id/case_details_readmore_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="39dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginStart="24dp"-->
+            <!--android:layout_marginTop="6dp"-->
+            <!--android:background="@null"-->
+            <!--android:text="Read More"-->
+            <!--android:textColor="@color/colorResumeIcn"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="italic"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/case_details_wanted_content" />-->
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/case_details_des_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_wanted_constraintLayout">
+
+            <TextView
+                android:id="@+id/case_details_des_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Description"
+                android:textColor="#3F3F3E"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/case_details_des_content"
@@ -140,61 +233,31 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:ellipsize="end"
                 android:lineSpacingExtra="5dp"
-                android:maxLines="20"
                 android:maxWidth="320dp"
-                android:text="Job Description
-IBM Global Business Services (GBS) is a world leading strategy consultancy with deep industry expertise. We are looking for application architect in the financial services.
-
-This role will take strong leadership in technical aspect to guide client reinventing their business using cutting edge technologies. Also expected to work closely with user experience designer and business consultant to realize client’s vision for new applications both on premise and on cloud. Lead or join development team in projects to deliver proposed system for client’s business requirements. Responsible for design application architecture and outline component model specification for team member to implement. Provide industry insights in requirement elicitation. Fast response to POC activities to early assess solution feasibility and risks of architecture design Technology Evangelist in application architecture and programming.
-
-Required Technical and Professional Expertise
-
-Master architectural and programming skill in Open environment (Java related) Fluent experience in mainstream application framework, open source packages. Hands-on experience in Web/Mobile/Cloud based system development for the recent 5 years of work. Lead and responsible for detail architectural design and implementation for at least 2+ completed projects (on production) Actual experience in system performance tuning by identify application architecture and infrastructure bottleneck. Familiar with practical DevOps implementation. Good Team player with strong leadership and ambition to achieve challenging targets. Enthusiasm for self-learning new technology and methodology, love to realized them in real world scenarios. "
+                android:text="Process improvement with WLAN/BT vendor in terms of design/implementation/validation perspective for better quality of module integration to meet HP platform shipment requiremen"
                 android:textColor="@color/textcolor"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/case_details_readmore_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="39dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="6dp"
-                android:background="@null"
-                android:text="Read More"
-                android:textColor="@color/colorResumeIcn"
-                android:textSize="18sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/case_details_des_content" />
-
-
-
-
+                app:layout_constraintTop_toBottomOf="@+id/case_details_des_title" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/case_details_requirement_constraint"
+            android:id="@+id/case_details_compensation_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_des_constraintLayout">
+            app:layout_constraintTop_toBottomOf="@+id/case_details_des_constraint">
 
             <TextView
-                android:id="@+id/case_details_requirement_title"
+                android:id="@+id/case_details_compensation_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Requirement"
+                android:text="Job Compensation"
                 android:textColor="#3F3F3E"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -202,423 +265,35 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/case_details_requirement_content"
-                android:layout_width="wrap_content"
+                android:id="@+id/case_details_compensation_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:lineSpacingExtra="5dp"
-                android:maxWidth="320dp"
-                android:text="Process improvement with WLAN/BT vendor in terms of design/implementation/validation perspective for better quality of module integration to meet HP platform shipment requirement.
-       2. Process improvement within HP cross different function team for more efficient working model.
-        Create/Enhance process to align cross COMM WLAN/BT team for requirement of design/implementation/validation.
-        Join debug complex WLAN/BT technical issue and provide expertise advice to help issue resolution.
-        Leading cross function team issue.
-        Mentoring/Developing junior talent"
+                android:text="8hr/day"
                 android:textColor="@color/textcolor"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/case_details_requirement_title" />
-
-
+                app:layout_constraintTop_toBottomOf="@+id/case_details_compensation_title" />
         </android.support.constraint.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/case_details_benefit_container_constraint"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_requirement_constraint">
-
-            <TextView
-                android:id="@+id/case_details_benifit_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Benefits"
-                android:textColor="#3F3F3E"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <thhsu.chloe.ModelHub.Utils.ReplaceSpacingGridLayout
-                android:id="@+id/case_details_benifit_content_gridlayout_container"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:columnCount="2"
-                android:orientation="horizontal"
-                app:layout_constrainedWidth="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/case_details_benifit_title">
-
-                <TextView
-                    android:id="@+id/case_details_benefit_childcare"
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_child_care_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Child Care"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_cafe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_local_cafe_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:layout_columnWeight="1"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Coffee"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_commute"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_columnWeight="1"
-                    android:drawableLeft="@drawable/ic_directions_car_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Commute"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_dental"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_columnWeight="1"
-                    android:drawableLeft="@drawable/tooth_outline"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Dental Insurance"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    />
-
-
-                <TextView
-                    android:id="@+id/case_details_benefit_gym"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_fitness_center_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Gym"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"/>
-
-                <TextView
-                    android:id="@+id/case_details_benefit_life_insurance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/health"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Life Insurance"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_preganent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_pregnant_woman_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Maternity Leave"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_hospital"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_local_hospital_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Medical Insurance"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_mentor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_people_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Mentor Program"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_movie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_movie_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Movie"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_vacation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/beach"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Paid Vacation"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_parental"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_child_friendly_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Parental Leave"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_reading"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/study"
-                    android:drawablePadding="9dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Reading Room"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_saving_plan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/cash_usd"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Saving Plan"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_food"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/food"
-                    android:drawablePadding="5dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Snacks  Drinks"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_tuition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/cash_multiple"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Tuition"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-
-                <TextView
-                    android:id="@+id/case_details_benefit_vision"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_visibility_black_24dp"
-                    android:drawablePadding="6dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Vision Insurance"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_workfromhome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Work from Home"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_disability"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/ic_accessible_black_24dp"
-                    android:drawablePadding="3dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Disability Insurance"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-
-                <TextView
-                    android:id="@+id/case_details_benefit_training"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="left"
-                    android:drawableLeft="@drawable/mortarboard"
-                    android:drawablePadding="5dp"
-                    android:maxWidth="150dp"
-                    android:paddingBottom="10dp"
-                    android:text="Unconscious Bias Traning"
-                    android:textColor="@color/case_company_location_title"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                  />
-            </thhsu.chloe.ModelHub.Utils.ReplaceSpacingGridLayout>
-
-        </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/case_details_hiring_resource_container_constraint"
+            android:id="@+id/case_details_other_info_container_constraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:paddingBottom="50dp"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_benefit_container_constraint">
+            app:layout_constraintTop_toBottomOf="@+id/case_details_compensation_constraint">
 
             <TextView
-                android:id="@+id/case_details_hiring_resource_title"
+                android:id="@+id/case_details_other_info_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Hiring Resource"
+                android:text="Other info"
                 android:textColor="#3F3F3E"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -626,111 +301,131 @@ Master architectural and programming skill in Open environment (Java related) Fl
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/case_details_hiring_resource_source_from_title"
+                android:id="@+id/case_details_other_info_if_cover_travel_expenses_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="14sp"
-                android:drawableLeft="@drawable/tag"
+                android:drawableLeft="@drawable/ic_train_black_24dp"
                 android:drawablePadding="5dp"
-                android:text="Source From:"
-                android:textColor="@color/titleforall"
+                android:text="Cover travel expenses:"
+                android:textColor="@color/case_company_location_title"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_title" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_other_info_title" />
 
             <TextView
-                android:id="@+id/case_details_hiring_resource_contact_name_title"
+                android:id="@+id/case_details_other_info_contact_name_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="21dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="14sp"
-                android:drawableLeft="@drawable/ic_person_black_36dp"
+                android:drawableLeft="@drawable/ic_people_black_24dp"
                 android:drawablePadding="1dp"
                 android:text="Contact Name:"
-                android:textColor="@color/titleforall"
+                android:textColor="@color/case_company_location_title"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_source_from_title" />
+                app:layout_constraintTop_toBottomOf="@+id/case_details_other_info_if_cover_travel_expenses_title" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/case_details_other_info_contact_email_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="24dp"-->
+            <!--android:layout_marginTop="14sp"-->
+            <!--android:drawableLeft="@drawable/ic_contact_mail_black_24dp"-->
+            <!--android:drawablePadding="5dp"-->
+            <!--android:text="Contact Email:"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="@color/titleforall"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/case_details_other_info_contact_name_title" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/case_details_hiring_resource_other_info_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="24dp"-->
+            <!--android:layout_marginTop="14sp"-->
+            <!--android:drawableLeft="@drawable/ic_info_black_24dp"-->
+            <!--android:drawablePadding="5dp"-->
+            <!--android:text="Other info:"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="@color/titleforall"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/case_details_other_info_contact_name_title" />-->
 
             <TextView
-                android:id="@+id/case_details_hiring_resource_contact_email_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="14sp"
-                android:drawableLeft="@drawable/ic_contact_mail_black_24dp"
-                android:drawablePadding="5dp"
-                android:text="Contact Email:"
-                android:textSize="16sp"
-                android:textColor="@color/titleforall"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_contact_name_title" />
-
-            <TextView
-                android:id="@+id/case_details_hiring_resource_other_info_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="14sp"
-                android:drawableLeft="@drawable/ic_info_black_24dp"
-                android:drawablePadding="5dp"
-                android:text="Other info:"
-                android:textSize="16sp"
-                android:textColor="@color/titleforall"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/case_details_hiring_resource_contact_email_title" />
-
-            <TextView
-                android:id="@+id/case_details_hiring_resource_source_from_text"
+                android:id="@+id/case_details_other_info_if_cover_travel_expenses_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14sp"
-                android:text="External Resource"
-                android:textSize="14sp"
+                android:text="Yes"
                 android:textColor="@color/textcolor"
-                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_source_from_title"
-                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_source_from_title" />
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/case_details_other_info_if_cover_travel_expenses_title"
+                app:layout_constraintTop_toTopOf="@+id/case_details_other_info_if_cover_travel_expenses_title" />
 
             <TextView
-                android:id="@+id/case_details_hiring_resource_contact_name_text"
+                android:id="@+id/case_details_other_info_contact_name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Chloe Hsu"
-                android:textSize="14sp"
                 android:textColor="@color/textcolor"
-                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_contact_name_title"
-                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_contact_name_title" />
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/case_details_other_info_contact_name_title"
+                app:layout_constraintTop_toTopOf="@+id/case_details_other_info_contact_name_title" />
 
-            <TextView
-                android:id="@+id/case_details_hiring_resource_contact_email_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="chloethhsu@gmail.com"
-                android:maxWidth="200dp"
-                android:textSize="14sp"
-                android:textColor="@color/textcolor"
-                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_contact_email_title"
-                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_contact_email_title" />
+            <!--<TextView-->
+            <!--android:id="@+id/case_details_hiring_resource_contact_email_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:text="chloethhsu@gmail.com"-->
+            <!--android:maxWidth="200dp"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textColor="@color/textcolor"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/case_details_other_info_contact_email_title"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/case_details_other_info_contact_email_title" />-->
 
-            <TextView
-                android:id="@+id/case_details_hiring_resource_other_info_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="+886954018508"
-                android:maxWidth="200dp"
-                android:textSize="14sp"
-                android:textColor="@color/textcolor"
-                android:layout_marginTop="2dp"
-                app:layout_constraintStart_toEndOf="@+id/case_details_hiring_resource_other_info_title"
-                app:layout_constraintTop_toTopOf="@+id/case_details_hiring_resource_other_info_title" />
 
         </android.support.constraint.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/case_details_shooting_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="18, July"
+            app:layout_constraintStart_toEndOf="@+id/case_details_shooting_day_title"
+            app:layout_constraintTop_toTopOf="@+id/case_details_shooting_day_title" />
+
+        <TextView
+            android:id="@+id/case_details_shooting_duration_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/ic_timelapse_black_24dp"
+            android:drawablePadding="5dp"
+            android:text="Shooting duration:"
+            android:textColor="@color/case_company_location_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_day_title" />
+
+        <TextView
+            android:id="@+id/case_details_shooting_duration_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="8hr"
+            app:layout_constraintStart_toEndOf="@+id/case_details_shooting_duration_title"
+            app:layout_constraintTop_toTopOf="@+id/case_details_shooting_duration_title" />
+
     </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
 
 
 </FrameLayout>

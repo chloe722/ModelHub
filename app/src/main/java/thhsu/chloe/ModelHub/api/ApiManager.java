@@ -10,8 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiManager {
-    public static final String BASE_URL = "https://wetogether.skijur.com/api/";
-    public ApiCasesService apiCasesService;
+    public static final String BASE_URL = "https://ModelHub.tw/api/";
+    public ApiJobsService apiCasesService;
 
 
 
@@ -34,7 +34,7 @@ public class ApiManager {
                 .client(client)
                 .build();
 
-        apiCasesService = retrofit.create(ApiCasesService.class);
+        apiCasesService = retrofit.create(ApiJobsService.class);
 
     }
 

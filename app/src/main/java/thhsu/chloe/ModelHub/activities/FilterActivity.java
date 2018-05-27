@@ -24,10 +24,10 @@ import thhsu.chloe.ModelHub.Home.HomeContract;
 import thhsu.chloe.ModelHub.Home.HomeFragment;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiCaseManager;
-import thhsu.chloe.ModelHub.api.GetFilterCasesCallBack;
+import thhsu.chloe.ModelHub.api.ApiJobManager;
+import thhsu.chloe.ModelHub.api.GetFilterJobsCallBack;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/3/2018.
@@ -55,7 +55,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     HashSet<String> tagListSet;
     ArrayList<String> tagListResult;
     String tags;
-    ArrayList<Cases> mCases;
+    ArrayList<Jobs> mCases;
     public Bundle bundle;
 
     public Context mContext;
@@ -68,7 +68,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mContext = this;
         items = new ArrayList<CheckBox>();
         tagListSet = new HashSet<String>();
-        mCases = new ArrayList<Cases>();
+        mCases = new ArrayList<Jobs>();
         mFrontend = (CheckBox) findViewById(R.id.filter_checkbox_frontend);
         mBackend = (CheckBox) findViewById(R.id.filter_checkbox_backend);
         mFullStack = (CheckBox) findViewById(R.id.filter_checkbox_fullstack);
@@ -299,17 +299,17 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     private void sentResult(String tags){
         bundle = new Bundle();
         Log.d("Chloe", "Where is tags? " + tags);
-        ApiCaseManager.getInstance().getFilterCases(tags, new GetFilterCasesCallBack() {
+        ApiJobManager.getInstance().getFilterCases(tags, new GetFilterJobsCallBack() {
             @Override
-            public void onCompleted(ArrayList<Cases> cases) {
-                mCases = cases;
-                if(cases.size() >= 0){
+            public void onCompleted(ArrayList<Jobs> jobs) {
+                mCases = jobs;
+                if(jobs.size() >= 0){
                     Log.d("Chloe", "Success!");
-                    bundle.putSerializable("filterResult", cases);
+                    bundle.putSerializable("filterResult", jobs);
                     Intent filterResult = new Intent();
                     filterResult.putExtras(bundle);
                     setResult(Constants.RESULT_SUCCESS, filterResult );  //set the result. Intent the data back to startActivityForResult;
-                    Log.d("Chloe", "cases in filter result: " + bundle);
+                    Log.d("Chloe", "jobs in filter result: " + bundle);
                     finish();
                 }
 

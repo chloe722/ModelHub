@@ -10,7 +10,7 @@ import retrofit2.Call;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 import thhsu.chloe.ModelHub.activities.SignInActivity;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 import thhsu.chloe.ModelHub.api.model.PostUserInfoResult;
 import thhsu.chloe.ModelHub.api.model.RegisterResult;
 import thhsu.chloe.ModelHub.api.model.Result;
@@ -18,7 +18,7 @@ import thhsu.chloe.ModelHub.api.model.Result;
 
 import retrofit2.Callback;
 import retrofit2.Response;
-import thhsu.chloe.ModelHub.api.model.UpdataUserRequest;
+import thhsu.chloe.ModelHub.api.model.UpdateUserRequest;
 import thhsu.chloe.ModelHub.api.model.UserInfo;
 
 
@@ -26,58 +26,59 @@ import thhsu.chloe.ModelHub.api.model.UserInfo;
  * Created by Chloe on 5/7/2018.
  */
 
-public class ApiCaseManager {
+public class ApiJobManager {
     SignInActivity mSignActivity;
     ModelHubActivity mModelHubActivity;
-    private static final ApiCaseManager ourInstance = new ApiCaseManager();
+    private static final ApiJobManager ourInstance = new ApiJobManager();
 
-    public static ApiCaseManager getInstance(){return ourInstance;}
+    public static ApiJobManager getInstance(){return ourInstance;}
 
-    private ApiCaseManager(){
+    private ApiJobManager(){
 
     }
 
-    public void getCases(final GetCasesCallBack casesCallBack){
+    public void getCases(final GetJobsCallBack casesCallBack){
 
-        Call<Result<ArrayList<Cases>>> call = ApiManager.getInstance().apiCasesService.getCases();
+        Call<Result<ArrayList<Jobs>>> call = ApiManager.getInstance().apiCasesService.getJobs();
 
-        call.enqueue(new Callback<Result<ArrayList<Cases>>>() {
+        call.enqueue(new Callback<Result<ArrayList<Jobs>>>() {
             @Override
-            public void onResponse(Call<Result<ArrayList<Cases>>> call, Response<Result<ArrayList<Cases>>> response) {
+            public void onResponse(Call<Result<ArrayList<Jobs>>> call, Response<Result<ArrayList<Jobs>>> response) {
                 Log.d("Chloe", "onResponse");
                 response.body();
-                if(response.body().cases != null){
-                    casesCallBack.onCompleted(response.body().cases);
+                Log.d("Chloe", "response.body" + response.body());
+                if(response.body().jobs != null){
+                    casesCallBack.onCompleted(response.body().jobs);
                 }else{
-                    Log.d("Chloe", "response.body.cases is empty");
+                    Log.d("Chloe", "response.body.jobs is empty");
                 }
             }
 
             @Override
-            public void onFailure(Call<Result<ArrayList<Cases>>> call, Throwable t) {
+            public void onFailure(Call<Result<ArrayList<Jobs>>> call, Throwable t) {
                 Log.d("Chloe", "onFailure");
                 casesCallBack.onError(t.getLocalizedMessage());
             }
         });
     }
 
-    public void getFilterCases(String tags, final GetFilterCasesCallBack filterCasesCallBack){
+    public void getFilterCases(String tags, final GetFilterJobsCallBack filterCasesCallBack){
 
-        Call<Result<ArrayList<Cases>>> call = ApiManager.getInstance().apiCasesService.getFilterCases(tags);
-        call.enqueue(new Callback<Result<ArrayList<Cases>>>() {
+        Call<Result<ArrayList<Jobs>>> call = ApiManager.getInstance().apiCasesService.getFilterJobs(tags);
+        call.enqueue(new Callback<Result<ArrayList<Jobs>>>() {
             @Override
-            public void onResponse(Call<Result<ArrayList<Cases>>> call, Response<Result<ArrayList<Cases>>> response) {
+            public void onResponse(Call<Result<ArrayList<Jobs>>> call, Response<Result<ArrayList<Jobs>>> response) {
                 Log.d("Chloe", "onResponse" + response.body());
                 response.body();
-                if(response.body().cases != null){
-                    filterCasesCallBack.onCompleted(response.body().cases);
+                if(response.body().jobs != null){
+                    filterCasesCallBack.onCompleted(response.body().jobs);
                 }else{
                     Log.d("Chloe", "response.body.filtercases is empty");
                 }
             }
 
             @Override
-            public void onFailure(Call<Result<ArrayList<Cases>>> call, Throwable t) {
+            public void onFailure(Call<Result<ArrayList<Jobs>>> call, Throwable t) {
                 Log.d("Chloe", "onFailure");
                 filterCasesCallBack.onError(t.getLocalizedMessage());
             }
@@ -148,8 +149,8 @@ public class ApiCaseManager {
         });
     }
 
-    public void  getPostUserInfoResult(UpdataUserRequest updataUserRequest, final PostUserInfoCallBack postUserInfoCallBack){
-        Call<PostUserInfoResult> call = ApiManager.getInstance().apiCasesService.getPostUserInfoResult(updataUserRequest);
+    public void  getPostUserInfoResult(UpdateUserRequest updateUserRequest, final PostUserInfoCallBack postUserInfoCallBack){
+        Call<PostUserInfoResult> call = ApiManager.getInstance().apiCasesService.getPostUserInfoResult(updateUserRequest);
         call.enqueue(new Callback<PostUserInfoResult>() {
             @Override
             public void onResponse(Call<PostUserInfoResult> call, Response<PostUserInfoResult> response) {

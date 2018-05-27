@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import thhsu.chloe.ModelHub.BasePresenter;
 import thhsu.chloe.ModelHub.BaseView;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -14,24 +14,24 @@ public interface InterestContract {
 
     interface View extends BaseView<Presenter>{
 
-        void showCases(ArrayList<Cases> cases);
+        void showJobs(ArrayList<Jobs> jobs);
 
-        void showCasesDetailUi(Cases acase);
+        void showJobsDetailUi(Jobs job);
     }
 
     interface Presenter extends BasePresenter{
 
         void result(int requestCode, int resultCode);
 
-        void showCases(ArrayList<Cases> cases);
+        void showJobs(ArrayList<Jobs> jobs);
 
-        void loadCases();
+        void loadJobs();
 
-        void openCaseDetails(Cases acase);
+        void openCaseDetails(Jobs job);
 
-        void refreshCases();
+        void refreshJobs();
 
-//        void updateInterestCase(Cases cases, boolean isSaved);
+//        void updateInterestJob(Jobs jobs, boolean isSaved);
     }
 
 }

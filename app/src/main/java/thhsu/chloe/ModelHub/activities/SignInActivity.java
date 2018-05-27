@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiCaseManager;
+import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
 
 /**
@@ -74,7 +74,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         String email, password;
                         email = mSignInEmailText.getText().toString();
                         password = mSignInPasswordText.getText().toString();
-                        ApiCaseManager.getInstance().getLogInResult(email, password, new PostRegisterLoginCallBack() {
+                        ApiJobManager.getInstance().getLogInResult(email, password, new PostRegisterLoginCallBack() {
                             @Override
                             public void onCompleted(String token) {
                                 mUserLogInToken = token;

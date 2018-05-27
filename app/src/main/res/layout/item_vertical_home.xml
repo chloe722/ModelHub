@@ -21,16 +21,19 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/home_case_title"
+            android:id="@+id/case_details_title"
             android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:maxWidth="300dp"
+            android:maxWidth="250dp"
             android:text="Car TV commercial"
             android:textColor="#593123"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/home_case_interest_icn_btn"
+            app:layout_constraintHorizontal_bias="0.064"
             app:layout_constraintStart_toEndOf="@+id/home_case_company_logo"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,12 +53,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:drawablePadding="5dp"
             android:drawableLeft="@drawable/ic_location_on_black_24dp"
             android:text="Taipei, Taiwan"
             android:textColor="@color/case_company_location_title"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/home_case_company_logo"
-            app:layout_constraintTop_toBottomOf="@+id/home_case_title" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_title" />
 
         <ImageButton
             android:id="@+id/home_case_interest_icn_btn"
@@ -81,11 +85,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
             android:drawablePadding="5dp"
             android:text="Paid"
             android:textColor="@color/case_company_location_title"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/home_case_company_logo"
             app:layout_constraintTop_toBottomOf="@+id/home_case_whom" />
@@ -95,24 +100,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_person_black_36dp"
             android:drawablePadding="2dp"
             android:text="Anyone"
             android:textColor="@color/case_company_location_title"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/home_case_company_logo"
             app:layout_constraintTop_toBottomOf="@+id/home_case_location" />
 
-        <TextView
-            android:id="@+id/home_case_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="9dp"
-            android:drawablePadding="8dp"
-            android:text="October, 10"
-            android:textColor="@color/case_company_location_title"
-            app:layout_constraintStart_toEndOf="@+id/home_case_location"
-            app:layout_constraintTop_toBottomOf="@+id/home_case_title" />
+        <!--<TextView-->
+            <!--android:id="@+id/home_case_date"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:drawablePadding="8dp"-->
+            <!--android:text="October, 10"-->
+            <!--android:textColor="@color/case_company_location_title"-->
+            <!--android:textSize="12sp"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/home_case_location"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/case_details_title" />-->
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
