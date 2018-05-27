@@ -147,7 +147,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void updateInterest(Jobs jobs, boolean isSaved) {
-        ModelHub.getModelHubSQLHelper().updateCases(jobs, isSaved);
+        ModelHub.getModelHubSQLHelper().updateJobs(jobs, isSaved);
     }
 
 //    @Override

@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import thhsu.chloe.ModelHub.ModelHub;
-import thhsu.chloe.ModelHub.CaseDetails.JobDetailsContract;
+import thhsu.chloe.ModelHub.JobDetails.JobDetailsContract;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.CircleTransform;
 import thhsu.chloe.ModelHub.Utils.Constants;
@@ -56,7 +56,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
     public void onBindViewHolder(@NonNull CaseDetailsViewHolder holder, int position) {
         Log.d("Chloe", "job title:" + mJobs.getTitle());
         (holder.getDetailsCaseTitle()).setText(mJobs.getTitle());
-        (holder.getDetailsCaseDateTitle()).setText(mJobs.getDatePosted());
+        (holder.getDetailsCaseShootingDateText()).setText(mJobs.getDatePosted());
         (holder.getDetailsCaseDesContent()).setText(mJobs.getDescription());
         (holder.getDetailsAdvertiserName()).setText(mJobs.getCompany());
         (holder.getDetailsLocationName()).setText(mJobs.getLocation());
@@ -182,7 +182,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
                     Intent intentToShare = new Intent(Intent.ACTION_SEND);
                     intentToShare.setType("text/plain");
                     intentToShare.putExtra(Intent.EXTRA_SUBJECT, "Testing");
-                    intentToShare.putExtra(Intent.EXTRA_TEXT, "https://modelhub.tw");
+                    intentToShare.putExtra(Intent.EXTRA_TEXT, "https://ModelHub.tw");
                     mContext.startActivity(Intent.createChooser(intentToShare, "Title of the dialog the system will open"));
                     break;
 

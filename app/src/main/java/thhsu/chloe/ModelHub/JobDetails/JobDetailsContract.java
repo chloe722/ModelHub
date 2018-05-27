@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.CaseDetails;
+package thhsu.chloe.ModelHub.JobDetails;
 
 import thhsu.chloe.ModelHub.BasePresenter;
 import thhsu.chloe.ModelHub.BaseView;

@@ -36,13 +36,15 @@
             android:id="@+id/case_details_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:maxWidth="300dp"
-            android:text="Car TV commercial"
+            android:text="Car TV commercial111111111111111111111111111"
             android:textColor="#563c03"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/case_details_share_btn"
             app:layout_constraintStart_toEndOf="@+id/case_details_company_logo"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_company"
             android:drawablePadding="5dp"
             android:maxWidth="110dp"
@@ -83,7 +86,7 @@
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="114dp" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_duration_title" />
 
         <TextView
             android:id="@+id/case_details_location"
@@ -93,7 +96,6 @@
             android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_location_on_black_24dp"
             android:drawablePadding="5dp"
-            android:maxWidth="150dp"
             android:minWidth="120dp"
             android:text="Taipei, Taiwan"
             android:textColor="@color/case_company_location_title"
@@ -132,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Wanted"
+            android:text="We're looking for.."
             android:textColor="#3F3F3E"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -143,6 +145,7 @@
             android:id="@+id/case_details_des_constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/case_details_wanted_title">
@@ -158,8 +161,7 @@
                 android:lineSpacingExtra="5dp"
                 android:maxLines="20"
                 android:maxWidth="320dp"
-                android:text="
- pem performance tuning by identify application architecture and infrastructure bottleneck. Familiar with practical DevOps implementation. Good Team player with strong leadership and ambition to achieve challenging targets. Enthusiasm for self-learning new technology and methodology, love to realized them in real world scenarios. "
+                android:text=" pem performance tuning by identify application architecture and infrastructure bottleneck. Familiar with practical DevOps implementation. Good Team player with strong leadership and ambition to achieve challenging targets. Enthusiasm for self-learning new technology and methodology, love to realized them in real world scenarios. "
                 android:textColor="@color/textcolor"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -181,8 +183,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/case_details_wanted_content" />
-
-
 
 
         </android.support.constraint.ConstraintLayout>
@@ -255,10 +255,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="14sp"
-                android:drawableLeft="@drawable/tag"
+                android:drawableLeft="@drawable/ic_train_black_24dp"
                 android:drawablePadding="5dp"
-                android:text="If cover travel expenses:"
-                android:textColor="@color/titleforall"
+                android:text="Cover travel expenses:"
+                android:textColor="@color/case_company_location_title"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/case_details_other_info_title" />
@@ -267,12 +267,12 @@
                 android:id="@+id/case_details_other_info_contact_name_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="21dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="14sp"
-                android:drawableLeft="@drawable/ic_person_black_36dp"
+                android:drawableLeft="@drawable/ic_people_black_24dp"
                 android:drawablePadding="1dp"
                 android:text="Contact Name:"
-                android:textColor="@color/titleforall"
+                android:textColor="@color/case_company_location_title"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/case_details_other_info_if_cover_travel_expenses_title" />
@@ -359,6 +359,7 @@
             android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_timelapse_black_24dp"
             android:drawablePadding="5dp"
+            android:textColor="@color/case_company_location_title"
             android:text="Shooting duration:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_day_title" />

@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.CaseDetails;
+package thhsu.chloe.ModelHub.JobDetails;
 
 import android.app.AlertDialog;
 import android.app.Fragment;

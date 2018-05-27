@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiManager {
-    public static final String BASE_URL = "https://modelhub.tw/api/";
+    public static final String BASE_URL = "https://ModelHub.tw/api/";
     public ApiJobsService apiCasesService;
 
 

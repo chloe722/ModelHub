@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import thhsu.chloe.ModelHub.Filter.FilterPresenter;
 import thhsu.chloe.ModelHub.Home.HomeFragment;
 import thhsu.chloe.ModelHub.Home.HomePresenter;
-import thhsu.chloe.ModelHub.CaseDetails.JobDetailsFragment;
-import thhsu.chloe.ModelHub.CaseDetails.JobDetailsPresenter;
+import thhsu.chloe.ModelHub.JobDetails.JobDetailsFragment;
+import thhsu.chloe.ModelHub.JobDetails.JobDetailsPresenter;
 import thhsu.chloe.ModelHub.Profile.ProfileFragment;
 import thhsu.chloe.ModelHub.Profile.ProfilePresenter;
 import thhsu.chloe.ModelHub.Interest.InterestFragment;
@@ -97,8 +97,8 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
     }
 
-//    public void updateCases(ArrayList<Jobs> jobs){
-//        mHomePresenter.updateCases(jobs);
+//    public void updateJobs(ArrayList<Jobs> jobs){
+//        mHomePresenter.updateJobs(jobs);
 //    }
 
     @Override

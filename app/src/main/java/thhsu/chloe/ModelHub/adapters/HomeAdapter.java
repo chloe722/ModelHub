@@ -154,7 +154,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                     }
                 break;
 
-                case R.id.constraintlayout_interest_item:
+                case R.id.cardView_main_case_item:
                     Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
                     mPresenter.openCaseDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
                     break;

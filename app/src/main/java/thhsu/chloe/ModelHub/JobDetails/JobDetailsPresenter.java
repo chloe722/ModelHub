@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.CaseDetails;
+package thhsu.chloe.ModelHub.JobDetails;
 
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
@@ -45,7 +45,7 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
 
     @Override
     public void updateInterestJob(Jobs jobs, boolean isSaved) {
-        ModelHub.getModelHubSQLHelper().updateCases(mJob, isSaved);
+        ModelHub.getModelHubSQLHelper().updateJobs(mJob, isSaved);
     }
 
 

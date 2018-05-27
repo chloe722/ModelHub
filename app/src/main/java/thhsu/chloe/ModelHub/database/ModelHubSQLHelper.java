@@ -21,26 +21,26 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
     private final static int DATABASE_VERSION = 1;
     private final static String JOB_TABLE = "job_table";
 
-    private final static String USER_TOKEN = "user_token";
-    private final static String JOB_ID = "case_id";
-    private final static String JOB_TITLE = "case_title";
-    private final static String JOB_URGENT = "case_urgent";
-    private final static String JOB_RECOMMENDED = "case_recommended";
-    private final static String JOB_POSTED_DATE = "case_posted_date";
-    private final static String JOB_EXPIRED_DATE = "case_expired_date";
-    private final static String JOB_COMPANY = "case_company";
-    private final static String JOB_LOGO = "case_logo";
-    private final static String JOB_IMAGE = "case_image";
-    private final static String JOB_LOCATION = "case_location";
-    private final static String JOB_TYPE = "case_type";
-    private final static String JOB_DES = "case_des";
-    private final static String JOB_REQUIREMENT = "case_requirement";
-    private final static String JOB_BENEFIT = "case_benefit";
-    private final static String JOB_HIRING_RESOURCE_FROM = "case_hiring_resource_from";
-    private final static String JOB_HIRING_RESOURCE_CONTACT_NAME = "case_hiring_resource_contact_name";
-    private final static String JOB_HIRING_RESOURCE_CONTACT_EMAIL = "case_hiring_resource_contact_email";
-    private final static String JOB_HIRING_RESOURCE_INFO = "case_hiring_resource_info";
-    private final static String JOB_SAVED = "case_saved";
+//    private final static String USER_TOKEN = "user_token";
+    private final static String JOB_ID = "job_id";
+    private final static String JOB_TITLE = "job_title";
+    private final static String JOB_URGENT = "job_urgent";
+    private final static String JOB_RECOMMENDED = "job_recommended";
+    private final static String JOB_POSTED_DATE = "job_posted_date";
+    private final static String JOB_EXPIRED_DATE = "job_expired_date";
+    private final static String JOB_COMPANY = "job_company";
+    private final static String JOB_LOGO = "job_logo";
+    private final static String JOB_IMAGE = "job_image";
+    private final static String JOB_LOCATION = "job_location";
+    private final static String JOB_TYPE = "job_type";
+    private final static String JOB_DES = "job_des";
+    private final static String JOB_REQUIREMENT = "job_requirement";
+    private final static String JOB_BENEFIT = "job_benefit";
+    private final static String JOB_HIRING_RESOURCE_FROM = "job_hiring_resource_from";
+    private final static String JOB_HIRING_RESOURCE_CONTACT_NAME = "job_hiring_resource_contact_name";
+    private final static String JOB_HIRING_RESOURCE_CONTACT_EMAIL = "job_hiring_resource_contact_email";
+    private final static String JOB_HIRING_RESOURCE_INFO = "job_hiring_resource_info";
+    private final static String JOB_SAVED = "job_saved";
 
     private Cursor mCursor;
     private boolean isInterestChanged = false;
@@ -116,21 +116,21 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
         getWritableDatabase().insert(JOB_TABLE, null, contentValues);
     }
 
-    public void deleteCase(Jobs job){
+    public void deleteJob(Jobs job){
        Log.d("Chloe", "delete job: "+job.getId()+
                getWritableDatabase().delete(JOB_TABLE, JOB_ID + "=?", new String[] {job.getId()}));
     }
 
 
-    public void updateCases(Jobs job, boolean isSaved){
+    public void updateJobs(Jobs job, boolean isSaved){
 //        ContentValues contentValues = new ContentValues();
 //        contentValues.put(JOB_SAVED, (isSaved)? 1:0);
 
-        if(isSaved && !isCaseDataExist(job.getId())){
+        if(isSaved && !isJobDataExist(job.getId())){
             Log.d("Chloe", "insert job"+ job.getId());
             insertCase(job, isSaved);
         } else {
-            deleteCase(job);
+            deleteJob(job);
         }
             setInterestChanged(true);
 //                Log.d("Chloe", "Job: " + job.getId() + " exist, update is_saved is " + isSaved + ".");
@@ -139,12 +139,12 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
 
     }
 
-    public boolean getInterest(String caseId){
-        return  isCaseDataExist(caseId);
-//        if(isCaseDataExist(caseId)){
+    public boolean getInterest(String jobId){
+        return  isJobDataExist(jobId);
+//        if(isJobDataExist(jobId)){
 //            Log.d("Chloe", "if job data exist: true");
 //            mCursor = getWritableDatabase().query(JOB_TABLE,
-//                    new String[]{JOB_SAVED}, JOB_ID + "='" + caseId + "'",
+//                    new String[]{JOB_SAVED}, JOB_ID + "='" + jobId + "'",
 //                    null,null,null,null);
 //            mCursor.moveToFirst();
 //            return mCursor.getInt(mCursor.getColumnIndex(JOB_SAVED)) == 1;
@@ -155,7 +155,7 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
     }
 
 
-    public boolean isCaseDataExist(String jobId){
+    public boolean isJobDataExist(String jobId){
         Log.d("Chloe", "isJobData exist ID: " + jobId);
         mCursor = getWritableDatabase().query(JOB_TABLE,
                 new String[]{JOB_SAVED},
