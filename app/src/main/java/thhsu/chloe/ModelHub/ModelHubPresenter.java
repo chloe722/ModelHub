@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import thhsu.chloe.ModelHub.Filter.FilterPresenter;
 import thhsu.chloe.ModelHub.Home.HomeFragment;
 import thhsu.chloe.ModelHub.Home.HomePresenter;
-import thhsu.chloe.ModelHub.CaseDetails.CaseDetailsFragment;
-import thhsu.chloe.ModelHub.CaseDetails.CaseDetailsPresenter;
+import thhsu.chloe.ModelHub.CaseDetails.JobDetailsFragment;
+import thhsu.chloe.ModelHub.CaseDetails.JobDetailsPresenter;
 import thhsu.chloe.ModelHub.Profile.ProfileFragment;
 import thhsu.chloe.ModelHub.Profile.ProfilePresenter;
 import thhsu.chloe.ModelHub.Interest.InterestFragment;
@@ -28,7 +28,7 @@ import thhsu.chloe.ModelHub.SignInTab.SignInTabFragment;
 import thhsu.chloe.ModelHub.SignInTab.SignInTabPresenter;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -57,14 +57,14 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     private HomeFragment mHomeFragment;
     private ProfileFragment mProfileFragment;
 //    private FilterFragment mFilterFragment;
-    private CaseDetailsFragment mCaseDetailsFragment;
+    private JobDetailsFragment mCaseDetailsFragment;
 
     private SignInTabPresenter mSignInTabPresenter;
     private InterestPresenter mInterestPresenter;
     private HomePresenter mHomePresenter;
     private ProfilePresenter mProfilePresenter;
     private FilterPresenter mFilterPresenter;
-    private CaseDetailsPresenter mCaseDetailsPresenter;
+    private JobDetailsPresenter mCaseDetailsPresenter;
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
@@ -87,7 +87,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     public void result(int requestCode, int resultCode, Intent data) {
         if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
             Bundle bundle = data.getExtras();
-            ArrayList<Cases> jobs = (ArrayList<Cases>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
+            ArrayList<Jobs> jobs = (ArrayList<Jobs>)  bundle.getSerializable("filterResult");  //Convert to Arraylist
             Log.d("Chloe", "filter bundle: " + jobs.size());
             mHomePresenter.updateJobs(jobs);
         }
@@ -97,8 +97,8 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
     }
 
-//    public void updateCases(ArrayList<Cases> cases){
-//        mHomePresenter.updateCases(cases);
+//    public void updateCases(ArrayList<Jobs> jobs){
+//        mHomePresenter.updateCases(jobs);
 //    }
 
     @Override
@@ -192,13 +192,13 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     }
 
     @Override
-    public void transToCaseDetails(Cases acase) {
+    public void transToCaseDetails(Jobs jobs) {
 //        mCurrentFragment = mFragmentManager.findFragmentById(R.id.main_container_for_fragment);
         int currentNavItemId = mBottomNavigationView.getSelectedItemId();
         final FragmentTransaction transaction =
                 mFragmentManager.beginTransaction()
                         .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right); //smooth animator while switching the fragment
-        mCaseDetailsFragment = CaseDetailsFragment.newInstance();
+        mCaseDetailsFragment = JobDetailsFragment.newInstance();
       if(currentNavItemId == R.id.action_home){
           if(mHomeFragment != null) {
               transaction.hide(mHomeFragment);
@@ -231,10 +231,10 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
         transaction.add(R.id.main_container_for_fragment, mCaseDetailsFragment, CASEDETAILS);
         transaction.commit();
-        mCaseDetailsPresenter = new CaseDetailsPresenter(mCaseDetailsFragment, acase, mBottomNavigationView); //Create presenter instrance
-        Log.d("Chloe", "ModelHubPresenter job: " + acase);
+        mCaseDetailsPresenter = new JobDetailsPresenter(mCaseDetailsFragment, jobs, mBottomNavigationView); //Create presenter instrance
+        Log.d("Chloe", "ModelHubPresenter job: " + jobs);
 
-        mModelHubContractView.showCaseDetailsUi();
+        mModelHubContractView.showJobDetailsUi();
 
     }
 
@@ -242,7 +242,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     public void refreshInterestItem() {
         if(ModelHub.getModelHubSQLHelper().isInterestChanged()){
             if(mInterestPresenter != null){
-                mInterestPresenter.refreshCases();
+                mInterestPresenter.refreshJobs();
             }
 
             if(mHomePresenter != null){

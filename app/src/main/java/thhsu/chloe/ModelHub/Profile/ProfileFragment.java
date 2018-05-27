@@ -50,7 +50,7 @@ import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.CircleTransform;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiCaseManager;
+import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.model.User;
 
@@ -118,7 +118,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
 
         if(!userToken.equals("")){
-            ApiCaseManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
+            ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
                 @Override
                 public void onCompleted(User user) {
                     mUser = user;

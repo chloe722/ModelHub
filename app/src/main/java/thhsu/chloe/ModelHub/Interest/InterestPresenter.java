@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.api.GetInterestCallBack;
 import thhsu.chloe.ModelHub.api.GetInterestTask;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -14,7 +14,7 @@ import thhsu.chloe.ModelHub.api.model.Cases;
 public class InterestPresenter implements InterestContract.Presenter{
 
     private InterestContract.View mInterestView;
-    ArrayList<Cases> mJobs;
+    ArrayList<Jobs> mJobs;
     public InterestPresenter(InterestContract.View savedJobView){
         mInterestView = savedJobView;
         if(savedJobView != null){
@@ -24,7 +24,7 @@ public class InterestPresenter implements InterestContract.Presenter{
 
     @Override
     public void start() {
-        loadCases();
+        loadJobs();
     }
 
     @Override
@@ -32,35 +32,35 @@ public class InterestPresenter implements InterestContract.Presenter{
     }
 
     @Override
-    public void showCases(ArrayList<Cases> cases) {
-        mInterestView.showCases(cases);
+    public void showJobs(ArrayList<Jobs> jobs) {
+        mInterestView.showJobs(jobs);
 
     }
 
     @Override
-    public void loadCases() {
+    public void loadJobs() {
         new GetInterestTask(new GetInterestCallBack() {
             @Override
-            public void onCompleted(ArrayList<Cases> cases) {
-                showCases(cases);
+            public void onCompleted(ArrayList<Jobs> cases) {
+                showJobs(cases);
 
             }
         }).execute();
     }
 
     @Override
-    public void openCaseDetails(Cases acase) {
-        mInterestView.showCasesDetailUi(acase);
+    public void openCaseDetails(Jobs job) {
+        mInterestView.showJobsDetailUi(job);
     }
 
     @Override
-    public void refreshCases() {
-        loadCases();
+    public void refreshJobs() {
+        loadJobs();
         ModelHub.getModelHubSQLHelper().setInterestChanged(false);
     }
 
 //    @Override
-//    public void updateInterestCase(Cases cases, boolean isSaved) {
+//    public void updateInterestJob(Jobs jobs, boolean isSaved) {
 //        ModelHub.getModelHubSQLHelper().updateCases(mJobs, isSaved);
 //    }
 }

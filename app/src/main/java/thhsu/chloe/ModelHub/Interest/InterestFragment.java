@@ -21,7 +21,7 @@ import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 import thhsu.chloe.ModelHub.adapters.InterestAdapter;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -40,7 +40,7 @@ public class InterestFragment extends Fragment implements InterestContract.View 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mInterestAdapter = new InterestAdapter(new ArrayList<Cases>(), mPresenter);
+        mInterestAdapter = new InterestAdapter(new ArrayList<Jobs>(), mPresenter);
     }
 
     @Override
@@ -90,12 +90,12 @@ public class InterestFragment extends Fragment implements InterestContract.View 
 
 
     @Override
-    public void showCases(ArrayList<Cases> cases) {
-        mInterestAdapter.updateData(cases);
+    public void showJobs(ArrayList<Jobs> jobs) {
+        mInterestAdapter.updateData(jobs);
     }
 
     @Override
-    public void showCasesDetailUi(Cases acase) {
-        ((ModelHubActivity) getActivity()).transToCaseDetails(acase);
+    public void showJobsDetailUi(Jobs job) {
+        ((ModelHubActivity) getActivity()).transToCaseDetails(job);
     }
 }

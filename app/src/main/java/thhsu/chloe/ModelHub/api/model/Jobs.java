@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Chloe on 5/7/2018.
  */
 
-public class Cases implements Serializable{
+public class Jobs implements Serializable{
     @SerializedName("id")
     @Expose
     private String id;

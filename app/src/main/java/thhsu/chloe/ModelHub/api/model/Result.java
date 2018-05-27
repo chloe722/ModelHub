@@ -7,6 +7,6 @@ import java.util.ArrayList;
  */
 
 public class Result<T> {
-    public ArrayList<Cases> cases;
+    public ArrayList<Jobs> jobs;
 
 }

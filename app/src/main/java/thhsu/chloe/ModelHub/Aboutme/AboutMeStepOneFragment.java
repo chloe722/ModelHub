@@ -19,10 +19,10 @@ import android.widget.EditText;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiCaseManager;
+import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.PostUserInfoCallBack;
-import thhsu.chloe.ModelHub.api.model.UpdataUserRequest;
+import thhsu.chloe.ModelHub.api.model.UpdateUserRequest;
 import thhsu.chloe.ModelHub.api.model.User;
 
 /**
@@ -71,7 +71,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
 
 
-        ApiCaseManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
+        ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
             @Override
             public void onCompleted(User user) {
                 mUser = user;
@@ -152,7 +152,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         switch (v.getId()){
             case R.id.stepper_one_next_btn:
                 if(mOnStepOneListener != null && validateData()){
-                    UpdataUserRequest request = new UpdataUserRequest();
+                    UpdateUserRequest request = new UpdateUserRequest();
                     number = mPhone.getText().toString();
                     caseTitle = mCaseTitle.getText().toString();
                     userLocationCountry = mLocationCountry.getText().toString();
@@ -174,7 +174,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     saveUserData();
 
                     Log.d("Chloe", "user json object:" + request);
-                    ApiCaseManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
+                    ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
                                 @Override
                                 public void onComplete() {
                                     Intent userInfo = new Intent();

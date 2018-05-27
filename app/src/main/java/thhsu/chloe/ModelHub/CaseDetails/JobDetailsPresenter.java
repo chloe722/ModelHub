@@ -5,33 +5,33 @@ import android.util.Log;
 
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.api.model.Cases;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/6/2018.
  */
 
-public class CaseDetailsPresenter implements CaseDetailsContract.Presenter {
+public class JobDetailsPresenter implements JobDetailsContract.Presenter {
 
-    private final CaseDetailsContract.View mCaseDetailsView;
+    private final JobDetailsContract.View mCaseDetailsView;
     ModelHubActivity mActivity;
-    private Cases mCase;
+    private Jobs mJob;
     private BottomNavigationView mBottomNavigationView;
 
 
-    public CaseDetailsPresenter(CaseDetailsContract.View CaseDetailsView, Cases acase, BottomNavigationView bottomNavigationView){
+    public JobDetailsPresenter(JobDetailsContract.View CaseDetailsView, Jobs job, BottomNavigationView bottomNavigationView){
         mCaseDetailsView = CaseDetailsView;
         if (CaseDetailsView != null){
             mCaseDetailsView.setPresenter(this);
-            mCase = acase;
-            Log.d("Chloe", "Job details mCase: " + mCase);
+            mJob = job;
+            Log.d("Chloe", "Job details mJob: " + mJob);
             mBottomNavigationView = bottomNavigationView;
         }
     }
 
     @Override
     public void start() {
-        loadCase();
+        loadJob();
     }
 
     @Override
@@ -39,13 +39,13 @@ public class CaseDetailsPresenter implements CaseDetailsContract.Presenter {
     }
 
     @Override
-    public void loadCase() {
-        mCaseDetailsView.showCaseDetails(mCase);
+    public void loadJob() {
+        mCaseDetailsView.showJobDetails(mJob);
     }
 
     @Override
-    public void updateInterestCase(Cases cases, boolean isSaved) {
-        ModelHub.getModelHubSQLHelper().updateCases(mCase, isSaved);
+    public void updateInterestJob(Jobs jobs, boolean isSaved) {
+        ModelHub.getModelHubSQLHelper().updateCases(mJob, isSaved);
     }
 
 
