@@ -38,9 +38,9 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     private HomeContract.View mHomeView;
     private HomeContract.Presenter mHomePresenter;
 
-    public CheckBox mFrontend, mBackend, mFullStack, mWebD,
-            mUiUxD, mProductManager, mProjectManager, mFullTime,
-            mPartTime, mContract, mPermanent, mIntern, mRemote;
+    public CheckBox mCommercialVideo, mActing, mFullStack, mPhotography,
+            mModeling, mPromotionWork, mProjectManager, mPaid,
+            mUnpaid, mContract, mPermanent, mIntern, mRemote;
     public Button mSavedBtn;
     public ImageButton mFilterBackBtn;
     public Toolbar mToolbar;
@@ -69,19 +69,19 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         items = new ArrayList<CheckBox>();
         tagListSet = new HashSet<String>();
         mCases = new ArrayList<Jobs>();
-        mFrontend = (CheckBox) findViewById(R.id.filter_checkbox_frontend);
-        mBackend = (CheckBox) findViewById(R.id.filter_checkbox_backend);
-        mFullStack = (CheckBox) findViewById(R.id.filter_checkbox_fullstack);
-        mWebD = (CheckBox) findViewById(R.id.filter_checkbox_web_designer);
-        mUiUxD = (CheckBox) findViewById(R.id.filter_checkbox_uiux_designer);
-        mProductManager = (CheckBox) findViewById(R.id.filter_checkbox_product_m);
-        mProjectManager = (CheckBox) findViewById(R.id.filter_checkbox_project_m);
-        mFullTime = (CheckBox) findViewById(R.id.filter_checkbox_fulltime);
-        mPartTime = (CheckBox) findViewById(R.id.filter_checkbox_parttime);
-        mContract = (CheckBox) findViewById(R.id.filter_checkbox_contract);
-        mPermanent = (CheckBox) findViewById(R.id.filter_checkbox_permanent);
-        mIntern = (CheckBox) findViewById(R.id.filter_checkbox_intern);
-        mRemote = (CheckBox) findViewById(R.id.filter_checkbox_remote);
+        mCommercialVideo = (CheckBox) findViewById(R.id.filter_checkbox_commercial_video);
+        mActing = (CheckBox) findViewById(R.id.filter_checkbox_acting);
+//        mFullStack = (CheckBox) findViewById(R.id.filter_checkbox_fullstack);
+        mPhotography = (CheckBox) findViewById(R.id.filter_checkbox_photography);
+        mModeling = (CheckBox) findViewById(R.id.filter_checkbox_modeling);
+        mPromotionWork = (CheckBox) findViewById(R.id.filter_checkbox_promotion_work);
+//        mProjectManager = (CheckBox) findViewById(R.id.filter_checkbox_project_m);
+        mPaid = (CheckBox) findViewById(R.id.filter_checkbox_paid);
+        mUnpaid = (CheckBox) findViewById(R.id.filter_checkbox_unpaid);
+//        mContract = (CheckBox) findViewById(R.id.filter_checkbox_contract);
+//        mPermanent = (CheckBox) findViewById(R.id.filter_checkbox_permanent);
+//        mIntern = (CheckBox) findViewById(R.id.filter_checkbox_intern);
+//        mRemote = (CheckBox) findViewById(R.id.filter_checkbox_remote);
         mSavedBtn = (Button) findViewById(R.id.filter_save_btn);
         mFilterPositionTitle = (TextView) findViewById(R.id.filter_position_title);
         mFilterTypeTitle = (TextView) findViewById(R.id.filter_type_title);
@@ -89,35 +89,35 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mFilterBackBtn = (ImageButton) mToolbar.findViewById(R.id.filter_tool_bar_back_btn);
         sharedPreferences = this.getSharedPreferences(Constants.FILTER_STATUS, MODE_PRIVATE);
 
-        mFrontend.setOnCheckedChangeListener(this);
-        mFrontend.setChecked(getPreferences(Constants.FILTER_FRONTEND));
-        Log.d("Chloe", "mFrontend: getSP: " + getPreferences(Constants.FILTER_FRONTEND));
-        mBackend.setOnCheckedChangeListener(this);
-        mBackend.setChecked(getPreferences(Constants.FILTER_BACKEND));
-        Log.d("Chloe", "mBackend getSP: " + getPreferences(Constants.FILTER_BACKEND));
-        mFullStack.setOnCheckedChangeListener(this);
-        mFullStack.setChecked(getPreferences(Constants.FILTER_FULLSTACK));
-        Log.d("Chloe", "mFullstack getSP: " + getPreferences(Constants.FILTER_FULLSTACK));
-        mWebD.setOnCheckedChangeListener(this);
-        mWebD.setChecked(getPreferences(Constants.FILTER_WEBDESIGNER));
-        mUiUxD.setOnCheckedChangeListener(this);
-        mUiUxD.setChecked(getPreferences(Constants.FILTER_UIUXDESIGNER));
-        mProductManager.setOnCheckedChangeListener(this);
-        mProductManager.setChecked(getPreferences(Constants.FILTER_PRODUCTMANAGER));
-        mProjectManager.setOnCheckedChangeListener(this);
-        mProjectManager.setChecked(getPreferences(Constants.FILTER_PROJECTMANAGER));
-        mFullTime.setOnCheckedChangeListener(this);
-        mFullTime.setChecked(getPreferences(Constants.FILTER_FULLTIME));
-        mPartTime.setOnCheckedChangeListener(this);
-        mPartTime.setChecked(getPreferences(Constants.FILTER_PARTTIME));
-        mContract.setOnCheckedChangeListener(this);
-        mContract.setChecked(getPreferences(Constants.FILTER_CONTRACT));
-        mPermanent.setOnCheckedChangeListener(this);
-        mPermanent.setChecked(getPreferences(Constants.FILTER_PERMANENT));
-        mIntern.setOnCheckedChangeListener(this);
-        mIntern.setChecked(getPreferences(Constants.FILTER_INTERNSHIP));
-        mRemote.setOnCheckedChangeListener(this);
-        mRemote.setChecked(getPreferences(Constants.FILTER_REMOTE));
+        mCommercialVideo.setOnCheckedChangeListener(this);
+        mCommercialVideo.setChecked(getPreferences(Constants.FILTER_COMMERCIAL_VIDEO));
+        Log.d("Chloe", "mCommercialVideo: getSP: " + getPreferences(Constants.FILTER_COMMERCIAL_VIDEO));
+        mActing.setOnCheckedChangeListener(this);
+        mActing.setChecked(getPreferences(Constants.FILTER_ACTING));
+        Log.d("Chloe", "mActing getSP: " + getPreferences(Constants.FILTER_ACTING));
+//        mFullStack.setOnCheckedChangeListener(this);
+//        mFullStack.setChecked(getPreferences(Constants.FILTER_FULLSTACK));
+//        Log.d("Chloe", "mFullstack getSP: " + getPreferences(Constants.FILTER_FULLSTACK));
+        mPhotography.setOnCheckedChangeListener(this);
+        mPhotography.setChecked(getPreferences(Constants.FILTER_PHOTOGRAPHY));
+        mModeling.setOnCheckedChangeListener(this);
+        mModeling.setChecked(getPreferences(Constants.FILTER_MODELING));
+//        mPromotionWork.setOnCheckedChangeListener(this);
+        mPromotionWork.setChecked(getPreferences(Constants.FILTER_PROMOTION_WORK));
+//        mProjectManager.setOnCheckedChangeListener(this);
+//        mProjectManager.setChecked(getPreferences(Constants.FILTER_PROJECTMANAGER));
+        mPaid.setOnCheckedChangeListener(this);
+        mPaid.setChecked(getPreferences(Constants.FILTER_PAID));
+        mUnpaid.setOnCheckedChangeListener(this);
+        mUnpaid.setChecked(getPreferences(Constants.FILTER_UNPAID));
+//        mContract.setOnCheckedChangeListener(this);
+//        mContract.setChecked(getPreferences(Constants.FILTER_CONTRACT));
+//        mPermanent.setOnCheckedChangeListener(this);
+//        mPermanent.setChecked(getPreferences(Constants.FILTER_PERMANENT));
+//        mIntern.setOnCheckedChangeListener(this);
+//        mIntern.setChecked(getPreferences(Constants.FILTER_INTERNSHIP));
+//        mRemote.setOnCheckedChangeListener(this);
+//        mRemote.setChecked(getPreferences(Constants.FILTER_REMOTE));
         mSavedBtn.setOnClickListener(this);
         mFilterBackBtn.setOnClickListener(this);
     }
@@ -141,139 +141,139 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
 
         switch(buttonView.getId()){
 
-            case R.id.filter_checkbox_frontend:
-                if(mFrontend.isChecked()){
-                    tagListSet.add("frontend");
-                    checkedResult += "\n  Frontend Checked!";
-                    Log.d("Chloe", "mFrontend is checked? " + mFrontend.isChecked());
+            case R.id.filter_checkbox_commercial_video:
+                if(mCommercialVideo.isChecked()){
+                    tagListSet.add("commercial_video");
+                    checkedResult += "\n  Commercial Video Checked!";
+                    Log.d("Chloe", "mCommercialVideo is checked? " + mCommercialVideo.isChecked());
 
                 }else{
-                    tagListSet.remove("frontend");
+                    tagListSet.remove("commercial_video");
                 }
-                savePreferences(Constants.FILTER_FRONTEND, isChecked);
+                savePreferences(Constants.FILTER_COMMERCIAL_VIDEO, isChecked);
             break;
 
-            case R.id.filter_checkbox_backend:
-                if(mBackend.isChecked()){
-                    tagListSet.add("backend");
-                    checkedResult += "\n  Backend Checked!";
-                    Log.d("Chloe", "mBackend is checked? " + mBackend.isChecked());
+            case R.id.filter_checkbox_acting:
+                if(mActing.isChecked()){
+                    tagListSet.add("acting");
+                    checkedResult += "\n  Acting Checked!";
+                    Log.d("Chloe", "mActing is checked? " + mActing.isChecked());
                 }else{
-                    tagListSet.remove("backend");
+                    tagListSet.remove("acting");
                 }
-                savePreferences(Constants.FILTER_BACKEND, isChecked);
+                savePreferences(Constants.FILTER_ACTING, isChecked);
                 break;
 
-            case R.id.filter_checkbox_fullstack:
-                if(mFullStack.isChecked()){
-                    tagListSet.add("fullstack");
-                    checkedResult += "\n  FullStack Checked!";
-                    Log.d("Chloe", "mFullStack is checked? " + mFullStack.isChecked());
+//            case R.id.filter_checkbox_fullstack:
+//                if(mFullStack.isChecked()){
+//                    tagListSet.add("fullstack");
+//                    checkedResult += "\n  FullStack Checked!";
+//                    Log.d("Chloe", "mFullStack is checked? " + mFullStack.isChecked());
+//                }else{
+//                    tagListSet.remove("fullstack");
+//                }
+//                savePreferences(Constants.FILTER_FULLSTACK, isChecked);
+//                break;
+//
+            case R.id.filter_checkbox_promotion_work:
+                if(mPromotionWork.isChecked()){
+                    tagListSet.add("promotion_work");
+                    checkedResult += "\n  Promotion work Checked!";
                 }else{
-                    tagListSet.remove("fullstack");
+                    tagListSet.remove("promotion_work");
                 }
-                savePreferences(Constants.FILTER_FULLSTACK, isChecked);
+                savePreferences(Constants.FILTER_PROMOTION_WORK, isChecked);
+                break;
+//
+//            case R.id.filter_checkbox_project_m:
+//                if(mProjectManager.isChecked()){
+//                    tagListSet.add("project_manager");
+//                    checkedResult += "\n  Project Manager Checked!";
+//                }else{
+//                    tagListSet.remove("project_manager");
+//                }
+//                savePreferences(Constants.FILTER_PROJECTMANAGER, isChecked);
+//                break;
+
+            case R.id.filter_checkbox_photography:
+                if(mPhotography.isChecked()){
+                    tagListSet.add("photography");
+                    checkedResult += "\n  Photography Checked!";
+                }else{
+                    tagListSet.remove("photography");
+                }
+                savePreferences(Constants.FILTER_PHOTOGRAPHY, isChecked);
                 break;
 
-            case R.id.filter_checkbox_product_m:
-                if(mProductManager.isChecked()){
-                    tagListSet.add("product_manager");
-                    checkedResult += "\n  Product manager Checked!";
+            case R.id.filter_checkbox_modeling:
+                if(mModeling.isChecked()){
+                    tagListSet.add("modeling");
+                    checkedResult += "\n  Modeling Checked!";
                 }else{
-                    tagListSet.remove("product_manager");
+                    tagListSet.remove("modeling");
                 }
-                savePreferences(Constants.FILTER_PRODUCTMANAGER, isChecked);
+                savePreferences(Constants.FILTER_MODELING, isChecked);
                 break;
 
-            case R.id.filter_checkbox_project_m:
-                if(mProjectManager.isChecked()){
-                    tagListSet.add("project_manager");
-                    checkedResult += "\n  Project Manager Checked!";
+            case R.id.filter_checkbox_paid:
+                if(mPaid.isChecked()){
+                    tagListSet.add("paid");
+                    checkedResult += "\n  Paid Checked!";
                 }else{
-                    tagListSet.remove("project_manager");
+                    tagListSet.remove("paid");
                 }
-                savePreferences(Constants.FILTER_PROJECTMANAGER, isChecked);
+                savePreferences(Constants.FILTER_PAID, isChecked);
                 break;
 
-            case R.id.filter_checkbox_web_designer:
-                if(mWebD.isChecked()){
-                    tagListSet.add("web_designer");
-                    checkedResult += "\n  Web designer Checked!";
+            case R.id.filter_checkbox_unpaid:
+                if(mUnpaid.isChecked()){
+                    tagListSet.add("unpaid");
+                    checkedResult += "\n  Unpaid Checked!";
                 }else{
-                    tagListSet.remove("web_designer");
+                    tagListSet.remove("unpaid");
                 }
-                savePreferences(Constants.FILTER_WEBDESIGNER, isChecked);
+                savePreferences(Constants.FILTER_UNPAID, isChecked);
                 break;
 
-            case R.id.filter_checkbox_uiux_designer:
-                if(mUiUxD.isChecked()){
-                    tagListSet.add("uiux_designer");
-                    checkedResult += "\n  UIUX Checked!";
-                }else{
-                    tagListSet.remove("uiux_designer");
-                }
-                savePreferences(Constants.FILTER_UIUXDESIGNER, isChecked);
-                break;
-
-            case R.id.filter_checkbox_fulltime:
-                if(mFullTime.isChecked()){
-                    tagListSet.add("fulltime");
-                    checkedResult += "\n  FullTime Checked!";
-                }else{
-                    tagListSet.remove("fulltime");
-                }
-                savePreferences(Constants.FILTER_FULLTIME, isChecked);
-                break;
-
-            case R.id.filter_checkbox_parttime:
-                if(mPartTime.isChecked()){
-                    tagListSet.add("parttime");
-                    checkedResult += "\n  Part time Checked!";
-                }else{
-                    tagListSet.remove("parttime");
-                }
-                savePreferences(Constants.FILTER_PARTTIME, isChecked);
-                break;
-
-            case R.id.filter_checkbox_contract:
-                if(mContract.isChecked()){
-                    tagListSet.add("contract");
-                    checkedResult += "\n  Contract Checked!";
-                }else{
-                    tagListSet.remove("contract");
-                }
-                savePreferences(Constants.FILTER_CONTRACT, isChecked);
-                break;
-
-            case R.id.filter_checkbox_permanent:
-                if(mPermanent.isChecked()){
-                    tagListSet.add("permanent");
-                    checkedResult += "\n  Permanent Checked!";
-                }else{
-                    tagListSet.remove("permanent");
-                }
-                savePreferences(Constants.FILTER_PERMANENT, isChecked);
-                break;
-
-            case R.id.filter_checkbox_intern:
-                if(mIntern.isChecked()){
-                    tagListSet.add("intern");
-                    checkedResult += "\n  Intern Checked!";
-                }else{
-                    tagListSet.remove("intern");
-                }
-                savePreferences(Constants.FILTER_INTERNSHIP, isChecked);
-                break;
-
-            case R.id.filter_checkbox_remote:
-                if(mRemote.isChecked()){
-                    tagListSet.add("remote");
-                    checkedResult += "\n  Remote Checked!";
-                }else{
-                    tagListSet.remove("remote");
-                }
-                savePreferences(Constants.FILTER_REMOTE, isChecked);
-                break;
+//            case R.id.filter_checkbox_contract:
+//                if(mContract.isChecked()){
+//                    tagListSet.add("contract");
+//                    checkedResult += "\n  Contract Checked!";
+//                }else{
+//                    tagListSet.remove("contract");
+//                }
+//                savePreferences(Constants.FILTER_CONTRACT, isChecked);
+//                break;
+//
+//            case R.id.filter_checkbox_permanent:
+//                if(mPermanent.isChecked()){
+//                    tagListSet.add("permanent");
+//                    checkedResult += "\n  Permanent Checked!";
+//                }else{
+//                    tagListSet.remove("permanent");
+//                }
+//                savePreferences(Constants.FILTER_PERMANENT, isChecked);
+//                break;
+//
+//            case R.id.filter_checkbox_intern:
+//                if(mIntern.isChecked()){
+//                    tagListSet.add("intern");
+//                    checkedResult += "\n  Intern Checked!";
+//                }else{
+//                    tagListSet.remove("intern");
+//                }
+//                savePreferences(Constants.FILTER_INTERNSHIP, isChecked);
+//                break;
+//
+//            case R.id.filter_checkbox_remote:
+//                if(mRemote.isChecked()){
+//                    tagListSet.add("remote");
+//                    checkedResult += "\n  Remote Checked!";
+//                }else{
+//                    tagListSet.remove("remote");
+//                }
+//                savePreferences(Constants.FILTER_REMOTE, isChecked);
+//                break;
         }
         tagListResult = new ArrayList<>(tagListSet);
         Log.d("Chloe", "Tag list set: " + tagListSet);

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ModelHub</string>
     <string name="Home">Home</string>
-    <string name="join_us_be_the_memebr_for_free">Join Us! Be the memebr for free!</string>
+    <string name="join_us_be_the_memebr_for_free">Be the member for free. Explore more features. </string>
     <string name="or">or</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
@@ -9,16 +9,16 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="resume">Resume</string>
     <string name="status">Status: Member</string>
-    <string name="position">Position</string>
-    <string name="frontend_developer">Frontend Developer</string>
-    <string name="backend_developer">Backend Developer</string>
-    <string name="product_manager">Product Manager</string>
-    <string name="web_designer">Web Designer</string>
-    <string name="ui_ux_desinger">UI/UX Desinger</string>
+    <string name="job_tyoe">I\'m looking for...</string>
+    <string name="commercial_video">Commercial Video</string>
+    <string name="acting">Acting</string>
+    <string name="modeling">Modeling</string>
+    <string name="photography">Photography</string>
+    <string name="promotion_work">Promotion work</string>
     <string name="project_manager">Project Manager</string>
     <string name="type">Type</string>
-    <string name="full_time">Full-Time</string>
-    <string name="contract">Contract</string>
+    <string name="paid">Paid</string>
+    <string name="unpaid">Unpaid</string>
     <string name="internship">Internship</string>
     <string name="part_time">Part-Time</string>
     <string name="permanent">Permanent</string>

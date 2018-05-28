@@ -27,15 +27,15 @@ public class Constants {
     public static final String USER_CURRENT_COMPANY = "user_current_company";
 
     public static final String  FILTER_STATUS = "filter_status";
-    public static final String FILTER_FRONTEND = "filter_frontend";
-    public static final String FILTER_BACKEND = "filter_backend";
+    public static final String FILTER_COMMERCIAL_VIDEO = "filter_frontend";
+    public static final String FILTER_ACTING = "filter_backend";
     public static final String FILTER_FULLSTACK = "filter_fullstack";
-    public static final String FILTER_WEBDESIGNER = "filter_webdesigner";
-    public static final String FILTER_UIUXDESIGNER = "filter_uiuxdesigner";
+    public static final String FILTER_PHOTOGRAPHY = "filter_webdesigner";
+    public static final String FILTER_MODELING = "filter_uiuxdesigner";
     public static final String FILTER_PROJECTMANAGER = "filter_projectmanager";
-    public static final String FILTER_PRODUCTMANAGER = "filter_productmanager";
-    public static final String FILTER_FULLTIME = "filter_fulltime";
-    public static final String FILTER_PARTTIME = "filter_parttime";
+    public static final String FILTER_PROMOTION_WORK = "filter_productmanager";
+    public static final String FILTER_PAID = "filter_fulltime";
+    public static final String FILTER_UNPAID = "filter_parttime";
     public static final String FILTER_CONTRACT = "filter_contract";
     public static final String FILTER_INTERNSHIP = "filter_intern";
     public static final String FILTER_PERMANENT = "filter_permanent";
