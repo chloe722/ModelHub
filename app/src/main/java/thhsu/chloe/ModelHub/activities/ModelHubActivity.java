@@ -180,13 +180,13 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
-//        mToolbarTitle.setText("Home");
+        mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
+        mToolbarTitle.setText("Cases");
 
     }
 
     private void setToolbarTitle(String title) {
-//        mToolbarTitle.setText(title);
+        mToolbarTitle.setText(title);
     }
 
 
@@ -198,14 +198,14 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     @Override
     public void showHomeUi() {
-        setToolbarTitle("");
+        setToolbarTitle("Cases");
         isFilterInHome = true;
 
     }
 
     @Override
     public void showInterestUi() {
-        setToolbarTitle("Bookmark");
+        setToolbarTitle("Interests");
         isFilterInHome = false;
     }
 
@@ -217,7 +217,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     @Override
     public void showSignInTabPageUi() {
-        setToolbarTitle("Join ModelHub!");
+        setToolbarTitle("Join ModelHub");
         isFilterInHome = false;
     }
 
@@ -283,15 +283,15 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     private void clearData(){
         mSharePref.edit()
-                .remove(Constants.FILTER_FRONTEND)
-                .remove(Constants.FILTER_BACKEND)
+                .remove(Constants.FILTER_COMMERCIAL_VIDEO)
+                .remove(Constants.FILTER_ACTING)
                 .remove(Constants.FILTER_FULLSTACK)
                 .remove(Constants.FILTER_PROJECTMANAGER)
-                .remove(Constants.FILTER_PRODUCTMANAGER)
-                .remove(Constants.FILTER_WEBDESIGNER)
-                .remove(Constants.FILTER_UIUXDESIGNER)
-                .remove(Constants.FILTER_FULLTIME)
-                .remove(Constants.FILTER_PARTTIME)
+                .remove(Constants.FILTER_PROMOTION_WORK)
+                .remove(Constants.FILTER_PHOTOGRAPHY)
+                .remove(Constants.FILTER_MODELING)
+                .remove(Constants.FILTER_PAID)
+                .remove(Constants.FILTER_UNPAID)
                 .remove(Constants.FILTER_PERMANENT)
                 .remove(Constants.FILTER_REMOTE)
                 .remove(Constants.FILTER_CONTRACT)

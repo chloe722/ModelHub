@@ -170,10 +170,9 @@
 
             <TextView
                 android:id="@+id/case_details_wanted_content"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:lineSpacingExtra="5dp"
@@ -182,7 +181,6 @@
                 android:text=" pem performance tuning by identify application architecture and infrastructure bottleneck. Familiar with practical DevOps implementation. Good Team player with strong leadership and ambition to achieve challenging targets. Enthusiasm for self-learning new technology and methodology, love to realized them in real world scenarios. "
                 android:textColor="@color/textcolor"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -228,7 +226,7 @@
 
             <TextView
                 android:id="@+id/case_details_des_content"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="24dp"

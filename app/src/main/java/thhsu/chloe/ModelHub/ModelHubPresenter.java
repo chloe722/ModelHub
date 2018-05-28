@@ -144,6 +144,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         if(mInterestPresenter == null){
             mInterestPresenter = new InterestPresenter(mInterestFragment);
         }
+//        mInterestPresenter.refreshJobs();
         mModelHubContractView.showInterestUi();
     }
 

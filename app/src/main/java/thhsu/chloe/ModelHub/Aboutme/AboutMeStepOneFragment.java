@@ -59,8 +59,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mFullName = view.findViewById(R.id.stepper_one_textinput_fullname);
         mEmail = view.findViewById(R.id.stepper_one_textinput_email);
         mPhone = view.findViewById(R.id.stepper_one_textinput_phone);
-        mCaseTitle =view.findViewById(R.id.stepper_one_textinput_casetitle);
-        mCurrentWorkCompany = view.findViewById(R.id.stepper_one_textinput_companu);
+        mCaseTitle =view.findViewById(R.id.stepper_one_textinput_height);
+        mCurrentWorkCompany = view.findViewById(R.id.stepper_one_textinput_age);
         mLocationCountry = view.findViewById(R.id.stepper_one_textinput_country);
         mLocationCity =view.findViewById(R.id.stepper_one_textinput_city);
         mFullNameLayout = view.findViewById(R.id.stepper_one_textinputlayout_fullname);

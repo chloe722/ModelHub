@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fcfcfc">
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/sign_in_jeeva_logo"
         android:layout_width="200dp"
         android:layout_height="70dp"
@@ -23,11 +25,13 @@
         android:id="@+id/signup_textinputlayout_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_jeeva_logo">
+        app:layout_constraintTop_toBottomOf="@+id/signup_modelhub_title">
+        <!--app:layout_constraintTop_toBottomOf="@+id/sign_in_jeeva_logo"-->
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/signup_textinput_name"
@@ -35,7 +39,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_person_pink_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorAccent"
+            android:drawableTint="@color/colorButtonNavInactive"
             android:hint="Name"
             android:inputType="text"
             android:textSize="16sp" />
@@ -45,8 +49,8 @@
         android:id="@+id/signup_textinputlayout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_name">
@@ -57,7 +61,6 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_email_black_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorAccent"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
@@ -69,8 +72,8 @@
         android:id="@+id/signup_textinputlayout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_email">
@@ -81,7 +84,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorAccent"
+            android:drawableTint="@color/colorButtonNavInactive"
             android:hint="Password"
             android:inputType="textPassword"
             android:textSize="16sp" />
@@ -92,8 +95,8 @@
         android:id="@+id/signup_textinputlayout_confirmpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_password">
@@ -104,7 +107,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorAccent"
+            android:drawableTint="@color/colorButtonNavInactive"
             android:hint="Confirm Password"
             android:inputType="textPassword"
             android:textSize="16sp" />
@@ -113,15 +116,15 @@
     <Button
         android:id="@+id/signup_createaccount_btn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/yellow_rounded_shape"
+        android:background="@drawable/black_stroke"
         android:text="Create Account"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
         android:textAllCaps="false"
+        android:textColor="@color/textcolor"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_confirmpassword" />
@@ -134,6 +137,21 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
         android:backgroundTint="@color/colorButtonNavInactive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signup_modelhub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/bungeehairline_regular"
+        android:text="ModelHub"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

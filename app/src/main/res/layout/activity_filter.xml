@@ -24,7 +24,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:background="#ffffff">
+                android:background="#EEEEEE">
 
                 <TextView
                     android:id="@+id/filter_toolbar_title"
@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Filter"
-                    android:textColor="@color/titleforall"
+                    android:textColor="@drawable/nav_item_color_state"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/position"
+                android:text="@string/job_tyoe"
                 android:textColor="@color/titleforall"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -80,12 +80,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
-                android:id="@+id/filter_checkbox_frontend"
+                android:id="@+id/filter_checkbox_commercial_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/frontend_developer"
+                android:text="@string/commercial_video"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
@@ -93,25 +93,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
             <CheckBox
-                android:id="@+id/filter_checkbox_backend"
+                android:id="@+id/filter_checkbox_acting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/backend_developer"
+                android:text="@string/acting"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_frontend" />
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_commercial_video" />
 
             <CheckBox
-                android:id="@+id/filter_checkbox_product_m"
+                android:id="@+id/filter_checkbox_promotion_work"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/product_manager"
+                android:text="@string/promotion_work"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
@@ -119,31 +119,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fullstack" />
 
             <CheckBox
-                android:id="@+id/filter_checkbox_web_designer"
+                android:id="@+id/filter_checkbox_photography"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/web_designer"
+                android:text="@string/photography"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_commercial_video"
                 app:layout_constraintTop_toBottomOf="@+id/filter_position_title" />
 
             <CheckBox
-                android:id="@+id/filter_checkbox_uiux_designer"
+                android:id="@+id/filter_checkbox_modeling"
                 android:layout_width="154dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/ui_ux_desinger"
+                android:text="@string/modeling"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/filter_checkbox_web_designer"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_web_designer" />
+                app:layout_constraintStart_toStartOf="@+id/filter_checkbox_photography"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_photography" />
 
             <CheckBox
+                android:visibility="gone"
                 android:id="@+id/filter_checkbox_project_m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,8 +154,8 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_frontend"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_uiux_designer" />
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_commercial_video"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_modeling" />
 
             <ImageView
                 android:id="@+id/home_hr_line"
@@ -162,7 +163,7 @@
                 android:layout_height="2dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/colorHrLine"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_product_m"/>
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_promotion_work"/>
 
             <TextView
                 android:id="@+id/filter_type_title"
@@ -178,12 +179,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/home_hr_line" />
 
             <CheckBox
-                android:id="@+id/filter_checkbox_fulltime"
+                android:id="@+id/filter_checkbox_paid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/full_time"
+                android:text="@string/paid"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
@@ -191,19 +192,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
 
             <CheckBox
+                android:visibility="gone"
                 android:id="@+id/filter_checkbox_contract"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/contract"
+                android:text="testing"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_fulltime" />
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_paid" />
 
             <CheckBox
+                android:visibility="gone"
                 android:id="@+id/filter_checkbox_intern"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -216,19 +219,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_contract" />
 
             <CheckBox
-                android:id="@+id/filter_checkbox_parttime"
+                android:id="@+id/filter_checkbox_unpaid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/part_time"
+                android:text="@string/unpaid"
                 android:textAlignment="viewStart"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_paid"
                 app:layout_constraintTop_toBottomOf="@+id/filter_type_title" />
 
             <CheckBox
+                android:visibility="gone"
                 android:id="@+id/filter_checkbox_permanent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -237,10 +241,11 @@
                 android:text="@string/permanent"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_parttime" />
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_paid"
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_unpaid" />
 
             <CheckBox
+                android:visibility="gone"
                 android:id="@+id/filter_checkbox_remote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -249,10 +254,11 @@
                 android:text="@string/remote"
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_fulltime"
+                app:layout_constraintStart_toEndOf="@+id/filter_checkbox_paid"
                 app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_permanent" />
 
             <CheckBox
+                android:visibility="gone"
                 android:id="@+id/filter_checkbox_fullstack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -262,7 +268,7 @@
                 android:textColor="@color/textcolor"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_backend" />
+                app:layout_constraintTop_toBottomOf="@+id/filter_checkbox_acting" />
 
         </android.support.constraint.ConstraintLayout>
     </FrameLayout>
@@ -271,9 +277,9 @@
             android:id="@+id/filter_save_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/yellow_rounded_shape"
+            android:background="@drawable/black_stroke"
             android:text="@string/save"
-            android:textColor="#ffffff"
+            android:textColor="@color/textcolor"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_alignParentBottom="true"/>

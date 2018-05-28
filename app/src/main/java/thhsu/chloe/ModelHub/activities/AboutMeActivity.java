@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.badoualy.stepperindicator.StepperIndicator;
-import com.stepstone.stepper.StepperLayout;
+//import com.stepstone.stepper.StepperLayout;
 
 import thhsu.chloe.ModelHub.Aboutme.AboutMeStepOneFragment;
 import thhsu.chloe.ModelHub.Aboutme.AboutMeStepThreeFragment;
@@ -26,7 +26,7 @@ import thhsu.chloe.ModelHub.adapters.AboutMePagerAdapter;
  */
 
 public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOneFragment.OnStepOneListener, AboutMeStepTwoFragment.OnStepTwoListener, AboutMeStepThreeFragment.OnStepThreeListener {
-    private StepperLayout mStepperLayout;
+//    private StepperLayout mStepperLayout;
     private AboutMePagerAdapter mAboutMePagerAdapter;
     private StepperIndicator stepperIndicator;
     private NonSwipeableViewPager mViewPager;

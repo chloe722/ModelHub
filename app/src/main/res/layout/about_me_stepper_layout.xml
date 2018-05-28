@@ -34,7 +34,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
-                    android:text="About Me"
+                    android:text="Edited Profile"
+                    android:fontFamily="@font/bungeehairline_regular"
                     android:textColor="@color/titleforall"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -64,9 +65,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/about_me_page_toolbar_container"
         app:stpi_stepCount="3"
-        app:stpi_lineDoneColor="#f5658f"
-        app:stpi_circleColor="#f5658f"
-        app:stpi_indicatorColor="#f5658f"
+        app:stpi_lineDoneColor="@color/active_color"
+        app:stpi_circleColor="@color/active_color"
+        app:stpi_indicatorColor="@color/active_color"
         app:stpi_showStepNumberInstead="false"
         app:stpi_showDoneIcon="true"/>
 

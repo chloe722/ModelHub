@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/sign_in_jeeva_logo"
         android:layout_width="250dp"
         android:layout_height="70dp"
@@ -21,13 +22,15 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/signin_textinputlayout_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_jeeva_logo">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+        <!--app:layout_constraintTop_toBottomOf="@+id/sign_in_jeeva_logo-->
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/signin_textinput_email"
@@ -35,7 +38,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_email_black_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorJobDeadlineUrgent"
+
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
@@ -47,8 +50,8 @@
         android:id="@+id/signin_textinputlayout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_textinputlayout_email">
@@ -59,7 +62,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/colorJobDeadlineUrgent"
+            android:drawableTint="@color/colorButtonNavInactive"
             android:hint="Password"
             android:inputType="textPassword"
             android:textSize="18sp" />
@@ -70,14 +73,14 @@
     <Button
         android:id="@+id/signin_signin_btn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="40sp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/yellow_rounded_shape"
-        android:text="Sign In"
+        android:background="@drawable/black_stroke"
         android:fontFamily="@font/amiko_bold"
-        android:textColor="#ffffff"
+        android:text="Sign In"
+        android:textColor="@color/textcolor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,9 +105,24 @@
         android:background="@null"
         android:text="Forgot Password?"
         android:textAllCaps="false"
-        android:textColor="#2799AB"
+        android:textColor="@color/nav_active_color"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_textinputlayout_password" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/bungeehairline_regular"
+        android:text="ModelHub"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
