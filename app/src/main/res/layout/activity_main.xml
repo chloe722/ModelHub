@@ -42,7 +42,7 @@
                     android:layout_marginStart="17dp"
                     android:fontFamily="sans-serif"
                     android:text="Cases"
-                    android:textColor="@drawable/nav_item_color_state"
+                    android:textColor="#424242"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
 
