@@ -240,7 +240,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     Log.d("Chloe", "imageFile: " + imageFile.getAbsolutePath());
 
                 Log.d("Chloe", "other image uri: " + mImageUri);
-                performCrop(mImageUri, FileProvider.getUriForFile(getContext(),"thhsu.chloe.ModelHub.fileprovider", imageFile));
+                performCrop(mImageUri, FileProvider.getUriForFile(getContext(),"thhsu.chloe.ModelHub", imageFile));
             }
         }
         else if (requestCode == Constants.CROP_IMAGE) {
@@ -311,7 +311,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 ex.printStackTrace();
             }
             if(photoFile != null){
-                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.ModelHub.fileprovider", photoFile); //mImageCameraTempUri
+                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.ModelHub", photoFile); //mImageCameraTempUri
                 takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
                 startActivityForResult(takePicIntent, Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST);
             }
@@ -329,7 +329,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 e.printStackTrace();
             }
             if(imageFile != null){
-                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.ModelHub.fileprovider", imageFile); //mImageCameraTempUri
+                mImageUri = FileProvider.getUriForFile(getActivity(),"thhsu.chloe.ModelHub", imageFile); //mImageCameraTempUri
                 startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
             }
         }

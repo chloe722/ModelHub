@@ -20,7 +20,7 @@
             android:layout_marginTop="8dp"
             android:text="Urgent"
             android:textAlignment="textStart"
-            android:textColor="@color/titleforall"
+            android:textColor="#AD1457"
             android:textSize="20sp"
             android:textStyle="bold|italic"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_horizontal_recyclerview"
             indefinite_pager_indicator:dotColor="@color/colorPageTitleGrayHintProgressionIcon"
-            indefinite_pager_indicator:selectedDotColor="@color/pinkthemeColor"
+            indefinite_pager_indicator:selectedDotColor="#AD1457"
             app:dotRadius="3dp"
             app:selectedDotRadius="4.5dp"
             app:dotCount="4"/>
