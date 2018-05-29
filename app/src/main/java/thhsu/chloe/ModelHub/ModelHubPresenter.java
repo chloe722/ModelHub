@@ -121,6 +121,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         if(mHomePresenter == null){
             mHomePresenter = new HomePresenter(mHomeFragment, mProgressBar);
         }
+        mHomePresenter.refreshJobs();
         mModelHubContractView.showHomeUi();
 
     }
@@ -144,7 +145,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         if(mInterestPresenter == null){
             mInterestPresenter = new InterestPresenter(mInterestFragment);
         }
-//        mInterestPresenter.refreshJobs();
+        mInterestPresenter.refreshJobs();
         mModelHubContractView.showInterestUi();
     }
 
@@ -256,41 +257,5 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     public void start() {
         transToHome();
     }
-
-//    @Override
-//    public void transToFilter() {
-//        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-//        if(mFragmentManager.findFragmentByTag(FILTER) != null)
-//            mFragmentManager.popBackStack();
-//        if(mFilterFragment == null) mFilterFragment = FilterFragment.newInstance();
-//        if(mInterestFragment != null) {
-//            transaction.hide(mInterestFragment);
-//            transaction.addToBackStack(INTEREST);
-//        }
-//        if(mHomeFragment != null) {
-//            transaction.remove(mHomeFragment);
-//            transaction.addToBackStack(HOME);
-//        }
-//        if(mSignInTabFragment != null) {
-//            transaction.remove(mSignInTabFragment);
-//            transaction.addToBackStack(SIGNIN);
-//        }
-//        if(mProfileFragment != null) {
-//            transaction.remove(mProfileFragment);
-//        }
-//
-//        if (!mFilterFragment.isAdded()){
-//            transaction.add(R.id.main_container_for_fragment, mFilterFragment, FILTER);
-//        }else{
-//            transaction.show(mFilterFragment);
-//        }
-//        transaction.commit();
-//
-//        if(mFilterPresenter == null){
-//            mFilterPresenter = new FilterPresenter(mFilterFragment);
-//        }
-//        mActivity.invalidateOptionsMenu();
-//        mModelHubContractView.showFilterPageUi();
-//    }
 
 }

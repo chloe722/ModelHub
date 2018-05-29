@@ -71,17 +71,11 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         mCases = new ArrayList<Jobs>();
         mCommercialVideo = (CheckBox) findViewById(R.id.filter_checkbox_commercial_video);
         mActing = (CheckBox) findViewById(R.id.filter_checkbox_acting);
-//        mFullStack = (CheckBox) findViewById(R.id.filter_checkbox_fullstack);
         mPhotography = (CheckBox) findViewById(R.id.filter_checkbox_photography);
         mModeling = (CheckBox) findViewById(R.id.filter_checkbox_modeling);
         mPromotionWork = (CheckBox) findViewById(R.id.filter_checkbox_promotion_work);
-//        mProjectManager = (CheckBox) findViewById(R.id.filter_checkbox_project_m);
         mPaid = (CheckBox) findViewById(R.id.filter_checkbox_paid);
         mUnpaid = (CheckBox) findViewById(R.id.filter_checkbox_unpaid);
-//        mContract = (CheckBox) findViewById(R.id.filter_checkbox_contract);
-//        mPermanent = (CheckBox) findViewById(R.id.filter_checkbox_permanent);
-//        mIntern = (CheckBox) findViewById(R.id.filter_checkbox_intern);
-//        mRemote = (CheckBox) findViewById(R.id.filter_checkbox_remote);
         mSavedBtn = (Button) findViewById(R.id.filter_save_btn);
         mFilterPositionTitle = (TextView) findViewById(R.id.filter_position_title);
         mFilterTypeTitle = (TextView) findViewById(R.id.filter_type_title);
@@ -299,7 +293,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
     private void sentResult(String tags){
         bundle = new Bundle();
         Log.d("Chloe", "Where is tags? " + tags);
-        ApiJobManager.getInstance().getFilterCases(tags, new GetFilterJobsCallBack() {
+        ApiJobManager.getInstance().getFilterJobs(tags, new GetFilterJobsCallBack() {
             @Override
             public void onCompleted(ArrayList<Jobs> jobs) {
                 mCases = jobs;

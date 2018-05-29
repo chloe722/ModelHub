@@ -37,7 +37,7 @@ public class ApiJobManager {
 
     }
 
-    public void getCases(final GetJobsCallBack casesCallBack){
+    public void getJobs(final GetJobsCallBack casesCallBack){
 
         Call<Result<ArrayList<Jobs>>> call = ApiManager.getInstance().apiCasesService.getJobs();
 
@@ -62,7 +62,7 @@ public class ApiJobManager {
         });
     }
 
-    public void getFilterCases(String tags, final GetFilterJobsCallBack filterCasesCallBack){
+    public void getFilterJobs(String tags, final GetFilterJobsCallBack filterCasesCallBack){
 
         Call<Result<ArrayList<Jobs>>> call = ApiManager.getInstance().apiCasesService.getFilterJobs(tags);
         call.enqueue(new Callback<Result<ArrayList<Jobs>>>() {
@@ -107,9 +107,9 @@ public class ApiJobManager {
     }
 
 
-    public void getRegister(String name, String email, String password,final PostRegisterLoginCallBack postRegisterLoginCallBack){
+    public void getRegister(String name, String age, String gender, String email, String password,final PostRegisterLoginCallBack postRegisterLoginCallBack){
         Log.d("Chloe", "register");
-        Call<RegisterResult> call = ApiManager.getInstance().apiCasesService.getRegister(name, email, password);
+        Call<RegisterResult> call = ApiManager.getInstance().apiCasesService.getRegister(name, age, gender,  email, password);
         call.enqueue(new Callback<RegisterResult>() {
             @Override
             public void onResponse(Call<RegisterResult> call, Response<RegisterResult> response) {

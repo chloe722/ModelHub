@@ -59,6 +59,11 @@ public class InterestPresenter implements InterestContract.Presenter{
         ModelHub.getModelHubSQLHelper().setInterestChanged(false);
     }
 
+    @Override
+    public void updateInterest(Jobs jobs, boolean isSaved) {
+        ModelHub.getModelHubSQLHelper().updateJobs(jobs, isSaved);
+    }
+
 //    @Override
 //    public void updateInterestJob(Jobs jobs, boolean isSaved) {
 //        ModelHub.getModelHubSQLHelper().updateJobs(mJobs, isSaved);

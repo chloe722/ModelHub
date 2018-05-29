@@ -75,6 +75,28 @@ public class User {
     @SerializedName("job_title")
     @Expose
     private String jobTitle;
+    @SerializedName("age")
+    @Expose
+    private String age;
+    @SerializedName("gender")
+    @Expose
+    private String gender;
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getCurrentCompany() {
         return currentCompany;

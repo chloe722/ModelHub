@@ -14,6 +14,11 @@ public class Constants {
     public static final String USER_DATA = "user_data";
     public static final String USER_NAME = "user_name";
     public static final String USER_EMAIL = "user_email";
+    public static final String USER_GENDER = "user_gender";
+    public static final String USER_AGE = "user_age";
+    public static final String USER_WEIGHT = "user_weight";
+    public static final String USER_HEIGHT = "user_height";
+    public static final String USER_NATIONALITY = "user_nationality";
     public static final String USER_PHONENUM = "user_phone_num";
     public static final String USER_IMAGE = "user_image";
     public static final String USER_LOCATION_COUNTRY = "user_location_country";

@@ -57,8 +57,8 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     private void init(){
         setContentView(R.layout.activity_main);
-        setBottomNavigationView();
         setToolbar();
+        setBottomNavigationView() ;
         mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
         token = mSharePref.getString(Constants.USER_TOKEN, "");
         mProgressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);

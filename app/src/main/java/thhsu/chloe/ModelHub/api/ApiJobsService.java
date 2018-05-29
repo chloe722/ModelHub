@@ -46,6 +46,8 @@ public interface ApiJobsService {
     @POST(REGISTER)
     @FormUrlEncoded
     Call<RegisterResult> getRegister(@Field("name") String name,
+                                     @Field("age") String age,
+                                     @Field("gender") String gender,
                                      @Field("email") String email,
                                      @Field("password") String password);
 
