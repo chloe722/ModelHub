@@ -3,6 +3,7 @@ package thhsu.chloe.ModelHub.Aboutme;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -34,12 +36,14 @@ import thhsu.chloe.ModelHub.api.model.User;
 
 public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener, Spinner.OnItemSelectedListener {
     private Button mNextBtn, mBackBtn;
-    private EditText mFacebookUserNamelText, mGithubUserNameText, mLinkedinUserNameText, mUserExperience, mUserBio;
+    private EditText mFacebookUserNamelText, mGithubUserNameText, mLinkedinUserNameText, mUserExperienceEditedText, mUserBioEditedText;
     private TextInputLayout mFacebookTextLayout, mGithubTextLayout, mLinkedinTextLayout;
     private OnStepTwoListener mOnStepTwoListener;
-    private String mFacebookUsername, mGithubUsername, mLinkedinUsername, mUserToken;
+    private String mFacebookUsername, mGithubUsername, mLinkedinUsername, mUserToken, mUserExperience, mUserBio;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
+    private RadioButton mLanguageGroupOneBeg, mLanguageGroupOneInt, mLanguageGroupOneFlu, mLanguageGroupTwoBeg
+            , mLanguageGroupTwoInt, mLanguageGroupTwoFlu, mLanguageGroupThreeBeg, mLanguageGroupThreeInt, mLanguageGroupThreeFlu;
 
 
     public AboutMeStepTwoFragment() {
@@ -62,7 +66,8 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         super.onViewCreated(view, savedInstanceState);
         sharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         mUserToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
-
+        mUserExperienceEditedText = (EditText) view.findViewById(R.id.stepper_two_experience_content);
+        mUserBioEditedText = (EditText) view.findViewById(R.id.stepper_two_bio_content);
         mNextBtn = view.findViewById(R.id.stepper_two_next_btn);
         mBackBtn = view.findViewById(R.id.stepper_two_back_btn);
 
@@ -73,27 +78,25 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         spinnerLanguageTwo.setOnItemSelectedListener(this);
         spinnerLanguageThree.setOnItemSelectedListener(this);
 
+        List<String> categoriesOne = new ArrayList<String>();
+        categoriesOne.add("English");
+        categoriesOne.add("Mandarin");
+        categoriesOne.add("Spanish");
+        categoriesOne.add("Russian");
+        categoriesOne.add("German");
+        categoriesOne.add("French");
 
+        List<String> categoriesTwo = new ArrayList<String>();
+        categoriesTwo.add("None");
+        categoriesTwo.add("English");
+        categoriesTwo.add("Mandarin");
+        categoriesTwo.add("Spanish");
+        categoriesTwo.add("Russian");
+        categoriesTwo.add("German");
+        categoriesTwo.add("French");
 
-        List<String> categories = new ArrayList<String>();
-        categories.add("English");
-        categories.add("Mandarin");
-        categories.add("Spanish");
-        categories.add("Russian");
-        categories.add("German");
-        categories.add("French");
-
-        List<String> categories2 = new ArrayList<String>();
-        categories2.add("None");
-        categories2.add("English");
-        categories2.add("Mandarin");
-        categories2.add("Spanish");
-        categories2.add("Russian");
-        categories2.add("German");
-        categories2.add("French");
-
-        ArrayAdapter<String> languageDataAdapterOne = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
-        ArrayAdapter<String> languageDataAdapterThree = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories2);
+        ArrayAdapter<String> languageDataAdapterOne = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categoriesOne);
+        ArrayAdapter<String> languageDataAdapterThree = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categoriesTwo);
         languageDataAdapterOne.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageDataAdapterThree.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -106,9 +109,11 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
             @Override
             public void onCompleted(User user) {
                 mUser = user;
-                mFacebookUserNamelText.setText(mUser.getFacebookAccount());
-                mGithubUserNameText.setText(mUser.getGithubAccount());
-                mLinkedinUserNameText.setText(mUser.getLinkedinAccount());
+                mUserExperienceEditedText.setText(mUser.getExperience());
+                mUserBioEditedText.setText(mUser.getBio());
+//                mFacebookUserNamelText.setText(mUser.getFacebookAccount());
+//                mGithubUserNameText.setText(mUser.getGithubAccount());
+//                mLinkedinUserNameText.setText(mUser.getLinkedinAccount());
 
             }
 
@@ -154,12 +159,14 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
             case R.id.stepper_two_next_btn:
                 if(mOnStepTwoListener != null){
                     UpdateUserRequest request = new UpdateUserRequest();
-                    mFacebookUsername = mFacebookUserNamelText.getText().toString();
+//                    mFacebookUsername = mFacebookUserNamelText.getText().toString();
 //                    mGithubUsername = mGithubUserNameText.getText().toString();
 //                    mLinkedinUsername = mLinkedinUserNameText.getText().toString();
+                    mUserExperience = mUserExperienceEditedText.getText().toString();
+                    mUserBio = mUserBioEditedText.getText().toString();
                     request.token = mUserToken;
-//                    request.user.setBio();
-//                    request.user.setExperience();
+                    request.user.setBio(mUserBio);
+                    request.user.setExperience(mUserExperience);
 //                    request.user.setFacebookAccount(mFacebookUsername);
 //                    request.user.setGithubAccount(mGithubUsername);
 //                    request.user.setLinkedinAccount(mLinkedinUsername);
