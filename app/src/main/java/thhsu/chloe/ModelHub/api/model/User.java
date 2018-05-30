@@ -81,6 +81,72 @@ public class User {
     @SerializedName("gender")
     @Expose
     private String gender;
+    @SerializedName("languages")
+    @Expose
+    private List<String> languages = null;
+    @SerializedName("experience")
+    @Expose
+    private String experience;
+    @SerializedName("bio")
+    @Expose
+    private String bio;
+    @SerializedName("weight")
+    @Expose
+    private String weight;
+    @SerializedName("height")
+    @Expose
+    private String height;
+    @SerializedName("nationality")
+    @Expose
+    private String nationality;
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<String> languages) {
+        this.languages = languages;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
 
     public String getAge() {
         return age;

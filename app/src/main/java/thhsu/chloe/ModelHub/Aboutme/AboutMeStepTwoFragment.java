@@ -10,8 +10,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
@@ -26,14 +32,15 @@ import thhsu.chloe.ModelHub.api.model.User;
  * Created by Chloe on 5/4/2018.
  */
 
-public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener {
+public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener, Spinner.OnItemSelectedListener {
     private Button mNextBtn, mBackBtn;
-    private EditText mFacebookUserNamelText, mGithubUserNameText, mLinkedinUserNameText;
+    private EditText mFacebookUserNamelText, mGithubUserNameText, mLinkedinUserNameText, mUserExperience, mUserBio;
     private TextInputLayout mFacebookTextLayout, mGithubTextLayout, mLinkedinTextLayout;
     private OnStepTwoListener mOnStepTwoListener;
     private String mFacebookUsername, mGithubUsername, mLinkedinUsername, mUserToken;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
+
 
     public AboutMeStepTwoFragment() {
     }
@@ -55,14 +62,45 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         super.onViewCreated(view, savedInstanceState);
         sharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         mUserToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
+
         mNextBtn = view.findViewById(R.id.stepper_two_next_btn);
         mBackBtn = view.findViewById(R.id.stepper_two_back_btn);
-        mFacebookUserNamelText = view.findViewById(R.id.stepper_two_textinput_fb_url);
-        mGithubUserNameText = view.findViewById(R.id.stepper_two_textinput_githuburl);
-        mLinkedinUserNameText = view.findViewById(R.id.stepper_two_textinput_linkedin_url);
-        mFacebookTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_fb);
-        mGithubTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_github);
-        mLinkedinTextLayout = view.findViewById(R.id.stepper_two_textinputlayout_linkedin);
+
+        Spinner spinnerLanguageOne = (Spinner) view.findViewById(R.id.stepper_two_first_language_spinner);
+        Spinner spinnerLanguageTwo = (Spinner) view.findViewById(R.id.stepper_two_sec_language_spinner);
+        Spinner spinnerLanguageThree = (Spinner) view.findViewById(R.id.stepper_two_third_language_spinner);
+        spinnerLanguageOne.setOnItemSelectedListener(this);
+        spinnerLanguageTwo.setOnItemSelectedListener(this);
+        spinnerLanguageThree.setOnItemSelectedListener(this);
+
+
+
+        List<String> categories = new ArrayList<String>();
+        categories.add("English");
+        categories.add("Mandarin");
+        categories.add("Spanish");
+        categories.add("Russian");
+        categories.add("German");
+        categories.add("French");
+
+        List<String> categories2 = new ArrayList<String>();
+        categories2.add("None");
+        categories2.add("English");
+        categories2.add("Mandarin");
+        categories2.add("Spanish");
+        categories2.add("Russian");
+        categories2.add("German");
+        categories2.add("French");
+
+        ArrayAdapter<String> languageDataAdapterOne = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> languageDataAdapterThree = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories2);
+        languageDataAdapterOne.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languageDataAdapterThree.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerLanguageOne.setAdapter(languageDataAdapterOne);
+        spinnerLanguageTwo.setAdapter(languageDataAdapterThree);
+        spinnerLanguageThree.setAdapter(languageDataAdapterThree);
+
 
         ApiJobManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
             @Override
@@ -71,6 +109,7 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
                 mFacebookUserNamelText.setText(mUser.getFacebookAccount());
                 mGithubUserNameText.setText(mUser.getGithubAccount());
                 mLinkedinUserNameText.setText(mUser.getLinkedinAccount());
+
             }
 
             @Override
@@ -116,12 +155,14 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
                 if(mOnStepTwoListener != null){
                     UpdateUserRequest request = new UpdateUserRequest();
                     mFacebookUsername = mFacebookUserNamelText.getText().toString();
-                    mGithubUsername = mGithubUserNameText.getText().toString();
-                    mLinkedinUsername = mLinkedinUserNameText.getText().toString();
+//                    mGithubUsername = mGithubUserNameText.getText().toString();
+//                    mLinkedinUsername = mLinkedinUserNameText.getText().toString();
                     request.token = mUserToken;
-                    request.user.setFacebookAccount(mFacebookUsername);
-                    request.user.setGithubAccount(mGithubUsername);
-                    request.user.setLinkedinAccount(mLinkedinUsername);
+//                    request.user.setBio();
+//                    request.user.setExperience();
+//                    request.user.setFacebookAccount(mFacebookUsername);
+//                    request.user.setGithubAccount(mGithubUsername);
+//                    request.user.setLinkedinAccount(mLinkedinUsername);
                     saveUserData();
 
                     ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
@@ -161,6 +202,16 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         mOnStepTwoListener = null;
         mNextBtn = null;
         mBackBtn = null;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String item = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     public interface OnStepTwoListener {

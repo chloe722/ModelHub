@@ -198,7 +198,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     @Override
     public void showHomeUi() {
-        setToolbarTitle("Cases");
+        setToolbarTitle("Opportunities");
         isFilterInHome = true;
 
     }
