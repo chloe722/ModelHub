@@ -30,6 +30,16 @@ public class Constants {
     public static final String USER_GITHUB_USERNAME = "user_github_username";
     public static final String USER_LINKEDIN_USERNAME = "user_linkedin_username";
     public static final String USER_CURRENT_COMPANY = "user_current_company";
+    public static final String USER_LANGUAGE_SKILL_ONE = "user_language_skill_one";
+    public static final String USER_LANGUAGE_SKILL_TWO = "user_language_skill_two";
+    public static final String USER_LANGUAGE_SKILL_THREE = "user_language_skill_three";
+    public static final String USER_LANGUAGE_LEVEL_ONE = "user_language_level_one";
+    public static final String USER_LANGUAGE_LEVEL_TWO = "user_language_level_two";
+    public static final String USER_LANGUAGE_LEVEL_THREE = "user_language_level_three";
+
+    public static final String USER_EXPERIENCE = "user_experience";
+    public static final String USER_BIO = "user_bio";
+
 
     public static final String  FILTER_STATUS = "filter_status";
     public static final String FILTER_COMMERCIAL_VIDEO = "filter_frontend";

@@ -83,7 +83,7 @@ public class User {
     private String gender;
     @SerializedName("languages")
     @Expose
-    private List<String> languages = null;
+    private List<LanguageSkill> languages = null;
     @SerializedName("experience")
     @Expose
     private String experience;
@@ -100,11 +100,11 @@ public class User {
     @Expose
     private String nationality;
 
-    public List<String> getLanguages() {
+    public List<LanguageSkill> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(List<String> languages) {
+    public void setLanguages(List<LanguageSkill> languages) {
         this.languages = languages;
     }
 

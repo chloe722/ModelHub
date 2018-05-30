@@ -89,6 +89,12 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
                 .remove(Constants.USER_NATIONALITY)
                 .remove(Constants.USER_HEIGHT)
                 .remove(Constants.USER_WEIGHT)
+                .remove(Constants.USER_LANGUAGE_LEVEL_ONE)
+                .remove(Constants.USER_LANGUAGE_LEVEL_TWO)
+                .remove(Constants.USER_LANGUAGE_LEVEL_THREE)
+                .remove(Constants.USER_LANGUAGE_SKILL_ONE)
+                .remove(Constants.USER_LANGUAGE_SKILL_TWO)
+                .remove(Constants.USER_LANGUAGE_SKILL_THREE)
                 .apply();
     }
 
