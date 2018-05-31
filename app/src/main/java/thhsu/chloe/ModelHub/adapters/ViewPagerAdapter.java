@@ -1,6 +1,7 @@
 package thhsu.chloe.ModelHub.adapters;
 
 import android.support.annotation.Nullable;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -23,11 +24,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         Fragment fragment = null;
 
-        if(position == 0){
-            fragment = new ProfileInfoFragment();
-        }else if(position == 1){
-            fragment = new ProfileWorkbookFragment();
-        }
+//        if(position == 0){
+//            fragment = new ProfileInfoFragment();
+//        }else if(position == 1){
+//            fragment = new ProfileWorkbookFragment();
+//        }
 
         return fragment;
     }
@@ -42,7 +43,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         String title = "";
         if(position == 0 ){
-            title = "More";
+            title = "Info";
         }else if(position == 1){
             title = "WorkBook";
         }

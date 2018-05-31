@@ -22,7 +22,9 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.FileProvider;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +52,7 @@ import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.CircleTransform;
 import thhsu.chloe.ModelHub.Utils.Constants;
+import thhsu.chloe.ModelHub.adapters.ViewPagerAdapter;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.model.User;
@@ -60,7 +63,9 @@ import thhsu.chloe.ModelHub.api.model.User;
 
 @RuntimePermissions
 public class ProfileFragment extends Fragment implements ProfileContract.View, View.OnClickListener {
-
+    private ViewPager mViewPager;
+    private TabLayout mTablayout;
+    private ViewPagerAdapter mViewPagerAdapter;
     ProfileContract.Presenter mPresenter;
     Button mEditInfoBtn, mCameraBtn;
 //    private ImageButton mUserFacebook, mUserGithub, mUserLinkedin;
@@ -68,7 +73,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     ImageView mUserPhotoView, mUserCoverImage;
     private Uri mImageUri;
     Context mContext;
-    String userToken, userName, userEmail, userHeight, userLocationCountry, userLocationCity, userLocation, userWeight, userNationality, userBio, userLanguage, userExperience;
+    String userToken, userName, userEmail, userHeight, userLocationCountry, userLocationCity, userLocation, userWeight,
+            userNationality, userBio, userLanguage, userExperience;
     BottomSheetDialog mBottomSheetDialog;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
@@ -88,15 +94,22 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
         mCameraBtn = (Button) root.findViewById(R.id.profile_camera_btn);
         mUserPhotoView = (ImageView) root.findViewById(R.id.profile_user_photo);
+        mUserCoverImage = (ImageView) root.findViewById(R.id.profile_user_cover_image);
         mUserName = (TextView) root.findViewById(R.id.profile_user_name);
         mUserHeight = (TextView) root.findViewById(R.id.profile_user_height_text);
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
         mUserWeight = (TextView) root.findViewById(R.id.profile_user_weight_text);
         mUserNationality = (TextView) root.findViewById(R.id.profile_user_nationality_text);
-        mUserBio = (TextView) root.findViewById(R.id.profile_user_bio_text);
-        mUserExperience = (TextView) root.findViewById(R.id.profile_user_experience_text);
-        mUserLanguage = (TextView) root.findViewById(R.id.profile_user_language_text);
+//        mUserBio = (TextView) root.findViewById(R.id.profile_user_bio_text);
+//        mUserExperience = (TextView) root.findViewById(R.id.profile_user_experience_text);
+//        mUserLanguage = (TextView) root.findViewById(R.id.profile_user_language_text);
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
+
+//        mViewPager = (ViewPager) root.findViewById(R.id.viewpager);
+//        mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager()));
+//        mViewPager.setAdapter(mViewPagerAdapter);
+        mTablayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
+//        mTablayout.setupWithViewPager(mViewPager);
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
         mBottomSheetDialog.setContentView(sheetView);
         LinearLayout camera = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_camera);
@@ -104,10 +117,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
-//        mUserFacebook.setOnClickListener(this);
-//        mUserGithub.setOnClickListener(this);
-//        mUserLinkedin.setOnClickListener(this);
-//
+
 //        if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
 //            userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
 //            mUserEmail.setText(userEmail);
@@ -118,6 +128,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             mUserName.setText(userName);
         }
 
+        Picasso.get().load("http://www.cianellistudios.com/blog/wp-content/uploads/2010/12/abstract-art-painting-canvas-art-mother-earth.jpg")
+        .fit().into(mUserCoverImage);
+
         if(!userToken.equals("")){
             ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
                 @Override
@@ -126,14 +139,24 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     userName = mUser.getName();
                     userLocationCity = mUser.getCity();
 //                    userEmail = mUser.getEmail();
-//                    userHeight = mUser.getCaseTitle();
+                    userHeight = mUser.getHeight();
+                    userWeight = mUser.getWeight();
+                    userNationality = mUser.getNationality();
 
                     mUserName.setText(userName);
 //                    mUserEmail.setText(userEmail);
                     userLocationCountry = mUser.getCountry();
                     userLocation = (userLocationCity != null ? userLocationCity + ",  " : "") + userLocationCountry != null ?userLocationCity : "";
                     mUserLocation.setText(userLocation);
-//                    mUserHeight.setText(userHeight);
+                    if(!mUserHeight.equals("")){
+                        mUserHeight.setText(userHeight);
+                    }
+
+                    if(!mUserWeight.equals("")){
+                        mUserWeight.setText(userWeight);
+
+                    }
+                    mUserNationality.setText(userNationality);
 
 //                    if(!(mUserHeight == null || mUserHeight.equals(""))){
 //                        mUserHeight.setVisibility(View.VISIBLE);
@@ -141,16 +164,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
                     if( !(mUserLocation == null || mUserLocation.equals(""))){
                         mUserLocation.setVisibility(View.VISIBLE);}
-//
-//                    if( userFacebookUsername == null||userFacebookUsername.equals("")){
-//                        mUserFacebook.setVisibility(View.GONE);
-//                    }
-//                    if( userGithubUsername == null || userGithubUsername.equals("") ){
-//                        mUserGithub.setVisibility(View.GONE);
-//                    }
-//                    if( userLinkedinUsername == null || userLinkedinUsername.equals("")){
-//                        mUserLinkedin.setVisibility(View.GONE);
-//                    }
+
                 }
                 @Override
                 public void onError(String errorMessage) {
@@ -193,29 +207,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 mBottomSheetDialog.hide();
                 pickImage();
                 break;
-//            case R.id.profile_user_facebook:
-//                isIconActivate = true;
-//                String url = Constants.FACEBOOK_URL + "houhou.xu";
-//                Intent intentToFacebook = new Intent(Intent.ACTION_VIEW);
-//                intentToFacebook.setData(Uri.parse(url));
-//                startActivity(intentToFacebook);
-//                break;
-//
-//            case R.id.profile_user_github:
-//                isIconActivate = true;
-//                String githubUrl = Constants.GITHUB_URL + "chloe722";
-//                Intent intentToGithub = new Intent(Intent.ACTION_VIEW);
-//                intentToGithub.setData(Uri.parse(githubUrl));
-//                startActivity(intentToGithub);
-//                break;
-//
-//            case R.id.profile_user_linkedin:
-//                isIconActivate = true;
-//                String linkedinUrl = Constants.LINKEDIN_URL + "skijur/";
-//                Intent intenToLinkedin = new Intent(Intent.ACTION_VIEW);
-//                intenToLinkedin.setData(Uri.parse(linkedinUrl));
-//                startActivity(intenToLinkedin);
-//                break;
+
         }
     }
 
@@ -297,7 +289,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         return null;
     }
-
 
 
     public void takePhoto() {

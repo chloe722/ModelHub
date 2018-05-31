@@ -71,6 +71,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
 
 
+
+
         ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
             @Override
             public void onCompleted(User user) {
@@ -80,10 +82,10 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 mPhone.setText(mUser.getPhoneNumber());
                 mLocationCity.setText(mUser.getCity());
                 mLocationCountry.setText(mUser.getCountry());
-//                mHeight.setText(mUser.getCaseTitle());
+                mHeight.setText(mUser.getHeight());
                 mAge.setText(mUser.getAge());
-//                mWeight.setText(mUser.getWeight);
-//                mNationality.setText(mUser.getNationality);
+                mWeight.setText(mUser.getWeight());
+                mNationality.setText(mUser.getNationality());
             }
 
             @Override
@@ -177,8 +179,9 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     request.user.setCountry(userLocationCountry);
                     request.user.setJobTitle(userJobTitle);
                     request.user.setAge(userAge);
-//                    request.user.setWeight(userWeight);
-//                    request.user.setNationality(userNationality);
+                    request.user.setWeight(userWeight);
+                    request.user.setHeight(userHeight);
+                    request.user.setNationality(userNationality);
                     saveUserData();
 
                     Log.d("Chloe", "user json object:" + request);
@@ -246,6 +249,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mLocationCountry.setText(sharedPreferences.getString(Constants.USER_LOCATION_COUNTRY, ""));
         mLocationCity.setText(sharedPreferences.getString(Constants.USER_LOCATION_CITY, ""));
         mHeight.setText(sharedPreferences.getString(Constants.USER_CASE_TITLE, ""));
+
     }
 
 }
