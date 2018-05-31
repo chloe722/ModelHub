@@ -67,7 +67,11 @@
             android:exported="true" />
 
         <activity
-            android:name="thhsu.chloe.ModelHub.activities.RegisterActivity"
+        android:name="thhsu.chloe.ModelHub.activities.RegisterActivity"
+        android:exported="true" />
+
+        <activity
+            android:name="thhsu.chloe.ModelHub.activities.ProfileActivity"
             android:exported="true" />
 
         <activity

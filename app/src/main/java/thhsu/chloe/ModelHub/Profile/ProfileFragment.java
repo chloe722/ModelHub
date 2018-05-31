@@ -63,12 +63,12 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
     ProfileContract.Presenter mPresenter;
     Button mEditInfoBtn, mCameraBtn;
-    private ImageButton mUserFacebook, mUserGithub, mUserLinkedin;
-    TextView mUserName, mUserEmail, mUserNumber, mUserCaseTitle, mUserLocation;
-    ImageView mUserPhotoView;
+//    private ImageButton mUserFacebook, mUserGithub, mUserLinkedin;
+    TextView mUserName, mUserEmail, mUserNumber, mUserHeight, mUserLocation, mUserWeight, mUserNationality, mUserBio, mUserLanguage, mUserExperience;
+    ImageView mUserPhotoView, mUserCoverImage;
     private Uri mImageUri;
     Context mContext;
-    String userToken, userName, userEmail, userCaseTitle, userLocationCountry, userLocationCity, userLocation, userFacebookUsername, userGithubUsername, userLinkedinUsername;
+    String userToken, userName, userEmail, userHeight, userLocationCountry, userLocationCity, userLocation, userWeight, userNationality, userBio, userLanguage, userExperience;
     BottomSheetDialog mBottomSheetDialog;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
@@ -89,12 +89,13 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mCameraBtn = (Button) root.findViewById(R.id.profile_camera_btn);
         mUserPhotoView = (ImageView) root.findViewById(R.id.profile_user_photo);
         mUserName = (TextView) root.findViewById(R.id.profile_user_name);
-        mUserEmail = (TextView) root.findViewById(R.id.profile_user_email);
-        mUserCaseTitle = (TextView) root.findViewById(R.id.profile_user_job_title);
+        mUserHeight = (TextView) root.findViewById(R.id.profile_user_height_text);
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
-        mUserFacebook = (ImageButton) root.findViewById(R.id.profile_user_facebook);
-        mUserGithub = (ImageButton) root.findViewById(R.id.profile_user_github);
-        mUserLinkedin = (ImageButton) root.findViewById(R.id.profile_user_linkedin);
+        mUserWeight = (TextView) root.findViewById(R.id.profile_user_weight_text);
+        mUserNationality = (TextView) root.findViewById(R.id.profile_user_nationality_text);
+        mUserBio = (TextView) root.findViewById(R.id.profile_user_bio_text);
+        mUserExperience = (TextView) root.findViewById(R.id.profile_user_experience_text);
+        mUserLanguage = (TextView) root.findViewById(R.id.profile_user_language_text);
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
         mBottomSheetDialog.setContentView(sheetView);
@@ -103,14 +104,14 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         camera.setOnClickListener(this);
         gallery.setOnClickListener(this);
         mCameraBtn.setOnClickListener(this);
-        mUserFacebook.setOnClickListener(this);
-        mUserGithub.setOnClickListener(this);
-        mUserLinkedin.setOnClickListener(this);
-
-        if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
-            userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
-            mUserEmail.setText(userEmail);
-        }
+//        mUserFacebook.setOnClickListener(this);
+//        mUserGithub.setOnClickListener(this);
+//        mUserLinkedin.setOnClickListener(this);
+//
+//        if(!sharedPreferences.getString(Constants.USER_EMAIL, "").equals("")){
+//            userEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
+//            mUserEmail.setText(userEmail);
+//        }
 
         if(!sharedPreferences.getString(Constants.USER_NAME, "").equals("")){
             userName = sharedPreferences.getString(Constants.USER_NAME, "");
@@ -124,34 +125,32 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     mUser = user;
                     userName = mUser.getName();
                     userLocationCity = mUser.getCity();
-                    userEmail = mUser.getEmail();
-                    userCaseTitle = mUser.getCaseTitle();
-                    userFacebookUsername = mUser.getFacebookAccount();
-                    userGithubUsername = mUser.getGithubAccount();
-                    userLinkedinUsername = mUser.getLinkedinAccount();
+//                    userEmail = mUser.getEmail();
+//                    userHeight = mUser.getCaseTitle();
+
                     mUserName.setText(userName);
-                    mUserEmail.setText(userEmail);
+//                    mUserEmail.setText(userEmail);
                     userLocationCountry = mUser.getCountry();
                     userLocation = (userLocationCity != null ? userLocationCity + ",  " : "") + userLocationCountry != null ?userLocationCity : "";
                     mUserLocation.setText(userLocation);
-                    mUserCaseTitle.setText(userCaseTitle);
+//                    mUserHeight.setText(userHeight);
 
-                    if(!(mUserCaseTitle == null || mUserCaseTitle.equals(""))){
-                        mUserCaseTitle.setVisibility(View.VISIBLE);
-                    }
+//                    if(!(mUserHeight == null || mUserHeight.equals(""))){
+//                        mUserHeight.setVisibility(View.VISIBLE);
+//                    }
 
                     if( !(mUserLocation == null || mUserLocation.equals(""))){
                         mUserLocation.setVisibility(View.VISIBLE);}
-
-                    if( userFacebookUsername == null||userFacebookUsername.equals("")){
-                        mUserFacebook.setVisibility(View.GONE);
-                    }
-                    if( userGithubUsername == null || userGithubUsername.equals("") ){
-                        mUserGithub.setVisibility(View.GONE);
-                    }
-                    if( userLinkedinUsername == null || userLinkedinUsername.equals("")){
-                        mUserLinkedin.setVisibility(View.GONE);
-                    }
+//
+//                    if( userFacebookUsername == null||userFacebookUsername.equals("")){
+//                        mUserFacebook.setVisibility(View.GONE);
+//                    }
+//                    if( userGithubUsername == null || userGithubUsername.equals("") ){
+//                        mUserGithub.setVisibility(View.GONE);
+//                    }
+//                    if( userLinkedinUsername == null || userLinkedinUsername.equals("")){
+//                        mUserLinkedin.setVisibility(View.GONE);
+//                    }
                 }
                 @Override
                 public void onError(String errorMessage) {
@@ -194,29 +193,29 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                 mBottomSheetDialog.hide();
                 pickImage();
                 break;
-            case R.id.profile_user_facebook:
-                isIconActivate = true;
-                String url = Constants.FACEBOOK_URL + "houhou.xu";
-                Intent intentToFacebook = new Intent(Intent.ACTION_VIEW);
-                intentToFacebook.setData(Uri.parse(url));
-                startActivity(intentToFacebook);
-                break;
-
-            case R.id.profile_user_github:
-                isIconActivate = true;
-                String githubUrl = Constants.GITHUB_URL + "chloe722";
-                Intent intentToGithub = new Intent(Intent.ACTION_VIEW);
-                intentToGithub.setData(Uri.parse(githubUrl));
-                startActivity(intentToGithub);
-                break;
-
-            case R.id.profile_user_linkedin:
-                isIconActivate = true;
-                String linkedinUrl = Constants.LINKEDIN_URL + "skijur/";
-                Intent intenToLinkedin = new Intent(Intent.ACTION_VIEW);
-                intenToLinkedin.setData(Uri.parse(linkedinUrl));
-                startActivity(intenToLinkedin);
-                break;
+//            case R.id.profile_user_facebook:
+//                isIconActivate = true;
+//                String url = Constants.FACEBOOK_URL + "houhou.xu";
+//                Intent intentToFacebook = new Intent(Intent.ACTION_VIEW);
+//                intentToFacebook.setData(Uri.parse(url));
+//                startActivity(intentToFacebook);
+//                break;
+//
+//            case R.id.profile_user_github:
+//                isIconActivate = true;
+//                String githubUrl = Constants.GITHUB_URL + "chloe722";
+//                Intent intentToGithub = new Intent(Intent.ACTION_VIEW);
+//                intentToGithub.setData(Uri.parse(githubUrl));
+//                startActivity(intentToGithub);
+//                break;
+//
+//            case R.id.profile_user_linkedin:
+//                isIconActivate = true;
+//                String linkedinUrl = Constants.LINKEDIN_URL + "skijur/";
+//                Intent intenToLinkedin = new Intent(Intent.ACTION_VIEW);
+//                intenToLinkedin.setData(Uri.parse(linkedinUrl));
+//                startActivity(intenToLinkedin);
+//                break;
         }
     }
 
