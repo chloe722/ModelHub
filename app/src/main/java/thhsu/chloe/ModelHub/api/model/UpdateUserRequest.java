@@ -9,5 +9,12 @@ public class UpdateUserRequest {
 //    public UpdateUserFields user = new UpdateUserFields();
     public User user = new User();
 
+    public UpdateUserRequest(String token, User user) {
+        this.token = token;
+        this.user = user;
+    }
+
+    public UpdateUserRequest() {
+    }
 }
 

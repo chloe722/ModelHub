@@ -3,8 +3,12 @@ package thhsu.chloe.ModelHub.api;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 //import thhsu.chloe.jeeva.api.model.FilterJobs;
 import thhsu.chloe.ModelHub.ModelHub;
@@ -159,12 +163,32 @@ public class ApiJobManager {
                     postUserInfoCallBack.onComplete();
                     Log.d("Chloe", "Post user info success!: " + (response.body().getOk()));
                 }else{
-                    Toast.makeText(ModelHub.getAppContext(), "Post userinfo to server faild!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ModelHub.getAppContext(), response.body().message, Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<PostUserInfoResult> call, Throwable t) {
                     postUserInfoCallBack.onError(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void upLoadImage(File image, final UploadImageCallBack uploadImageCallBack){
+        RequestBody b = RequestBody.create(MediaType.parse("image/*"), image);
+        Call<UploadResponse> call = ApiManager.getInstance().apiCasesService.uploadImage(b);
+        call.enqueue(new Callback<UploadResponse>() {
+            @Override
+            public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
+                if(response.body().ok) {
+                    uploadImageCallBack.onComplete(response.body().url);
+                }else{
+                    Toast.makeText(ModelHub.getAppContext(), response.body().message, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UploadResponse> call, Throwable t) {
+                Log.d("Chloe","upload error: " + t);
             }
         });
     }

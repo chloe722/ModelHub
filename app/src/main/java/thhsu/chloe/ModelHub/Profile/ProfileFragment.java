@@ -30,7 +30,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,6 +54,9 @@ import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.adapters.ViewPagerAdapter;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
+import thhsu.chloe.ModelHub.api.PostUserInfoCallBack;
+import thhsu.chloe.ModelHub.api.UploadImageCallBack;
+import thhsu.chloe.ModelHub.api.model.UpdateUserRequest;
 import thhsu.chloe.ModelHub.api.model.User;
 
 /**
@@ -74,7 +76,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     private Uri mImageUri;
     Context mContext;
     String userToken, userName, userEmail, userHeight, userLocationCountry, userLocationCity, userLocation, userWeight,
-            userNationality, userBio, userLanguage, userExperience;
+            userNationality, userBio, userLanguage, userExperience, userImageUrl;
     BottomSheetDialog mBottomSheetDialog;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
@@ -146,7 +148,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     mUserName.setText(userName);
 //                    mUserEmail.setText(userEmail);
                     userLocationCountry = mUser.getCountry();
-                    userLocation = (userLocationCity != null ? userLocationCity + ",  " : "") + userLocationCountry != null ?userLocationCity : "";
+                    userLocation = (userLocationCity != null ? userLocationCity + ",  " : "") + (userLocationCountry != null ? userLocationCountry : "");
                     mUserLocation.setText(userLocation);
                     if(!mUserHeight.equals("")){
                         mUserHeight.setText(userHeight);
@@ -236,7 +238,35 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if (requestCode == Constants.CROP_IMAGE) {
             if(!mImageUri.equals("")){
-                Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
+//                getContext().getContentResolver().openInputStream(mImageUri)
+                File f = new File(mImageUri.getPath());
+                ApiJobManager.getInstance().upLoadImage(f, new UploadImageCallBack() {
+                    @Override
+                    public void onComplete(String url) {
+                        Log.d("Chloe", "image-url: "+url);
+                        userImageUrl = "https://moelhub.tw" + url;
+                        mUser.setProfilePic(userImageUrl);
+                        UpdateUserRequest r = new UpdateUserRequest(userToken, mUser);
+                        ApiJobManager.getInstance().getPostUserInfoResult(r, new PostUserInfoCallBack() {
+                            @Override
+                            public void onComplete() {
+//                                Toast.makeText(this, "Photo updated", Toast.LENGTH_SHORT).show();
+                                Picasso.get().load(userImageUrl).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
+
+                            }
+
+                            @Override
+                            public void onError(String errorMessage) {
+                                Log.d("Chloe","error: " + errorMessage);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(String errorMessage) {
+
+                    }
+                });
             }
         }
     }
