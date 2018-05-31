@@ -176,13 +176,11 @@
                     android:id="@+id/radiogroup_one_beg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Beginner"
                     android:textColor="@color/textcolor"
                     android:textSize="14sp"
-                    android:checked="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/stepper_two_first_language_list" />
 
@@ -190,7 +188,6 @@
                     android:id="@+id/radiogroup_one_int"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:textColor="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
@@ -203,7 +200,6 @@
                     android:id="@+id/radiogroup_one_flu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Fluent"
@@ -227,12 +223,10 @@
                     android:id="@+id/radiogroup_two_beg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:textColor="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Beginner"
-                    android:checked="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/stepper_two_sec_language_list" />
 
@@ -240,7 +234,6 @@
                     android:id="@+id/radiogroup_two_int"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:textColor="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
@@ -252,7 +245,6 @@
                     android:id="@+id/radiogroup_two_flu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Fluent"
@@ -275,12 +267,10 @@
                     android:id="@+id/radiogroup_three_beg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:textColor="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Beginner"
-                    android:checked="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/stepper_two_third_language_list" />
 
@@ -288,9 +278,7 @@
                     android:id="@+id/radiogroup_three_int"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:textColor="@color/textcolor"
-
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Intermediate"
@@ -301,7 +289,6 @@
                     android:id="@+id/radiogroup_three_flu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Fluent"
@@ -344,6 +331,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor"
                 android:textSize="16sp"
+                android:enabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 

@@ -68,7 +68,7 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         sharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         mUserToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
@@ -86,6 +86,7 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         mLanguageRadioGroupOne = (RadioGroup) view.findViewById(R.id.stepper_two_lan1_level_radiogroup);
         mLanguageRadioGroupTwo = (RadioGroup) view.findViewById(R.id.stepper_two_lan2_level_radiogroup);
         mLanguageRadioGroupThree = (RadioGroup) view.findViewById(R.id.stepper_two_lan3_level_radiogroup);
+
 
         mNextBtn = view.findViewById(R.id.stepper_two_next_btn);
         mBackBtn = view.findViewById(R.id.stepper_two_back_btn);
@@ -125,7 +126,6 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         spinnerLanguageOne.setAdapter(languageDataAdapterOne);
         spinnerLanguageTwo.setAdapter(languageDataAdapterTwo);
         spinnerLanguageThree.setAdapter(languageDataAdapterThree);
-//        spinnerLanguageTwo.setOnItemSelectedListener(this);
 
 
         ApiJobManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
@@ -141,9 +141,10 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
                     int levelIndex = getLevelIndex(skills.get(0).getLevel());
                     Log.d("Chloe", "level" +levelIndex);
                     Log.d("Chloe", "testtttttttttttt: " + mLanguageRadioGroupOne.getChildAt(levelIndex).toString());
-                    ((RadioButton) mLanguageRadioGroupOne.getChildAt(0)).setChecked(false);
+
                     ((RadioButton) mLanguageRadioGroupOne.getChildAt(levelIndex)).setChecked(true);
-                    mLanguageRadioGroupOne.check(mLanguageRadioGroupOne.getChildAt(levelIndex).getId());
+                    ((RadioButton) mLanguageRadioGroupOne.getChildAt(levelIndex)).jumpDrawablesToCurrentState();
+
 
                 }
                 if(skills != null && skills.size() > 1){
@@ -153,8 +154,8 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
                     spinnerLanguageTwo.setSelection(spinnerTwoPosition);
                     int levelIndex = getLevelIndex(skills.get(1).getLevel());
                     Log.d("Chloe", "level" +levelIndex);
-                    ((RadioButton) mLanguageRadioGroupTwo.getChildAt(0)).setChecked(false);
                     ((RadioButton) mLanguageRadioGroupTwo.getChildAt(levelIndex)).setChecked(true);
+                    ((RadioButton) mLanguageRadioGroupTwo.getChildAt(levelIndex)).jumpDrawablesToCurrentState();
 
                 }
                 if(skills != null && skills.size() > 2){
@@ -164,23 +165,19 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
                     spinnerLanguageThree.setSelection(spinnerThreePosition);
                     int levelIndex = getLevelIndex(skills.get(2).getLevel());
                     Log.d("Chloe", "level" +levelIndex);
-                    ((RadioButton) mLanguageRadioGroupThree.getChildAt(0)).setChecked(false);
                     ((RadioButton) mLanguageRadioGroupThree.getChildAt(levelIndex)).setChecked(true);
+                    ((RadioButton) mLanguageRadioGroupThree.getChildAt(levelIndex)).jumpDrawablesToCurrentState();
+
 
                 }
                 mUserExperienceEditedText.setText(mUser.getExperience());
                 mUserBioEditedText.setText(mUser.getBio());
-//                mFacebookUserNamelText.setText(mUser.getFacebookAccount());
-//                mGithubUserNameText.setText(mUser.getGithubAccount());
-//                mLinkedinUserNameText.setText(mUser.getLinkedinAccount());
 
             }
 
             @Override
             public void onError(String errorMessage) {
-                mFacebookUserNamelText.setText("");
-                mGithubUserNameText.setText("");
-                mLinkedinUserNameText.setText("");
+
             }
         });
     }
@@ -225,16 +222,12 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
             case R.id.stepper_two_next_btn:
                 if(mOnStepTwoListener != null){
                     UpdateUserRequest request = new UpdateUserRequest();
-
                     mUserExperience = mUserExperienceEditedText.getText().toString();
                     mUserBio = mUserBioEditedText.getText().toString();
                     request.token = mUserToken;
                     request.user.setBio(mUserBio);
                     request.user.setExperience(mUserExperience);
                     request.user.setLanguages(getLanguageSkill());
-//                    request.user.setFacebookAccount(mFacebookUsername);
-//                    request.user.setGithubAccount(mGithubUsername);
-//                    request.user.setLinkedinAccount(mLinkedinUsername);
                     saveUserData();
 
                     ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
