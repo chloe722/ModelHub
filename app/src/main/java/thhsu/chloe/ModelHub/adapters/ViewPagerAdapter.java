@@ -24,11 +24,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
         Fragment fragment = null;
 
-//        if(position == 0){
-//            fragment = new ProfileInfoFragment();
-//        }else if(position == 1){
-//            fragment = new ProfileWorkbookFragment();
-//        }
+        if(position == 0){
+            fragment = new ProfileInfoFragment();
+        }else if(position == 1){
+            fragment = new ProfileWorkbookFragment();
+        }
 
         return fragment;
     }

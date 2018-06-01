@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content">
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="#f9f7f7">
 
 
@@ -77,10 +85,6 @@
             android:layout_height="wrap_content"
 
             >
-            <!--android:layout_marginTop="17dp"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/profile_user_weight_text"-->
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
@@ -97,141 +101,16 @@
 
     </RelativeLayout>
 
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/viewpager"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent" />-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/profile_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-    <!--<ImageView-->
-    <!--android:id="@+id/imageview_hr_line"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="1dp"-->
-    <!--android:background="@color/colorFilterContentTitle"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintHorizontal_bias="0.0"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--tools:layout_editor_absoluteY="346dp" />-->
-
-    <!--<LinearLayout-->
-    <!--android:id="@+id/linearLayout2"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:orientation="vertical"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line">-->
-
-
-    <!--&lt;!&ndash;<Button&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/about_page_about_modelhub_btn"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:background="@null"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:drawableLeft="@drawable/ic_card_membership_black_24dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:drawablePadding="5dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:paddingLeft="10dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:text="@string/status"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:textAlignment="textStart"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:textAllCaps="false"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:textColor="@color/colorPageIconFilterItem"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:textSize="16sp"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintBottom_toTopOf="@+id/imageview_hr_line_two"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintHorizontal_bias="0.0"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line">&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;</Button>&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/imageview_hr_line_two"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="2dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:background="@color/colorHrLine"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintHorizontal_bias="0.0"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:layout_constraintTop_toBottomOf="@+id/about_page_about_modelhub_btn">&ndash;&gt;-->
-
-    <!--</ImageView>-->
-
-    <!--<Button-->
-    <!--android:id="@+id/about_page_termofuse_btn"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="@null"-->
-    <!--android:drawableLeft="@drawable/ic_content_paste_black_24dp"-->
-    <!--android:drawablePadding="5dp"-->
-    <!--android:paddingLeft="10dp"-->
-    <!--android:text="@string/resume"-->
-    <!--android:textAlignment="textStart"-->
-    <!--android:textAllCaps="false"-->
-    <!--android:textColor="@color/colorPageIconFilterItem"-->
-    <!--android:textSize="16sp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_two" />-->
-    <!--</LinearLayout>-->
-
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="0dp"-->
-    <!--android:orientation="vertical"-->
-    <!--app:layout_constraintEnd_toEndOf="@+id/profile_user_photo"-->
-    <!--app:layout_constraintStart_toStartOf="@+id/profile_user_photo"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/profile_user_location">-->
-
-    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:orientation="horizontal">&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/profile_user_facebook"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:background="@null"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:srcCompat="@drawable/facebook_box_blue" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/profile_user_github"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:background="@null"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:srcCompat="@drawable/github_circle_black" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/profile_user_linkedin"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:background="@null"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:padding="5dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;app:srcCompat="@drawable/linkedin_box_blue" />&ndash;&gt;-->
-
-    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
-
-    <!--</LinearLayout>-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/profile_user_bio_text"-->
-    <!--android:layout_width="229dp"-->
-    <!--android:layout_height="60dp"-->
-    <!--android:text="Writing an ant set of ideas into an argument. Because essays are essentially linear—they offer one idea at a time—they must present their ideas in the order that makes most sense to a reader. Successfully structuring an essay means attending to a reader's logic."-->
-    <!--android:textSize="15sp"-->
-    <!--tools:layout_editor_absoluteX="16dp"-->
-    <!--tools:layout_editor_absoluteY="250dp" />-->
 
 
     <TextView
@@ -403,3 +282,4 @@
 
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -66,12 +66,8 @@ import thhsu.chloe.ModelHub.api.model.User;
 
 @RuntimePermissions
 public class ProfileFragment extends Fragment implements ProfileContract.View, View.OnClickListener {
-    private ViewPager mViewPager;
-    private TabLayout mTablayout;
-    private ViewPagerAdapter mViewPagerAdapter;
     ProfileContract.Presenter mPresenter;
     Button mEditInfoBtn, mCameraBtn;
-//    private ImageButton mUserFacebook, mUserGithub, mUserLinkedin;
     TextView mUserName, mUserEmail, mUserNumber, mUserHeight, mUserLocation, mUserWeight, mUserNationality, mUserBio, mUserLanguage, mUserExperience;
     ImageView mUserPhotoView, mUserCoverImage;
     private Uri mImageUri;
@@ -108,11 +104,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 //        mUserLanguage = (TextView) root.findViewById(R.id.profile_user_language_text);
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
 
-//        mViewPager = (ViewPager) root.findViewById(R.id.viewpager);
-//        mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager()));
-//        mViewPager.setAdapter(mViewPagerAdapter);
-        mTablayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
-//        mTablayout.setupWithViewPager(mViewPager);
+        ViewPager mViewPager = (ViewPager) root.findViewById(R.id.profile_viewpager);
+        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
+        mViewPager.setAdapter(mViewPagerAdapter);
+        TabLayout mTabLayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
+        mTabLayout.setupWithViewPager(mViewPager);
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
         mBottomSheetDialog.setContentView(sheetView);
         LinearLayout camera = (LinearLayout) sheetView.findViewById(R.id.fragment_profile_camera);
