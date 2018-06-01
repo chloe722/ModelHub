@@ -1,7 +1,9 @@
 package thhsu.chloe.ModelHub.AboutPage;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+//import android.app.FragmentManager;
+//import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 
 import thhsu.chloe.ModelHub.R;

@@ -37,10 +37,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
     private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn, mEditedBtn;
-    private boolean isFilterInHome = true;
-    private boolean shouldShowFilter = false;
-    private Fragment currentFragment;
-    private Button mToolBarBackBtn;
     ModelHubActivity modelHubActivity;
     private SharedPreferences mSharePref;
     String token;
@@ -63,7 +59,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         token = mSharePref.getString(Constants.USER_TOKEN, "");
         mProgressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
         Log.d("Chloe", "if progressbar loaded?" + mProgressBar);
-        mPresenter = new ModelHubPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
+        mPresenter = new ModelHubPresenter(this, getSupportFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
         mPresenter.start();
 
     }
@@ -199,33 +195,28 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     @Override
     public void showHomeUi() {
         setToolbarTitle("Opportunities");
-        isFilterInHome = true;
 
     }
 
     @Override
     public void showInterestUi() {
         setToolbarTitle("Interests");
-        isFilterInHome = false;
     }
 
     @Override
     public void showProfileUi() {
         setToolbarTitle("Profile");
-        isFilterInHome = false;
     }
 
     @Override
     public void showSignInTabPageUi() {
         setToolbarTitle("Join ModelHub");
-        isFilterInHome = false;
     }
 
     @Override
     public void showFilterPageUi() {
         invalidateOptionsMenu();
         setToolbarTitle("");
-        isFilterInHome = false;
     }
 
     @Override

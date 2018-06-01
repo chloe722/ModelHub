@@ -1,15 +1,15 @@
 package thhsu.chloe.ModelHub;
 
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+//import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -37,12 +37,10 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class ModelHubPresenter implements ModelHubContract.Presenter {
     private final ModelHubContract.View mModelHubContractView;
     private FragmentManager mFragmentManager;
-    private MenuItem menuItem;
     public ModelHubActivity mActivity;
     public BottomNavigationView mBottomNavigationView;
     public Toolbar mToolbar;
     private ProgressBar mProgressBar;
-    private Fragment mCurrentFragment;
 
     public static final String HOME = "HOME";
     public static final String INTEREST = "INTEREST";
