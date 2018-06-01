@@ -163,14 +163,14 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     userNationality = mNationality.getText().toString();
                     userLocationCountry = mLocationCountry.getText().toString();
                     userLocationCity = mLocationCity.getText().toString();
-                    userLocation = userLocationCity + ", " + userLocationCountry;
+//                    userLocation = userLocationCity +  + userLocationCountry;
                     userJobTitle = mHeight.getText().toString();
                     userAge = mAge.getText().toString();
                     bundle.putString("phone", userPhonenum);
                     bundle.putString("userHeight", userHeight);
                     bundle.putString("userWeight", userWeight);
                     bundle.putString("userNationality", userNationality);
-                    bundle.putString("locationCityCountry", userLocation);
+//                    bundle.putString("locationCityCountry", userLocation);
                     bundle.putString("locationCountry", userLocationCountry);
                     bundle.putString("locationCity", userLocationCity);
                     request.token = userToken;
@@ -233,7 +233,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 .putString(Constants.USER_CASE_TITLE, userHeight)
                 .putString(Constants.USER_LOCATION_COUNTRY, userLocationCountry)
                 .putString(Constants.USER_LOCATION_CITY, userLocationCity)
-                .putString(Constants.USER_LOCATION, userLocation)
+//                .putString(Constants.USER_LOCATION, userLocation)
                 .putString(Constants.USER_CASE_TITLE, userJobTitle)
                 .putString(Constants.USER_CURRENT_COMPANY, userAge)
                 .putString(Constants.USER_HEIGHT, userHeight)
