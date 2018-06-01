@@ -23,11 +23,11 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
             <intent-filter>
                 <data android:scheme="pumpkin.com" android:host="open" />
                 <action android:name="android.intent.action.VIEW" />
@@ -50,10 +50,15 @@
             android:name="thhsu.chloe.ModelHub.activities.CoverPageActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-             <intent-filter>
-                 <action android:name="android.intent.action.VIEW" />
-                 <category android:name="android.intent.category.DEFAULT" />
-             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name="thhsu.chloe.ModelHub.activities.SignInActivity"
@@ -70,9 +75,9 @@
         android:name="thhsu.chloe.ModelHub.activities.RegisterActivity"
         android:exported="true" />
 
-        <activity
-            android:name="thhsu.chloe.ModelHub.activities.ProfileActivity"
-            android:exported="true" />
+        <!--<activity-->
+            <!--android:name="thhsu.chloe.ModelHub.activities.ProfileActivity"-->
+            <!--android:exported="true" />-->
 
         <activity
             android:name="thhsu.chloe.ModelHub.activities.AboutpageActivity"

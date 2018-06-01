@@ -12,19 +12,19 @@ import android.view.ViewGroup;
 
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.adapters.AboutPageTermOfUseAdapter;
+//import thhsu.chloe.ModelHub.adapters.AboutPageTermOfUseAdapter;
 
 /**
  * Created by Chloe on 5/15/2018.
  */
 
 public class AboutTermOfUseFragment extends Fragment {
-    private AboutPageTermOfUseAdapter mTermOfUseAdapter;
+//    private AboutPageTermOfUseAdapter mTermOfUseAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTermOfUseAdapter = new AboutPageTermOfUseAdapter();
+//        mTermOfUseAdapter = new AboutPageTermOfUseAdapter();
     }
 
     public static AboutTermOfUseFragment newInstance () { return new AboutTermOfUseFragment();}
@@ -33,9 +33,9 @@ public class AboutTermOfUseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_aboutpage_termofuse_recyyclerview, container, false);
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.fragment_aboutpage_termofuse_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ModelHub.getAppContext()));
-        recyclerView.setAdapter(mTermOfUseAdapter);
+//        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.fragment_aboutpage_termofuse_recyclerview);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(ModelHub.getAppContext()));
+//        recyclerView.setAdapter(mTermOfUseAdapter);
 
         return root;
     }
