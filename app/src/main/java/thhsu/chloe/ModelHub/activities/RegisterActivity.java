@@ -13,6 +13,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
@@ -142,6 +145,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
                         @Override
                         public void onError(String errorMessage) {
+                            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

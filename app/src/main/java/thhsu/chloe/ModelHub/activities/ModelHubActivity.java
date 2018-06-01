@@ -121,7 +121,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                         mSharePref.edit().remove(Constants.USER_TOKEN)
                                 .apply();
                         Log.d("Chloe", "shared status: " + mSharePref.getString(Constants.USER_TOKEN, ""));
-                        Toast.makeText(getApplicationContext(), "log out btn click", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "You've log out", Toast.LENGTH_SHORT).show();
                         init();
                         return true;
                     }
