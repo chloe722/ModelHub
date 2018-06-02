@@ -1,15 +1,15 @@
 package thhsu.chloe.ModelHub;
 
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+//import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -37,12 +37,10 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class ModelHubPresenter implements ModelHubContract.Presenter {
     private final ModelHubContract.View mModelHubContractView;
     private FragmentManager mFragmentManager;
-    private MenuItem menuItem;
     public ModelHubActivity mActivity;
     public BottomNavigationView mBottomNavigationView;
     public Toolbar mToolbar;
     private ProgressBar mProgressBar;
-    private Fragment mCurrentFragment;
 
     public static final String HOME = "HOME";
     public static final String INTEREST = "INTEREST";
@@ -121,6 +119,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         if(mHomePresenter == null){
             mHomePresenter = new HomePresenter(mHomeFragment, mProgressBar);
         }
+        mHomePresenter.refreshJobs();
         mModelHubContractView.showHomeUi();
 
     }
@@ -144,7 +143,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         if(mInterestPresenter == null){
             mInterestPresenter = new InterestPresenter(mInterestFragment);
         }
-//        mInterestPresenter.refreshJobs();
+        mInterestPresenter.refreshJobs();
         mModelHubContractView.showInterestUi();
     }
 
@@ -256,41 +255,5 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     public void start() {
         transToHome();
     }
-
-//    @Override
-//    public void transToFilter() {
-//        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-//        if(mFragmentManager.findFragmentByTag(FILTER) != null)
-//            mFragmentManager.popBackStack();
-//        if(mFilterFragment == null) mFilterFragment = FilterFragment.newInstance();
-//        if(mInterestFragment != null) {
-//            transaction.hide(mInterestFragment);
-//            transaction.addToBackStack(INTEREST);
-//        }
-//        if(mHomeFragment != null) {
-//            transaction.remove(mHomeFragment);
-//            transaction.addToBackStack(HOME);
-//        }
-//        if(mSignInTabFragment != null) {
-//            transaction.remove(mSignInTabFragment);
-//            transaction.addToBackStack(SIGNIN);
-//        }
-//        if(mProfileFragment != null) {
-//            transaction.remove(mProfileFragment);
-//        }
-//
-//        if (!mFilterFragment.isAdded()){
-//            transaction.add(R.id.main_container_for_fragment, mFilterFragment, FILTER);
-//        }else{
-//            transaction.show(mFilterFragment);
-//        }
-//        transaction.commit();
-//
-//        if(mFilterPresenter == null){
-//            mFilterPresenter = new FilterPresenter(mFilterFragment);
-//        }
-//        mActivity.invalidateOptionsMenu();
-//        mModelHubContractView.showFilterPageUi();
-//    }
 
 }

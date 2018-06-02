@@ -51,6 +51,8 @@ public interface HomeContract {
 
         void updateInterest(Jobs jobs, boolean isSaved);
 
+        void refreshJobs();
+
 //        void clearJobs();
 
 

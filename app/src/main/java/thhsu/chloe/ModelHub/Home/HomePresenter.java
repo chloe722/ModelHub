@@ -67,7 +67,7 @@ public class HomePresenter implements HomeContract.Presenter {
     public void loadJobs() {
         if(!isLoading() && hasNextPaging()){
             setLoading(true);
-            ApiJobManager.getInstance().getCases(new GetJobsCallBack() {
+            ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
                 @Override
                 public void onCompleted(ArrayList<Jobs> jobs) {
                     mProgressBar.setVisibility(View.GONE);
@@ -90,7 +90,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void loadFilterResult(){
-        ApiJobManager.getInstance().getCases(new GetJobsCallBack() {
+        ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
             @Override
             public void onCompleted(ArrayList<Jobs> jobs) {
                 showJobs(mJobs);
@@ -150,6 +150,13 @@ public class HomePresenter implements HomeContract.Presenter {
         ModelHub.getModelHubSQLHelper().updateJobs(jobs, isSaved);
     }
 
+    @Override
+    public void refreshJobs() {
+
+        loadJobs();
+        ModelHub.getModelHubSQLHelper().setInterestChanged(false);
+    }
+
 //    @Override
 //    public void clearJobs() {
 //        mHomeView.clearJobs();
@@ -162,6 +169,7 @@ public class HomePresenter implements HomeContract.Presenter {
     public void setPaging(int paging){mPaging = paging;}
 
     private boolean hasNextPaging(){return (mPaging == Constants.NOR_MORE_PAGING)? false: true; }
+
 
 
 }

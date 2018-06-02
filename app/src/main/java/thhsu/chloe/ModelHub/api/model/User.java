@@ -75,6 +75,94 @@ public class User {
     @SerializedName("job_title")
     @Expose
     private String jobTitle;
+    @SerializedName("age")
+    @Expose
+    private String age;
+    @SerializedName("gender")
+    @Expose
+    private String gender;
+    @SerializedName("languages")
+    @Expose
+    private List<LanguageSkill> languages = null;
+    @SerializedName("experience")
+    @Expose
+    private String experience;
+    @SerializedName("bio")
+    @Expose
+    private String bio;
+    @SerializedName("weight")
+    @Expose
+    private String weight;
+    @SerializedName("height")
+    @Expose
+    private String height;
+    @SerializedName("nationality")
+    @Expose
+    private String nationality;
+
+    public List<LanguageSkill> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<LanguageSkill> languages) {
+        this.languages = languages;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getCurrentCompany() {
         return currentCompany;

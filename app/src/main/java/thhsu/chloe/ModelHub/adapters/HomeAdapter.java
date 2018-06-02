@@ -45,7 +45,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
         mPresenter = presenter;
         this.mJobs = jobs;
         this.mNextPaging = Constants.FIRST_PAGING;
-
     }
 
 
@@ -118,8 +117,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         private HomeCasesItemViewHolder(View itemView) {
             super(itemView);
 
-            mHomeCaseTitle = (TextView) itemView.findViewById(R.id.case_details_title);
-//            mHomeCaseDate = (TextView) itemView.findViewById(R.id.home_case_date);
+            mHomeCaseTitle = (TextView) itemView.findViewById(R.id.home_case_title);
             mHomeCaseLocation = (TextView) itemView.findViewById(R.id.home_case_location);
             mHomeCaseWhom = (TextView) itemView.findViewById(R.id.home_case_whom);
             mHomeCasePay = (TextView) itemView.findViewById(R.id.home_case_pay);
@@ -127,7 +125,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
             mInterestIcnBtn = (ImageButton) itemView.findViewById(R.id.home_case_interest_icn_btn);
 
             mInterestIcnBtn.setOnClickListener(this);
-//            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_interest_item)).setOnClickListener(this);
             ((CardView) itemView.findViewById(R.id.cardView_main_case_item)).setOnClickListener(this);
         }
 
@@ -155,7 +152,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 break;
 
                 case R.id.cardView_main_case_item:
-                    Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()).getTitle());
+                    Log.d("Chloe", "getTitle in home adapter: " + mJobs.get(getAdapterPosition()-1).getTitle());
                     mPresenter.openCaseDetails(mJobs.get(getAdapterPosition()-1)); // setOpenJob here  getAdapterPosition()
                     break;
             }
@@ -177,8 +174,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
         holder.getHomeCaseWhom().setText(mJobs.get(position).getWhom());
         holder.getHomeCasePay().setText(mJobs.get(position).getIsPaid());
 
-
-//            (holder.getHomeCaseTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
 
         if(holder.getHomeCaseCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
             Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getHomeCaseCompanyLogo());

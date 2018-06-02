@@ -1,8 +1,7 @@
 package thhsu.chloe.ModelHub.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,26 +48,12 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
     @Override
     public void onBindViewHolder(InterestItemViewHolder holder, int position) {
         if(holder instanceof InterestItemViewHolder) {
-            holder.getInterestTypeTag().setText(mJobs.get(position).getType());
-            holder.getInterestCompanyName().setText(mJobs.get(position).getCompany());
-            holder.getInterestLocationName().setText(mJobs.get(position).getLocation());
-            holder.getInterestPostedDate().setText(mJobs.get(position).getDatePosted());
+
+            holder.getInterestLocation().setText(mJobs.get(position).getLocation());
             holder.getInterestTitle().setText(mJobs.get(position).getTitle());
-            if (mJobs.get(position).getType().equals("fulltime")) {
-                (holder.getInterestTypeTag()).setText("Full-time");
-//            (holder.getInterestTypeTag()).setBackgroundResource(R.drawable.yellow_rounded_shape);
-            } else if (mJobs.get(position).getType().equals("parttime")) {
-                (holder.getInterestTypeTag()).setText("Part-time");
-            } else if (mJobs.get(position).getType().equals("intern")) {
-                (holder.getInterestTypeTag()).setText("Intern");
-            }
+            holder.getInterestWhom().setText(mJobs.get(position).getWhom());
+            holder.getInterestPay().setText(mJobs.get(position).getIsPaid());
 
-
-            if (mJobs.get(position).getUrgent()) {
-                (holder.mInterestClockIcn).setImageResource(R.drawable.ic_access_alarms_black_24dp);
-                (holder.getInterestUrgentOrNotText()).setText("Urgent");
-                (holder.getInterestUrgentOrNotText()).setTextColor(Color.rgb(247, 59, 59));
-            }
 
             if (holder.getInterestCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
                 Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getInterestCompanyLogo());
@@ -76,10 +61,10 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
 
             if(ModelHub.getModelHubSQLHelper().getInterest(mJobs.get(position).getId())){
                 Log.d("Chloe", "true");
-                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_red_24dp);
+                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_favorite_black_24dp);
             }else{
                 Log.d("Chloe", "false");
-                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_bookmark_border_red_24dp);
+                holder.getInterestIcnBtn().setImageResource(R.drawable.ic_favorite_border_black_24dp);
             }
         }
     }
@@ -90,47 +75,45 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
     }
 
     public class InterestItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView mInterestTypeTag, mInterestTitle, mInterestPostedOnText,
+        private TextView mInterestTypeTag, mInterestTitle, mInterestLocation, mInterestWhom, mInterestPay, mInterestPostedOnText,
                 mInterestPostedDate, mInterestCompanyTitle, mInterestLocationTitle,
-                mInterestCompanyName, mInterestLocationName, mInterestUrgentOrNotText;
-        private ImageView mInterestCompanyLogo, mInterestClockIcn;
+                mInterestCompanyName, mInterestUrgentOrNotText;
+        private ImageView mInterestCompanyLogo;
         private ImageButton mInterestIcnBtn;
 
         private InterestItemViewHolder(View itemView) {
             super(itemView);
 
-            mInterestTypeTag = (TextView) itemView.findViewById(R.id.interest_type_tag);
-            mInterestTitle = (TextView) itemView.findViewById(R.id.case_details_title);
-            mInterestPostedOnText = (TextView) itemView.findViewById(R.id.interest_posted_text);
-            mInterestPostedDate = (TextView) itemView.findViewById(R.id.interest_posted_date);
-            mInterestCompanyTitle = (TextView) itemView.findViewById(R.id.interest_company_title);
-            mInterestLocationTitle = (TextView) itemView.findViewById(R.id.interest_location_title);
-            mInterestCompanyName = (TextView) itemView.findViewById(R.id.interest_company_name);
-            mInterestLocationName = (TextView) itemView.findViewById(R.id.interest_location_name);
-            mInterestUrgentOrNotText = (TextView) itemView.findViewById(R.id.interest_urgentornot_text);
+            mInterestTitle = (TextView) itemView.findViewById(R.id.interest_title);
+            mInterestLocation = (TextView) itemView.findViewById(R.id.interest_location);
+            mInterestWhom = (TextView) itemView.findViewById(R.id.interest_whom);
+            mInterestPay = (TextView) itemView.findViewById(R.id.interest_pay);
             mInterestCompanyLogo = (ImageView) itemView.findViewById(R.id.interest_company_logo);
             mInterestIcnBtn = (ImageButton) itemView.findViewById(R.id.interest_interest_icn_btn);
-            mInterestClockIcn = (ImageView) itemView.findViewById(R.id.interest_clock_icn);
 
             mInterestIcnBtn.setOnClickListener(this);
-            ((ConstraintLayout) itemView.findViewById(R.id.constraintlayout_interest_item)).setOnClickListener(this);
+
+            ((CardView) itemView.findViewById(R.id.interest_cardview_layout)).setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View v) {
+
+            Jobs jobs = mJobs.get(getAdapterPosition());
             Log.d("Chloe", "adapterPosition: " + getAdapterPosition());
 
             if(v.getId() == R.id.interest_interest_icn_btn){
                 //setSOLite data here
-//                if(ModelHub.getModelHubSQLHelper().getInterest(mJobs.get(getAdapterPosition()).getId())){
-//                    mPresenter.updateInterest(mJobs.get(getAdapterPosition()), false);
-//                    mInterestIcnBtn.setImageResource(R.drawable.ic_bookmark_border_red_24dp);
-//
-//                }else{
-//                    mPresenter.updateInterest(mJobs.get(getAdapterPosition()), true);
-//                    Log.d("Chloe", "is saved: " +ModelHub.getModelHubSQLHelper().getInterest(mJobs.get(getAdapterPosition()).getId()) );
-//                    mInterestIcnBtn.setImageResource(R.drawable.ic_bookmark_red_24dp);
-//                }
+                if(ModelHub.getModelHubSQLHelper().getInterest(jobs.getId())){
+                    mPresenter.updateInterest(jobs, false);
+                    mInterestIcnBtn.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    mPresenter.refreshJobs();
+                }else{
+                    mPresenter.updateInterest(jobs, true);
+                    Log.d("Chloe", "is saved: " + ModelHub.getModelHubSQLHelper().getInterest(jobs.getId()));
+                    mInterestIcnBtn.setImageResource(R.drawable.ic_favorite_black_24dp);
+                }
 
             }else{
                 Log.d("Chloe", "getTitle in saved adapter: " + mJobs.get(getAdapterPosition()).getTitle());
@@ -139,17 +122,13 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
             }
         }
 
-        private TextView getInterestTypeTag(){return mInterestTypeTag;}
         private TextView getInterestTitle(){return mInterestTitle;}
-        private TextView getInterestPostedOnText(){return mInterestPostedOnText;}
-        private TextView getInterestPostedDate(){return mInterestPostedDate;}
-        private TextView getInterestCompanyTitle(){return mInterestCompanyTitle;}
-        private TextView getInterestLocationTitle(){return mInterestLocationTitle;}
-        private TextView getInterestCompanyName(){return mInterestCompanyName;}
-        private TextView getInterestLocationName(){return mInterestLocationName;}
-        private TextView getInterestUrgentOrNotText(){return mInterestUrgentOrNotText;}
+        private TextView getInterestLocation(){return mInterestLocation;}
+        private TextView getInterestWhom(){return mInterestWhom;}
+        private TextView getInterestPay(){return mInterestPay;}
         private ImageView getInterestCompanyLogo(){return mInterestCompanyLogo;}
         private ImageButton getInterestIcnBtn(){return mInterestIcnBtn;}
+
     }
 
     public void updateData(ArrayList<Jobs> jobs){

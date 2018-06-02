@@ -50,7 +50,7 @@
             app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
 
         <TextView
-            android:id="@+id/case_details_title"
+            android:id="@+id/home_case_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -77,7 +77,7 @@
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_title" />
+            app:layout_constraintTop_toBottomOf="@+id/home_case_title" />
 
         <ImageView
             android:id="@+id/case_details_company_logo"
@@ -91,8 +91,9 @@
 
         <TextView
             android:id="@+id/case_details_advertiser_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="22dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_company"
@@ -102,8 +103,9 @@
             android:text="Halo Model"
             android:textColor="@color/case_company_location_title"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_duration_title" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_duration_text" />
 
         <TextView
             android:id="@+id/case_details_location"
@@ -355,7 +357,7 @@
             <!--app:layout_constraintTop_toBottomOf="@+id/case_details_other_info_contact_name_title" />-->
 
             <TextView
-                android:id="@+id/case_details_other_info_if_cover_travel_expenses_text"
+                android:id="@+id/case_details_other_info_travel_expenses_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14sp"
@@ -376,51 +378,48 @@
                 app:layout_constraintStart_toEndOf="@+id/case_details_other_info_contact_name_title"
                 app:layout_constraintTop_toTopOf="@+id/case_details_other_info_contact_name_title" />
 
-            <!--<TextView-->
-            <!--android:id="@+id/case_details_hiring_resource_contact_email_text"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:text="chloethhsu@gmail.com"-->
-            <!--android:maxWidth="200dp"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textColor="@color/textcolor"-->
-            <!--app:layout_constraintStart_toEndOf="@+id/case_details_other_info_contact_email_title"-->
-            <!--app:layout_constraintTop_toTopOf="@+id/case_details_other_info_contact_email_title" />-->
-
-
         </android.support.constraint.ConstraintLayout>
 
         <TextView
             android:id="@+id/case_details_shooting_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:maxWidth="200dp"
             android:text="18, July"
+            app:layout_constraintBottom_toBottomOf="@+id/case_details_shooting_day_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/case_details_shooting_day_title"
-            app:layout_constraintTop_toTopOf="@+id/case_details_shooting_day_title" />
+            app:layout_constraintTop_toBottomOf="@+id/home_case_title" />
 
         <TextView
             android:id="@+id/case_details_shooting_duration_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_timelapse_black_24dp"
             android:drawablePadding="5dp"
             android:text="Shooting duration:"
             android:textColor="@color/case_company_location_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_day_title" />
+            app:layout_constraintTop_toTopOf="@+id/case_details_shooting_duration_text" />
 
         <TextView
             android:id="@+id/case_details_shooting_duration_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:text="8hr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
             app:layout_constraintStart_toEndOf="@+id/case_details_shooting_duration_title"
-            app:layout_constraintTop_toTopOf="@+id/case_details_shooting_duration_title" />
+            app:layout_constraintTop_toBottomOf="@+id/case_details_shooting_date_text" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

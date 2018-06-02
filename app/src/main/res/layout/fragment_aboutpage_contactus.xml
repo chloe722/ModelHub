@@ -79,7 +79,7 @@
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_email_black_24dp"
         android:drawablePadding="5dp"
-        android:text="service@wetogether.co"
+        android:text="modelhubservice@gmail.com"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactus_info_title" />
@@ -92,25 +92,26 @@
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_contact_phone_black_24dp"
         android:drawablePadding="8dp"
-        android:text="+886-2-2707-3985"
+        android:text="+886-954018508"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactus-email" />
 
-    <TextView
-        android:id="@+id/contactus_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/ic_home_black_36dp"
-        android:drawablePadding="8dp"
-        android:text="17F-10, No.6, Sec.4, Xinyi Rd., Da'an Dist., Taipei City 10684, Taiwan(R.O.C)"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactus_num" />
+    <!--<TextView-->
+        <!--android:id="@+id/contactus_address"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="24dp"-->
+        <!--android:layout_marginStart="24dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:drawableLeft="@drawable/ic_home_black_36dp"-->
+        <!--android:drawablePadding="8dp"-->
+        <!--android:text="17F-10, No.6, Sec.4, Xinyi Rd., Da'an Dist., Taipei City 10684, Taiwan(R.O.C)"-->
+        <!--android:textSize="16sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/contactus_num" />-->
+
 </android.support.constraint.ConstraintLayout>
 

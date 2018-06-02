@@ -32,11 +32,9 @@ import thhsu.chloe.ModelHub.api.model.User;
 public class AboutMeStepOneFragment extends Fragment implements View.OnClickListener {
     private Button mNextBtn;
     private OnStepOneListener mOnStepOneListener;
-    EditText mFullName, mEmail,mPhone, mCaseTitle, mCurrentWorkCompany, mLocationCountry, mLocationCity;
-    TextInputLayout mFullNameLayout;
-    TextInputLayout mEmailLayout;
-    TextInputLayout mPhoneLayout;
-    String fullName, number, email, caseTitle, userLocationCountry, userLocationCity,userLocation, userEmail, userToken, userJobTitle, userCurrentCompany;
+    EditText mFullName, mEmail,mPhone, mHeight, mAge, mWeight, mNationality, mLocationCountry, mLocationCity;
+    TextInputLayout mFullNameLayout, mEmailLayout, mPhoneLayout;
+    String fullName, userPhonenum, userHeight, userWeight, userLocationCountry, userLocationCity, userNationality, userLocation, userEmail, userToken, userJobTitle, userAge;
     Bundle bundle;
     SharedPreferences sharedPreferences;
     private User mUser = new User();
@@ -59,8 +57,10 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mFullName = view.findViewById(R.id.stepper_one_textinput_fullname);
         mEmail = view.findViewById(R.id.stepper_one_textinput_email);
         mPhone = view.findViewById(R.id.stepper_one_textinput_phone);
-        mCaseTitle =view.findViewById(R.id.stepper_one_textinput_height);
-        mCurrentWorkCompany = view.findViewById(R.id.stepper_one_textinput_age);
+        mHeight =view.findViewById(R.id.stepper_one_textinput_height);
+        mAge = view.findViewById(R.id.stepper_one_textinput_age);
+        mWeight = view.findViewById(R.id.stepper_one_textinput_weight);
+        mNationality = view.findViewById(R.id.stepper_one_textinput_nationality);
         mLocationCountry = view.findViewById(R.id.stepper_one_textinput_country);
         mLocationCity =view.findViewById(R.id.stepper_one_textinput_city);
         mFullNameLayout = view.findViewById(R.id.stepper_one_textinputlayout_fullname);
@@ -69,6 +69,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         areFieldsEdiable();
         sharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
+
+
 
 
         ApiJobManager.getInstance().getUserData(userToken, new GetUserInfoCallBack() {
@@ -80,9 +82,10 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 mPhone.setText(mUser.getPhoneNumber());
                 mLocationCity.setText(mUser.getCity());
                 mLocationCountry.setText(mUser.getCountry());
-                mCaseTitle.setText(mUser.getCaseTitle());
-                mCurrentWorkCompany.setText(mUser.getCurrentCompany());
-
+                mHeight.setText(mUser.getHeight());
+                mAge.setText(mUser.getAge());
+                mWeight.setText(mUser.getWeight());
+                mNationality.setText(mUser.getNationality());
             }
 
             @Override
@@ -92,14 +95,15 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                 mPhone.setText("");
                 mLocationCity.setText("");
                 mLocationCountry.setText("");
-                mCaseTitle.setText("");
-                mCurrentWorkCompany.setText("");
+                mHeight.setText("");
+                mAge.setText("");
+                mWeight.setText("");
+                mNationality.setText("");
             }
         });
 
 
     }
-//        readUserData();
 
     private boolean validateData() {
         boolean result = true;
@@ -114,7 +118,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         }
 
         String phone = mPhone.getText().toString();
-        boolean digitsOnly = TextUtils.isDigitsOnly(phone); // Check if enter text is number/ digit. However since the inputtype is phone so it's validated itself no need this line
+        boolean digitsOnly = TextUtils.isDigitsOnly(phone); // Check if enter text is userPhonenum/ digit. However since the inputtype is phone so it's validated itself no need this line
         if(digitsOnly){
             if (phone == null || phone.equals("")) {
                 mPhoneLayout.setError(getString(R.string.invalidPhoneNumber));
@@ -153,24 +157,31 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
             case R.id.stepper_one_next_btn:
                 if(mOnStepOneListener != null && validateData()){
                     UpdateUserRequest request = new UpdateUserRequest();
-                    number = mPhone.getText().toString();
-                    caseTitle = mCaseTitle.getText().toString();
+                    userPhonenum = mPhone.getText().toString();
+                    userHeight = mHeight.getText().toString();
+                    userWeight = mWeight.getText().toString();
+                    userNationality = mNationality.getText().toString();
                     userLocationCountry = mLocationCountry.getText().toString();
                     userLocationCity = mLocationCity.getText().toString();
-                    userLocation = userLocationCity + ", " + userLocationCountry;
-                    userJobTitle = mCaseTitle.getText().toString();
-                    userCurrentCompany = mCurrentWorkCompany.getText().toString();
-                    bundle.putString("phone", number);
-                    bundle.putString("jobtitle", caseTitle);
-                    bundle.putString("locationCityCountry", userLocation);
+//                    userLocation = userLocationCity +  + userLocationCountry;
+                    userJobTitle = mHeight.getText().toString();
+                    userAge = mAge.getText().toString();
+                    bundle.putString("phone", userPhonenum);
+                    bundle.putString("userHeight", userHeight);
+                    bundle.putString("userWeight", userWeight);
+                    bundle.putString("userNationality", userNationality);
+//                    bundle.putString("locationCityCountry", userLocation);
                     bundle.putString("locationCountry", userLocationCountry);
                     bundle.putString("locationCity", userLocationCity);
                     request.token = userToken;
-                    request.user.setPhoneNumber(number);
+                    request.user.setPhoneNumber(userPhonenum);
                     request.user.setCity(userLocationCity);
                     request.user.setCountry(userLocationCountry);
                     request.user.setJobTitle(userJobTitle);
-                    request.user.setCurrentCompany(userCurrentCompany);
+                    request.user.setAge(userAge);
+                    request.user.setWeight(userWeight);
+                    request.user.setHeight(userHeight);
+                    request.user.setNationality(userNationality);
                     saveUserData();
 
                     Log.d("Chloe", "user json object:" + request);
@@ -181,7 +192,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                                     userInfo.putExtras(bundle);
                                     getActivity().setResult(Constants.RESULT_SUCCESS, userInfo);
                                     Log.d("Chloe", "profile info bundle: " + userInfo);
-                                    Log.d("Chloe",  " phone num: " + number + " jobtitle: " + caseTitle + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
+                                    Log.d("Chloe",  " phone num: " + userPhonenum + " jobtitle: " + userHeight + " locationCountry: " + userLocationCountry + "locationcity" + userLocationCity);
                                 }
                                 @Override
                                 public void onError(String errorMessage) {
@@ -218,13 +229,16 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
 
     public void saveUserData(){
         sharedPreferences.edit()
-                .putString(Constants.USER_PHONENUM, number)
-                .putString(Constants.USER_CASE_TITLE, caseTitle)
+                .putString(Constants.USER_PHONENUM, userPhonenum)
+                .putString(Constants.USER_CASE_TITLE, userHeight)
                 .putString(Constants.USER_LOCATION_COUNTRY, userLocationCountry)
                 .putString(Constants.USER_LOCATION_CITY, userLocationCity)
-                .putString(Constants.USER_LOCATION, userLocation)
+//                .putString(Constants.USER_LOCATION, userLocation)
                 .putString(Constants.USER_CASE_TITLE, userJobTitle)
-                .putString(Constants.USER_CURRENT_COMPANY, userCurrentCompany)
+                .putString(Constants.USER_CURRENT_COMPANY, userAge)
+                .putString(Constants.USER_HEIGHT, userHeight)
+                .putString(Constants.USER_WEIGHT, userWeight)
+                .putString(Constants.USER_NATIONALITY, userNationality)
                 .apply();
     }
 
@@ -234,7 +248,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mPhone.setText(sharedPreferences.getString(Constants.USER_PHONENUM, ""));
         mLocationCountry.setText(sharedPreferences.getString(Constants.USER_LOCATION_COUNTRY, ""));
         mLocationCity.setText(sharedPreferences.getString(Constants.USER_LOCATION_CITY, ""));
-        mCaseTitle.setText(sharedPreferences.getString(Constants.USER_CASE_TITLE, ""));
+        mHeight.setText(sharedPreferences.getString(Constants.USER_CASE_TITLE, ""));
+
     }
 
 }

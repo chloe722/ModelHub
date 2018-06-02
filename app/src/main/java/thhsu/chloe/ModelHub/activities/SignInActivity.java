@@ -81,7 +81,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                                 Log.d("Chloe", "LogIn token: " + token);
                                 mSharedPreferences.edit()
                                         .putString(Constants.USER_TOKEN, token)
-                                        .commit();
+                                        .apply();
                                 Intent i = new Intent(SignInActivity.this, ModelHubActivity.class);
                                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(i);

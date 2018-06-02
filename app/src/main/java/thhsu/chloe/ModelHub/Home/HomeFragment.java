@@ -1,11 +1,12 @@
 package thhsu.chloe.ModelHub.Home;
 
-import android.app.Fragment;
+//import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,7 +58,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-//        progressBar = (ProgressBar) getActivity().findViewById(R.id.progress_bar);
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.home_fragment_recycler_vertical);
         recyclerView.setLayoutManager(new LinearLayoutManager(ModelHub.getAppContext()));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

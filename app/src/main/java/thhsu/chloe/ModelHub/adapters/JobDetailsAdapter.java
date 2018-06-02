@@ -64,7 +64,8 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
         (holder.getDetailsCaseShootingDurationText()).setText(mJobs.getShootingDuration());
         (holder.getDetailsCaseWantedContent()).setText(mJobs.getWhomContent());
         (holder.getDetailsCaseCompensationContent()).setText(mJobs.getJobCompensation());
-//        (holder.getmDetailsOtherInfoCoverTravelExpenseText()).setText(mJobs.getTravelExpensesContent());
+        (holder.getDetailsOtherInfoCoverTravelExpenseText()).setText(mJobs.getTravelExpensesContent());
+        (holder.getDetailsOtherInfoContactNameText()).setText(mJobs.getContactName());
 
         if(!token.equals("")){
             if(ModelHub.getModelHubSQLHelper().getInterest(mJobs.getId())){
@@ -110,7 +111,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
         public CaseDetailsViewHolder(View itemView) {
             super(itemView);
 
-            mDetailsCaseTitle = (TextView) itemView.findViewById(R.id.case_details_title);
+            mDetailsCaseTitle = (TextView) itemView.findViewById(R.id.home_case_title);
             mDetailsCaseShootingDateTitle = (TextView) itemView.findViewById(R.id.case_details_shooting_day_title);
             mDetailsAdvertiserName = (TextView) itemView.findViewById(R.id.case_details_advertiser_name);
             mDetailsLocationText = (TextView) itemView.findViewById(R.id.case_details_location);
@@ -123,10 +124,8 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
             mDetailsCaseOtherInfoTravelExpensesTitle = (TextView) itemView.findViewById(R.id.case_details_other_info_if_cover_travel_expenses_title);
             mDetailsOtherInfoContactNameTitle = (TextView) itemView.findViewById(R.id.case_details_other_info_contact_name_title);
             mDetailsCaseWantedContent = (TextView) itemView.findViewById(R.id.case_details_wanted_content);
-            mDetailsOtherInfoCoverTravelExpenseText = (TextView) itemView.findViewById(R.id.case_details_other_info_if_cover_travel_expenses_text);
+            mDetailsOtherInfoCoverTravelExpenseText = (TextView) itemView.findViewById(R.id.case_details_other_info_travel_expenses_text);
             mDetailsOtherInfoContactNameText = (TextView) itemView.findViewById(R.id.case_details_other_info_contact_name_text);
-//            mDetailsOtherInfoContactEmailTitle = (TextView) itemView.findViewById(R.id.case_details_other_info_contact_email_title);
-//            mDetailsOtherInfoContactEmailText = (TextView) itemView.findViewById(R.id.case_details_hiring_resource_contact_email_text);
             mDetailsCaseCompensationTitle = (TextView) itemView.findViewById(R.id.case_details_compensation_title);
             mDetailsCaseCompensationContent = (TextView) itemView.findViewById(R.id.case_details_compensation_content);
 
@@ -134,7 +133,6 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
             mDetailsShareBtn = (ImageButton) itemView.findViewById(R.id.case_details_share_btn);
             mDetailsBookMark = (ImageButton) itemView.findViewById(R.id.case_details_bookmark_btn);
             mDetailsApplyBtn = (Button) itemView.findViewById(R.id.case_details_apply_btn);
-//            mDetailsReadMoreBtn = (Button) itemView.findViewById(R.id.case_details_readmore_btn);
 
             mDetailsCompanyLogo = (ImageView) itemView.findViewById(R.id.case_details_company_logo);
             mDetailsCaseImage = (ImageView) itemView.findViewById(R.id.case_details_image);
@@ -144,7 +142,6 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
             mCompensationConstraint = (ConstraintLayout) itemView.findViewById(R.id.case_details_compensation_constraint);
             mImageConstraint = (FrameLayout) itemView.findViewById(R.id.case_details_image_framlayout);
 
-//            mDetailsReadMoreBtn.setOnClickListener(this);
             mDetailsBookMark.setOnClickListener(this);
             mDetailsShareBtn.setOnClickListener(this);
 

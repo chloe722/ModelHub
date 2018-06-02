@@ -34,7 +34,7 @@ public class AboutpageActivity extends AppCompatActivity implements AboutPageCon
     public void init(){
         setContentView(R.layout.activity_about_page);
         setToolbar();
-        mPresenter = new AboutPagePresenter(this, this.getFragmentManager(), mToolbar, mActivity);
+        mPresenter = new AboutPagePresenter(this, this.getSupportFragmentManager(), mToolbar, mActivity);
         mPresenter.start();
         mBackBtn = (ImageButton) findViewById(R.id.about_page_back_btn);
         mActivity = this;

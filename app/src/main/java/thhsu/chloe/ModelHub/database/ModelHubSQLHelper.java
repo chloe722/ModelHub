@@ -34,12 +34,14 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
     private final static String JOB_LOCATION = "job_location";
     private final static String JOB_TYPE = "job_type";
     private final static String JOB_DES = "job_des";
-    private final static String JOB_REQUIREMENT = "job_requirement";
-    private final static String JOB_BENEFIT = "job_benefit";
-    private final static String JOB_HIRING_RESOURCE_FROM = "job_hiring_resource_from";
-    private final static String JOB_HIRING_RESOURCE_CONTACT_NAME = "job_hiring_resource_contact_name";
-    private final static String JOB_HIRING_RESOURCE_CONTACT_EMAIL = "job_hiring_resource_contact_email";
-    private final static String JOB_HIRING_RESOURCE_INFO = "job_hiring_resource_info";
+    private final static String JOB_WHOM = "job_requirement";
+    private final static String JOB_IS_PAID = "job_benefit";
+    private final static String JOB_SHOOTING_DATE = "job_hiring_resource_from";
+    private final static String JOB_SHOOTING_DURATION = "job_hiring_resource_contact_name";
+    private final static String JOB_WHOM_CONTENT = "job_hiring_resource_contact_email";
+    private final static String JOB_COMPENSATION = "job_hiring_resource_info";
+    private final static String JOB_TRAVEL_EXPENSES_CONTENT = "job_travel_expenses_content";
+    private final static String JOB_CONTACT_NAME = "job_contact_name";
     private final static String JOB_SAVED = "job_saved";
 
     private Cursor mCursor;
@@ -59,12 +61,14 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
             + JOB_LOCATION + " TEXT NOT NULL, "
             + JOB_TYPE + " TEXT NOT NULL, "
             + JOB_DES + " TEXT NOT NULL, "
-            + JOB_REQUIREMENT + " TEXT NOT NULL, "
-            + JOB_BENEFIT + " TEXT NOT NULL, "
-            + JOB_HIRING_RESOURCE_FROM + " TEXT NOT NULL, "
-            + JOB_HIRING_RESOURCE_CONTACT_NAME + " TEXT NOT NULL, "
-            + JOB_HIRING_RESOURCE_CONTACT_EMAIL + " TEXT NOT NULL, "
-            + JOB_HIRING_RESOURCE_INFO + " TEXT NOT NULL, "
+            + JOB_WHOM + " TEXT NOT NULL, "
+            + JOB_IS_PAID + " TEXT NOT NULL, "
+            + JOB_SHOOTING_DATE + " TEXT NOT NULL, "
+            + JOB_SHOOTING_DURATION + " TEXT NOT NULL, "
+            + JOB_WHOM_CONTENT + " TEXT NOT NULL, "
+            + JOB_COMPENSATION + " TEXT NOT NULL, "
+            + JOB_TRAVEL_EXPENSES_CONTENT + " TEXT NOT NULL, "
+            + JOB_CONTACT_NAME + " TEXT NOT NULL, "
             + JOB_SAVED + " INTEGER NOT NULL) ";
 
 
@@ -105,12 +109,14 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
         contentValues.put(JOB_LOCATION, job.getLocation());
         contentValues.put(JOB_TYPE, job.getType());
         contentValues.put(JOB_DES, job.getDescription());
-        contentValues.put(JOB_REQUIREMENT, job.getRequirements());
-        contentValues.put(JOB_BENEFIT, String.join(",", job.getBenefits()));
-        contentValues.put(JOB_HIRING_RESOURCE_FROM, job.getHiring_source_from());
-        contentValues.put(JOB_HIRING_RESOURCE_CONTACT_NAME, job.getHiring_contact_name());
-        contentValues.put(JOB_HIRING_RESOURCE_CONTACT_EMAIL, job.getHiring_contact_email());
-        contentValues.put(JOB_HIRING_RESOURCE_INFO, job.getHiring_other_info());
+        contentValues.put(JOB_WHOM, job.getWhom());
+        contentValues.put(JOB_IS_PAID, job.getIsPaid());
+        contentValues.put(JOB_SHOOTING_DATE, job.getShootingDate());
+        contentValues.put(JOB_SHOOTING_DURATION, job.getShootingDuration());
+        contentValues.put(JOB_WHOM_CONTENT, job.getWhomContent());
+        contentValues.put(JOB_COMPENSATION, job.getJobCompensation());
+        contentValues.put(JOB_TRAVEL_EXPENSES_CONTENT, job.getTravelExpensesContent());
+        contentValues.put(JOB_CONTACT_NAME, job.getContactName());
         contentValues.put(JOB_SAVED, (isSaved)? 1: 0);
 
         getWritableDatabase().insert(JOB_TABLE, null, contentValues);
@@ -177,9 +183,9 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
         mCursor = getWritableDatabase().query(JOB_TABLE,
                 new String[]{JOB_ID, JOB_TITLE, JOB_URGENT, JOB_RECOMMENDED,
                         JOB_POSTED_DATE, JOB_EXPIRED_DATE, JOB_COMPANY, JOB_LOGO,
-                        JOB_IMAGE, JOB_LOCATION, JOB_TYPE, JOB_DES, JOB_REQUIREMENT, JOB_BENEFIT,
-                        JOB_HIRING_RESOURCE_FROM, JOB_HIRING_RESOURCE_CONTACT_NAME, JOB_HIRING_RESOURCE_CONTACT_EMAIL,
-                        JOB_HIRING_RESOURCE_INFO, JOB_SAVED}, JOB_SAVED + "=1",
+                        JOB_IMAGE, JOB_LOCATION, JOB_TYPE, JOB_DES, JOB_WHOM, JOB_IS_PAID,
+                        JOB_SHOOTING_DATE, JOB_SHOOTING_DURATION, JOB_WHOM_CONTENT,
+                        JOB_COMPENSATION, JOB_TRAVEL_EXPENSES_CONTENT, JOB_CONTACT_NAME, JOB_SAVED}, JOB_SAVED + "=1",
                 null, null, null, null);
         ArrayList<Jobs> jobs = new ArrayList<>();
         while (mCursor.moveToNext()){
@@ -195,12 +201,14 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
             job.setLocation(mCursor.getString(mCursor.getColumnIndex(JOB_LOCATION)));
             job.setType(mCursor.getString(mCursor.getColumnIndex(JOB_TYPE)));
             job.setDescription(mCursor.getString(mCursor.getColumnIndex(JOB_DES)));
-            job.setRequirements(mCursor.getString(mCursor.getColumnIndex(JOB_REQUIREMENT)));
-            job.setBenefits(mCursor.getString(mCursor.getColumnIndex(JOB_BENEFIT)).split( "\\,"));
-            job.setHiring_source_from(mCursor.getString(mCursor.getColumnIndex(JOB_HIRING_RESOURCE_FROM)));
-            job.setHiring_contact_name(mCursor.getString(mCursor.getColumnIndex(JOB_HIRING_RESOURCE_CONTACT_NAME)));
-            job.setHiring_contact_email(mCursor.getString(mCursor.getColumnIndex(JOB_HIRING_RESOURCE_CONTACT_EMAIL)));
-            job.setHiring_other_info(mCursor.getString(mCursor.getColumnIndex(JOB_HIRING_RESOURCE_INFO)));
+            job.setWhom(mCursor.getString(mCursor.getColumnIndex(JOB_WHOM)));
+            job.setIsPaid(mCursor.getString(mCursor.getColumnIndex(JOB_IS_PAID)));
+            job.setShootingDate(mCursor.getString(mCursor.getColumnIndex(JOB_SHOOTING_DATE)));
+            job.setShootingDuration(mCursor.getString(mCursor.getColumnIndex(JOB_SHOOTING_DURATION)));
+            job.setWhomContent(mCursor.getString(mCursor.getColumnIndex(JOB_WHOM_CONTENT)));
+            job.setJobCompensation(mCursor.getString(mCursor.getColumnIndex(JOB_COMPENSATION)));
+            job.setTravelExpensesContent(mCursor.getString(mCursor.getColumnIndex(JOB_TRAVEL_EXPENSES_CONTENT)));
+            job.setContactName(mCursor.getString(mCursor.getColumnIndex(JOB_CONTACT_NAME)));
             job.setSaved((mCursor.getInt(mCursor.getColumnIndex(JOB_SAVED)) == 1)? true: false);
             jobs.add(job);
 

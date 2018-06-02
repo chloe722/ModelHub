@@ -31,7 +31,7 @@ public interface InterestContract {
 
         void refreshJobs();
 
-//        void updateInterestJob(Jobs jobs, boolean isSaved);
+        void updateInterest(Jobs jobs, boolean isSaved);
     }
 
 }

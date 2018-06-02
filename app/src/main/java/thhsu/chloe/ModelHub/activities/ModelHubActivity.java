@@ -1,6 +1,5 @@
 package thhsu.chloe.ModelHub.activities;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,10 +35,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
     private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn, mEditedBtn;
-    private boolean isFilterInHome = true;
-    private boolean shouldShowFilter = false;
-    private Fragment currentFragment;
-    private Button mToolBarBackBtn;
     ModelHubActivity modelHubActivity;
     private SharedPreferences mSharePref;
     String token;
@@ -57,13 +51,13 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     private void init(){
         setContentView(R.layout.activity_main);
-        setBottomNavigationView();
         setToolbar();
+        setBottomNavigationView() ;
         mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
         token = mSharePref.getString(Constants.USER_TOKEN, "");
         mProgressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
         Log.d("Chloe", "if progressbar loaded?" + mProgressBar);
-        mPresenter = new ModelHubPresenter(this, getFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
+        mPresenter = new ModelHubPresenter(this, getSupportFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
         mPresenter.start();
 
     }
@@ -121,7 +115,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                         mSharePref.edit().remove(Constants.USER_TOKEN)
                                 .apply();
                         Log.d("Chloe", "shared status: " + mSharePref.getString(Constants.USER_TOKEN, ""));
-                        Toast.makeText(getApplicationContext(), "log out btn click", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "You've log out", Toast.LENGTH_SHORT).show();
                         init();
                         return true;
                     }
@@ -198,34 +192,29 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     @Override
     public void showHomeUi() {
-        setToolbarTitle("Cases");
-        isFilterInHome = true;
+        setToolbarTitle("Opportunities");
 
     }
 
     @Override
     public void showInterestUi() {
         setToolbarTitle("Interests");
-        isFilterInHome = false;
     }
 
     @Override
     public void showProfileUi() {
         setToolbarTitle("Profile");
-        isFilterInHome = false;
     }
 
     @Override
     public void showSignInTabPageUi() {
         setToolbarTitle("Join ModelHub");
-        isFilterInHome = false;
     }
 
     @Override
     public void showFilterPageUi() {
         invalidateOptionsMenu();
         setToolbarTitle("");
-        isFilterInHome = false;
     }
 
     @Override

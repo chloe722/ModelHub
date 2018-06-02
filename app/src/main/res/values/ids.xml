@@ -2,4 +2,5 @@
 <resources>
     <item name="bottom_navigation_two" type="id">bottom_nav_two</item>
     <item name="invalidName" type="id">invalidName</item>
+    <item name="stepper_two_relativelayout" type="id" />
 </resources>

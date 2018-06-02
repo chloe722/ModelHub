@@ -95,17 +95,30 @@ public class Jobs implements Serializable{
     @SerializedName("job_compensation")
     @Expose
     private String jobCompensation;
-//    @SerializedName("travel_expenses_content")
-//    @Expose
-//    private String travelExpensesContent;
-//
-//    public String getTravelExpensesContent() {
-//        return travelExpensesContent;
-//    }
-//
-//    public void setTravelExpensesContent(String travelExpensesContent) {
-//        this.travelExpensesContent = travelExpensesContent;
-//    }
+
+    @SerializedName("travel_expenses_content")
+    @Expose
+    private String travelExpensesContent;
+
+    @SerializedName("contact_name")
+    @Expose
+    private String contactName;
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getTravelExpensesContent() {
+        return travelExpensesContent;
+    }
+
+    public void setTravelExpensesContent(String travelExpensesContent) {
+        this.travelExpensesContent = travelExpensesContent;
+    }
 
     public String getWhom() {
         return whom;
@@ -162,13 +175,6 @@ public class Jobs implements Serializable{
     public void setmIsSaved(boolean mIsSaved) {
         this.mIsSaved = mIsSaved;
     }
-
-    @SerializedName("travel_expenses_content")
-    @Expose
-
-
-
-
 
 
     private boolean mIsSaved = false;

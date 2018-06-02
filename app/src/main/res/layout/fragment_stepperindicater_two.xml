@@ -1,139 +1,343 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent">-->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/stepper_two_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/stepper_two_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/ic_people_black_24dp"
-        android:drawablePadding="8dp"
-        android:text="Add your social media"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:id="@id/stepper_two_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stepper_two_textinputlayout_fb"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/stepper_two_facebook_icn"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_two_title">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/stepper_two_textinput_fb_url"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/stepper_two_constraintlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="560dp">
+
+            <TextView
+                android:id="@+id/stepper_two_language_title"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="8dp"
+                android:text="What languages do you speak?"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/stepper_two_language_explaination"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:text="This helps us to understand your language skills. We'll provide solution of language barrier between you and client in the future."
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_language_title" />
+
+            <TextView
+                android:id="@+id/stepper_two_experience_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Experience"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_lan3_level_radiogroup" />
+
+            <EditText
+                android:id="@+id/stepper_two_experience_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="State your current experience of modeling work"
+                android:inputType="textMultiLine"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_experience_title" />
+
+            <TextView
+                android:id="@+id/stepper_two_bio_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Bio"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_experience_content" />
+
+            <EditText
+                android:id="@+id/stepper_two_bio_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                android:ems="10"
+                android:hint="bio"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_bio_title" />
+            <!--app:layout_constraintBottom_toTopOf="@+id/stepper_two_back_btn"-->
+
+
+            <Spinner
+                android:id="@+id/stepper_two_first_language_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="left"
+                android:layout_marginStart="8dp"
+                android:padding="0dp"
+                app:layout_constraintStart_toEndOf="@+id/stepper_two_first_language_list"
+                app:layout_constraintTop_toTopOf="@+id/stepper_two_first_language_list" />
+
+
+            <Spinner
+                android:id="@+id/stepper_two_sec_language_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/stepper_two_sec_language_list"
+                app:layout_constraintTop_toTopOf="@+id/stepper_two_sec_language_list" />
+
+            <Spinner
+                android:id="@+id/stepper_two_third_language_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/stepper_two_third_language_list"
+                app:layout_constraintTop_toTopOf="@+id/stepper_two_third_language_list" />
+
+            <TextView
+                android:id="@+id/stepper_two_first_language_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="1."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_language_explaination" />
+
+            <TextView
+                android:id="@+id/stepper_two_sec_language_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="2."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_lan1_level_radiogroup" />
+
+            <TextView
+                android:id="@+id/stepper_two_third_language_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="3."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_lan2_level_radiogroup" />
+
+            <RadioGroup
+                android:id="@+id/stepper_two_lan1_level_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_first_language_list">
+
+                <RadioButton
+                    android:id="@+id/radiogroup_one_beg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Beginner"
+                    android:textColor="@color/textcolor"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stepper_two_first_language_list" />
+
+                <RadioButton
+                    android:id="@+id/radiogroup_one_int"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Intermediate"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/radiogroup_one_beg"
+                    app:layout_constraintTop_toTopOf="@+id/radiogroup_one_beg" />
+
+                <RadioButton
+                    android:id="@+id/radiogroup_one_flu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Fluent"
+                    android:textColor="@color/textcolor"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/radiogroup_one_int"
+                    app:layout_constraintTop_toTopOf="@+id/radiogroup_one_int" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/stepper_two_lan2_level_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_sec_language_list">
+
+                <RadioButton
+                    android:id="@+id/radiogroup_two_beg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Beginner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stepper_two_sec_language_list" />
+
+                <RadioButton
+                    android:id="@+id/radiogroup_two_int"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Intermediate"
+                    app:layout_constraintStart_toEndOf="@+id/radiogroup_two_beg"
+                    app:layout_constraintTop_toTopOf="@+id/radiogroup_two_flu" />
+
+                <RadioButton
+                    android:id="@+id/radiogroup_two_flu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Fluent"
+                    android:textColor="@color/textcolor"
+                    app:layout_constraintStart_toEndOf="@+id/radiogroup_two_int"
+                    app:layout_constraintTop_toTopOf="@+id/radiogroup_two_flu" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/stepper_two_lan3_level_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stepper_two_third_language_list">
+
+                <RadioButton
+                    android:id="@+id/radiogroup_three_beg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Beginner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stepper_two_third_language_list" />
+
+                <RadioButton
+                    android:id="@+id/radiogroup_three_int"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textcolor"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Intermediate"
+                    app:layout_constraintStart_toEndOf="@+id/radiogroup_three_beg"
+                    app:layout_constraintTop_toTopOf="@+id/radiogroup_three_beg" />
+
+                <RadioButton
+                    android:id="@+id/radiogroup_three_flu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:text="Fluent"
+                    android:textColor="@color/textcolor"
+                    app:layout_constraintStart_toEndOf="@+id/radiogroup_three_int"
+                    app:layout_constraintTop_toTopOf="@+id/radiogroup_three_int" />
+            </RadioGroup>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/stepper_two_btn_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter username"
-            android:inputType="text"
-            android:textSize="15sp"
-            android:textStyle="italic" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/stepper_two_constraintlayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stepper_two_textinputlayout_github"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/stepper_two_github_icn"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_two_textinputlayout_fb">
+            <Button
+                android:id="@+id/stepper_two_next_btn"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/black_stroke"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="@color/textcolor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/stepper_two_textinput_githuburl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter username"
-            android:inputType="text"
-            android:textSize="15sp"
-            android:textStyle="italic" />
-    </android.support.design.widget.TextInputLayout>
+            <Button
+                android:id="@+id/stepper_two_back_btn"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/black_stroke"
+                android:text="Back"
+                android:textAllCaps="false"
+                android:textColor="@color/textcolor"
+                android:textSize="16sp"
+                android:enabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stepper_two_textinputlayout_linkedin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/stepper_two_linkedin_icn"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_two_textinputlayout_github">
+        </android.support.constraint.ConstraintLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/stepper_two_textinput_linkedin_url"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter username"
-            android:inputType="text"
-            android:textSize="15sp"
-            android:textStyle="italic" />
-    </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/stepper_two_next_btn"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/black_stroke"
-        android:text="Next"
-        android:textAllCaps="false"
-        android:textColor="@color/textcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/stepper_two_back_btn"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/black_stroke"
-        android:text="Back"
-        android:textAllCaps="false"
-        android:textColor="@color/textcolor"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/stepper_two_facebook_icn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_two_title"
-        app:srcCompat="@drawable/facebook_box" />
-
-    <ImageView
-        android:id="@+id/stepper_two_github_icn"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_two_facebook_icn"
-        app:srcCompat="@drawable/github_circle" />
-
-    <ImageView
-        android:id="@+id/stepper_two_linkedin_icn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_two_github_icn"
-        app:srcCompat="@drawable/linkedin_box" />
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
