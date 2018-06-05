@@ -104,6 +104,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.profile_viewpager);
         ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPagerAdapter.notifyDataSetChanged();
         TabLayout mTabLayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
         mTabLayout.setupWithViewPager(mViewPager);
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
