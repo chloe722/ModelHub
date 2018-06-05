@@ -125,8 +125,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                 mLogoutBtn.setVisible(false);
                 mEditedBtn.setVisible(false);
             }
-        }else if(currentItem == R.id.action_interest){
-
         }
         return true;
     }
@@ -228,7 +226,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     }
 
     public void transToCaseDetails(Jobs job){ // Need to pass ID here after connect API
-        mPresenter.transToCaseDetails(job); // Need to pass ID here after connect API
+        mPresenter.transToJobDetails(job); // Need to pass ID here after connect API
     }
 
     @Override

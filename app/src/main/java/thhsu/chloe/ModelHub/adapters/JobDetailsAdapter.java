@@ -47,7 +47,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
     @Override
         public CaseDetailsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_fragment_case_details, parent, false);
+                .inflate(R.layout.item_fragment_job_details, parent, false);
         sharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         token = sharedPreferences.getString(Constants.USER_TOKEN, "");
         return new CaseDetailsViewHolder(view);

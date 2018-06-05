@@ -99,9 +99,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
         mUserWeight = (TextView) root.findViewById(R.id.profile_user_weight_text);
         mUserNationality = (TextView) root.findViewById(R.id.profile_user_nationality_text);
-//        mUserBio = (TextView) root.findViewById(R.id.profile_user_bio_text);
-//        mUserExperience = (TextView) root.findViewById(R.id.profile_user_experience_text);
-//        mUserLanguage = (TextView) root.findViewById(R.id.profile_user_language_text);
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
 
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.profile_viewpager);

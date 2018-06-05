@@ -26,13 +26,10 @@ import thhsu.chloe.ModelHub.adapters.AboutMePagerAdapter;
  */
 
 public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOneFragment.OnStepOneListener, AboutMeStepTwoFragment.OnStepTwoListener, AboutMeStepThreeFragment.OnStepThreeListener {
-//    private StepperLayout mStepperLayout;
     private AboutMePagerAdapter mAboutMePagerAdapter;
     private StepperIndicator stepperIndicator;
     private NonSwipeableViewPager mViewPager;
-    ImageButton mAboutMeCloseBtn;
     SharedPreferences sharedPreferences;
-    String userEmail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,10 +95,5 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
                 .apply();
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        if(v.getId() == R.id.about_me_toolbar_close_btn){
-//            super.onBackPressed();
-//        }
-//    }
+
 }

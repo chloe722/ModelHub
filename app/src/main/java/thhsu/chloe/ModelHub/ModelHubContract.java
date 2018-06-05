@@ -40,7 +40,7 @@ public interface ModelHubContract {
 
         void transToSignInTabPage();
 
-        void transToCaseDetails(Jobs jobs);
+        void transToJobDetails(Jobs jobs);
 
         void refreshInterestItem();
 
