@@ -210,7 +210,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
+        Log.d("Chloe", "profile requestCode: " + requestCode + " , resultCode: " + resultCode);
         if (requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 performCrop(mImageUri);
@@ -232,8 +232,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if (requestCode == Constants.CROP_IMAGE) {
             if(!mImageUri.equals("")){
-
-
                 Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
 
 //                getContext().getContentResolver().openInputStream(mImageUri)

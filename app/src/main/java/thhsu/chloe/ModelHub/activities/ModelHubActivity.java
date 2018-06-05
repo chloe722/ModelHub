@@ -153,12 +153,13 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
-        if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
-            mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
-        }
-        else{
-            init();
+        Log.d("Chloe", "mainactivity requestCode " + requestCode + " , resultCode: " + resultCode);
+        if (requestCode == Constants.FILTER_REQUEST) {
+            if (resultCode == Constants.RESULT_SUCCESS) {
+                mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
+            } else {
+                init();
+            }
         }
     }
 

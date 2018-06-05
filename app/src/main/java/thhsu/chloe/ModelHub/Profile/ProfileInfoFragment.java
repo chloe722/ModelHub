@@ -36,7 +36,8 @@ public class ProfileInfoFragment extends Fragment {
     private List<LanguageSkill> mUserLanguage;
     private SharedPreferences mSharedPreferences;
     private User mUser = new User();
-    private TextView mProfileLanguageTitle, mProfileLanguageText, mProfileExperienceTitle, mProfileExperienceText;
+    private TextView mProfileLanguageTitle, mProfileLanguageText,
+            mProfileExperienceTitle, mProfileExperienceText, mProfileBioTitle, mProfileBioText;
 
     public static ProfileInfoFragment newInstance() { return new ProfileInfoFragment();}
 
@@ -46,10 +47,12 @@ public class ProfileInfoFragment extends Fragment {
 
         mSharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         mUserToken = mSharedPreferences.getString(Constants.USER_TOKEN,"");
-         mProfileLanguageTitle = (TextView) root.findViewById(R.id.profile_user_language_title);
-         mProfileLanguageText = (TextView) root.findViewById(R.id.profile_user_language_text);
-         mProfileExperienceTitle = (TextView) root.findViewById(R.id.profile_user_experience_title);
-         mProfileExperienceText = (TextView) root.findViewById(R.id.profile_user_experience_text);
+        mProfileBioTitle = (TextView) root.findViewById(R.id.profile_user_bio_title);
+        mProfileBioText = (TextView) root.findViewById(R.id.profile_user_bio_text);
+        mProfileLanguageTitle = (TextView) root.findViewById(R.id.profile_user_language_title);
+        mProfileLanguageText = (TextView) root.findViewById(R.id.profile_user_language_text);
+        mProfileExperienceTitle = (TextView) root.findViewById(R.id.profile_user_experience_title);
+        mProfileExperienceText = (TextView) root.findViewById(R.id.profile_user_experience_text);
 
         if(!mUserToken.equals("")){
             ApiJobManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
@@ -60,6 +63,36 @@ public class ProfileInfoFragment extends Fragment {
                     mUserExperience = mUser.getExperience();
                     mUserLanguage = mUser.getLanguages();
 
+                    if(mUserLanguage == null){
+                        mProfileLanguageText.setText("");
+                    } else{
+                        String firstLanguage = mUserLanguage.get(0).getLanguage();
+                        String firstLevel = mUserLanguage.get(0).getLevel();
+                        String firstLanguageAndLevel = firstLanguage + " - " + firstLevel;
+                        mProfileLanguageText.setText(firstLanguageAndLevel);
+                    }
+
+
+//                    if(mUserLanguage.get(1).getLanguage() != null){
+//                        String secondLanguage = mUserLanguage.get(1).getLanguage();
+//                        String secondLevel = mUserLanguage.get(1).getLevel();
+//                        String secondLanguageAndLevel = secondLanguage + " - " + secondLevel;
+//                        mProfileLanguageText.setText(firstLanguageAndLevel + "\n" + secondLanguageAndLevel);
+//
+//                    }
+
+//                    if(mUserLanguage.get(2).getLanguage() != null){
+//                        String thirdLanguage = mUserLanguage.get(2).getLanguage();
+//                        String thirdLevel = mUserLanguage.get(2).getLevel();
+//                        String thirdLanguageAndLevel = thirdLanguage + " - " + thirdLevel;
+//                    }
+
+                    if(mUserBio == null){
+                        mProfileBioTitle.setVisibility(View.GONE);
+                        mProfileBioText.setVisibility(View.GONE);
+                    }else{
+                        mProfileBioText.setText(mUserBio);
+                    }
                     mProfileExperienceText.setText(mUserExperience);
 
                 }
