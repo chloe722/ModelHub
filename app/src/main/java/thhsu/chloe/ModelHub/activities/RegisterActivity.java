@@ -24,12 +24,13 @@ import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
  */
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener{
-    private TextInputLayout mRegisterEmailTextInputLayout, mRegisterPasswordTextInputLayout, mRegisterConfirmPasswordTextInputLayout, mRegisterNameTextInputLayout, mRegisterAgeTextInputLayout;
-    private EditText mRegisterEmailText, mRegisterPasswordText, mRegisterConfirmPasswordText, mRegisterNameText, mRegisterAgeText;
+    private TextInputLayout mRegisterEmailTextInputLayout, mRegisterPasswordTextInputLayout, mRegisterConfirmPasswordTextInputLayout,
+            mRegisterNameTextInputLayout, mRegisterAgeTextInputLayout;
+    private EditText mRegisterEmailText, mRegisterPasswordText, mRegisterConfirmPasswordText,
+            mRegisterNameText, mRegisterAgeText;
     private String userToken, userEmail, userName, userAge, userGender;
     private RadioGroup mGenderRadioGroup;
     private SharedPreferences mSharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +130,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     .apply();
                             setResult(Constants.RESULT_SUCCESS);
                             startActivity(intent);
-                            finish();}
+                            finish();
+                        }
 
                         @Override
                         public void onError(String errorMessage) {

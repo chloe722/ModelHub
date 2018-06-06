@@ -127,8 +127,9 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         clearData();
+
+        super.onDestroy();
     }
 
     @Override
@@ -247,22 +248,10 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     }
 
     private void clearData(){
-        mSharePref.edit()
-                .remove(Constants.FILTER_COMMERCIAL_VIDEO)
-                .remove(Constants.FILTER_ACTING)
-                .remove(Constants.FILTER_FULLSTACK)
-                .remove(Constants.FILTER_PROJECTMANAGER)
-                .remove(Constants.FILTER_PROMOTION_WORK)
-                .remove(Constants.FILTER_PHOTOGRAPHY)
-                .remove(Constants.FILTER_MODELING)
-                .remove(Constants.FILTER_PAID)
-                .remove(Constants.FILTER_UNPAID)
-                .remove(Constants.FILTER_PERMANENT)
-                .remove(Constants.FILTER_REMOTE)
-                .remove(Constants.FILTER_CONTRACT)
-                .remove(Constants.FILTER_INTERNSHIP)
+        getSharedPreferences(Constants.FILTER_PREFERENCES, MODE_PRIVATE)
+                .edit()
+                .clear()
                 .apply();
-
     }
 
 }

@@ -41,20 +41,14 @@ public class Constants {
     public static final String USER_BIO = "user_bio";
 
 
-    public static final String  FILTER_STATUS = "filter_status";
-    public static final String FILTER_COMMERCIAL_VIDEO = "filter_frontend";
-    public static final String FILTER_ACTING = "filter_backend";
-    public static final String FILTER_FULLSTACK = "filter_fullstack";
-    public static final String FILTER_PHOTOGRAPHY = "filter_webdesigner";
-    public static final String FILTER_MODELING = "filter_uiuxdesigner";
-    public static final String FILTER_PROJECTMANAGER = "filter_projectmanager";
-    public static final String FILTER_PROMOTION_WORK = "filter_productmanager";
-    public static final String FILTER_PAID = "filter_fulltime";
-    public static final String FILTER_UNPAID = "filter_parttime";
-    public static final String FILTER_CONTRACT = "filter_contract";
-    public static final String FILTER_INTERNSHIP = "filter_intern";
-    public static final String FILTER_PERMANENT = "filter_permanent";
-    public static final String FILTER_REMOTE = "filter_remote";
+    public static final String FILTER_PREFERENCES = "filter_preferences";
+    public static final String FILTER_COMMERCIAL_VIDEO = "commercial_video";
+    public static final String FILTER_ACTING = "acting";
+    public static final String FILTER_PHOTOGRAPHY = "photography";
+    public static final String FILTER_MODELING = "modeling";
+    public static final String FILTER_PROMOTION_WORK = "promotion_work";
+    public static final String FILTER_PAID = "paid";
+    public static final String FILTER_UNPAID = "unpaid";
 
 
     public static final int VIEWTYPE_HOME_MAIN = 20;
