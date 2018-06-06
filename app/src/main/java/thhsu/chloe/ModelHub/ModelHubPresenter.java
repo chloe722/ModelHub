@@ -1,8 +1,5 @@
 package thhsu.chloe.ModelHub;
 
-
-//import android.app.FragmentManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -48,8 +45,6 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     private static final String SIGNIN = "SIGNIN";
     private static final String JOBDETAILS = "JOBDETAILS";
 
-
-
     private SignInTabFragment mSignInTabFragment;
     private InterestFragment mInterestFragment;
     private HomeFragment mHomeFragment;
@@ -65,8 +60,8 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
-                             BottomNavigationView bottomNavigationView, Toolbar toolbar, ProgressBar mProgressBar){
-        this.mActivity = activity;
+                             BottomNavigationView bottomNavigationView, Toolbar toolbar, ProgressBar progressBar){
+        mActivity = activity;
         mModelHubContractView = modelHubView;
         if(modelHubView != null){
             mModelHubContractView.setPresenter(this);
@@ -76,7 +71,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         mFragmentManager = fragmentManager;
         mBottomNavigationView = bottomNavigationView;
         mToolbar = toolbar;
-        this.mProgressBar = mProgressBar;
+        mProgressBar = progressBar;
 
     }
 
@@ -94,9 +89,6 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
     }
 
-//    public void updateJobs(ArrayList<Jobs> jobs){
-//        mHomePresenter.updateJobs(jobs);
-//    }
 
     @Override
     public void transToHome() {

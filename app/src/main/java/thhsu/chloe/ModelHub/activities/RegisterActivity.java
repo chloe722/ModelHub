@@ -3,7 +3,6 @@ package thhsu.chloe.ModelHub.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +14,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.Utils.Constants;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
@@ -26,14 +23,12 @@ import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
  * Created by Chloe on 5/13/2018.
  */
 
-public class RegisterActivity extends BaseActivity implements View.OnClickListener, CheckBox.OnCheckedChangeListener {
-    TextInputLayout mRegisterEmailTextInputLayout, mRegisterPasswordTextInputLayout, mRegisterConfirmPasswordTextInputLayout, mRegisterNameTextInputLayout, mRegisterAgeTextInputLayout;
-    EditText mRegisterEmailText, mRegisterPasswordText, mRegisterConfirmPasswordText, mRegisterNameText, mRegisterAgeText;
-    Button mCreateAccountBtn, mRegisterBackBtn;
-    String userToken, userEmail, userName, userAge, userGender;
-    RadioButton mGenderMale, mGenderFemale, mGenderOther, mSelectedGender;
-    RadioGroup mGenderRadioGroup;
-    SharedPreferences sharedPreferences;
+public class RegisterActivity extends BaseActivity implements View.OnClickListener{
+    private TextInputLayout mRegisterEmailTextInputLayout, mRegisterPasswordTextInputLayout, mRegisterConfirmPasswordTextInputLayout, mRegisterNameTextInputLayout, mRegisterAgeTextInputLayout;
+    private EditText mRegisterEmailText, mRegisterPasswordText, mRegisterConfirmPasswordText, mRegisterNameText, mRegisterAgeText;
+    private String userToken, userEmail, userName, userAge, userGender;
+    private RadioGroup mGenderRadioGroup;
+    private SharedPreferences mSharedPreferences;
 
 
     @Override
@@ -50,17 +45,17 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mRegisterConfirmPasswordText = (EditText) findViewById(R.id.signup_textinput_confirmpassword);
         mRegisterEmailText = (EditText) findViewById(R.id.signup_textinput_email);
         mRegisterPasswordText = (EditText) findViewById(R.id.signup_textinput_password);
-        mGenderMale = (RadioButton) findViewById(R.id.signup_gender_male_radiobtn);
-        mGenderFemale = (RadioButton) findViewById(R.id.signup_gender_female_radiobtn);
-        mGenderOther = (RadioButton) findViewById(R.id.signup_gender_other_radiobtn);
+        RadioButton genderMale = (RadioButton) findViewById(R.id.signup_gender_male_radiobtn);
+        RadioButton genderFemale = (RadioButton) findViewById(R.id.signup_gender_female_radiobtn);
+        RadioButton genderOther = (RadioButton) findViewById(R.id.signup_gender_other_radiobtn);
         mRegisterNameText = (EditText) findViewById(R.id.signup_textinput_name);
-        mCreateAccountBtn = (Button) findViewById(R.id.signup_createaccount_btn);
-        mRegisterBackBtn = (Button) findViewById(R.id.signup_back_btn);
+        Button createAccountBtn = (Button) findViewById(R.id.signup_createaccount_btn);
+        Button registerBackBtn = (Button) findViewById(R.id.signup_back_btn);
         mGenderRadioGroup = (RadioGroup) findViewById(R.id.signup_gender_radio_button_group);
-        mCreateAccountBtn.setOnClickListener(this);
-        mRegisterBackBtn.setOnClickListener(this);
+        createAccountBtn.setOnClickListener(this);
+        registerBackBtn.setOnClickListener(this);
 
-        sharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+        mSharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
     }
 
 
@@ -116,29 +111,26 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             case R.id.signup_createaccount_btn:
                 if(validateRegisterData()){
                     int selectedGenderId = mGenderRadioGroup.getCheckedRadioButtonId();
-                    mSelectedGender = (RadioButton) findViewById(selectedGenderId);
-                    Log.d("Chloe", "Gender: " + mSelectedGender);
+                    RadioButton selectedGender = (RadioButton) findViewById(selectedGenderId);
                     final String password;
                     userName = mRegisterNameText.getText().toString();
                     userEmail = mRegisterEmailText.getText().toString();
                     userAge =  mRegisterAgeText.getText().toString();
-                    userGender = mSelectedGender.getText().toString();
+                    userGender = selectedGender.getText().toString();
                     password = mRegisterPasswordText.getText().toString();
-                    Log.d("Chloe", "Email: " + userEmail + " Password: " + password);
                     ApiJobManager.getInstance().getRegister(userName, userAge, userGender, userEmail, password, new PostRegisterLoginCallBack() {
                         @Override
                         public void onCompleted(String token) {
                             Intent intent = new Intent(RegisterActivity.this, ModelHubActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             userToken = token;
-                            sharedPreferences.edit()
+                            mSharedPreferences.edit()
                                     .putString(Constants.USER_TOKEN, userToken)
                                     .putString(Constants.USER_EMAIL, userEmail)
                                     .putString(Constants.USER_NAME, userName)
                                     .putString(Constants.USER_AGE, userAge)
                                     .putString(Constants.USER_GENDER, userGender)
                                     .apply();
-                            Log.d("Chloe", "userToken: " + token);
 //                            setResult(Constants.RESULT_SUCCESS);
                             startActivity(intent);
                             finish();}
@@ -157,8 +149,4 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-    }
 }

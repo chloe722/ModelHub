@@ -25,9 +25,7 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mHomeView;
-    ArrayList<Jobs> mJobs;
-    private ModelHubActivity mActivtity;
-    private Context mContext;
+    private ArrayList<Jobs> mJobs;
     private boolean mLoading = false;
     private int mLastVisibleItemPosition;
     private int mFirstVisibleItemPosition;
@@ -48,12 +46,10 @@ public class HomePresenter implements HomeContract.Presenter {
         loadFilterResult();
     }
 
-
     @Override
     public void start() {
         loadJobs();
     }
-
 
     @Override
     public void result(int requestCode, int resultCode) {}
@@ -65,7 +61,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void loadJobs() {
-        if(!isLoading() && hasNextPaging()){
+        if (!isLoading() && hasNextPaging()) {
             setLoading(true);
             ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
                 @Override
@@ -84,18 +80,17 @@ public class HomePresenter implements HomeContract.Presenter {
                 }
             });
         }
-
-
     }
 
     @Override
-    public void loadFilterResult(){
+    public void loadFilterResult() {
         ApiJobManager.getInstance().getJobs(new GetJobsCallBack() {
             @Override
             public void onCompleted(ArrayList<Jobs> jobs) {
                 showJobs(mJobs);
                 Log.d("Chloe", "filter jobs" + mJobs.size());
             }
+
             @Override
             public void onError(String errorMessage) {
                 Log.d("Chloe", "GetJobsErrorMessage, errorMessage:" + errorMessage);
@@ -106,26 +101,26 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void onScrollStateChanged(int visibleItemCount, int totalItemCount, int newState) {
 
-        if(newState == RecyclerView.SCROLL_STATE_IDLE && totalItemCount > 0){
+        if (newState == RecyclerView.SCROLL_STATE_IDLE && totalItemCount > 0) {
 
-            if(mLastVisibleItemPosition == totalItemCount -1){
+            if (mLastVisibleItemPosition == totalItemCount - 1) {
                 Log.d("Chloe", "Scroll to bottom");
                 loadJobs();
-            } else if (mFirstVisibleItemPosition == 0){}
-            }
+            } else if (mFirstVisibleItemPosition == 0) {}
         }
+    }
 
 
     @Override
     public void onScrolled(RecyclerView.LayoutManager layoutManager) {
-        if(layoutManager instanceof LinearLayoutManager){
+        if (layoutManager instanceof LinearLayoutManager) {
 
             mLastVisibleItemPosition = ((LinearLayoutManager) layoutManager)
                     .findLastVisibleItemPosition();
 
             mFirstVisibleItemPosition = ((LinearLayoutManager) layoutManager)
                     .findFirstVisibleItemPosition();
-        }else if(layoutManager instanceof GridLayoutManager){
+        } else if (layoutManager instanceof GridLayoutManager) {
 
             mLastVisibleItemPosition = ((GridLayoutManager) layoutManager)
                     .findLastVisibleItemPosition();
@@ -136,7 +131,7 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void openCaseDetails(Jobs job) {
+    public void openJobDetails(Jobs job) {
         mHomeView.showJobsDetailUi(job);
     }
 
@@ -157,19 +152,18 @@ public class HomePresenter implements HomeContract.Presenter {
         ModelHub.getModelHubSQLHelper().setInterestChanged(false);
     }
 
+    private boolean isLoading(){return mLoading; }
+
+    private void setLoading(boolean loading){mLoading = loading;}
+
+    private void setPaging(int paging){mPaging = paging;}
+
+    private boolean hasNextPaging(){return mPaging != Constants.NOR_MORE_PAGING; }
+
 //    @Override
 //    public void clearJobs() {
 //        mHomeView.clearJobs();
 //    }
-
-    public boolean isLoading(){return mLoading; }
-
-    public void setLoading(boolean loading){mLoading = loading;}
-
-    public void setPaging(int paging){mPaging = paging;}
-
-    private boolean hasNextPaging(){return (mPaging == Constants.NOR_MORE_PAGING)? false: true; }
-
 
 
 }

@@ -102,7 +102,7 @@ public class HomeJobUrgentAdapter extends RecyclerView.Adapter{
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.cardView_urgent_case_item) mPresenter.openCaseDetails(mJobs.get(getAdapterPosition())); // setOpenCase here  getAdapterPosition()
+            if(v.getId() == R.id.cardView_urgent_case_item) mPresenter.openJobDetails(mJobs.get(getAdapterPosition())); // setOpenCase here  getAdapterPosition()
         }
 
         private ImageView getUrgentCaseImage(){return mUrgentCaseImage;}

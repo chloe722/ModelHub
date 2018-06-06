@@ -45,7 +45,7 @@ public interface HomeContract {
 
         void onScrolled(RecyclerView.LayoutManager layoutManager);
 
-        void openCaseDetails(Jobs job);
+        void openJobDetails(Jobs job);
 
         void refresh();
 

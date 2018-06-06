@@ -87,7 +87,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mPresenter.start();
     }
 
@@ -113,7 +112,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void showJobsDetailUi(Jobs job) {
-        ((ModelHubActivity)getActivity()).transToCaseDetails(job);
+        ((ModelHubActivity)getActivity()).transToJobDetails(job);
     }
 
     @Override

@@ -3,6 +3,7 @@ package thhsu.chloe.ModelHub.Profile;
 
 //import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -106,6 +107,7 @@ public class ProfileInfoFragment extends Fragment {
 
         return root;
     }
+
 
     @Override
     public void onResume() {

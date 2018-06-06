@@ -97,6 +97,6 @@ public class InterestFragment extends Fragment implements InterestContract.View 
 
     @Override
     public void showJobsDetailUi(Jobs job) {
-        ((ModelHubActivity) getActivity()).transToCaseDetails(job);
+        ((ModelHubActivity) getActivity()).transToJobDetails(job);
     }
 }

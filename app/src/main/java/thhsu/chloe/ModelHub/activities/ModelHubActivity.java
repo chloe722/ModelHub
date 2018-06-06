@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,16 +31,10 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     private ModelHubContract.Presenter mPresenter;
     private TextView mToolbarTitle;
     private Toolbar mToolbar;
-    private ImageButton mFilterIcn;
     private BottomNavigationView mBottomNavigationView;
-    private MenuItem mFilterItem, mBtnNavProfile, mBtnNavSignIn, mLogoutBtn, mAboutBtn, mEditedBtn;
-    ModelHubActivity modelHubActivity;
+    private ModelHubActivity mModelHubActivity;
     private SharedPreferences mSharePref;
-    String token;
-    private ProgressBar mProgressBar;
-
-
-
+    private String mToken;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,55 +45,53 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     private void init(){
         setContentView(R.layout.activity_main);
         setToolbar();
-        setBottomNavigationView() ;
+        setBottomNavigationView();
         mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
-        token = mSharePref.getString(Constants.USER_TOKEN, "");
-        mProgressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
-        Log.d("Chloe", "if progressbar loaded?" + mProgressBar);
-        mPresenter = new ModelHubPresenter(this, getSupportFragmentManager(), this, mBottomNavigationView, mToolbar, mProgressBar);
+        mToken = mSharePref.getString(Constants.USER_TOKEN, "");
+        ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
+        mPresenter = new ModelHubPresenter(this, getSupportFragmentManager(), this, mBottomNavigationView, mToolbar, progressBar);
         mPresenter.start();
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        modelHubActivity = this;
+        mModelHubActivity = this;
         int currentItem = mBottomNavigationView.getSelectedItemId();
         MenuInflater inflater = getMenuInflater();
-        if(!(token.equals(""))){
+        if (!(mToken.equals(""))) {
             mBottomNavigationView.getMenu().getItem(2).setTitle("Profile");
         }
 
-        if (currentItem == R.id.action_home){
+        if (currentItem == R.id.action_home) {
             inflater.inflate(R.menu.menu_filter, menu);
-                mFilterItem = menu.findItem(R.id.home_filter).setVisible(true);
-                Log.d("Chloe", "currentItemId: " + currentItem);
-                mFilterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Intent intent = new Intent(modelHubActivity, FilterActivity.class);
-                        startActivityForResult(intent, Constants.FILTER_REQUEST); // start the activity for requesting result from next activity
-                        return true;
-                    }
-                });
-        }else if(currentItem == R.id.action_profile){
-            inflater.inflate(R.menu.menu_more_member, menu);
-            mAboutBtn = menu.findItem(R.id.more_menu_about_item);
-            mLogoutBtn = menu.findItem(R.id.more_menu_logout_item);
-            mEditedBtn = menu.findItem(R.id.more_menu_about_edit);
-            mAboutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            MenuItem filterItem = menu.findItem(R.id.home_filter).setVisible(true);
+            filterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    Intent intent = new Intent(modelHubActivity, AboutpageActivity.class);
+                    Intent intent = new Intent(mModelHubActivity, FilterActivity.class);
+                    startActivityForResult(intent, Constants.FILTER_REQUEST); // start the activity for requesting result from next activity
+                    return true;
+                }
+            });
+
+        } else if (currentItem == R.id.action_profile) {
+
+            inflater.inflate(R.menu.menu_more_member, menu);
+            MenuItem aboutBtn = menu.findItem(R.id.more_menu_about_item);
+            MenuItem logoutBtn = menu.findItem(R.id.more_menu_logout_item);
+            MenuItem editedBtn = menu.findItem(R.id.more_menu_about_edit);
+            aboutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Intent intent = new Intent(mModelHubActivity, AboutpageActivity.class);
                     startActivity(intent);
                     return true;
                 }
             });
 
-            if(!(token.equals(""))){
+            if (!(mToken.equals(""))) {
 
-                mEditedBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                editedBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         Intent intent = new Intent(ModelHubActivity.this, AboutMeActivity.class);
@@ -109,27 +100,22 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                     }
                 });
 
-                mLogoutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                logoutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        mSharePref.edit().remove(Constants.USER_TOKEN)
-                                .apply();
-                        Log.d("Chloe", "shared status: " + mSharePref.getString(Constants.USER_TOKEN, ""));
-                        Toast.makeText(getApplicationContext(), "You've log out", Toast.LENGTH_SHORT).show();
+                        mSharePref.edit().remove(Constants.USER_TOKEN).apply();
+                        Toast.makeText(getApplicationContext(), "You've logged out", Toast.LENGTH_SHORT).show();
                         init();
                         return true;
                     }
                 });
-            }
-            else{
-                mLogoutBtn.setVisible(false);
-                mEditedBtn.setVisible(false);
+            } else {
+                logoutBtn.setVisible(false);
+                editedBtn.setVisible(false);
             }
         }
         return true;
     }
-
-
 
     @Override
     protected void onResume() {super.onResume();}
@@ -153,7 +139,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Chloe", "mainactivity requestCode " + requestCode + " , resultCode: " + resultCode);
+        Log.d("Chloe", "main activity requestCode " + requestCode + " , resultCode: " + resultCode);
         if (requestCode == Constants.FILTER_REQUEST) {
             if (resultCode == Constants.RESULT_SUCCESS) {
                 mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
@@ -174,7 +160,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mToolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText("Cases");
 
     }
 
@@ -186,13 +171,11 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     @Override
     public void setPresenter(ModelHubContract.Presenter presenter) {
         mPresenter = presenter;
-
     }
 
     @Override
     public void showHomeUi() {
         setToolbarTitle("Opportunities");
-
     }
 
     @Override
@@ -211,14 +194,8 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     }
 
     @Override
-    public void showFilterPageUi() {
-        invalidateOptionsMenu();
-        setToolbarTitle("");
-    }
-
-    @Override
     public void showJobDetailsUi() {
-        setToolbarTitle("");
+        setToolbarTitle("Details");
     }
 
     @Override
@@ -226,16 +203,17 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         mPresenter.refreshInterestItem();
     }
 
-    public void transToCaseDetails(Jobs job){ // Need to pass ID here after connect API
+    public void transToJobDetails(Jobs job){ // Need to pass ID here after connect API
         mPresenter.transToJobDetails(job); // Need to pass ID here after connect API
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mSharePref = ModelHubActivity.this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
-        token = mSharePref.getString(Constants.USER_TOKEN, "");
+        mToken = mSharePref.getString(Constants.USER_TOKEN, "");
         invalidateOptionsMenu();
         switch (item.getItemId()) {
+
             case R.id.action_home:
                 mPresenter.transToHome();
                 break;
@@ -245,7 +223,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                 break;
 
             case R.id.action_profile:
-                if(token.equals("")){
+                if(mToken.equals("")){
                     mPresenter.transToSignInTabPage();
                     break;
                 }else {
@@ -255,7 +233,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         }
         return true;
     }
-
 
     public void showBtnNavView(){
         mBottomNavigationView.setVisibility(View.VISIBLE);
@@ -287,6 +264,5 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                 .apply();
 
     }
-
 
 }
