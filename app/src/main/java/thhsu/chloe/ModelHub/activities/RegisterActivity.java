@@ -45,9 +45,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mRegisterConfirmPasswordText = (EditText) findViewById(R.id.signup_textinput_confirmpassword);
         mRegisterEmailText = (EditText) findViewById(R.id.signup_textinput_email);
         mRegisterPasswordText = (EditText) findViewById(R.id.signup_textinput_password);
-        RadioButton genderMale = (RadioButton) findViewById(R.id.signup_gender_male_radiobtn);
-        RadioButton genderFemale = (RadioButton) findViewById(R.id.signup_gender_female_radiobtn);
-        RadioButton genderOther = (RadioButton) findViewById(R.id.signup_gender_other_radiobtn);
         mRegisterNameText = (EditText) findViewById(R.id.signup_textinput_name);
         Button createAccountBtn = (Button) findViewById(R.id.signup_createaccount_btn);
         Button registerBackBtn = (Button) findViewById(R.id.signup_back_btn);
@@ -59,11 +56,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
 
-    public boolean validateRegisterData(){
+    public boolean validateRegisterData() {
         boolean result = true;
 
         String name = mRegisterNameText.getText().toString();
-        if(name.equals("")|| name.length() < 3){
+        if (name.equals("") || name.length() < 3) {
             mRegisterNameTextInputLayout.setError("invalid Name");
             result = false;
         } else {
@@ -71,12 +68,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
 
         String age = mRegisterAgeText.getText().toString();
-        if(age.equals("") || age.length() > 2){
+        if (age.equals("") || age.length() > 2) {
             mRegisterAgeTextInputLayout.setError("invalid number input");
         } else {
             mRegisterAgeTextInputLayout.setErrorEnabled(false);
         }
-
 
         String email = mRegisterEmailText.getText().toString();
         if (email.equals("") || !(email.contains("@"))) {
@@ -87,18 +83,18 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
 
         String password = mRegisterPasswordText.getText().toString();
-        if(password.length() < 6){
+        if (password.length() < 6) {
             mRegisterPasswordTextInputLayout.setError("At least 6 characters");
             result = false;
-        }else{
+        } else {
             mRegisterPasswordTextInputLayout.setErrorEnabled(false);
         }
 
         String confirmPassword = mRegisterConfirmPasswordText.getText().toString();
-        if(!(confirmPassword.equals(password))){
+        if (!(confirmPassword.equals(password))) {
             mRegisterConfirmPasswordTextInputLayout.setError("Password must match");
             result = false;
-        }else{
+        } else {
             mRegisterConfirmPasswordTextInputLayout.setErrorEnabled(false);
         }
 
@@ -131,7 +127,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     .putString(Constants.USER_AGE, userAge)
                                     .putString(Constants.USER_GENDER, userGender)
                                     .apply();
-//                            setResult(Constants.RESULT_SUCCESS);
+                            setResult(Constants.RESULT_SUCCESS);
                             startActivity(intent);
                             finish();}
 
