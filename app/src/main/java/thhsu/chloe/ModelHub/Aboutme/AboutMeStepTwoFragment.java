@@ -38,8 +38,7 @@ import thhsu.chloe.ModelHub.api.model.User;
 
 public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener, Spinner.OnItemSelectedListener {
     private Button mNextBtn, mBackBtn;
-    private EditText mFacebookUserNamelText, mGithubUserNameText, mLinkedinUserNameText, mUserExperienceEditedText, mUserBioEditedText;
-    private TextInputLayout mFacebookTextLayout, mGithubTextLayout, mLinkedinTextLayout;
+    private EditText mUserExperienceEditedText, mUserBioEditedText;
     private OnStepTwoListener mOnStepTwoListener;
     private String mFacebookUsername, mGithubUsername, mLinkedinUsername, mUserToken, mUserExperience, mUserBio;
     SharedPreferences sharedPreferences;

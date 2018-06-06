@@ -21,12 +21,12 @@
         <item name="android:paddingRight">300dp</item>
     </style>
     
-    <style name="Theme.MaterialComponents" parent="Theme.MaterialComponents">
-        <item name="android:strokeColor">#C6C6C6</item>
-    </style>
+    <!--<style name="Theme.MaterialComponents" parent="Theme.MaterialComponents">-->
+        <!--<item name="android:strokeColor">#C6C6C6</item>-->
+    <!--</style>-->
 
-    <style name="android.support.design.widget.TextInputLayout" parent="android.support.design.widget.TextInputLayout">
-        <item name="android:strokeColor">#C6C6C6</item>
-    </style>
+    <!--<style name="android.support.design.widget.TextInputLayout" parent="android.support.design.widget.TextInputLayout">-->
+        <!--<item name="android:strokeColor">#C6C6C6</item>-->
+    <!--</style>-->
 
 </resources>

@@ -15,12 +15,12 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
-import thhsu.chloe.ModelHub.Filter.FilterPresenter;
 import thhsu.chloe.ModelHub.Home.HomeFragment;
 import thhsu.chloe.ModelHub.Home.HomePresenter;
 import thhsu.chloe.ModelHub.JobDetails.JobDetailsFragment;
 import thhsu.chloe.ModelHub.JobDetails.JobDetailsPresenter;
 import thhsu.chloe.ModelHub.Profile.ProfileFragment;
+import thhsu.chloe.ModelHub.Profile.ProfileInfoFragment;
 import thhsu.chloe.ModelHub.Profile.ProfilePresenter;
 import thhsu.chloe.ModelHub.Interest.InterestFragment;
 import thhsu.chloe.ModelHub.Interest.InterestPresenter;
@@ -37,32 +37,31 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class ModelHubPresenter implements ModelHubContract.Presenter {
     private final ModelHubContract.View mModelHubContractView;
     private FragmentManager mFragmentManager;
-    public ModelHubActivity mActivity;
-    public BottomNavigationView mBottomNavigationView;
-    public Toolbar mToolbar;
+    private ModelHubActivity mActivity;
+    private BottomNavigationView mBottomNavigationView;
+    private Toolbar mToolbar;
     private ProgressBar mProgressBar;
 
-    public static final String HOME = "HOME";
-    public static final String INTEREST = "INTEREST";
-    public static final String PROFILE = "PROFILE";
-    public static final String SIGNIN = "SIGNIN";
-    public static final String FILTER = "FILTER";
-    public static final String CASEDETAILS = "CASEDETAILS";
+    private static final String HOME = "HOME";
+    private static final String INTEREST = "INTEREST";
+    private static final String PROFILE = "PROFILE";
+    private static final String SIGNIN = "SIGNIN";
+    private static final String JOBDETAILS = "JOBDETAILS";
+
 
 
     private SignInTabFragment mSignInTabFragment;
     private InterestFragment mInterestFragment;
     private HomeFragment mHomeFragment;
     private ProfileFragment mProfileFragment;
-//    private FilterFragment mFilterFragment;
+    private ProfileInfoFragment mProfileInfoFragment;
     private JobDetailsFragment mCaseDetailsFragment;
 
     private SignInTabPresenter mSignInTabPresenter;
     private InterestPresenter mInterestPresenter;
     private HomePresenter mHomePresenter;
     private ProfilePresenter mProfilePresenter;
-    private FilterPresenter mFilterPresenter;
-    private JobDetailsPresenter mCaseDetailsPresenter;
+    private JobDetailsPresenter mJobDetailsPresenter;
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
@@ -104,8 +103,6 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         FragmentTransaction transaction
                 = mFragmentManager.beginTransaction();
 
-//        if(mFragmentManager.findFragmentByTag(HOME) != null)
-//            mFragmentManager.popBackStack();
         if(mHomeFragment == null) mHomeFragment = HomeFragment.newInstance();
         if(mInterestFragment != null) transaction.hide(mInterestFragment);
         if(mProfileFragment != null) transaction.hide(mProfileFragment);
@@ -161,6 +158,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         }else{
             transaction.show(mProfileFragment);
         }
+
         transaction.commit();
 
         if(mProfilePresenter == null){
@@ -192,8 +190,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     }
 
     @Override
-    public void transToCaseDetails(Jobs jobs) {
-//        mCurrentFragment = mFragmentManager.findFragmentById(R.id.main_container_for_fragment);
+    public void transToJobDetails(Jobs jobs) {
         int currentNavItemId = mBottomNavigationView.getSelectedItemId();
         final FragmentTransaction transaction =
                 mFragmentManager.beginTransaction()
@@ -229,9 +226,9 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
           });
       }
 
-        transaction.add(R.id.main_container_for_fragment, mCaseDetailsFragment, CASEDETAILS);
+        transaction.add(R.id.main_container_for_fragment, mCaseDetailsFragment, JOBDETAILS);
         transaction.commit();
-        mCaseDetailsPresenter = new JobDetailsPresenter(mCaseDetailsFragment, jobs, mBottomNavigationView); //Create presenter instrance
+        mJobDetailsPresenter = new JobDetailsPresenter(mCaseDetailsFragment, jobs, mBottomNavigationView); //Create presenter instrance
         Log.d("Chloe", "ModelHubPresenter job: " + jobs);
 
         mModelHubContractView.showJobDetailsUi();

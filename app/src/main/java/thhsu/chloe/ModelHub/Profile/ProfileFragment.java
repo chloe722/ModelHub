@@ -99,14 +99,12 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mUserLocation = (TextView) root.findViewById(R.id.profile_user_location);
         mUserWeight = (TextView) root.findViewById(R.id.profile_user_weight_text);
         mUserNationality = (TextView) root.findViewById(R.id.profile_user_nationality_text);
-//        mUserBio = (TextView) root.findViewById(R.id.profile_user_bio_text);
-//        mUserExperience = (TextView) root.findViewById(R.id.profile_user_experience_text);
-//        mUserLanguage = (TextView) root.findViewById(R.id.profile_user_language_text);
         mBottomSheetDialog = new BottomSheetDialog(getActivity());
 
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.profile_viewpager);
         ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPagerAdapter.notifyDataSetChanged();
         TabLayout mTabLayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
         mTabLayout.setupWithViewPager(mViewPager);
         View sheetView = getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_bottomsheet, null);
@@ -213,7 +211,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
+        Log.d("Chloe", "profile requestCode: " + requestCode + " , resultCode: " + resultCode);
         if (requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 performCrop(mImageUri);
@@ -235,8 +233,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         }
         else if (requestCode == Constants.CROP_IMAGE) {
             if(!mImageUri.equals("")){
-
-
                 Picasso.get().load(mImageUri).fit().centerCrop().transform(new CircleTransform()).into(mUserPhotoView);
 
 //                getContext().getContentResolver().openInputStream(mImageUri)

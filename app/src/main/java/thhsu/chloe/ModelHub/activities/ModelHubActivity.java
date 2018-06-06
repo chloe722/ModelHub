@@ -125,8 +125,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                 mLogoutBtn.setVisible(false);
                 mEditedBtn.setVisible(false);
             }
-        }else if(currentItem == R.id.action_interest){
-
         }
         return true;
     }
@@ -155,12 +153,13 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Chloe", "requestCode" + requestCode + "resultCode" + resultCode);
-        if(requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS){
-            mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
-        }
-        else{
-            init();
+        Log.d("Chloe", "mainactivity requestCode " + requestCode + " , resultCode: " + resultCode);
+        if (requestCode == Constants.FILTER_REQUEST) {
+            if (resultCode == Constants.RESULT_SUCCESS) {
+                mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
+            } else {
+                init();
+            }
         }
     }
 
@@ -228,7 +227,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     }
 
     public void transToCaseDetails(Jobs job){ // Need to pass ID here after connect API
-        mPresenter.transToCaseDetails(job); // Need to pass ID here after connect API
+        mPresenter.transToJobDetails(job); // Need to pass ID here after connect API
     }
 
     @Override

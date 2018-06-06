@@ -203,6 +203,7 @@
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Fluent"
+                    android:checked="true"
                     android:textColor="@color/textcolor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/radiogroup_one_int"
@@ -227,6 +228,7 @@
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Beginner"
+                    android:checked="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/stepper_two_sec_language_list" />
 
@@ -271,6 +273,8 @@
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:text="Beginner"
+                    android:checked="false"
+
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/stepper_two_third_language_list" />
 
