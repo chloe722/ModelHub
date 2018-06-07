@@ -32,28 +32,29 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 
 public class ModelHubPresenter implements ModelHubContract.Presenter {
     private final ModelHubContract.View mModelHubContractView;
-    private FragmentManager mFragmentManager;
-    private ModelHubActivity mActivity;
-    private BottomNavigationView mBottomNavigationView;
     private Toolbar mToolbar;
     private ProgressBar mProgressBar;
+    private ModelHubActivity mActivity;
+    private FragmentManager mFragmentManager;
+    private BottomNavigationView mBottomNavigationView;
 
     private static final String HOME = "HOME";
-    private static final String INTEREST = "INTEREST";
-    private static final String PROFILE = "PROFILE";
     private static final String SIGNIN = "SIGNIN";
+    private static final String PROFILE = "PROFILE";
+    private static final String INTEREST = "INTEREST";
     private static final String JOBDETAILS = "JOBDETAILS";
 
-    private SignInTabFragment mSignInTabFragment;
-    private InterestFragment mInterestFragment;
     private HomeFragment mHomeFragment;
     private ProfileFragment mProfileFragment;
+    private InterestFragment mInterestFragment;
+    private SignInTabFragment mSignInTabFragment;
     private JobDetailsFragment mJobDetailsFragment;
 
-    private SignInTabPresenter mSignInTabPresenter;
-    private InterestPresenter mInterestPresenter;
     private HomePresenter mHomePresenter;
     private ProfilePresenter mProfilePresenter;
+    private InterestPresenter mInterestPresenter;
+    private SignInTabPresenter mSignInTabPresenter;
+    private JobDetailsPresenter mJobDetailsPresenter;
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
@@ -217,7 +218,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
-        JobDetailsPresenter jobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, jobs, mBottomNavigationView);
+        mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, jobs, mBottomNavigationView);
 
         mModelHubContractView.showJobDetailsUi();
     }

@@ -105,7 +105,6 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
             if (getActivity() != null) {
                 ((ModelHubActivity) getActivity()).showInterestUi();
             }
-
         }
 
         ((ModelHubActivity) getActivity()).hideToolbarBackBtn();
@@ -115,10 +114,9 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     }
 
 
-
     @Override
     public void showJobDetails(Jobs job) {
-        mJobDetailAdapter.updateCases(job);
+        mJobDetailAdapter.updateJobs(job);
     }
 
     @Override

@@ -207,7 +207,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
         }
     }
 
-    public void updateCases(Jobs job){
+    public void updateJobs(Jobs job){
         mJobs = job;
         notifyItemChanged(0);
         Log.d("Chloe", "mJobs title: " + mJobs.getTitle());
