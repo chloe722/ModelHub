@@ -98,15 +98,19 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
         if (currentSelectedItem == R.id.action_home){
 
             if (getActivity() != null) {
-
                 ((ModelHubActivity) getActivity()).showHomeUi();
                 ((ModelHubActivity) getActivity()).showFilterIcn();
-                ((ModelHubActivity) getActivity()).showInterestUi();
-                ((ModelHubActivity) getActivity()).showBtnNavView();
-                ((ModelHubActivity) getActivity()).hideToolbarBackBtn();
-                ((ModelHubActivity) getActivity()).refreshInterestItemUi();
             }
+        }else{
+            if (getActivity() != null) {
+                ((ModelHubActivity) getActivity()).showInterestUi();
+            }
+
         }
+
+        ((ModelHubActivity) getActivity()).hideToolbarBackBtn();
+        ((ModelHubActivity) getActivity()).showBtnNavView();
+        ((ModelHubActivity) getActivity()).refreshInterestItemUi();
 
     }
 

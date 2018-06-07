@@ -27,7 +27,7 @@ public interface InterestContract {
 
         void loadJobs();
 
-        void openCaseDetails(Jobs job);
+        void openJobDetails(Jobs job);
 
         void refreshJobs();
 

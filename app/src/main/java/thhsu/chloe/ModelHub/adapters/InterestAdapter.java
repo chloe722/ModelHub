@@ -117,7 +117,7 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
 
             }else{
                 Log.d("Chloe", "getTitle in saved adapter: " + mJobs.get(getAdapterPosition()).getTitle());
-                mPresenter.openCaseDetails(mJobs.get(getAdapterPosition())); // setOpenCase here  getAdapterPosition()
+                mPresenter.openJobDetails(mJobs.get(getAdapterPosition())); // setOpenCase here  getAdapterPosition()
                 Log.d("Chloe", "GET WHAT: " + mJobs.get(getAdapterPosition()));
             }
         }

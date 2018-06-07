@@ -14,7 +14,6 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class InterestPresenter implements InterestContract.Presenter{
 
     private InterestContract.View mInterestView;
-    ArrayList<Jobs> mJobs;
     public InterestPresenter(InterestContract.View savedJobView){
         mInterestView = savedJobView;
         if(savedJobView != null){
@@ -41,15 +40,15 @@ public class InterestPresenter implements InterestContract.Presenter{
     public void loadJobs() {
         new GetInterestTask(new GetInterestCallBack() {
             @Override
-            public void onCompleted(ArrayList<Jobs> cases) {
-                showJobs(cases);
+            public void onCompleted(ArrayList<Jobs> jobs) {
+                showJobs(jobs);
 
             }
         }).execute();
     }
 
     @Override
-    public void openCaseDetails(Jobs job) {
+    public void openJobDetails(Jobs job) {
         mInterestView.showJobsDetailUi(job);
     }
 

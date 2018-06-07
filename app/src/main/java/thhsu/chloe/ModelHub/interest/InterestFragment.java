@@ -1,6 +1,5 @@
 package thhsu.chloe.ModelHub.interest;
 
-//import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,8 +32,6 @@ public class InterestFragment extends Fragment implements InterestContract.View 
 
    private InterestContract.Presenter mPresenter;
    private InterestAdapter mInterestAdapter;
-   SharedPreferences sharedPreferences;
-   String token;
 
     public static InterestFragment newInstance(){return new InterestFragment();}
 
@@ -50,18 +47,17 @@ public class InterestFragment extends Fragment implements InterestContract.View 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        sharedPreferences = getActivity().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
-        token = sharedPreferences.getString(Constants.USER_TOKEN,"");
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
+        String userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
 
-        if(token.equals("")){
+        if(userToken.equals("")){
             View root = inflater.inflate(R.layout.fragment_interest_visitor, container, false);
             return root;
         }else{
             View root = inflater.inflate(R.layout.fragment_interest, container, false);
-            RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.interest_recyclerview);
+            RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview_interest);
             recyclerView.setLayoutManager(new LinearLayoutManager(ModelHub.getAppContext()));
             recyclerView.setAdapter(mInterestAdapter);
-            TextView interestText = root.findViewById(R.id.interest_text);
 
 //            if(mInterestAdapter.getItemCount() == 0){
 //                interestText.setVisibility(View.VISIBLE);
@@ -84,7 +80,7 @@ public class InterestFragment extends Fragment implements InterestContract.View 
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.start();
     }
@@ -97,6 +93,10 @@ public class InterestFragment extends Fragment implements InterestContract.View 
 
     @Override
     public void showJobsDetailUi(Jobs job) {
-        ((ModelHubActivity) getActivity()).transToJobDetails(job);
+        if (getActivity() != null) {
+            ((ModelHubActivity) getActivity()).transToJobDetails(job);
+        }
     }
+
+
 }

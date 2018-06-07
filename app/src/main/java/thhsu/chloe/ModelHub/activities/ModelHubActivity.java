@@ -128,7 +128,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     @Override
     protected void onDestroy() {
         clearData();
-
         super.onDestroy();
     }
 
