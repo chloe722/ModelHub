@@ -20,10 +20,10 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import thhsu.chloe.ModelHub.ModelHub;
-import thhsu.chloe.ModelHub.JobDetails.JobDetailsContract;
+import thhsu.chloe.ModelHub.jobDetails.JobDetailsContract;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.Utils.CircleTransform;
-import thhsu.chloe.ModelHub.Utils.Constants;
+import thhsu.chloe.ModelHub.utils.CircleTransform;
+import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
@@ -132,7 +132,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
 
             mDetailsShareBtn = (ImageButton) itemView.findViewById(R.id.case_details_share_btn);
             mDetailsBookMark = (ImageButton) itemView.findViewById(R.id.case_details_bookmark_btn);
-            mDetailsApplyBtn = (Button) itemView.findViewById(R.id.case_details_apply_btn);
+            mDetailsApplyBtn = (Button) itemView.findViewById(R.id.btn_job_details_apply);
 
             mDetailsCompanyLogo = (ImageView) itemView.findViewById(R.id.case_details_company_logo);
             mDetailsCaseImage = (ImageView) itemView.findViewById(R.id.case_details_image);

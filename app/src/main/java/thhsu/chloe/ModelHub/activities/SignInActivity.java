@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.Utils.Constants;
+import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
 
@@ -19,44 +18,45 @@ import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
  */
 
 public class SignInActivity extends BaseActivity implements View.OnClickListener{
-    private Button mBackBtn, mSignInBtn;
-    private TextInputLayout mSignInEmailTextInputLayout, mSignInPasswordTextInputLayout;
-    private EditText mSignInEmailText, mSignInPasswordText;
-    private String mUserLogInToken;
+    private TextInputLayout mTextInputLayoutSignInEmail, mTextInputLayoutSignInPassword;
+    private EditText mEditTextSignInEmail, mEditTextSignInPassword;
     private SharedPreferences mSharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        mSignInEmailTextInputLayout = (TextInputLayout) findViewById(R.id.signin_textinputlayout_email);
-        mSignInPasswordTextInputLayout = (TextInputLayout) findViewById(R.id.signin_textinputlayout_password);
-        mSignInEmailText = (EditText) findViewById(R.id.signin_textinput_email);
-        mSignInPasswordText = (EditText) findViewById(R.id.signin_textinput_password);
-        mBackBtn = (Button) findViewById(R.id.signin_back_btn);
-        mSignInBtn = (Button) findViewById(R.id.signin_signin_btn);
-        mSignInBtn.setOnClickListener(this);
-        mBackBtn.setOnClickListener(this);
         mSharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+
+        mEditTextSignInEmail = (EditText) findViewById(R.id.editText_signin_email);
+        mEditTextSignInPassword = (EditText) findViewById(R.id.editText_signin_password);
+        mTextInputLayoutSignInEmail = (TextInputLayout) findViewById(R.id.textinputLayout_signin_email);
+        mTextInputLayoutSignInPassword = (TextInputLayout) findViewById(R.id.textinputLayout_signin_password);
+        Button backBtn = (Button) findViewById(R.id.btn_signin_back);
+        Button signInBtn = (Button) findViewById(R.id.btn_signin_signin);
+        signInBtn.setOnClickListener(this);
+        backBtn.setOnClickListener(this);
     }
 
-    public boolean validateLogInData(){
+    public boolean validateLogInData() {
+
         boolean result = true;
 
-        String email = mSignInEmailText.getText().toString();
+        String email = mEditTextSignInEmail.getText().toString();
         if (email.equals("") || !(email.contains("@"))) {
-            mSignInEmailTextInputLayout.setError(getString(R.string.invalidEmail));
+            mTextInputLayoutSignInEmail.setError(getString(R.string.invalidEmail));
             result = false;
         } else {
-            mSignInEmailTextInputLayout.setErrorEnabled(false);
+            mTextInputLayoutSignInEmail.setErrorEnabled(false);
         }
 
-        String password = mSignInPasswordText.getText().toString();
-        if(password.length() < 6){
-            mSignInPasswordTextInputLayout.setError("At least 6 characters");
+        String password = mEditTextSignInPassword.getText().toString();
+        if (password.length() < 6) {
+            mTextInputLayoutSignInPassword.setError("At least 6 characters");
             result = false;
-        }else{
-            mSignInPasswordTextInputLayout.setErrorEnabled(false);
+        } else {
+            mTextInputLayoutSignInPassword.setErrorEnabled(false);
         }
         return result;
     }
@@ -64,36 +64,36 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.signin_back_btn:
+        switch (v.getId()) {
+            case R.id.btn_signin_back:
+
                 super.onBackPressed();
                 break;
 
-                case R.id.signin_signin_btn:
-                    if(validateLogInData()){
-                        String email, password;
-                        email = mSignInEmailText.getText().toString();
-                        password = mSignInPasswordText.getText().toString();
-                        ApiJobManager.getInstance().getLogInResult(email, password, new PostRegisterLoginCallBack() {
-                            @Override
-                            public void onCompleted(String token) {
-                                mUserLogInToken = token;
-                                Log.d("Chloe", "LogIn token: " + token);
-                                mSharedPreferences.edit()
-                                        .putString(Constants.USER_TOKEN, token)
-                                        .apply();
-                                Intent i = new Intent(SignInActivity.this, ModelHubActivity.class);
-                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(i);
-                                finish();
-                            }
+            case R.id.btn_signin_signin:
 
-                            @Override
-                            public void onError(String errorMessage) {
-                            }
-                        });
-                    }
-                    break;
+                if (validateLogInData()) {
+                    String email, password;
+                    email = mEditTextSignInEmail.getText().toString();
+                    password = mEditTextSignInPassword.getText().toString();
+                    ApiJobManager.getInstance().getLogInResult(email, password, new PostRegisterLoginCallBack() {
+                        @Override
+                        public void onCompleted(String token) {
+                            mSharedPreferences.edit()
+                                    .putString(Constants.USER_TOKEN, token)
+                                    .apply();
+                            Intent i = new Intent(SignInActivity.this, ModelHubActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String errorMessage) {
+                        }
+                    });
+                }
+                break;
         }
     }
 

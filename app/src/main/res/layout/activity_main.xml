@@ -24,7 +24,7 @@
 
                 <ImageButton
                     android:visibility="gone"
-                    android:id="@+id/tool_bar_back_btn"
+                    android:id="@+id/btn_toolbar_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -47,10 +47,6 @@
                     android:textStyle="bold|italic" />
 
             </android.support.v7.widget.Toolbar>
-
-
-
-
         </RelativeLayout>
 
         <View
@@ -69,7 +65,7 @@
         android:layout_above="@id/bottom_navigation">
 
         <ProgressBar
-            android:id="@+id/loading_progressBar"
+            android:id="@+id/progressBar_loading"
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,16 +73,6 @@
             android:indeterminate="true"
             android:indeterminateTint="@color/nav_active_color" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/toolbar_title"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:letterSpacing="0.5"-->
-            <!--android:text=""-->
-            <!--android:textColor="#FFD600"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textStyle="bold" />-->
     </FrameLayout>
 
 

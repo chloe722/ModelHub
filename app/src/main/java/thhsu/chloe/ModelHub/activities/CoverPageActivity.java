@@ -16,7 +16,7 @@ public class CoverPageActivity extends BaseActivity {
 
 
         setContentView(R.layout.activity_cover_page);
-        mGetStartedBtn = (Button) findViewById(R.id.coverpage_getStartedBtn);
+        mGetStartedBtn = (Button) findViewById(R.id.btn_coverpage_getStarted);
 
 
 

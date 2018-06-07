@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.Interest.InterestContract;
-import thhsu.chloe.ModelHub.Utils.CircleTransform;
+import thhsu.chloe.ModelHub.interest.InterestContract;
+import thhsu.chloe.ModelHub.utils.CircleTransform;
 import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**

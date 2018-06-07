@@ -3,20 +3,18 @@ package thhsu.chloe.ModelHub.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import thhsu.chloe.ModelHub.Filter.FilterContract;
+import thhsu.chloe.ModelHub.filter.FilterContract;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.Utils.Constants;
+import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetFilterJobsCallBack;
 import thhsu.chloe.ModelHub.api.model.Jobs;

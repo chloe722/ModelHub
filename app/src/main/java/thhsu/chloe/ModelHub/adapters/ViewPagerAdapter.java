@@ -4,11 +4,10 @@ import android.support.annotation.Nullable;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import thhsu.chloe.ModelHub.Profile.ProfileInfoFragment;
-import thhsu.chloe.ModelHub.Profile.ProfileWorkbookFragment;
+import thhsu.chloe.ModelHub.profile.ProfileInfoFragment;
+import thhsu.chloe.ModelHub.profile.ProfileWorkbookFragment;
 
 /**
  * Created by Chloe on 5/31/2018.

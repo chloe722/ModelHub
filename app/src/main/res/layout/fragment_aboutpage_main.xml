@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/aboutpage_items_linearLayout"
+    android:id="@+id/linearlayout_aboutpage_items"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentStart="true"
@@ -13,18 +13,18 @@
     app:layout_constraintTop_toBottomOf="@+id/about_me_page_toolbar_container">
 
     <Button
-        android:id="@+id/about_page_about_modelhub_btn"
+        android:id="@+id/btn_about_page_about_modelhub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawablePadding="5dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:text="About ModelHub"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/textcolor"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageview_hr_line_two"
+        app:layout_constraintBottom_toTopOf="@+id/imageview_hr_line_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +34,35 @@
     </Button>
 
     <ImageView
+        android:id="@+id/imageview_hr_line_one"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorHrLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_about_page_about_modelhub">
+
+    </ImageView>
+
+    <Button
+        android:id="@+id/btn_about_page_termofuse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:drawablePadding="5dp"
+        android:paddingStart="10dp"
+        android:text="Term of Use"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/textcolor"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_one" />
+
+    <ImageView
         android:id="@+id/imageview_hr_line_two"
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -41,44 +70,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_page_about_modelhub_btn">
-
-    </ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/btn_about_page_termofuse" />
 
     <Button
-        android:visibility="gone"
-        android:id="@+id/about_page_termofuse_btn"
+        android:id="@+id/btn_about_page_privacy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawablePadding="5dp"
-        android:paddingLeft="10dp"
-        android:text="Term of Use"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/textcolor"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_two" />
-
-    <ImageView
-        android:id="@+id/imageview_hr_line_3"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorHrLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_page_termofuse_btn"></ImageView>
-
-    <Button
-        android:id="@+id/about_page_privacy_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:drawablePadding="5dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:text="Privacy Policy"
         android:textAlignment="textStart"
         android:textAllCaps="false"
@@ -86,25 +86,25 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_two" />
+        app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_one" />
 
     <ImageView
-        android:id="@+id/imageview_hr_line_4"
+        android:id="@+id/imageview_hr_line_three"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/colorHrLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_page_privacy_btn"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/btn_about_page_privacy" />
 
     <Button
-        android:id="@+id/about_page_contactus_btn"
+        android:id="@+id/btn_about_page_contactus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:drawablePadding="5dp"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:text="Contact Us"
         android:textAlignment="textStart"
         android:textAllCaps="false"
@@ -112,16 +112,16 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line_three" />
 
     <ImageView
-        android:id="@+id/imageview_hr_line_5"
+        android:id="@+id/imageview_hr_line_five"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/colorHrLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/about_page_contactus_btn"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/btn_about_page_contactus" />
 
 </LinearLayout>

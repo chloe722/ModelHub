@@ -21,11 +21,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import thhsu.chloe.ModelHub.Home.HomeContract;
+import thhsu.chloe.ModelHub.home.HomeContract;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.Utils.CircleTransform;
-import thhsu.chloe.ModelHub.Utils.Constants;
+import thhsu.chloe.ModelHub.utils.CircleTransform;
+import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**

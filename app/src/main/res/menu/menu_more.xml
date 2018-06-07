@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:iconTint="@color/titleforall">
+
+    <item
+        android:id="@+id/menu_more_about_item"
+        android:iconTint="@color/titleforall"
+        android:title="About" />
+    <item
+        android:id="@+id/menu_more_logout_item"
+        android:iconTint="@color/titleforall"
+        android:title="Log Out" />
+
+    <item
+        android:id="@+id/menu_edit_profile"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:iconTint="@color/titleforall"
+        android:title="About"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -20,7 +20,7 @@ import android.widget.Toast;
 import thhsu.chloe.ModelHub.ModelHubContract;
 import thhsu.chloe.ModelHub.ModelHubPresenter;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.Utils.Constants;
+import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
@@ -48,7 +48,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
         setBottomNavigationView();
         mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
         mToken = mSharePref.getString(Constants.USER_TOKEN, "");
-        ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.loading_progressBar);
+        ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar_loading);
         mPresenter = new ModelHubPresenter(this, getSupportFragmentManager(), this, mBottomNavigationView, mToolbar, progressBar);
         mPresenter.start();
     }
@@ -64,7 +64,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
         if (currentItem == R.id.action_home) {
             inflater.inflate(R.menu.menu_filter, menu);
-            MenuItem filterItem = menu.findItem(R.id.home_filter).setVisible(true);
+            MenuItem filterItem = menu.findItem(R.id.menu_home_filter).setVisible(true);
             filterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -76,14 +76,14 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
         } else if (currentItem == R.id.action_profile) {
 
-            inflater.inflate(R.menu.menu_more_member, menu);
-            MenuItem aboutBtn = menu.findItem(R.id.more_menu_about_item);
-            MenuItem logoutBtn = menu.findItem(R.id.more_menu_logout_item);
-            MenuItem editedBtn = menu.findItem(R.id.more_menu_about_edit);
+            inflater.inflate(R.menu.menu_more, menu);
+            MenuItem aboutBtn = menu.findItem(R.id.menu_more_about_item);
+            MenuItem logoutBtn = menu.findItem(R.id.menu_more_logout_item);
+            MenuItem editedBtn = menu.findItem(R.id.menu_edit_profile);
             aboutBtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    Intent intent = new Intent(mModelHubActivity, AboutpageActivity.class);
+                    Intent intent = new Intent(mModelHubActivity, AboutPageActivity.class);
                     startActivity(intent);
                     return true;
                 }
@@ -156,7 +156,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     }
 
     private void setToolbar() {
-        // Retrieve the AppCompact Toolbar
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -240,11 +239,11 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     }
 
     public void showFilterIcn(){
-        mToolbar.findViewById(R.id.home_filter).setVisibility(View.VISIBLE);
+        mToolbar.findViewById(R.id.menu_home_filter).setVisibility(View.VISIBLE);
     }
 
     public void hideToolbarBackBtn(){
-        this.findViewById(R.id.tool_bar_back_btn).setVisibility(View.GONE);
+        this.findViewById(R.id.btn_toolbar_back).setVisibility(View.GONE);
     }
 
     private void clearData(){

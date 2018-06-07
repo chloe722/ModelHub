@@ -15,10 +15,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import thhsu.chloe.ModelHub.Home.HomeContract;
+import thhsu.chloe.ModelHub.home.HomeContract;
 //import thhsu.chloe.jeeva.Profile.ProfileFragment;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.Utils.CircleTransform;
+import thhsu.chloe.ModelHub.utils.CircleTransform;
 import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
