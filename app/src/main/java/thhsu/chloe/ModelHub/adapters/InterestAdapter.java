@@ -1,6 +1,6 @@
 package thhsu.chloe.ModelHub.adapters;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,27 +26,24 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
  */
 
 public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.InterestItemViewHolder> {
-    private InterestContract.Presenter mPresenter;
     private ArrayList<Jobs> mJobs;
-    private Context mContext;
-
+    private InterestContract.Presenter mPresenter;
 
     public InterestAdapter(ArrayList<Jobs> jobs, InterestContract.Presenter presenter){
+        mJobs = jobs;
         mPresenter = presenter;
-        this.mJobs = jobs;
     }
 
 
     @Override
     public InterestItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
-
+//        mContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_interest_fragment, parent, false);
         return new InterestItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(InterestItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull InterestItemViewHolder holder, int position) {
         if(holder instanceof InterestItemViewHolder) {
 
             holder.getInterestLocation().setText(mJobs.get(position).getLocation());
@@ -54,16 +51,14 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
             holder.getInterestWhom().setText(mJobs.get(position).getWhom());
             holder.getInterestPay().setText(mJobs.get(position).getIsPaid());
 
-
             if (holder.getInterestCompanyLogo() != null && mJobs.get(position).getLogo() != null) {
                 Picasso.get().load(mJobs.get(position).getLogo()).transform(new CircleTransform()).into(holder.getInterestCompanyLogo());
             }
 
             if(ModelHub.getModelHubSQLHelper().getInterest(mJobs.get(position).getId())){
-                Log.d("Chloe", "true");
                 holder.getInterestIcnBtn().setImageResource(R.drawable.ic_favorite_black_24dp);
+
             }else{
-                Log.d("Chloe", "false");
                 holder.getInterestIcnBtn().setImageResource(R.drawable.ic_favorite_border_black_24dp);
             }
         }

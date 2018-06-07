@@ -111,36 +111,36 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
         public CaseDetailsViewHolder(View itemView) {
             super(itemView);
 
-            mDetailsCaseTitle = (TextView) itemView.findViewById(R.id.home_case_title);
-            mDetailsCaseShootingDateTitle = (TextView) itemView.findViewById(R.id.case_details_shooting_day_title);
-            mDetailsAdvertiserName = (TextView) itemView.findViewById(R.id.case_details_advertiser_name);
-            mDetailsLocationText = (TextView) itemView.findViewById(R.id.case_details_location);
-            mDetailsWantedTitle = (TextView) itemView.findViewById(R.id.case_details_wanted_title);
-            mDetailsCaseDesContent = (TextView) itemView.findViewById(R.id.case_details_des_content);
-            mDetailsCaseShootingDateText = (TextView) itemView.findViewById(R.id.case_details_shooting_date_text);
-            mDetailsCaseShootingDurationTitle = (TextView) itemView.findViewById(R.id.case_details_shooting_duration_title);
-            mDetailsCaseShootingDurationText = (TextView) itemView.findViewById(R.id.case_details_shooting_duration_text);
-            mDetailsCasePay = (TextView) itemView.findViewById(R.id.case_details_pay);
-            mDetailsCaseOtherInfoTravelExpensesTitle = (TextView) itemView.findViewById(R.id.case_details_other_info_if_cover_travel_expenses_title);
-            mDetailsOtherInfoContactNameTitle = (TextView) itemView.findViewById(R.id.case_details_other_info_contact_name_title);
-            mDetailsCaseWantedContent = (TextView) itemView.findViewById(R.id.case_details_wanted_content);
-            mDetailsOtherInfoCoverTravelExpenseText = (TextView) itemView.findViewById(R.id.case_details_other_info_travel_expenses_text);
-            mDetailsOtherInfoContactNameText = (TextView) itemView.findViewById(R.id.case_details_other_info_contact_name_text);
-            mDetailsCaseCompensationTitle = (TextView) itemView.findViewById(R.id.case_details_compensation_title);
-            mDetailsCaseCompensationContent = (TextView) itemView.findViewById(R.id.case_details_compensation_content);
+            mDetailsCaseTitle = (TextView) itemView.findViewById(R.id.textview_home_job_title);
+            mDetailsCaseShootingDateTitle = (TextView) itemView.findViewById(R.id.textview_job_details_shooting_day_title);
+            mDetailsAdvertiserName = (TextView) itemView.findViewById(R.id.textview_job_details_advertiser_text);
+            mDetailsLocationText = (TextView) itemView.findViewById(R.id.textview_job_details_location);
+            mDetailsWantedTitle = (TextView) itemView.findViewById(R.id.textview_job_details_wanted_title);
+            mDetailsCaseDesContent = (TextView) itemView.findViewById(R.id.textview_job_details_des_content);
+            mDetailsCaseShootingDateText = (TextView) itemView.findViewById(R.id.textview_job_details_shooting_date_text);
+            mDetailsCaseShootingDurationTitle = (TextView) itemView.findViewById(R.id.textview_job_details_shooting_duration_title);
+            mDetailsCaseShootingDurationText = (TextView) itemView.findViewById(R.id.textview_job_details_shooting_duration_text);
+            mDetailsCasePay = (TextView) itemView.findViewById(R.id.textview_job_details_pay);
+            mDetailsCaseOtherInfoTravelExpensesTitle = (TextView) itemView.findViewById(R.id.textview_job_details_other_info_travel_expenses_title);
+            mDetailsOtherInfoContactNameTitle = (TextView) itemView.findViewById(R.id.textview_job_details_other_info_contact_name_title);
+            mDetailsCaseWantedContent = (TextView) itemView.findViewById(R.id.textview_job_details_wanted_content);
+            mDetailsOtherInfoCoverTravelExpenseText = (TextView) itemView.findViewById(R.id.textview_job_details_other_info_travel_expenses_text);
+            mDetailsOtherInfoContactNameText = (TextView) itemView.findViewById(R.id.textview_job_details_other_info_contact_name_text);
+            mDetailsCaseCompensationTitle = (TextView) itemView.findViewById(R.id.textview_job_details_compensation_title);
+            mDetailsCaseCompensationContent = (TextView) itemView.findViewById(R.id.textview_job_details_compensation_content);
 
 
-            mDetailsShareBtn = (ImageButton) itemView.findViewById(R.id.case_details_share_btn);
-            mDetailsBookMark = (ImageButton) itemView.findViewById(R.id.case_details_bookmark_btn);
+            mDetailsShareBtn = (ImageButton) itemView.findViewById(R.id.imagebtn_job_details_share);
+            mDetailsBookMark = (ImageButton) itemView.findViewById(R.id.imagebtn_job_details_bookmark);
             mDetailsApplyBtn = (Button) itemView.findViewById(R.id.btn_job_details_apply);
 
-            mDetailsCompanyLogo = (ImageView) itemView.findViewById(R.id.case_details_company_logo);
-            mDetailsCaseImage = (ImageView) itemView.findViewById(R.id.case_details_image);
+            mDetailsCompanyLogo = (ImageView) itemView.findViewById(R.id.imageview_job_details_company_logo);
+            mDetailsCaseImage = (ImageView) itemView.findViewById(R.id.imageview_job_details_image);
 
-            mDesConstraint = (ConstraintLayout) itemView.findViewById(R.id.case_details_des_constraint);
-            mOtherInfoConstraint = (ConstraintLayout) itemView.findViewById(R.id.case_details_other_info_container_constraint);
-            mCompensationConstraint = (ConstraintLayout) itemView.findViewById(R.id.case_details_compensation_constraint);
-            mImageConstraint = (FrameLayout) itemView.findViewById(R.id.case_details_image_framlayout);
+            mDesConstraint = (ConstraintLayout) itemView.findViewById(R.id.constraintlayout_job_details_des);
+            mOtherInfoConstraint = (ConstraintLayout) itemView.findViewById(R.id.constraintlayout_job_details_other_info);
+            mCompensationConstraint = (ConstraintLayout) itemView.findViewById(R.id.constraintlayout_job_details_compensation);
+            mImageConstraint = (FrameLayout) itemView.findViewById(R.id.framlayout_job_details_image);
 
             mDetailsBookMark.setOnClickListener(this);
             mDetailsShareBtn.setOnClickListener(this);
@@ -178,7 +178,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
 //                    mCompensationConstraint.setVisibility(View.VISIBLE);
 //
 //                    break;
-                case R.id.case_details_bookmark_btn:
+                case R.id.imagebtn_job_details_bookmark:
                     if(!token.equals("")){
                         if(ModelHub.getModelHubSQLHelper().getInterest(mJobs.getId())){
                             mCaseDetailsPresenter.updateInterestJob(mJobs, false);
@@ -194,7 +194,7 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Ca
                         Toast.makeText(ModelHub.getAppContext(), "You are not logged in yet", Toast.LENGTH_SHORT).show();
                     }
                     break;
-                case R.id.case_details_share_btn:
+                case R.id.imagebtn_job_details_share:
                     Intent intentToShare = new Intent(Intent.ACTION_SEND);
                     intentToShare.setType("text/plain");
                     intentToShare.putExtra(Intent.EXTRA_SUBJECT, "Testing");
