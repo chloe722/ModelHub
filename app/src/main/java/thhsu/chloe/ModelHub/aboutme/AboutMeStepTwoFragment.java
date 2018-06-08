@@ -2,6 +2,7 @@ package thhsu.chloe.ModelHub.aboutme;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -45,12 +46,6 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     private Spinner mSpinnerLanguageOne, mSpinnerLanguageTwo, mSpinnerLanguageThree;
     private RadioGroup mLanguageRadioGroupOne, mLanguageRadioGroupTwo, mLanguageRadioGroupThree;
     private ArrayAdapter<String> mLanguageDataAdapterOne, mLanguageDataAdapterTwo, mLanguageDataAdapterThree;
-    private RadioButton
-            mLanguageGroupOneBeg, mLanguageGroupOneInt, mLanguageGroupOneFlu,
-            mLanguageGroupTwoBeg, mLanguageGroupTwoInt, mLanguageGroupTwoFlu, mLanguageGroupThreeBeg,
-            mLanguageGroupThreeInt, mLanguageGroupThreeFlu,
-            mSelectedProficiencyLanguageOne, mSelectedProficiencyLanguageTwo, mSelectedProficiencyLanguageThree;
-
 
     public AboutMeStepTwoFragment() {
     }
@@ -58,6 +53,7 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -70,20 +66,12 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         mSharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         mUserToken = mSharedPreferences.getString(Constants.USER_TOKEN, "");
 
         mEditTextBio = (EditText) view.findViewById(R.id.editText_steppertwo_bio);
         mEditTextExperience = (EditText) view.findViewById(R.id.editText_steppertwo_experience);
-        mLanguageGroupOneBeg = (RadioButton) view.findViewById(R.id.radiogroup_one_beg);
-        mLanguageGroupOneInt = (RadioButton) view.findViewById(R.id.radiogroup_one_int);
-        mLanguageGroupOneFlu = (RadioButton) view.findViewById(R.id.radiogroup_one_flu);
-        mLanguageGroupTwoBeg = (RadioButton) view.findViewById(R.id.radiogroup_two_beg);
-        mLanguageGroupTwoInt = (RadioButton) view.findViewById(R.id.radiogroup_two_int);
-        mLanguageGroupTwoFlu = (RadioButton) view.findViewById(R.id.radiogroup_two_flu);
-        mLanguageGroupThreeBeg = (RadioButton) view.findViewById(R.id.radiogroup_three_beg);
-        mLanguageGroupThreeInt = (RadioButton) view.findViewById(R.id.radiogroup_three_int);
-        mLanguageGroupThreeFlu = (RadioButton) view.findViewById(R.id.radiogroup_three_flu);
         mLanguageRadioGroupOne = (RadioGroup) view.findViewById(R.id.radiongroup_steppertwo_lan1_level);
         mLanguageRadioGroupTwo = (RadioGroup) view.findViewById(R.id.radiogroup_steppertwo_lan2_level);
         mLanguageRadioGroupThree = (RadioGroup) view.findViewById(R.id.radiogroup_steppertwo_lan3_level);
@@ -138,26 +126,25 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
                     int spinnerOnePosition = mLanguageDataAdapterOne.getPosition(skills.get(0).getLanguage());
                     mSpinnerLanguageOne.setSelection(spinnerOnePosition);
                     int levelIndex = getLevelIndex(skills.get(0).getLevel());
-
                     ((RadioButton) mLanguageRadioGroupOne.getChildAt(levelIndex)).setChecked(true);
                     mLanguageRadioGroupOne.getChildAt(levelIndex).jumpDrawablesToCurrentState();
                 }
+
                 if(skills != null && skills.size() > 1){
 
                     int spinnerTwoPosition = mLanguageDataAdapterTwo.getPosition(skills.get(1).getLanguage());
                     mSpinnerLanguageTwo.setSelection(spinnerTwoPosition);
                     int levelIndex = getLevelIndex(skills.get(1).getLevel());
-                    Log.d("Chloe", "level" +levelIndex);
                     ((RadioButton) mLanguageRadioGroupTwo.getChildAt(levelIndex)).setChecked(true);
                     mLanguageRadioGroupTwo.getChildAt(levelIndex).jumpDrawablesToCurrentState();
 
                 }
+
                 if(skills != null && skills.size() > 2){
 
                     int spinnerThreePosition = mLanguageDataAdapterThree.getPosition(skills.get(2).getLanguage());
                     mSpinnerLanguageThree.setSelection(spinnerThreePosition);
                     int levelIndex = getLevelIndex(skills.get(2).getLevel());
-                    Log.d("Chloe", "level" +levelIndex);
                     ((RadioButton) mLanguageRadioGroupThree.getChildAt(levelIndex)).setChecked(true);
                     mLanguageRadioGroupThree.getChildAt(levelIndex).jumpDrawablesToCurrentState();
                 }
@@ -285,33 +272,27 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         String selectedLanguageOne = mSpinnerLanguageOne.getSelectedItem().toString();
         String selectedLanguageTwo = mSpinnerLanguageTwo.getSelectedItem().toString();
         String selectedLanguageThree = mSpinnerLanguageThree.getSelectedItem().toString();
-        mSelectedProficiencyLanguageOne = (RadioButton) getView().findViewById(selectedLevelLan1Id);
-        mSelectedProficiencyLanguageTwo = (RadioButton) getView().findViewById(selectedLevelLan2Id);
-        mSelectedProficiencyLanguageThree = (RadioButton) getView().findViewById(selectedLevelLan3Id);
-//        Log.d("Chloe", "selectedLevelLan1Id: " + mSelectedProficiencyLanguageOne);
-//        Log.d("Chloe", "selectedLeve2Lan1Id: " + mSelectedProficiencyLanguageTwo);
-//        Log.d("Chloe", "selectedLeve3Lan1Id: " + mSelectedProficiencyLanguageThree);
-//        Log.d("Chloe", "selected Language1: " + selectedLanguageOne);
-//        Log.d("Chloe", "selected Language2: " + selectedLanguageTwo);
-//        Log.d("Chloe", "selected Language3: " + selectedLanguageThree);
+        RadioButton selectedProficiencyLanguageOne = (RadioButton) getView().findViewById(selectedLevelLan1Id);
+        RadioButton selectedProficiencyLanguageTwo = (RadioButton) getView().findViewById(selectedLevelLan2Id);
+        RadioButton selectedProficiencyLanguageThree = (RadioButton) getView().findViewById(selectedLevelLan3Id);
         if(selectedLanguageOne != null){
             skills.add(new LanguageSkill(
                     selectedLanguageOne,
-                    mSelectedProficiencyLanguageOne.getText().toString()
+                    selectedProficiencyLanguageOne.getText().toString()
             ));
 
         }
         if(!selectedLanguageTwo.equals("None")){
             skills.add(new LanguageSkill(
                     selectedLanguageTwo,
-                    mSelectedProficiencyLanguageTwo.getText().toString()
+                    selectedProficiencyLanguageTwo.getText().toString()
             ));
 
         }
         if(!selectedLanguageThree.equals("None")){
             skills.add(new LanguageSkill(
                     selectedLanguageThree,
-                    mSelectedProficiencyLanguageThree.getText().toString()
+                    selectedProficiencyLanguageThree.getText().toString()
             ));
         }
     return skills;

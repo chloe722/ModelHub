@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -29,9 +28,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     private HomeContract.Presenter mPresenter;
     private HomeAdapter mHomeAdapter;
-    private int mPaging = -1;
-    private  boolean isNotLoading = true;
-    private ProgressBar progressBar;
 
 
     @Override
@@ -81,7 +77,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.start();
     }
@@ -103,7 +99,9 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
     @Override
     public void showJobsDetailUi(Jobs job) {
-        ((ModelHubActivity)getActivity()).transToJobDetails(job);
+        if (getActivity() != null) {
+            ((ModelHubActivity)getActivity()).transToJobDetails(job);
+        }
     }
 
     @Override

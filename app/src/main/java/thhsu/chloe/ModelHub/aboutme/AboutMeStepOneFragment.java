@@ -36,7 +36,8 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
     private OnStepOneListener mOnStepOneListener;
     private EditText mEditTextName, mEditTextEmail, mEditTextPhone, mEditTextHeight, mEditTextAge, mEditTextWeight,
             mEditTextNationality, mEditTextLocationCountry, mEditTextLocationCity;
-    private TextInputLayout mTextInputLayoutName, mTextInputLayoutEmail, mTextInputLayoutPhone;
+    private TextInputLayout mTextInputLayoutName;
+    private TextInputLayout mTextInputLayoutPhone;
     private String mUserName, mUserPhone, mUserHeight, mUserWeight, mUserLocationCountry, mUserLocationCity, mUserNationality,
             mUserLocation, mUserEmail, mUserToken, mUserAge;
     private SharedPreferences mSharedPreferences;
@@ -67,7 +68,7 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
         mEditTextNationality = view.findViewById(R.id.editText_stepperone_nationality);
         mEditTextLocationCountry = view.findViewById(R.id.editText_stepperone_country);
         mTextInputLayoutName = view.findViewById(R.id.textinputLayout_stepperone_name);
-        mTextInputLayoutEmail = view.findViewById(R.id.textinputLayout_stepperone_email);
+//        TextInputLayout textInputLayoutEmail = view.findViewById(R.id.textinputLayout_stepperone_email);
         mTextInputLayoutPhone = view.findViewById(R.id.textinputLayout_stepperone_phone);
 
         areFieldsEdible();
@@ -167,12 +168,12 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     mUserLocationCountry = mEditTextLocationCountry.getText().toString();
 //                    mUserLocation = mUserLocationCity +  + mUserLocationCountry;
 //                    bundle.putString("locationCityCountry", mUserLocation);
-                    bundle.putString("phone", mUserPhone);
-                    bundle.putString("userHeight", mUserHeight);
-                    bundle.putString("userWeight", mUserWeight);
-                    bundle.putString("userNationality", mUserNationality);
-                    bundle.putString("locationCountry", mUserLocationCountry);
-                    bundle.putString("locationCity", mUserLocationCity);
+//                    bundle.putString("phone", mUserPhone);
+//                    bundle.putString("userHeight", mUserHeight);
+//                    bundle.putString("userWeight", mUserWeight);
+//                    bundle.putString("userNationality", mUserNationality);
+//                    bundle.putString("locationCountry", mUserLocationCountry);
+//                    bundle.putString("locationCity", mUserLocationCity);
 
                     request.token = mUserToken;
                     request.user.setAge(mUserAge);
@@ -187,10 +188,10 @@ public class AboutMeStepOneFragment extends Fragment implements View.OnClickList
                     ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
                                 @Override
                                 public void onComplete() {
-                                    Intent userInfo = new Intent();
-                                    userInfo.putExtras(bundle);
-                                    getActivity().setResult(Constants.RESULT_SUCCESS, userInfo);
-                                    Log.d("Chloe", "profile info bundle: " + userInfo);
+//                                    Intent userInfo = new Intent();
+//                                    userInfo.putExtras(bundle);
+//                                    getActivity().setResult(Constants.RESULT_SUCCESS, userInfo);
+//                                    Log.d("Chloe", "profile info bundle: " + userInfo);
                                     Log.d("Chloe",  " phone num: " + mUserPhone + " jobtitle: " +
                                             mUserHeight + " locationCountry: " + mUserLocationCountry + "locationcity" + mUserLocationCity);
                                 }

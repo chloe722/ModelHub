@@ -95,7 +95,8 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         Intent intent = new Intent(ModelHubActivity.this, AboutMeActivity.class);
-                        startActivityForResult(intent, Constants.USER_INFO_REQUEST);
+//                        startActivityForResult(intent, Constants.USER_INFO_REQUEST);
+                        startActivity(intent);
                         return false;
                     }
                 });

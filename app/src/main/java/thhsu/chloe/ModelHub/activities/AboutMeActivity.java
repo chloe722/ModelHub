@@ -1,5 +1,6 @@
 package thhsu.chloe.ModelHub.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -71,7 +72,6 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
         if (fragment instanceof AboutMeStepThreeFragment) {
             Toast.makeText(this, "Sweet! You've completed the profile! ", Toast.LENGTH_SHORT).show();
             clearUserData();
-            setResult(Constants.RESULT_SUCCESS);
             finish();
         }
     }
@@ -79,12 +79,11 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     public void clearUserData() {
         sharedPreferences.edit()
                 .remove(Constants.USER_PHONE)
-                .remove(Constants.USER_LOCATION_COUNTRY)
-                .remove(Constants.USER_LOCATION_CITY)
-                .remove(Constants.USER_HEIGHT)
-                .remove(Constants.USER_NATIONALITY)
                 .remove(Constants.USER_HEIGHT)
                 .remove(Constants.USER_WEIGHT)
+                .remove(Constants.USER_NATIONALITY)
+                .remove(Constants.USER_LOCATION_CITY)
+                .remove(Constants.USER_LOCATION_COUNTRY)
                 .remove(Constants.USER_LANGUAGE_LEVEL_ONE)
                 .remove(Constants.USER_LANGUAGE_LEVEL_TWO)
                 .remove(Constants.USER_LANGUAGE_LEVEL_THREE)

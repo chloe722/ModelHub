@@ -1,5 +1,6 @@
 package thhsu.chloe.ModelHub.api;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,8 +32,6 @@ import thhsu.chloe.ModelHub.api.model.UserInfo;
  */
 
 public class ApiJobManager {
-    SignInActivity mSignActivity;
-    ModelHubActivity mModelHubActivity;
     private static final ApiJobManager ourInstance = new ApiJobManager();
 
     public static ApiJobManager getInstance(){return ourInstance;}
@@ -157,7 +156,7 @@ public class ApiJobManager {
         Call<PostUserInfoResult> call = ApiManager.getInstance().apiCasesService.getPostUserInfoResult(updateUserRequest);
         call.enqueue(new Callback<PostUserInfoResult>() {
             @Override
-            public void onResponse(Call<PostUserInfoResult> call, Response<PostUserInfoResult> response) {
+            public void onResponse(@NonNull Call<PostUserInfoResult> call, @NonNull Response<PostUserInfoResult> response) {
                 response.body();
                 if(response.body().getOk()){
                     postUserInfoCallBack.onComplete();

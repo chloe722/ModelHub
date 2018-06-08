@@ -111,11 +111,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
             super(itemView);
 
             mTextViewHomeJobPay = (TextView) itemView.findViewById(R.id.textview_home_job_pay);
+            mTextViewHomeJobWhom = (TextView) itemView.findViewById(R.id.textview_home_job_whom);
             mTextViewHomeJobTitle = (TextView) itemView.findViewById(R.id.textview_home_job_title);
             mTextViewHomeJobLocation = (TextView) itemView.findViewById(R.id.textview_home_job_location);
-            mTextViewHomeJobWhom = (TextView) itemView.findViewById(R.id.textview_home_job_whom);
-            mImageViewHomeJobCompanyLogo = (ImageView) itemView.findViewById(R.id.imageview_home_job_company_logo);
             mImageBtnInterestIcn = (ImageButton) itemView.findViewById(R.id.imagebtn_home_job_interest);
+            mImageViewHomeJobCompanyLogo = (ImageView) itemView.findViewById(R.id.imageview_home_job_company_logo);
 
             mImageBtnInterestIcn.setOnClickListener(this);
             ((CardView) itemView.findViewById(R.id.cardView_main_case_item)).setOnClickListener(this);

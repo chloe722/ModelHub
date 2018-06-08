@@ -70,6 +70,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             mUserLocationCity, mUserLocation, mUserWeight, mUserNationality, mCurrentPhotoPath;
     private BottomSheetDialog mBottomSheetDialog;
     private SharedPreferences mSharedPreferences;
+    private ProfileInfoPresenter mProfileInfoPresenter;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -96,7 +97,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
         ViewPager viewPager = (ViewPager) root.findViewById(R.id.viewpager_profile);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        ProfileInfoFragment profileInfoFragment = new ProfileInfoFragment();
+        mProfileInfoPresenter = new ProfileInfoPresenter(profileInfoFragment);
+        viewPagerAdapter.addFragement(profileInfoFragment);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -130,7 +134,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
                     mUserLocationCity = mUser.getCity();
                     mUserNationality = mUser.getNationality();
                     mUserLocationCountry = mUser.getCountry();
-                    mUserLocation = (mUserLocationCity != null ? mUserLocationCity + "," : "") +
+                    mUserLocation = (mUserLocationCity != null ? mUserLocationCity + " , " : "") +
                             (mUserLocationCountry != null ? mUserLocationCountry : "");
 
                     mTextViewUserName.setText(mUserName);
@@ -258,6 +262,46 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 //        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Image", null);
 //        return Uri.parse(path);
 //    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("Chloe", "onResume in profile fragment");
+        ApiJobManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
+            @Override
+            public void onCompleted(User user) {
+                mUser = user;
+                mUserName = mUser.getName();
+                mUserHeight = mUser.getHeight();
+                mUserWeight = mUser.getWeight();
+                mUserLocationCity = mUser.getCity();
+                mUserNationality = mUser.getNationality();
+                mUserLocationCountry = mUser.getCountry();
+                mUserLocation = (mUserLocationCity != null ? mUserLocationCity + " , " : "") +
+                        (mUserLocationCountry != null ? mUserLocationCountry : "");
+
+                mTextViewUserName.setText(mUserName);
+                mTextViewUserLocation.setText(mUserLocation);
+
+                if(!mTextViewUserHeight.equals("")){
+                    mTextViewUserHeight.setText(mUserHeight);
+                }
+
+                if(!mTextViewUserWeight.equals("")){
+                    mTextViewUserWeight.setText(mUserWeight);
+
+                }
+                mTextViewUserNationality.setText(mUserNationality);
+
+                if( !(mTextViewUserLocation == null || mTextViewUserLocation.equals(""))){
+                    mTextViewUserLocation.setVisibility(View.VISIBLE);}
+            }
+            @Override
+            public void onError(String errorMessage) {
+            }
+        });
+    }
 
     public String getRealPathFromURI(Uri uri){
         final String docId = DocumentsContract.getDocumentId(uri);

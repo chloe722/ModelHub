@@ -38,7 +38,6 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
     @NonNull
     @Override
     public InterestItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        mContext = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_interest_fragment, parent, false);
         return new InterestItemViewHolder(view);
     }
@@ -95,7 +94,6 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
         public void onClick(View v) {
 
             Jobs jobs = mJobs.get(getAdapterPosition());
-            Log.d("Chloe", "adapterPosition: " + getAdapterPosition());
 
             if (v.getId() == R.id.imagebtn_interest_interest_icn) {
                 //setSOLite data here
@@ -105,15 +103,11 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.Intere
                     mPresenter.refreshJobs();
                 } else {
                     mPresenter.updateInterest(jobs, true);
-                    Log.d("Chloe", "is saved: " + ModelHub.getModelHubSQLHelper().getInterest(jobs.getId()));
                     mImageBtnInterestIcn.setImageResource(R.drawable.ic_favorite_black_24dp);
                 }
 
             } else {
-                Log.d("Chloe", "getTitle in saved adapter: " + mJobs.get(getAdapterPosition()).getTitle());
                 mPresenter.openJobDetails(jobs); // setOpenCase here  getAdapterPosition()
-//                mJobs.get(getAdapterPosition()
-                Log.d("Chloe", "GET WHAT: " + mJobs.get(getAdapterPosition()));
             }
         }
 

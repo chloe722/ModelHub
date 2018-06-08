@@ -10,7 +10,8 @@
         android:layout_height="wrap_content">
 
 
-        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/layout_constraint_profile"
@@ -176,27 +177,6 @@
                 app:layout_constraintStart_toStartOf="@+id/imageview_profile_photo"
                 app:layout_constraintTop_toBottomOf="@+id/textview_profile_location" />
 
-            <!--<TextView-->
-            <!--android:id="@+id/profile_user_language_title"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="16dp"-->
-            <!--android:text="Language:"-->
-            <!--android:textStyle="bold"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/profile_user_experience_title"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="20dp"-->
-            <!--android:layout_marginStart="16dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:text="Experience: "-->
-            <!--android:textStyle="bold"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/profile_user_language_text" />-->
-
             <TextView
                 android:id="@+id/textview_profile_weight_text"
                 android:layout_width="wrap_content"
@@ -234,19 +214,6 @@
                 app:layout_constraintStart_toEndOf="@+id/textview_profile_nationality_title"
                 app:layout_constraintTop_toTopOf="@+id/textview_profile_weight_title" />
 
-            <!--<TextView-->
-            <!--android:id="@+id/profile_user_experience_text"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="257dp"-->
-            <!--android:layout_marginEnd="32dp"-->
-            <!--android:layout_marginStart="32dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:text="TextView"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/profile_user_experience_title"-->
-            <!--tools:text="  I am writing this paper according to my own work experience. I started working when I was 13 years old. I worked at a kids clothing store in the mall after school and on the weekends. I started working at an early age because my family needed the money. My mother raised five children on her own by holding two jobs, so we all had to help. I would go to school full time and work part-time. I feel that I know the value of money due to my work experiences. Once I start working, it was really hard to stop or cut back on the income that I was earning. I've always wanted to go back to college to get my degree, but I was not able to because I didn't want to make less money. I tried going to school part-time and working full time, but I was not able to do both. I think that if I had the opportunity to get an education first, I would do so before trying to earn a living, but in my situation, I had to work. On the other hand, I think it was good to have had the experience because it made me more discipline. " />-->
-
             <TextView
                 android:id="@+id/textview_profile_height_text"
                 android:layout_width="wrap_content"
@@ -261,11 +228,12 @@
 
             <TextView
                 android:id="@+id/textview_profile_location"
-                android:layout_width="121dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:drawableLeft="@drawable/ic_location_on_black_24dp"
                 android:drawablePadding="5dp"
+                android:minWidth="100dp"
                 android:text="Taipei, Taiwan"
                 app:layout_constraintEnd_toEndOf="@+id/textview_profile_name"
                 app:layout_constraintStart_toStartOf="@+id/textview_profile_name"

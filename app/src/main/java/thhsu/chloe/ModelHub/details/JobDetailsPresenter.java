@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.jobDetails;
+package thhsu.chloe.ModelHub.details;
 
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;

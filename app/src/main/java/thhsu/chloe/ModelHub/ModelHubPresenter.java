@@ -14,9 +14,11 @@ import java.util.ArrayList;
 
 import thhsu.chloe.ModelHub.home.HomeFragment;
 import thhsu.chloe.ModelHub.home.HomePresenter;
-import thhsu.chloe.ModelHub.jobDetails.JobDetailsFragment;
-import thhsu.chloe.ModelHub.jobDetails.JobDetailsPresenter;
+import thhsu.chloe.ModelHub.details.JobDetailsFragment;
+import thhsu.chloe.ModelHub.details.JobDetailsPresenter;
 import thhsu.chloe.ModelHub.profile.ProfileFragment;
+import thhsu.chloe.ModelHub.profile.ProfileInfoFragment;
+import thhsu.chloe.ModelHub.profile.ProfileInfoPresenter;
 import thhsu.chloe.ModelHub.profile.ProfilePresenter;
 import thhsu.chloe.ModelHub.interest.InterestFragment;
 import thhsu.chloe.ModelHub.interest.InterestPresenter;
@@ -49,12 +51,14 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     private InterestFragment mInterestFragment;
     private SignInTabFragment mSignInTabFragment;
     private JobDetailsFragment mJobDetailsFragment;
+    private ProfileInfoFragment mProfileInfoFragment;
 
     private HomePresenter mHomePresenter;
     private ProfilePresenter mProfilePresenter;
     private InterestPresenter mInterestPresenter;
     private SignInTabPresenter mSignInTabPresenter;
     private JobDetailsPresenter mJobDetailsPresenter;
+    private ProfileInfoPresenter mProfileInfoPresenter;
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
@@ -152,6 +156,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
         if (mProfilePresenter == null) {
             mProfilePresenter = new ProfilePresenter(mProfileFragment, mActivity);
+//            mProfileInfoPresenter = new ProfileInfoPresenter(mProfileInfoFragment);
         }
         mModelHubContractView.showProfileUi();
     }

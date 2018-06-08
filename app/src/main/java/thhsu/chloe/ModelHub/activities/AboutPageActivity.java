@@ -18,9 +18,10 @@ import thhsu.chloe.ModelHub.R;
  */
 
 public class AboutPageActivity extends AppCompatActivity implements AboutPageContract.View, View.OnClickListener {
-    private AboutPageContract.Presenter mPresenter;
     private Toolbar mToolbar;
     private TextView mToolbarTitle;
+    private AboutPageContract.Presenter mPresenter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
