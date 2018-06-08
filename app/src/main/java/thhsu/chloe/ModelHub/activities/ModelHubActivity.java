@@ -1,5 +1,6 @@
 package thhsu.chloe.ModelHub.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import thhsu.chloe.ModelHub.ModelHubContract;
 import thhsu.chloe.ModelHub.ModelHubPresenter;
 import thhsu.chloe.ModelHub.R;
+import thhsu.chloe.ModelHub.profile.ProfileFragment;
 import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.model.Jobs;
 
@@ -95,7 +97,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         Intent intent = new Intent(ModelHubActivity.this, AboutMeActivity.class);
-//                        startActivityForResult(intent, Constants.USER_INFO_REQUEST);
                         startActivity(intent);
                         return false;
                     }
@@ -146,6 +147,20 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
                 mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
             } else {
                 init();
+            }
+        }else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST){
+            if(resultCode == Activity.RESULT_OK){
+                mPresenter.result(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, null);
+            }else {
+                init();
+            }
+        }else if(requestCode == Constants.PICK_IMAGE_REQUEST){
+            if(resultCode ==Activity.RESULT_OK){
+                mPresenter.result(Constants.PICK_IMAGE_REQUEST, Activity.RESULT_OK, data);
+            }
+        } else if(requestCode == Constants.CROP_IMAGE){
+            if(resultCode == Activity.RESULT_OK){
+                mPresenter.result(Constants.CROP_IMAGE, Activity.RESULT_OK, null);
             }
         }
     }

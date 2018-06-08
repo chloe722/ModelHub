@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.profile;
+package thhsu.chloe.ModelHub.profileInfo;
 
 import thhsu.chloe.ModelHub.BasePresenter;
 import thhsu.chloe.ModelHub.BaseView;

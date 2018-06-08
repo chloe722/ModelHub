@@ -1,5 +1,6 @@
 package thhsu.chloe.ModelHub;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -17,8 +18,6 @@ import thhsu.chloe.ModelHub.home.HomePresenter;
 import thhsu.chloe.ModelHub.details.JobDetailsFragment;
 import thhsu.chloe.ModelHub.details.JobDetailsPresenter;
 import thhsu.chloe.ModelHub.profile.ProfileFragment;
-import thhsu.chloe.ModelHub.profile.ProfileInfoFragment;
-import thhsu.chloe.ModelHub.profile.ProfileInfoPresenter;
 import thhsu.chloe.ModelHub.profile.ProfilePresenter;
 import thhsu.chloe.ModelHub.interest.InterestFragment;
 import thhsu.chloe.ModelHub.interest.InterestPresenter;
@@ -51,14 +50,12 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     private InterestFragment mInterestFragment;
     private SignInTabFragment mSignInTabFragment;
     private JobDetailsFragment mJobDetailsFragment;
-    private ProfileInfoFragment mProfileInfoFragment;
 
     private HomePresenter mHomePresenter;
     private ProfilePresenter mProfilePresenter;
     private InterestPresenter mInterestPresenter;
     private SignInTabPresenter mSignInTabPresenter;
     private JobDetailsPresenter mJobDetailsPresenter;
-    private ProfileInfoPresenter mProfileInfoPresenter;
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
@@ -82,12 +79,16 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         if (requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS) {
             Bundle bundle = data.getExtras();
             ArrayList<Jobs> jobs = (ArrayList<Jobs>) bundle.getSerializable("filterResult");  //Convert to Arraylist
-            Log.d("Chloe", "filter bundle: " + jobs.size());
             mHomePresenter.updateJobs(jobs);
+        } else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST && resultCode == Activity.RESULT_OK){
+            mProfilePresenter.result(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, null);
+
+        }else if(requestCode == Constants.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK){
+            mProfilePresenter.result(Constants.PICK_IMAGE_REQUEST, Activity.RESULT_OK, data);
+
+        } else if(requestCode == Constants.CROP_IMAGE && resultCode == Activity.RESULT_OK){
+            mProfilePresenter.result(Constants.CROP_IMAGE, Activity.RESULT_OK, null);
         }
-//        else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST){
-//            mProfileFragment.onActivityResult(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, data);
-//        }
 
     }
 
@@ -156,7 +157,6 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
         if (mProfilePresenter == null) {
             mProfilePresenter = new ProfilePresenter(mProfileFragment, mActivity);
-//            mProfileInfoPresenter = new ProfileInfoPresenter(mProfileInfoFragment);
         }
         mModelHubContractView.showProfileUi();
     }

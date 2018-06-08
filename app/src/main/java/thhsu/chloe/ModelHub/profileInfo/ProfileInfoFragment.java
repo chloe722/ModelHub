@@ -1,7 +1,5 @@
-package thhsu.chloe.ModelHub.profile;
+package thhsu.chloe.ModelHub.profileInfo;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,9 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
-import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.model.LanguageSkill;
 import thhsu.chloe.ModelHub.api.model.User;
 
@@ -23,7 +19,7 @@ import thhsu.chloe.ModelHub.api.model.User;
  * Created by Chloe on 5/31/2018.
  */
 
-public class ProfileInfoFragment extends Fragment implements ProfileInfoContract.View{
+public class ProfileInfoFragment extends Fragment implements ProfileInfoContract.View {
 
     private ProfileInfoContract.Presenter mPresenter;
     private TextView  mTextViewProfileLanguageText, mTextViewProfileExperienceText, mTextViewProfileBioTitle, mTextViewProfileBioText;
@@ -41,9 +37,6 @@ public class ProfileInfoFragment extends Fragment implements ProfileInfoContract
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile_info, container, false);
 
-        SharedPreferences sharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
-        String userToken = sharedPreferences.getString(Constants.USER_TOKEN, "");
-
         mTextViewProfileBioText = (TextView) root.findViewById(R.id.textview_profile_bio_text);
         mTextViewProfileBioTitle = (TextView) root.findViewById(R.id.textview_profile_bio_title);
         mTextViewProfileLanguageText = (TextView) root.findViewById(R.id.textview_profile_language_text);
@@ -57,7 +50,6 @@ public class ProfileInfoFragment extends Fragment implements ProfileInfoContract
     public void onResume() {
         super.onResume();
         mPresenter.showUserMoreInfo();
-
     }
 
 
@@ -68,10 +60,10 @@ public class ProfileInfoFragment extends Fragment implements ProfileInfoContract
 
     @Override
     public void showUserMoreInfoUi(User user) {
-        User uUser = user;
-        String userBio = uUser.getBio();
-        String userExperience = uUser.getExperience();
-        List<LanguageSkill> userLanguage = uUser.getLanguages();
+        String userBio = user.getBio();
+        String userExperience = user.getExperience();
+        List<LanguageSkill> userLanguage;
+        userLanguage = user.getLanguages();
 
         if (userLanguage == null) {
             mTextViewProfileLanguageText.setText("");

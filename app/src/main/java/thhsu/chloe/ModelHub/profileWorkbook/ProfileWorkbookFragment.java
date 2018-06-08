@@ -1,8 +1,5 @@
-package thhsu.chloe.ModelHub.profile;
+package thhsu.chloe.ModelHub.profileWorkbook;
 
-
-
-//import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -21,10 +18,12 @@ import thhsu.chloe.ModelHub.adapters.ProfileWorkbookAdapter;
  * Created by Chloe on 5/31/2018.
  */
 
-public class ProfileWorkbookFragment extends Fragment {
+public class ProfileWorkbookFragment extends Fragment implements ProfileWorkbookContract.View {
+    private ProfileWorkbookContract.Presenter mPresenter;
     ProfileWorkbookAdapter mAdapter;
-    public ProfileWorkbookFragment() {
-    }
+
+    public static ProfileWorkbookFragment newInstance() { return new ProfileWorkbookFragment();}
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,5 +41,10 @@ public class ProfileWorkbookFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
 
         return root;
+    }
+
+    @Override
+    public void setPresenter(ProfileWorkbookContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }
