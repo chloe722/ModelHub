@@ -14,7 +14,6 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class JobDetailsPresenter implements JobDetailsContract.Presenter {
 
     private final JobDetailsContract.View mCaseDetailsView;
-    ModelHubActivity mActivity;
     private Jobs mJob;
     private BottomNavigationView mBottomNavigationView;
 
@@ -24,7 +23,6 @@ public class JobDetailsPresenter implements JobDetailsContract.Presenter {
         if (CaseDetailsView != null){
             mCaseDetailsView.setPresenter(this);
             mJob = job;
-            Log.d("Chloe", "Job details mJob: " + mJob);
             mBottomNavigationView = bottomNavigationView;
         }
     }

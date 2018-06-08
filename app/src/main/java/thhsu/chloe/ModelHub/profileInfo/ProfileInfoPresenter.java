@@ -27,7 +27,6 @@ public class ProfileInfoPresenter implements ProfileInfoContract.Presenter {
     @Override
     public void start() {}
 
-
     @Override
     public void showUserMoreInfo() {
         SharedPreferences sharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);

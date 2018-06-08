@@ -10,7 +10,6 @@ import thhsu.chloe.ModelHub.BaseView;
 public interface ProfileWorkbookContract {
 
     interface View extends BaseView<Presenter> {
-
     }
 
     interface Presenter extends BasePresenter{

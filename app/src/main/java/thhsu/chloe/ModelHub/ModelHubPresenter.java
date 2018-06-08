@@ -179,7 +179,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         transaction.commit();
 
         if (mSignInTabPresenter == null) {
-            mSignInTabPresenter = new SignInTabPresenter(mSignInTabFragment);
+            mSignInTabPresenter = new SignInTabPresenter(mSignInTabFragment, mActivity);
         }
         mModelHubContractView.showSignInTabPageUi();
     }
@@ -189,7 +189,9 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         int currentNavItemId = mBottomNavigationView.getSelectedItemId();
         final FragmentTransaction transaction =
                 mFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right); //smooth animator while switching the fragment
+                        .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_left, R.animator.slide_in_right, R.animator.slide_out_right);
+        //smooth animator while switching the fragment
+
         mJobDetailsFragment = JobDetailsFragment.newInstance();
         if (currentNavItemId == R.id.action_home) {
             if (mHomeFragment != null) {

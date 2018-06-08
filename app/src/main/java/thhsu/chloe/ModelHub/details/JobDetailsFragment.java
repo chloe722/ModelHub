@@ -74,8 +74,6 @@ public class JobDetailsFragment extends Fragment implements JobDetailsContract.V
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_job_details, container,false);
-
-
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerview_job_details);
         recyclerView.setLayoutManager(new LinearLayoutManager(ModelHub.getAppContext()));
         recyclerView.setAdapter(mJobDetailAdapter);

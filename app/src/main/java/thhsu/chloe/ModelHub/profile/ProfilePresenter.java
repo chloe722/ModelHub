@@ -59,12 +59,7 @@ public class ProfilePresenter implements ProfileContract.Presenter{
         } else if (requestCode == Constants.PICK_IMAGE_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 String path = getRealPathFromURI(data.getData());
-                Log.d("Chloe", "path: " + path);
                 File imageFile = new File(path);
-                Log.d("Chloe", "imageFile: " + imageFile);
-                Log.d("Chloe", "imageFile: " + imageFile.getAbsolutePath());
-
-                Log.d("Chloe", "other image uri: " + mImageUri);
                 performCropImageFromGallery(mImageUri, FileProvider.getUriForFile(mActivity, "thhsu.chloe.ModelHub", imageFile));
             }
 

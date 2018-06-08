@@ -1,34 +1,33 @@
 package thhsu.chloe.ModelHub.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+import thhsu.chloe.ModelHub.CoverPageContract;
+import thhsu.chloe.ModelHub.CoverPagePresenter;
 import thhsu.chloe.ModelHub.R;
 
-public class CoverPageActivity extends BaseActivity {
-    private Button mGetStartedBtn;
+public class CoverPageActivity extends BaseActivity implements CoverPageContract.View{
+    private CoverPageContract.Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_cover_page);
-        mGetStartedBtn = (Button) findViewById(R.id.btn_coverpage_getStarted);
+        Button getStartedBtn = (Button) findViewById(R.id.btn_coverpage_getStarted);
+        mPresenter = new CoverPagePresenter(this);
 
-
-
-        mGetStartedBtn.setOnClickListener(new View.OnClickListener() {
+        getStartedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (CoverPageActivity.this, ModelHubActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                mPresenter.transToModelHub();
             }
         });
 
+    }
+
+    @Override
+    public void setPresenter(CoverPageContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 }
