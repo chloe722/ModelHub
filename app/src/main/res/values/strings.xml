@@ -27,7 +27,7 @@
     <string name="save">Save</string>
     <string name="invalidName">invalid Name</string>
     <string name="invalidEmail">invalid Email</string>
-    <string name="invalidPhoneNumber">invalid phone number</string>
+    <string name="invalid_phone_number">invalid phone number</string>
     <string name="invalidUrl">invalid URL</string>
     <string name="later">Later</string>
     <string name="ok">I got it</string>

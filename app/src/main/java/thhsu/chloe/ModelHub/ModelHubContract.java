@@ -20,8 +20,6 @@ public interface ModelHubContract {
 
         void showSignInTabPageUi();
 
-        void showFilterPageUi();
-
         void showJobDetailsUi();
 
         void refreshInterestItemUi();
@@ -43,8 +41,6 @@ public interface ModelHubContract {
         void transToJobDetails(Jobs jobs);
 
         void refreshInterestItem();
-
-//        void transToFilter();
 
 
     }

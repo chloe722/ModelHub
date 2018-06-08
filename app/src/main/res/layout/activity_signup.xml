@@ -9,7 +9,7 @@
 
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/signup_textinputlayout_name"
+        android:id="@+id/textinputLayout_signup_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
@@ -20,7 +20,7 @@
         <!--app:layout_constraintTop_toBottomOf="@+id/sign_in_jeeva_logo"-->
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/signup_textinput_name"
+            android:id="@+id/editText_signup_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_person_pink_24dp"
@@ -42,7 +42,7 @@
         android:text="Gender: "
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_name" />
+        app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_name" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/signup_gender_radiobtn_constraint"
@@ -52,10 +52,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/signup_gender_title"
-        app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_name">
+        app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_name">
 
         <RadioGroup
-            android:id="@+id/signup_gender_radio_button_group"
+            android:id="@+id/radiogroup_signup_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -81,7 +81,7 @@
                 android:textColor="@color/textcolor"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/signup_gender_title"
-                app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_name" />
+                app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_name" />
 
             <RadioButton
                 android:id="@+id/signup_gender_female_radiobtn"
@@ -95,7 +95,7 @@
                 android:textColor="@color/textcolor"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/signup_gender_male_radiobtn"
-                app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_name" />
+                app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_name" />
 
             <RadioButton
                 android:id="@+id/signup_gender_other_radiobtn"
@@ -110,14 +110,14 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/signup_gender_female_radiobtn"
-                app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_name" />
+                app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_name" />
 
         </RadioGroup>
     </android.support.constraint.ConstraintLayout>
 
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/signup_age_textinputlayout"
+        android:id="@+id/textinputLayout_signup_age_"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
@@ -128,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_gender_title">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/signup_age_textinput"
+            android:id="@+id/editText_signup_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_cake_black_24dp"
@@ -142,7 +142,7 @@
 
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/signup_textinputlayout_email"
+        android:id="@+id/textinputLayout_signup__email"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginEnd="60dp"
@@ -150,10 +150,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_age_textinputlayout">
+        app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_age_">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/signup_textinput_email"
+            android:id="@+id/editText_signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_email_black_24dp"
@@ -166,17 +166,17 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/signup_textinputlayout_password"
+        android:id="@+id/textinputLayout_signup_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_email">
+        app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup__email">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/signup_textinput_password"
+            android:id="@+id/editText_signup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
@@ -189,17 +189,17 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/signup_textinputlayout_confirmpassword"
+        android:id="@+id/textinputLayout_signup_confirmpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:layout_marginStart="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_password">
+        app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_password">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/signup_textinput_confirmpassword"
+            android:id="@+id/editText_signup_confirmpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
@@ -211,7 +211,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/signup_createaccount_btn"
+        android:id="@+id/btn_signup_createaccount"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginEnd="60dp"
@@ -224,10 +224,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_textinputlayout_confirmpassword" />
+        app:layout_constraintTop_toBottomOf="@+id/textinputLayout_signup_confirmpassword" />
 
     <Button
-        android:id="@+id/signup_back_btn"
+        android:id="@+id/btn_signup_back"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"

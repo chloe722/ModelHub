@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/about_me_stepper_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/about_me_page_toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/about_me_page_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/about_me_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:minHeight="?attr/actionBarSize">
+
+                <TextView
+                    android:id="@+id/about_me_toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/bungeehairline_regular"
+                    android:text="Edited Profile"
+                    android:textColor="@color/titleforall"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.Toolbar>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/dropshadow" />
+    </LinearLayout>
+
+    <com.badoualy.stepperindicator.StepperIndicator
+        android:id="@+id/layout_stepperIndicater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/about_me_page_toolbar_container"
+        app:stpi_circleColor="@color/active_color"
+        app:stpi_indicatorColor="@color/active_color"
+        app:stpi_lineDoneColor="@color/active_color"
+        app:stpi_showDoneIcon="true"
+        app:stpi_showStepNumberInstead="false"
+        app:stpi_stepCount="3" />
+
+    <thhsu.chloe.ModelHub.aboutme.NonSwipeableViewPager
+        android:id="@+id/nonSwapeable_viewpager_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/layout_stepperIndicater" />
+
+</RelativeLayout>
+

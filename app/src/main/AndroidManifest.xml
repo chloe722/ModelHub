@@ -72,7 +72,7 @@
             android:exported="true" />
 
         <activity
-        android:name="thhsu.chloe.ModelHub.activities.RegisterActivity"
+        android:name="thhsu.chloe.ModelHub.activities.SignUpActivity"
         android:exported="true" />
 
         <!--<activity-->
@@ -80,7 +80,7 @@
             <!--android:exported="true" />-->
 
         <activity
-            android:name="thhsu.chloe.ModelHub.activities.AboutpageActivity"
+            android:name="thhsu.chloe.ModelHub.activities.AboutPageActivity"
             android:exported="true" />
         <activity
             android:name="thhsu.chloe.ModelHub.activities.BaseActivity"

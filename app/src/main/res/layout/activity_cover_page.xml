@@ -28,7 +28,7 @@
 
 
     <Button
-        android:id="@+id/coverpage_getStartedBtn"
+        android:id="@+id/btn_coverpage_getStarted"
         android:layout_width="0dp"
         android:layout_height="47dp"
         android:layout_marginBottom="76dp"

@@ -56,10 +56,10 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stepper_two_lan3_level_radiogroup" />
+                app:layout_constraintTop_toBottomOf="@+id/radiogroup_steppertwo_lan3_level" />
 
             <EditText
-                android:id="@+id/stepper_two_experience_content"
+                android:id="@+id/editText_steppertwo_experience"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
@@ -83,10 +83,10 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stepper_two_experience_content" />
+                app:layout_constraintTop_toBottomOf="@+id/editText_steppertwo_experience" />
 
             <EditText
-                android:id="@+id/stepper_two_bio_content"
+                android:id="@+id/editText_steppertwo_bio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="40dp"
@@ -103,7 +103,7 @@
 
 
             <Spinner
-                android:id="@+id/stepper_two_first_language_spinner"
+                android:id="@+id/spinner_steppertwo_language_first"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_centerHorizontal="true"
@@ -115,7 +115,7 @@
 
 
             <Spinner
-                android:id="@+id/stepper_two_sec_language_spinner"
+                android:id="@+id/stinner_steppertwo_language_second"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_centerHorizontal="true"
@@ -124,7 +124,7 @@
                 app:layout_constraintTop_toTopOf="@+id/stepper_two_sec_language_list" />
 
             <Spinner
-                android:id="@+id/stepper_two_third_language_spinner"
+                android:id="@+id/spinner_steppertwo_language_third"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_centerHorizontal="true"
@@ -150,7 +150,7 @@
                 android:layout_marginTop="8dp"
                 android:text="2."
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stepper_two_lan1_level_radiogroup" />
+                app:layout_constraintTop_toBottomOf="@+id/radiongroup_steppertwo_lan1_level" />
 
             <TextView
                 android:id="@+id/stepper_two_third_language_list"
@@ -160,10 +160,10 @@
                 android:layout_marginTop="8dp"
                 android:text="3."
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stepper_two_lan2_level_radiogroup" />
+                app:layout_constraintTop_toBottomOf="@+id/radiogroup_steppertwo_lan2_level" />
 
             <RadioGroup
-                android:id="@+id/stepper_two_lan1_level_radiogroup"
+                android:id="@+id/radiongroup_steppertwo_lan1_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -211,7 +211,7 @@
             </RadioGroup>
 
             <RadioGroup
-                android:id="@+id/stepper_two_lan2_level_radiogroup"
+                android:id="@+id/radiogroup_steppertwo_lan2_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -256,7 +256,7 @@
             </RadioGroup>
 
             <RadioGroup
-                android:id="@+id/stepper_two_lan3_level_radiogroup"
+                android:id="@+id/radiogroup_steppertwo_lan3_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"

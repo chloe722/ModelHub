@@ -209,6 +209,7 @@ public class ModelHubSQLHelper extends SQLiteOpenHelper{
             job.setJobCompensation(mCursor.getString(mCursor.getColumnIndex(JOB_COMPENSATION)));
             job.setTravelExpensesContent(mCursor.getString(mCursor.getColumnIndex(JOB_TRAVEL_EXPENSES_CONTENT)));
             job.setContactName(mCursor.getString(mCursor.getColumnIndex(JOB_CONTACT_NAME)));
+            job.setImage(mCursor.getString(mCursor.getColumnIndex(JOB_IMAGE)));
             job.setSaved((mCursor.getInt(mCursor.getColumnIndex(JOB_SAVED)) == 1)? true: false);
             jobs.add(job);
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,307 +10,258 @@
         android:layout_height="wrap_content">
 
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f9f7f7">
-
-
-    <ImageView
-        android:id="@+id/profile_user_photo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="110dp"
-        android:forceHasOverlappingRendering="false"
-        android:scaleType="fitCenter"
-        android:translationZ="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_cover_image"
-        app:srcCompat="@drawable/all_placeholder_avatar" />
-
-
-    <TextView
-        android:id="@+id/profile_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/textcolor"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/profile_user_photo"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_photo"
-        tools:text="Emily Wang" />
-
-    <!--<TextView-->
-    <!--android:visibility="gone"-->
-    <!--android:id="@+id/profile_user_email"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="15dp"-->
-    <!--android:textAlignment="center"-->
-    <!--android:textSize="14sp"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--tools:layout_editor_absoluteY="72dp"-->
-    <!--tools:text="emilyWang23@gmail.com" />-->
-
-    <!--app:layout_constraintTop_toBottomOf="@+id/profile_user_email"-->
-
-    <Button
-        android:id="@+id/profile_camera_btn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/ic_add_circle_black_24dp"
-        android:text="@null"
-        app:layout_constraintBottom_toTopOf="@+id/profile_user_name"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_photo" />
-
-    <LinearLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_nationality_text">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/profile_fragment_tablayout"
+        <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/layout_constraint_profile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#f9f7f7">
 
-            >
 
-            <android.support.design.widget.TabItem
+            <ImageView
+                android:id="@+id/imageview_profile_photo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="110dp"
+                android:forceHasOverlappingRendering="false"
+                android:scaleType="fitCenter"
+                android:translationZ="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.482"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageview_profile_cover_image"
+                app:srcCompat="@drawable/all_placeholder_avatar" />
+
+
+            <TextView
+                android:id="@+id/textview_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Info" />
+                android:textColor="@color/textcolor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageview_profile_photo"
+                app:layout_constraintStart_toStartOf="@+id/imageview_profile_photo"
+                app:layout_constraintTop_toBottomOf="@+id/imageview_profile_photo"
+                tools:text="Emily Wang" />
+
+            <Button
+                android:id="@+id/btn_profile_camera"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/ic_add_circle_black_24dp"
+                android:text="@null"
+                app:layout_constraintBottom_toTopOf="@+id/textview_profile_name"
+                app:layout_constraintStart_toStartOf="@+id/imageview_profile_photo"
+                app:layout_constraintTop_toTopOf="@+id/imageview_profile_photo" />
+
+            <LinearLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_profile_nationality_text">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/profile_fragment_tablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Info" />
 
 
-            <android.support.design.widget.TabItem
+                    <android.support.design.widget.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gallery" />
+
+                </android.support.design.widget.TabLayout>
+
+            </LinearLayout>
+
+            <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="1.0"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/relativeLayout">-->
+
+            <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/profile_viewpager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#000000"-->
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+
+
+            <!--</FrameLayout>-->
+
+            <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/profile_viewpager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#000000"-->
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="1.0"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/relativeLayout"-->
+            <!--app:layout_constraintVertical_bias="0.0" />-->
+
+
+            <TextView
+                android:id="@+id/textview_profile_height_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gallery" />
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="60dp"
+                android:text="Height "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/imageview_profile_photo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textview_profile_nationality_title" />
 
-        </android.support.design.widget.TabLayout>
+            <TextView
+                android:id="@+id/textview_profile_weight_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="32dp"
+                android:text="Weight "
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageview_profile_photo"
+                app:layout_constraintTop_toTopOf="@+id/textview_profile_nationality_title" />
 
-    </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="25dp"
+                android:background="@color/textcolor"
+                app:layout_constraintBottom_toBottomOf="@id/textview_profile_height_text"
+                app:layout_constraintEnd_toStartOf="@+id/textview_profile_nationality_title"
+                app:layout_constraintStart_toEndOf="@+id/textview_profile_height_title"
+                app:layout_constraintTop_toTopOf="@+id/textview_profile_height_title" />
 
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintHorizontal_bias="1.0"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/relativeLayout">-->
+            <TextView
+                android:id="@+id/textview_profile_nationality_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Nationality "
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageview_profile_photo"
+                app:layout_constraintStart_toStartOf="@+id/imageview_profile_photo"
+                app:layout_constraintTop_toBottomOf="@+id/textview_profile_location" />
 
-    <!--<android.support.v4.view.ViewPager-->
-    <!--android:id="@+id/profile_viewpager"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="#000000"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+            <TextView
+                android:id="@+id/textview_profile_weight_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="80kg"
+                app:layout_constraintEnd_toEndOf="@+id/textview_profile_weight_title"
+                app:layout_constraintHorizontal_bias="0.571"
+                app:layout_constraintStart_toStartOf="@+id/textview_profile_weight_title"
+                app:layout_constraintTop_toBottomOf="@+id/textview_profile_weight_title" />
 
+            <TextView
+                android:id="@+id/textview_profile_nationality_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="Germany"
+                app:layout_constraintEnd_toEndOf="@+id/textview_profile_nationality_title"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textview_profile_nationality_title"
+                app:layout_constraintTop_toBottomOf="@+id/textview_profile_nationality_title" />
 
-    <!--</FrameLayout>-->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginStart="15dp"
+                android:background="@color/textcolor"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_profile_weight_text"
+                app:layout_constraintEnd_toStartOf="@+id/textview_profile_weight_title"
+                app:layout_constraintStart_toEndOf="@+id/textview_profile_nationality_title"
+                app:layout_constraintTop_toTopOf="@+id/textview_profile_weight_title" />
 
-    <!--<android.support.v4.view.ViewPager-->
-    <!--android:id="@+id/profile_viewpager"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="#000000"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintHorizontal_bias="1.0"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/relativeLayout"-->
-    <!--app:layout_constraintVertical_bias="0.0" />-->
+            <TextView
+                android:id="@+id/textview_profile_height_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="185cm"
+                app:layout_constraintEnd_toEndOf="@+id/textview_profile_height_title"
+                app:layout_constraintStart_toStartOf="@+id/textview_profile_height_title"
+                app:layout_constraintTop_toBottomOf="@+id/textview_profile_height_title" />
 
-
-    <TextView
-        android:id="@+id/profile_user_height_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="60dp"
-        android:text="Height "
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/profile_user_photo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_nationality_title" />
-
-    <TextView
-        android:id="@+id/profile_user_weight_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginStart="32dp"
-        android:text="Weight "
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profile_user_photo"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_nationality_title" />
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginStart="25dp"
-        android:background="@color/textcolor"
-        app:layout_constraintBottom_toBottomOf="@id/profile_user_height_text"
-        app:layout_constraintEnd_toStartOf="@+id/profile_user_nationality_title"
-        app:layout_constraintStart_toEndOf="@+id/profile_user_height_title"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_height_title" />
-
-    <TextView
-        android:id="@+id/profile_user_nationality_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Nationality "
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/profile_user_photo"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_photo"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_location" />
-
-    <!--<TextView-->
-    <!--android:id="@+id/profile_user_language_title"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginStart="16dp"-->
-    <!--android:text="Language:"-->
-    <!--android:textStyle="bold"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/imageview_hr_line" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/profile_user_experience_title"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="20dp"-->
-    <!--android:layout_marginStart="16dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:text="Experience: "-->
-    <!--android:textStyle="bold"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/profile_user_language_text" />-->
-
-    <TextView
-        android:id="@+id/profile_user_weight_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="80kg"
-        app:layout_constraintEnd_toEndOf="@+id/profile_user_weight_title"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_weight_title"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_weight_title" />
-
-    <TextView
-        android:id="@+id/profile_user_nationality_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Germany"
-        app:layout_constraintEnd_toEndOf="@+id/profile_user_nationality_title"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_nationality_title"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_nationality_title" />
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginStart="15dp"
-        android:background="@color/textcolor"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_user_weight_text"
-        app:layout_constraintEnd_toStartOf="@+id/profile_user_weight_title"
-        app:layout_constraintStart_toEndOf="@+id/profile_user_nationality_title"
-        app:layout_constraintTop_toTopOf="@+id/profile_user_weight_title" />
-
-    <!--<TextView-->
-    <!--android:id="@+id/profile_user_experience_text"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="257dp"-->
-    <!--android:layout_marginEnd="32dp"-->
-    <!--android:layout_marginStart="32dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:text="TextView"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/profile_user_experience_title"-->
-    <!--tools:text="  I am writing this paper according to my own work experience. I started working when I was 13 years old. I worked at a kids clothing store in the mall after school and on the weekends. I started working at an early age because my family needed the money. My mother raised five children on her own by holding two jobs, so we all had to help. I would go to school full time and work part-time. I feel that I know the value of money due to my work experiences. Once I start working, it was really hard to stop or cut back on the income that I was earning. I've always wanted to go back to college to get my degree, but I was not able to because I didn't want to make less money. I tried going to school part-time and working full time, but I was not able to do both. I think that if I had the opportunity to get an education first, I would do so before trying to earn a living, but in my situation, I had to work. On the other hand, I think it was good to have had the experience because it made me more discipline. " />-->
-
-    <TextView
-        android:id="@+id/profile_user_height_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="185cm"
-        app:layout_constraintEnd_toEndOf="@+id/profile_user_height_title"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_height_title"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_height_title" />
-
-    <TextView
-        android:id="@+id/profile_user_location"
-        android:layout_width="121dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/ic_location_on_black_24dp"
-        android:drawablePadding="5dp"
-        android:text="Taipei, Taiwan"
-        app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
-        app:layout_constraintStart_toStartOf="@+id/profile_user_name"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_name" />
+            <TextView
+                android:id="@+id/textview_profile_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableLeft="@drawable/ic_location_on_black_24dp"
+                android:drawablePadding="5dp"
+                android:minWidth="100dp"
+                android:text="Taipei, Taiwan"
+                app:layout_constraintEnd_toEndOf="@+id/textview_profile_name"
+                app:layout_constraintStart_toStartOf="@+id/textview_profile_name"
+                app:layout_constraintTop_toBottomOf="@+id/textview_profile_name" />
 
 
-    <ImageView
-        android:id="@+id/profile_user_cover_image"
-        android:layout_width="0dp"
-        android:layout_height="180dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/checkbox_selector" />
+            <ImageView
+                android:id="@+id/imageview_profile_cover_image"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/checkbox_selector" />
 
-</android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="parent"
+            android:layout_below="@+id/layout_constraint_profile"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_below="@+id/constraint1">
+            app:layout_constraintTop_toBottomOf="parent">
 
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/profile_viewpager"
+                android:id="@+id/viewpager_profile"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />

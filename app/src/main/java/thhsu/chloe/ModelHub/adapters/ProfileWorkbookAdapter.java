@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import thhsu.chloe.ModelHub.R;
 
 /**
@@ -18,7 +16,7 @@ public class ProfileWorkbookAdapter extends RecyclerView.Adapter<ProfileWorkbook
     @Override
     public ProfileWorkbookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.profile_workbook_item, parent, false);
+                .inflate(R.layout.item_profile_workbook, parent, false);
         return new ProfileWorkbookViewHolder(view);
     }
 
@@ -33,11 +31,9 @@ public class ProfileWorkbookAdapter extends RecyclerView.Adapter<ProfileWorkbook
         return 1;
     }
 
-    public class ProfileWorkbookViewHolder extends RecyclerView.ViewHolder{
-        private TextView mComingSoonText;
-        public ProfileWorkbookViewHolder(View itemView) {
+    class ProfileWorkbookViewHolder extends RecyclerView.ViewHolder{
+        ProfileWorkbookViewHolder(View itemView) {
             super(itemView);
-            mComingSoonText = (TextView) itemView.findViewById(R.id.comingsoon_text);
         }
     }
 }

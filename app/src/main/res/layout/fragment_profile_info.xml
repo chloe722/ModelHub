@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.v7.widget.RecyclerView-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--android:id="@+id/profileinfo_recyclerview"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--&gt;-->
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/profile_user_language_title"
+        android:id="@+id/textview_profile_language_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -26,21 +18,21 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_bio_text" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_profile_bio_text" />
 
     <TextView
-        android:id="@+id/profile_user_language_text"
+        android:id="@+id/textview_profile_language_text"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_language_title"
+        app:layout_constraintTop_toBottomOf="@+id/textview_profile_language_title"
         tools:text="English" />
 
     <TextView
-        android:id="@+id/profile_user_experience_title"
+        android:id="@+id/textview_profile_experience_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -49,10 +41,10 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_language_text" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_profile_language_text" />
 
     <TextView
-        android:id="@+id/profile_user_experience_text"
+        android:id="@+id/textview_profile_experience_text"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
@@ -64,11 +56,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_experience_title"
+        app:layout_constraintTop_toBottomOf="@+id/textview_profile_experience_title"
         tools:text="with our facts, share our values, accept our argument and conclusions, and adopt our way of thinking. Elements toward building a good persuasive essay include * establishing facts to support an argument * clarifying relevant values for your audience (perspective) * prioritizing, editing, and/or sequencing the facts and values in importance to build the argument * forming and stating conclusions *For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects For a long time I held off from starting my own side projects because of how much I didn’t know how to do.For a long time I held off from starting my own side projects because of how much I didn’t know how to do.because of how much I didn’t know how to do. " />
 
     <TextView
-        android:id="@+id/profile_user_bio_title"
+        android:id="@+id/textview_profile_bio_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -80,15 +72,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/profile_user_bio_text"
+        android:id="@+id/textview_profile_bio_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user_bio_title"
+        app:layout_constraintTop_toBottomOf="@+id/textview_profile_bio_title"
         tools:text="bio testing" />
 
 </android.support.constraint.ConstraintLayout>
-<!--</android.support.v7.widget.RecyclerView>-->

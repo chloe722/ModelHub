@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:iconTint="@color/titleforall">
     <item
-        android:id="@+id/more_menu_about_item"
+        android:id="@+id/menu_more_about_item"
         android:title="About"
         android:iconTint="@color/titleforall"/>
 

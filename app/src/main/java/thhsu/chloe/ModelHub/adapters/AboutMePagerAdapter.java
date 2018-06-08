@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import thhsu.chloe.ModelHub.Aboutme.AboutMeStepOneFragment;
-import thhsu.chloe.ModelHub.Aboutme.AboutMeStepThreeFragment;
-import thhsu.chloe.ModelHub.Aboutme.AboutMeStepTwoFragment;
+import thhsu.chloe.ModelHub.aboutme.AboutMeStepOneFragment;
+import thhsu.chloe.ModelHub.aboutme.AboutMeStepThreeFragment;
+import thhsu.chloe.ModelHub.aboutme.AboutMeStepTwoFragment;
 
 /**
  * Created by Chloe on 5/5/2018.

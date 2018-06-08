@@ -4,11 +4,11 @@ import android.support.annotation.Nullable;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import thhsu.chloe.ModelHub.Profile.ProfileInfoFragment;
-import thhsu.chloe.ModelHub.Profile.ProfileWorkbookFragment;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Chloe on 5/31/2018.
@@ -16,40 +16,42 @@ import thhsu.chloe.ModelHub.Profile.ProfileWorkbookFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
+    private final List<Fragment> mFragmentList = new ArrayList<>();
+
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-
-        Fragment fragment = null;
-
-        if(position == 0){
-            fragment = new ProfileInfoFragment();
-        }else if(position == 1){
-            fragment = new ProfileWorkbookFragment();
-        }
-
-        return fragment;
+        return mFragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return mFragmentList.size();
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
         String title = "";
-        if(position == 0 ){
-            title = "Info";
-        }else if(position == 1){
-            title = "WorkBook";
+        switch (position){
+
+            case 0:
+                title = "Info";
+                break;
+
+            case 1:
+                title = "WorkBook";
+                break;
         }
 
-        return title; //super.getPageTitle(position)
+        return title;
 
+    }
+
+    public void addFragment(Fragment fragment){
+        mFragmentList.add(fragment);
     }
 }

@@ -20,7 +20,7 @@
 //    @Override
 //    public ProfileInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 //        View view = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.profile_info_item, parent, false);
+//                .inflate(R.layout.item_profile_info, parent, false);
 //        return new ProfileInfoViewHolder(view);
 //    }
 //
