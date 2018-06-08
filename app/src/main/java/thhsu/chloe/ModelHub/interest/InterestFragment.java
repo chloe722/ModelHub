@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,6 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
  */
 
 public class InterestFragment extends Fragment implements InterestContract.View {
-
 
    private InterestContract.Presenter mPresenter;
    private InterestAdapter mInterestAdapter;
@@ -97,6 +95,5 @@ public class InterestFragment extends Fragment implements InterestContract.View 
             ((ModelHubActivity) getActivity()).transToJobDetails(job);
         }
     }
-
 
 }
