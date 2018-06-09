@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.aboutPage;
+package thhsu.chloe.ModelHub.aboutpage;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,14 +15,14 @@ import thhsu.chloe.ModelHub.activities.AboutPageActivity;
  * Created by Chloe on 5/15/2018.
  */
 
-public class AboutPrivacyPolicyFragment extends Fragment {
+public class AboutModelHubFragment extends Fragment {
 
-    public static AboutPrivacyPolicyFragment newInstance () { return new AboutPrivacyPolicyFragment();}
+    public static AboutModelHubFragment newInstance () { return new AboutModelHubFragment();}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_aboutpage_privacy_policy, container, false);
+        return inflater.inflate(R.layout.fragment_aboutpage_about_modelhub, container, false);
     }
 
     @Override

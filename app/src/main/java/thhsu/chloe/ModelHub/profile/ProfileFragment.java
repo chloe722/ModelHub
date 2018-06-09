@@ -28,12 +28,12 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 import thhsu.chloe.ModelHub.R;
+import thhsu.chloe.ModelHub.adapters.ProfileViewPagerAdapter;
 import thhsu.chloe.ModelHub.profileInfo.ProfileInfoFragment;
 import thhsu.chloe.ModelHub.profileInfo.ProfileInfoPresenter;
 import thhsu.chloe.ModelHub.profileWorkbook.ProfileWorkbookFragment;
 import thhsu.chloe.ModelHub.profileWorkbook.ProfileWorkbookPresenter;
 import thhsu.chloe.ModelHub.utils.CircleTransform;
-import thhsu.chloe.ModelHub.adapters.ViewPagerAdapter;
 import thhsu.chloe.ModelHub.api.model.User;
 
 /**
@@ -71,14 +71,14 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
         ViewPager viewPager = (ViewPager) root.findViewById(R.id.viewpager_profile);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        ProfileViewPagerAdapter mProfileViewPagerAdapter = new ProfileViewPagerAdapter(getChildFragmentManager());
         ProfileInfoFragment profileInfoFragment = new ProfileInfoFragment();
         ProfileWorkbookFragment profileWorkbookFragment = new ProfileWorkbookFragment();
         ProfileInfoPresenter profileInfoPresenter = new ProfileInfoPresenter(profileInfoFragment);
         ProfileWorkbookPresenter profileWorkbookPresenter = new ProfileWorkbookPresenter(profileWorkbookFragment);
-        viewPagerAdapter.addFragment(profileInfoFragment);
-        viewPagerAdapter.addFragment(profileWorkbookFragment);
-        viewPager.setAdapter(viewPagerAdapter);
+        mProfileViewPagerAdapter.addFragment(profileInfoFragment);
+        mProfileViewPagerAdapter.addFragment(profileWorkbookFragment);
+        viewPager.setAdapter(mProfileViewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
         View sheetView = getActivity().

@@ -52,7 +52,7 @@
 //import thhsu.chloe.ModelHub.R;
 //import thhsu.chloe.ModelHub.Utils.CircleTransform;
 //import thhsu.chloe.ModelHub.Utils.Constants;
-//import thhsu.chloe.ModelHub.adapters.ViewPagerAdapter;
+//import thhsu.chloe.ModelHub.adapters.ProfileViewPagerAdapter;
 //import thhsu.chloe.ModelHub.api.model.User;
 //
 ///**
@@ -62,7 +62,7 @@
 //public class ProfileActivity extends BaseActivity {
 //    private ViewPager mViewPager;
 //    private TabLayout mTablayout;
-//    private ViewPagerAdapter mViewPagerAdapter;
+//    private ProfileViewPagerAdapter mViewPagerAdapter;
 //    private BottomNavigationView bottomNavigationView;
 //    ProfileContract.Presenter mPresenter;
 //    Button mEditInfoBtn, mCameraBtn;
@@ -87,7 +87,7 @@
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //
 //         mViewPager = (ViewPager) findViewById(R.id.viewpager_cor);
-//         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+//         mViewPagerAdapter = new ProfileViewPagerAdapter(getSupportFragmentManager());
 //         mViewPager.setAdapter(mViewPagerAdapter);
 //         mTablayout = (TabLayout) findViewById(R.id.profile_tablayout);
 //         mTablayout.setupWithViewPager(mViewPager);

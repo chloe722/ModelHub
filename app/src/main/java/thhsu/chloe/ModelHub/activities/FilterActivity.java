@@ -14,6 +14,7 @@ import java.util.Set;
 
 import thhsu.chloe.ModelHub.filter.FilterContract;
 import thhsu.chloe.ModelHub.R;
+import thhsu.chloe.ModelHub.filter.FilterPresenter;
 import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetFilterJobsCallBack;
@@ -26,14 +27,18 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
 public class FilterActivity extends BaseActivity implements FilterContract.View, View.OnClickListener{
     private FilterContract.Presenter mPresenter;
     private CheckBox mCommercialVideo, mActing, mPhotography, mModeling, mPromotionWork, mPaid, mUnpaid;
-    private Bundle bundle;
+
+    @Override
+    public void setPresenter(FilterContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
-        getIntent();
 
+        mPresenter = new FilterPresenter(this);
         mPaid = (CheckBox) findViewById(R.id.filter_checkbox_paid);
         mUnpaid = (CheckBox) findViewById(R.id.filter_checkbox_unpaid);
         mActing = (CheckBox) findViewById(R.id.filter_checkbox_acting);
@@ -60,10 +65,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         filterBackBtn.setOnClickListener(this);
     }
 
-    @Override
-    public void setPresenter(FilterContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
+
 
     Set<String> getTags() {
         Set<String> tags = new HashSet<String>();
@@ -117,7 +119,7 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
             case R.id.filter_save_btn:
                 Set<String> tags = getTags();
                 saveTags(tags);
-                sentResult(String.join(",", tags));
+                mPresenter.setFilterResult(String.join(",", tags));
                 break;  //Don't forget to write break in Switch!! Otherwise the code gonna continue running to next case
 
             case R.id.filter_tool_bar_back_btn:
@@ -126,23 +128,16 @@ public class FilterActivity extends BaseActivity implements FilterContract.View,
         }
     }
 
-    private void sentResult(String tags) {
-        bundle = new Bundle();
-        ApiJobManager.getInstance().getFilterJobs(tags, new GetFilterJobsCallBack() {
-            @Override
-            public void onCompleted(ArrayList<Jobs> jobs) {
-                if (jobs.size() >= 0) {
-                    bundle.putSerializable("filterResult", jobs);
-                    Intent filterResult = new Intent();
-                    filterResult.putExtras(bundle);
-                    setResult(Constants.RESULT_SUCCESS, filterResult);  //set the result. Intent the data back to startActivityForResult;
-                    finish();
-                }
-            }
 
-            @Override
-            public void onError(String errorMessage) {
-            }
-        });
+    @Override
+    public void setResult(ArrayList<Jobs> jobs) {
+        Bundle bundle = new Bundle();
+        if (jobs.size() >= 0) {
+            bundle.putSerializable("filterResult", jobs);
+            Intent filterResult = new Intent();
+            filterResult.putExtras(bundle);
+            setResult(Constants.RESULT_SUCCESS, filterResult);  //set the result. Intent the data back to startActivityForResult;
+            finish();
+        }
     }
 }

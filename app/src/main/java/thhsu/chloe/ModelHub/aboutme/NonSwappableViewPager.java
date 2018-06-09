@@ -14,15 +14,15 @@ import java.lang.reflect.Field;
  * Created by Chloe on 5/5/2018.
  */
 
-public class NonSwipeableViewPager extends ViewPager {
+public class NonSwappableViewPager extends ViewPager {
 
-    public NonSwipeableViewPager(@NonNull Context context) {
+    public NonSwappableViewPager(@NonNull Context context) {
         super(context);
         setMyScroller();
 
     }
 
-    public NonSwipeableViewPager(Context context, AttributeSet attrs){
+    public NonSwappableViewPager(Context context, AttributeSet attrs){
         super(context, attrs);
         setMyScroller();
     }
@@ -51,7 +51,7 @@ public class NonSwipeableViewPager extends ViewPager {
     }
 
     public class MyScroller extends Scroller{
-        public MyScroller(Context context){
+        MyScroller(Context context){
             super(context, new DecelerateInterpolator());
         }
 

@@ -1,44 +1,46 @@
 package thhsu.chloe.ModelHub.filter;
 
-import android.app.Activity;
-
-import thhsu.chloe.ModelHub.ModelHubContract;
-import thhsu.chloe.ModelHub.activities.ModelHubActivity;
+import java.util.ArrayList;
+import thhsu.chloe.ModelHub.api.ApiJobManager;
+import thhsu.chloe.ModelHub.api.GetFilterJobsCallBack;
+import thhsu.chloe.ModelHub.api.model.Jobs;
 
 /**
  * Created by Chloe on 5/2/2018.
  */
 
 public class FilterPresenter implements FilterContract.Presenter {
-    FilterContract.View mFilterView;
-    public ModelHubActivity mModelHubActivity;
-    public ModelHubContract.Presenter mPresenter;
-    Activity activity;
+    private FilterContract.View mFilterView;
 
-    public FilterPresenter(FilterContract.View filterView, ModelHubActivity modelHubActivity, ModelHubContract.Presenter modelHubPresenter){
-        this.mModelHubActivity = modelHubActivity;
-        this.mPresenter = modelHubPresenter;
-        this.mFilterView = filterView;
+    public FilterPresenter(FilterContract.View filterView){
+        mFilterView = filterView;
         if(filterView != null){
             mFilterView.setPresenter(this);
         }
     }
 
-
     @Override
-    public void start() {
+    public void start() {}
 
+    public void setFilterResult(String tags){
+        ApiJobManager.getInstance().getFilterJobs(tags, new GetFilterJobsCallBack() {
+            @Override
+            public void onCompleted(ArrayList<Jobs> jobs) {
+
+                mFilterView.setResult(jobs);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+            }
+        });
     }
 
-    @Override
-    public void result(int requestCode, int resultCode) {
 
-    }
 
-    @Override
-    public void loadData() {
 
-    }
+
+}
 
 //    @Override
 //    public void transToHome() {
@@ -46,4 +48,4 @@ public class FilterPresenter implements FilterContract.Presenter {
 ////        mPresenter.transToHome();
 ////        mModelHubActivity.showHomeUi();
 //    }
-}
+//}

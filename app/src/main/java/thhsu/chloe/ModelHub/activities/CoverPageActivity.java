@@ -3,8 +3,8 @@ package thhsu.chloe.ModelHub.activities;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import thhsu.chloe.ModelHub.CoverPageContract;
-import thhsu.chloe.ModelHub.CoverPagePresenter;
+import thhsu.chloe.ModelHub.coverpage.CoverPageContract;
+import thhsu.chloe.ModelHub.coverpage.CoverPagePresenter;
 import thhsu.chloe.ModelHub.R;
 
 public class CoverPageActivity extends BaseActivity implements CoverPageContract.View{

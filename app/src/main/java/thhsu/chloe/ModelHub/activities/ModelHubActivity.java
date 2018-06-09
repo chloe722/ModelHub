@@ -30,13 +30,14 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
  */
 
 public class ModelHubActivity extends BaseActivity implements ModelHubContract.View, BottomNavigationView.OnNavigationItemSelectedListener{
-    private ModelHubContract.Presenter mPresenter;
-    private TextView mToolbarTitle;
-    private Toolbar mToolbar;
-    private BottomNavigationView mBottomNavigationView;
-    private ModelHubActivity mModelHubActivity;
-    private SharedPreferences mSharePref;
     private String mToken;
+    private Toolbar mToolbar;
+    private TextView mToolbarTitle;
+    private SharedPreferences mSharePref;
+    private ModelHubActivity mModelHubActivity;
+    private ModelHubContract.Presenter mPresenter;
+    private BottomNavigationView mBottomNavigationView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,14 +45,20 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
             init();
     }
 
-    private void init(){
+    @Override
+    public void setPresenter(ModelHubContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    public void init(){
         setContentView(R.layout.activity_main);
         setToolbar();
         setBottomNavigationView();
         mSharePref = getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
         mToken = mSharePref.getString(Constants.USER_TOKEN, "");
         ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar_loading);
-        mPresenter = new ModelHubPresenter(this, getSupportFragmentManager(), this, mBottomNavigationView, mToolbar, progressBar);
+        mPresenter = new ModelHubPresenter(this, getSupportFragmentManager(),
+                this, mBottomNavigationView, mToolbar, progressBar);
         mPresenter.start();
     }
 
@@ -77,7 +84,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
             });
 
         } else if (currentItem == R.id.action_profile) {
-
             inflater.inflate(R.menu.menu_more, menu);
             MenuItem aboutBtn = menu.findItem(R.id.menu_more_about_item);
             MenuItem logoutBtn = menu.findItem(R.id.menu_more_logout_item);
@@ -141,28 +147,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Chloe", "main activity requestCode " + requestCode + " , resultCode: " + resultCode);
-        if (requestCode == Constants.FILTER_REQUEST) {
-            if (resultCode == Constants.RESULT_SUCCESS) {
-                mPresenter.result(Constants.FILTER_REQUEST, Constants.RESULT_SUCCESS, data);
-            } else {
-                init();
-            }
-        }else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST){
-            if(resultCode == Activity.RESULT_OK){
-                mPresenter.result(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, null);
-            }else {
-                init();
-            }
-        }else if(requestCode == Constants.PICK_IMAGE_REQUEST){
-            if(resultCode ==Activity.RESULT_OK){
-                mPresenter.result(Constants.PICK_IMAGE_REQUEST, Activity.RESULT_OK, data);
-            }
-        } else if(requestCode == Constants.CROP_IMAGE){
-            if(resultCode == Activity.RESULT_OK){
-                mPresenter.result(Constants.CROP_IMAGE, Activity.RESULT_OK, null);
-            }
-        }
+        mPresenter.result(requestCode, resultCode, data);
     }
 
     private void setBottomNavigationView(){
@@ -180,12 +165,6 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
 
     private void setToolbarTitle(String title) {
         mToolbarTitle.setText(title);
-    }
-
-
-    @Override
-    public void setPresenter(ModelHubContract.Presenter presenter) {
-        mPresenter = presenter;
     }
 
     @Override

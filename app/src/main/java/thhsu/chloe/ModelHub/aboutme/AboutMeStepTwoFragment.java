@@ -2,7 +2,6 @@ package thhsu.chloe.ModelHub.aboutme;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,9 +24,6 @@ import java.util.List;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiJobManager;
-import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
-import thhsu.chloe.ModelHub.api.PostUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.model.LanguageSkill;
 import thhsu.chloe.ModelHub.api.model.UpdateUserRequest;
 import thhsu.chloe.ModelHub.api.model.User;
@@ -36,12 +32,12 @@ import thhsu.chloe.ModelHub.api.model.User;
  * Created by Chloe on 5/4/2018.
  */
 
-public class AboutMeStepTwoFragment extends Fragment implements View.OnClickListener, Spinner.OnItemSelectedListener {
-    private User mUser = new User();
+public class AboutMeStepTwoFragment extends Fragment implements AboutMeStepTwoContract.View, View.OnClickListener, Spinner.OnItemSelectedListener {
     private Button mNextBtn, mBackBtn;
     private OnStepTwoListener mOnStepTwoListener;
     private SharedPreferences mSharedPreferences;
     private EditText mEditTextExperience, mEditTextBio;
+    private AboutMeStepTwoContract.Presenter mPresenter;
     private String mUserToken, mUserExperience, mUserBio;
     private Spinner mSpinnerLanguageOne, mSpinnerLanguageTwo, mSpinnerLanguageThree;
     private RadioGroup mLanguageRadioGroupOne, mLanguageRadioGroupTwo, mLanguageRadioGroupThree;
@@ -51,9 +47,8 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void setPresenter(AboutMeStepTwoContract.Presenter presenter) {
+            mPresenter = presenter;
     }
 
     @Nullable
@@ -65,7 +60,6 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         mSharedPreferences = ModelHub.getAppContext().getSharedPreferences(Constants.USER_DATA, Context.MODE_PRIVATE);
         mUserToken = mSharedPreferences.getString(Constants.USER_TOKEN, "");
@@ -86,6 +80,12 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         mSpinnerLanguageTwo.setOnItemSelectedListener(this);
         mSpinnerLanguageThree.setOnItemSelectedListener(this);
 
+        createSpinner();
+        mPresenter.getUserDataStepTwo();
+
+    }
+
+    private void createSpinner() {
         List<String> categoriesOne = new ArrayList<String>();
         categoriesOne.add("English");
         categoriesOne.add("Mandarin");
@@ -114,64 +114,6 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         mSpinnerLanguageOne.setAdapter(mLanguageDataAdapterOne);
         mSpinnerLanguageTwo.setAdapter(mLanguageDataAdapterTwo);
         mSpinnerLanguageThree.setAdapter(mLanguageDataAdapterThree);
-
-
-        ApiJobManager.getInstance().getUserData(mUserToken, new GetUserInfoCallBack() {
-            @Override
-            public void onCompleted(User user) {
-                mUser = user;
-                List<LanguageSkill> skills = mUser.getLanguages();
-                if(skills != null && skills.size() > 0){
-
-                    int spinnerOnePosition = mLanguageDataAdapterOne.getPosition(skills.get(0).getLanguage());
-                    mSpinnerLanguageOne.setSelection(spinnerOnePosition);
-                    int levelIndex = getLevelIndex(skills.get(0).getLevel());
-                    ((RadioButton) mLanguageRadioGroupOne.getChildAt(levelIndex)).setChecked(true);
-                    mLanguageRadioGroupOne.getChildAt(levelIndex).jumpDrawablesToCurrentState();
-                }
-
-                if(skills != null && skills.size() > 1){
-
-                    int spinnerTwoPosition = mLanguageDataAdapterTwo.getPosition(skills.get(1).getLanguage());
-                    mSpinnerLanguageTwo.setSelection(spinnerTwoPosition);
-                    int levelIndex = getLevelIndex(skills.get(1).getLevel());
-                    ((RadioButton) mLanguageRadioGroupTwo.getChildAt(levelIndex)).setChecked(true);
-                    mLanguageRadioGroupTwo.getChildAt(levelIndex).jumpDrawablesToCurrentState();
-
-                }
-
-                if(skills != null && skills.size() > 2){
-
-                    int spinnerThreePosition = mLanguageDataAdapterThree.getPosition(skills.get(2).getLanguage());
-                    mSpinnerLanguageThree.setSelection(spinnerThreePosition);
-                    int levelIndex = getLevelIndex(skills.get(2).getLevel());
-                    ((RadioButton) mLanguageRadioGroupThree.getChildAt(levelIndex)).setChecked(true);
-                    mLanguageRadioGroupThree.getChildAt(levelIndex).jumpDrawablesToCurrentState();
-                }
-                mEditTextExperience.setText(mUser.getExperience());
-                mEditTextBio.setText(mUser.getBio());
-
-            }
-
-            @Override
-            public void onError(String errorMessage) {
-
-            }
-        });
-    }
-
-    private int getLevelIndex(String level){
-        return level.equals("Beginner") ? 0 :
-                level.equals("Intermediate") ? 1 :
-                        level.equals("Fluent") ? 2 :
-                                0;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mNextBtn.setOnClickListener(this);
-        mBackBtn.setOnClickListener(this);
     }
 
     @Override
@@ -182,35 +124,30 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mNextBtn.setOnClickListener(this);
+        mBackBtn.setOnClickListener(this);
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.stepper_two_next_btn:
+
                 if(mOnStepTwoListener != null){
-                    UpdateUserRequest request = new UpdateUserRequest();
-                    mUserExperience = mEditTextExperience.getText().toString();
-                    mUserBio = mEditTextBio.getText().toString();
-                    request.token = mUserToken;
-                    request.user.setBio(mUserBio);
-                    request.user.setExperience(mUserExperience);
-                    request.user.setLanguages(getLanguageSkill());
-                    saveUserData();
-
-                    ApiJobManager.getInstance().getPostUserInfoResult(request, new PostUserInfoCallBack() {
-                        @Override
-                        public void onComplete() {
-                        }
-                        @Override
-                        public void onError(String errorMessage) {
-                        }
-                    });
-
+                    getUserInfoFromForm();
                     mOnStepTwoListener.onNextPressed(this);
                 }
+
                 break;
+
             case R.id.stepper_two_back_btn:
+
                 if(mOnStepTwoListener != null){
                     mOnStepTwoListener.onBackPressed(this);
                 }
+
                 break;
         }
     }
@@ -246,12 +183,71 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
 
     }
 
+    @Override
+    public void showUserDataStepTwo(User user) {
+        List<LanguageSkill> skills = user.getLanguages();
+        if(skills != null && skills.size() > 0){
+
+            int spinnerOnePosition = mLanguageDataAdapterOne.getPosition(skills.get(0).getLanguage());
+            mSpinnerLanguageOne.setSelection(spinnerOnePosition);
+            int levelIndex = getLevelIndex(skills.get(0).getLevel());
+            ((RadioButton) mLanguageRadioGroupOne.getChildAt(levelIndex)).setChecked(true);
+            mLanguageRadioGroupOne.getChildAt(levelIndex).jumpDrawablesToCurrentState();
+        }
+
+        if(skills != null && skills.size() > 1){
+
+            int spinnerTwoPosition = mLanguageDataAdapterTwo.getPosition(skills.get(1).getLanguage());
+            mSpinnerLanguageTwo.setSelection(spinnerTwoPosition);
+            int levelIndex = getLevelIndex(skills.get(1).getLevel());
+            ((RadioButton) mLanguageRadioGroupTwo.getChildAt(levelIndex)).setChecked(true);
+            mLanguageRadioGroupTwo.getChildAt(levelIndex).jumpDrawablesToCurrentState();
+
+        }
+
+        if(skills != null && skills.size() > 2){
+
+            int spinnerThreePosition = mLanguageDataAdapterThree.getPosition(skills.get(2).getLanguage());
+            mSpinnerLanguageThree.setSelection(spinnerThreePosition);
+            int levelIndex = getLevelIndex(skills.get(2).getLevel());
+            ((RadioButton) mLanguageRadioGroupThree.getChildAt(levelIndex)).setChecked(true);
+            mLanguageRadioGroupThree.getChildAt(levelIndex).jumpDrawablesToCurrentState();
+        }
+        mEditTextExperience.setText(user.getExperience());
+        mEditTextBio.setText(user.getBio());
+
+    }
+
+    private void getUserInfoFromForm(){
+
+        UpdateUserRequest request = new UpdateUserRequest();
+        mUserBio = mEditTextBio.getText().toString();
+        mUserExperience = mEditTextExperience.getText().toString();
+        request.token = mUserToken;
+        request.user.setBio(mUserBio);
+        request.user.setExperience(mUserExperience);
+        request.user.setLanguages(getLanguageSkill());
+
+        saveUserData();
+        mPresenter.postUserInfoStepTwo(request);
+
+    }
+
     public interface OnStepTwoListener {
         void onNextPressed(Fragment fragment);
         void onBackPressed(Fragment fragment);
     }
 
-    public void saveUserData(){
+    private int getLevelIndex(String level){
+        return level.equals("Beginner") ? 0 :
+                level.equals("Intermediate") ? 1 :
+                        level.equals("Fluent") ? 2 :
+                                0;
+    }
+
+
+
+    private void saveUserData(){
         mSharedPreferences.edit()
                 .putString(Constants.USER_BIO, mUserBio)
                 .putString(Constants.USER_EXPERIENCE, mUserExperience)
@@ -297,4 +293,6 @@ public class AboutMeStepTwoFragment extends Fragment implements View.OnClickList
         }
     return skills;
     }
+
+
 }

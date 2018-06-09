@@ -55,7 +55,6 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     private ProfilePresenter mProfilePresenter;
     private InterestPresenter mInterestPresenter;
     private SignInTabPresenter mSignInTabPresenter;
-    private JobDetailsPresenter mJobDetailsPresenter;
 
 
     public ModelHubPresenter(ModelHubContract.View modelHubView, FragmentManager fragmentManager, ModelHubActivity activity,
@@ -76,20 +75,32 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
     @Override
     public void result(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.FILTER_REQUEST && resultCode == Constants.RESULT_SUCCESS) {
-            Bundle bundle = data.getExtras();
-            ArrayList<Jobs> jobs = (ArrayList<Jobs>) bundle.getSerializable("filterResult");  //Convert to Arraylist
-            mHomePresenter.updateJobs(jobs);
-        } else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST && resultCode == Activity.RESULT_OK){
-            mProfilePresenter.result(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, null);
+        if (requestCode == Constants.FILTER_REQUEST) {
+            if (resultCode == Constants.RESULT_SUCCESS) {
+                Bundle bundle = data.getExtras();
+                ArrayList<Jobs> jobs = (ArrayList<Jobs>) bundle.getSerializable("filterResult");  //Convert to Arraylist
+                mHomePresenter.updateJobs(jobs);
+            } else {
+                mActivity.init();
+            }
+        }else if(requestCode == Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST){
+            if(resultCode == Activity.RESULT_OK){
+                mProfilePresenter.result(Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST, Activity.RESULT_OK, null);
 
-        }else if(requestCode == Constants.PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK){
-            mProfilePresenter.result(Constants.PICK_IMAGE_REQUEST, Activity.RESULT_OK, data);
+            }else {
+                mActivity.init();
 
-        } else if(requestCode == Constants.CROP_IMAGE && resultCode == Activity.RESULT_OK){
-            mProfilePresenter.result(Constants.CROP_IMAGE, Activity.RESULT_OK, null);
+            }
+        }else if(requestCode == Constants.PICK_IMAGE_REQUEST){
+            if(resultCode ==Activity.RESULT_OK){
+                mProfilePresenter.result(Constants.PICK_IMAGE_REQUEST, Activity.RESULT_OK, data);
+
+            }
+        } else if(requestCode == Constants.CROP_IMAGE){
+            if(resultCode == Activity.RESULT_OK){
+                mProfilePresenter.result(Constants.CROP_IMAGE, Activity.RESULT_OK, null);
+            }
         }
-
     }
 
 
@@ -225,7 +236,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
 
         transaction.add(R.id.main_container_for_fragment, mJobDetailsFragment, JOBDETAILS);
         transaction.commit();
-        mJobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, jobs, mBottomNavigationView);
+        JobDetailsPresenter jobDetailsPresenter = new JobDetailsPresenter(mJobDetailsFragment, jobs, mBottomNavigationView);
 
         mModelHubContractView.showJobDetailsUi();
     }

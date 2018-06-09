@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.aboutPage;
+package thhsu.chloe.ModelHub.aboutpage;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
