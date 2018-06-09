@@ -63,7 +63,6 @@ public class JobDetailsAdapter extends RecyclerView.Adapter<JobDetailsAdapter.Jo
 
         if (!mUserToken.equals("")) {
             if (ModelHub.getModelHubSQLHelper().getInterest(mJobs.getId())) {
-
                 holder.getDetailsBookMark().setImageResource(R.drawable.ic_favorite_black_24dp);
             } else {
 

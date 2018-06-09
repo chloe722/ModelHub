@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.aboutPage;
+package thhsu.chloe.ModelHub.aboutpage;
 
 import thhsu.chloe.ModelHub.BasePresenter;
 import thhsu.chloe.ModelHub.BaseView;

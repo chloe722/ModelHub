@@ -58,10 +58,9 @@
         app:stpi_indicatorColor="@color/active_color"
         app:stpi_lineDoneColor="@color/active_color"
         app:stpi_showDoneIcon="true"
-        app:stpi_showStepNumberInstead="false"
         app:stpi_stepCount="3" />
 
-    <thhsu.chloe.ModelHub.aboutme.NonSwipeableViewPager
+    <thhsu.chloe.ModelHub.aboutme.NonSwappableViewPager
         android:id="@+id/nonSwapeable_viewpager_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

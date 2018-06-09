@@ -14,11 +14,11 @@ import java.util.List;
  * Created by Chloe on 5/31/2018.
  */
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+public class ProfileViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager fm) {
+    public ProfileViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

@@ -1,31 +1,35 @@
 package thhsu.chloe.ModelHub.aboutme;
 
-import android.content.Context;
+import android.view.View;
 import android.os.Bundle;
+import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.Switch;
+import thhsu.chloe.ModelHub.R;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.widget.CompoundButton;
+import android.support.v4.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-
-import thhsu.chloe.ModelHub.R;
 
 /**
  * Created by Chloe on 5/4/2018.
  */
 
-public class AboutMeStepThreeFragment extends Fragment implements View.OnClickListener, Switch.OnCheckedChangeListener {
+public class AboutMeStepThreeFragment extends Fragment implements AboutMeStepThreeContract.View, View.OnClickListener, Switch.OnCheckedChangeListener {
 
     private Button mBackBtn;
     private Button mCompleteBtn;
     private Switch mNotificationSwitchBtn;
     private OnStepThreeListener mOnStepThreeListener;
+    private AboutMeStepThreeContract.Presenter mPresenter;
 
-    public AboutMeStepThreeFragment() {
+    public AboutMeStepThreeFragment() {}
+
+    @Override
+    public void setPresenter(AboutMeStepThreeContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
     @Nullable
@@ -47,7 +51,6 @@ public class AboutMeStepThreeFragment extends Fragment implements View.OnClickLi
     @Override
     public void onResume() {
         super.onResume();
-
         mBackBtn.setOnClickListener(this);
         mCompleteBtn.setOnClickListener(this);
         mNotificationSwitchBtn.setOnCheckedChangeListener(this);
@@ -79,14 +82,14 @@ public class AboutMeStepThreeFragment extends Fragment implements View.OnClickLi
             case R.id.btn_stepperthree_complete:
                 if (mOnStepThreeListener != null) {
                     mOnStepThreeListener.onCompletePressed(this);
-                    break;
                 }
+                break;
 
             case R.id.btn_stepperthree_back:
                 if (mOnStepThreeListener != null) {
                     mOnStepThreeListener.onBackPressed(this);
-                    break;
                 }
+                break;
         }
     }
 
@@ -105,7 +108,6 @@ public class AboutMeStepThreeFragment extends Fragment implements View.OnClickLi
     @Override
     public void onDetach() {
         super.onDetach();
-
         mBackBtn = null;
         mCompleteBtn = null;
         mOnStepThreeListener = null;

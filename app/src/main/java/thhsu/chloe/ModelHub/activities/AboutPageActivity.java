@@ -9,8 +9,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-import thhsu.chloe.ModelHub.aboutPage.AboutPageContract;
-import thhsu.chloe.ModelHub.aboutPage.AboutPagePresenter;
+import thhsu.chloe.ModelHub.aboutpage.AboutPageContract;
+import thhsu.chloe.ModelHub.aboutpage.AboutPagePresenter;
 import thhsu.chloe.ModelHub.R;
 
 /**

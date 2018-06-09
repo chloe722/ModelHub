@@ -1,6 +1,5 @@
 package thhsu.chloe.ModelHub.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,38 +10,51 @@ import android.widget.Toast;
 import com.badoualy.stepperindicator.StepperIndicator;
 
 import thhsu.chloe.ModelHub.aboutme.AboutMeStepOneFragment;
+import thhsu.chloe.ModelHub.aboutme.AboutMeStepOnePresenter;
 import thhsu.chloe.ModelHub.aboutme.AboutMeStepThreeFragment;
+import thhsu.chloe.ModelHub.aboutme.AboutMeStepThreePresenter;
 import thhsu.chloe.ModelHub.aboutme.AboutMeStepTwoFragment;
 
-import thhsu.chloe.ModelHub.aboutme.NonSwipeableViewPager;
+import thhsu.chloe.ModelHub.aboutme.AboutMeStepTwoPresenter;
+import thhsu.chloe.ModelHub.aboutme.NonSwappableViewPager;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.utils.Constants;
-import thhsu.chloe.ModelHub.adapters.AboutMePagerAdapter;
+import thhsu.chloe.ModelHub.adapters.AboutMeViewPagerAdapter;
 
 /**
  * Created by Chloe on 5/3/2018.
  */
 
-public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOneFragment.OnStepOneListener, AboutMeStepTwoFragment.OnStepTwoListener, AboutMeStepThreeFragment.OnStepThreeListener {
-    private NonSwipeableViewPager mViewPager;
-    SharedPreferences sharedPreferences;
+public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOneFragment.OnStepOneListener,
+        AboutMeStepTwoFragment.OnStepTwoListener, AboutMeStepThreeFragment.OnStepThreeListener {
+    private NonSwappableViewPager mViewPager;
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutme);
 
-        AboutMePagerAdapter aboutMePagerAdapter
-                = new AboutMePagerAdapter(getSupportFragmentManager());
+        AboutMeViewPagerAdapter mAboutMeViewPagerAdapter
+                = new AboutMeViewPagerAdapter(getSupportFragmentManager());
         mViewPager = findViewById(R.id.nonSwapeable_viewpager_container);
-        mViewPager.setAdapter(aboutMePagerAdapter);
+        AboutMeStepOneFragment aboutMeStepOneFragment = new AboutMeStepOneFragment();
+        AboutMeStepTwoFragment aboutMeStepTwoFragment = new AboutMeStepTwoFragment();
+        AboutMeStepThreeFragment aboutMeStepThreeFragment = new AboutMeStepThreeFragment();
+        AboutMeStepOnePresenter aboutMeStepOnePresenter = new AboutMeStepOnePresenter(aboutMeStepOneFragment);
+        AboutMeStepTwoPresenter aboutMeStepTwoPresenter = new AboutMeStepTwoPresenter(aboutMeStepTwoFragment);
+        AboutMeStepThreePresenter aboutMeStepThreePresenter = new AboutMeStepThreePresenter(aboutMeStepThreeFragment);
+        mAboutMeViewPagerAdapter.addFragment(aboutMeStepOneFragment);
+        mAboutMeViewPagerAdapter.addFragment(aboutMeStepTwoFragment);
+        mAboutMeViewPagerAdapter.addFragment(aboutMeStepThreeFragment);
 
+        mViewPager.setAdapter(mAboutMeViewPagerAdapter);
         StepperIndicator stepperIndicator
                 = findViewById(R.id.layout_stepperIndicater);
         stepperIndicator.showLabels(false);
         stepperIndicator.setViewPager(mViewPager);
 
-        sharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
+        mSharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
     }
 
     @Override
@@ -53,7 +65,6 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     @Override
     public void onBackPressed(Fragment fragment) {
         mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1, true);
-
     }
 
     @Override
@@ -77,7 +88,7 @@ public class AboutMeActivity extends AppCompatActivity implements AboutMeStepOne
     }
 
     public void clearUserData() {
-        sharedPreferences.edit()
+        mSharedPreferences.edit()
                 .remove(Constants.USER_PHONE)
                 .remove(Constants.USER_HEIGHT)
                 .remove(Constants.USER_WEIGHT)

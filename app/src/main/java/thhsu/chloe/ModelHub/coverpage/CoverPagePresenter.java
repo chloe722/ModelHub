@@ -1,7 +1,6 @@
-package thhsu.chloe.ModelHub;
+package thhsu.chloe.ModelHub.coverpage;
 
 import android.content.Intent;
-
 import thhsu.chloe.ModelHub.activities.CoverPageActivity;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 
@@ -9,7 +8,7 @@ import thhsu.chloe.ModelHub.activities.ModelHubActivity;
  * Created by Chloe on 5/7/2018.
  */
 
-public class CoverPagePresenter implements CoverPageContract.Presenter{
+public class CoverPagePresenter implements CoverPageContract.Presenter {
 
     private CoverPageActivity mActivity;
 
@@ -18,9 +17,7 @@ public class CoverPagePresenter implements CoverPageContract.Presenter{
     }
 
     @Override
-    public void start() {
-
-    }
+    public void start() {}
 
     @Override
     public void transToModelHub() {

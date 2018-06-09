@@ -30,13 +30,14 @@ import thhsu.chloe.ModelHub.api.model.Jobs;
  */
 
 public class ModelHubActivity extends BaseActivity implements ModelHubContract.View, BottomNavigationView.OnNavigationItemSelectedListener{
-    private ModelHubContract.Presenter mPresenter;
-    private TextView mToolbarTitle;
-    private Toolbar mToolbar;
-    private BottomNavigationView mBottomNavigationView;
-    private ModelHubActivity mModelHubActivity;
-    private SharedPreferences mSharePref;
     private String mToken;
+    private Toolbar mToolbar;
+    private TextView mToolbarTitle;
+    private SharedPreferences mSharePref;
+    private ModelHubActivity mModelHubActivity;
+    private ModelHubContract.Presenter mPresenter;
+    private BottomNavigationView mBottomNavigationView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

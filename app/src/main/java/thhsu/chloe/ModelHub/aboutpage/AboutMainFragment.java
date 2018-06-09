@@ -1,4 +1,4 @@
-package thhsu.chloe.ModelHub.aboutPage;
+package thhsu.chloe.ModelHub.aboutpage;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
