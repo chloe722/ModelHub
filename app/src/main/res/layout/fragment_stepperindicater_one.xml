@@ -1,278 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/stepper_one_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/stepper_one_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:minHeight="560dp">
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textinputLayout_stepperone_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_stepperone_name"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/stepper_one_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:maxLength="30"
-            android:singleLine="true"
-            android:textSize="14sp" />
+            android:layout_height="match_parent"
+            android:minHeight="560dp">
 
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/textinputLayout_stepperone_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textinputLayout_stepperone_name">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_stepperone_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:maxLength="50"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/textinputLayout_stepperone_phone"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textinputLayout_stepperone_email">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editText_stepperone_phone"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputLayout_stepperone_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:inputType="phone"
-                android:maxLength="20"
-                android:textSize="14sp" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stepper_one_textinputlayout_country"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_one_current_location_title">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_stepperone_country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Country"
-            android:maxLength="30"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/stepper_one_textinputlayout_city"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
-            android:layout_marginStart="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.388"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stepper_one_textinputlayout_country">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editText_stepperone_city"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputLayout_stepperone_email"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="City"
-                android:maxLength="30"
-                android:textSize="14sp" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputLayout_stepperone_name">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/stepper_one_textinputlayout_age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stepper_one_phonefiled_reminder_text">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/editText_stepperone_age"
-                android:layout_width="match_parent"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputLayout_stepperone_phone"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputLayout_stepperone_email">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputlayout_stepperone_country"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Age"
-                android:maxLength="5"
-                android:textSize="14sp" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_stepperone_current_location_title">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stepper_one_textinputlayout_height"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_one_textinputlayout_age">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/country"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_stepperone_height"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputlayout_stepperone_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.388"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_stepperone_country">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/city"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputlayout_stepperone_age"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_stepperone_phone_field_reminder_text">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/age"
+                    android:maxLength="5"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputlayout_stepperone_height"
+                android:layout_width="0dp"
+                android:layout_height="59dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.617"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_stepperone_age">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/height"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputlayout_stepperone_weight"
+                android:layout_width="0dp"
+                android:layout_height="59dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.617"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_stepperone_height">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/weight"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textinputlayout_stepperone_nationality"
+                android:layout_width="0dp"
+                android:layout_height="59dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.617"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_stepperone_weight">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editText_stepperone_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nationality"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textview_stepperone_current_location_title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="3dp"
+                android:text="@string/where_are_you_based"
+                android:textColor="@color/colorPageIconFilterItem"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_stepperone_nationality" />
+
+            <TextView
+                android:id="@+id/textview_stepperone_phone_field_reminder_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/phone_number_will_not_be_revealed_in_public"
+                android:textColor="@color/reminderRed"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="@+id/textinputLayout_stepperone_phone"
+                app:layout_constraintTop_toBottomOf="@+id/textinputLayout_stepperone_phone" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Height"
-            android:maxLength="50"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/stepper_one_layout">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stepper_one_textinputlayout_weight"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_one_textinputlayout_height">
+            <Button
+                android:id="@+id/btn_stepperone_next"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/black_stroke"
+                android:text="@string/next"
+                android:textAllCaps="false"
+                android:textColor="@color/textcolor"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_stepperone_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Weight"
-            android:maxLength="50"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stepper_one_textinputlayout_nationality"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginStart="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_one_textinputlayout_weight">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/editText_stepperone_nationality"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nationality"
-            android:maxLength="50"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>
-
-
-
-    <!--<TextView-->
-        <!--android:id="@+id/stepper_one_personal_info_title"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="24dp"-->
-        <!--android:drawablePadding="3dp"-->
-        <!--android:fontFamily="@font/bungeehairline_regular"-->
-        <!--android:text="Edited profile"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:textColor="@color/colorPageIconFilterItem"-->
-        <!--android:textSize="16sp"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <TextView
-        android:id="@+id/stepper_one_current_location_title"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:drawablePadding="3dp"
-        android:text="Where are you based?"
-        android:textColor="@color/colorPageIconFilterItem"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stepper_one_textinputlayout_nationality" />
-
-        <TextView
-            android:id="@+id/stepper_one_phonefiled_reminder_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/phone_number_will_not_be_revealed_in_public"
-            android:textColor="@color/reminderRed"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/textinputLayout_stepperone_phone"
-            app:layout_constraintTop_toBottomOf="@+id/textinputLayout_stepperone_phone" />
-
-
-</android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stepper_one_layout">
-        <Button
-            android:id="@+id/btn_stepperone_next"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/black_stroke"
-            android:text="Next"
-            android:textAllCaps="false"
-            android:textColor="@color/textcolor"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
 
     </RelativeLayout>
 

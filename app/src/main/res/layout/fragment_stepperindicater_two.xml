@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent">-->
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,7 +23,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:drawablePadding="8dp"
-                android:text="What languages do you speak?"
+                android:text="@string/what_languages_do_you_speak"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +37,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="8dp"
-                android:text="This helps us to understand your language skills. We'll provide solution of language barrier between you and client in the future."
+                android:text="@string/this_helps_us_to_understand_your_language_skills_we_ll_provide_solution_of_language_barrier_between_you_and_client_in_the_future"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Experience"
+                android:text="@string/experience"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +63,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
-                android:hint="State your current experience of modeling work"
+                android:hint="@string/state_your_current_experience_of_modeling_work"
                 android:inputType="textMultiLine"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Bio"
+                android:text="@string/bio"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,10 +89,10 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="8dp"
-                android:textSize="12sp"
                 android:ems="10"
                 android:hint="bio"
                 android:inputType="textMultiLine"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stepper_two_bio_title" />
@@ -178,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Beginner"
+                    android:text="@string/beginner"
                     android:textColor="@color/textcolor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -188,10 +185,10 @@
                     android:id="@+id/radiogroup_one_int"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Intermediate"
+                    android:text="@string/intermediate"
+                    android:textColor="@color/textcolor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/radiogroup_one_beg"
                     app:layout_constraintTop_toTopOf="@+id/radiogroup_one_beg" />
@@ -200,10 +197,10 @@
                     android:id="@+id/radiogroup_one_flu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Fluent"
-                    android:checked="true"
+                    android:text="@string/fluent"
                     android:textColor="@color/textcolor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/radiogroup_one_int"
@@ -224,11 +221,11 @@
                     android:id="@+id/radiogroup_two_beg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor"
+                    android:checked="false"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Beginner"
-                    android:checked="false"
+                    android:text="@string/beginner"
+                    android:textColor="@color/textcolor"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/stepper_two_sec_language_list" />
 
@@ -236,10 +233,10 @@
                     android:id="@+id/radiogroup_two_int"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Intermediate"
+                    android:text="@string/intermediate"
+                    android:textColor="@color/textcolor"
                     app:layout_constraintStart_toEndOf="@+id/radiogroup_two_beg"
                     app:layout_constraintTop_toTopOf="@+id/radiogroup_two_flu" />
 
@@ -249,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Fluent"
+                    android:text="@string/fluent"
                     android:textColor="@color/textcolor"
                     app:layout_constraintStart_toEndOf="@+id/radiogroup_two_int"
                     app:layout_constraintTop_toTopOf="@+id/radiogroup_two_flu" />
@@ -269,11 +266,11 @@
                     android:id="@+id/radiogroup_three_beg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor"
+                    android:checked="false"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Beginner"
-                    android:checked="false"
+                    android:text="@string/beginner"
+                    android:textColor="@color/textcolor"
 
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/stepper_two_third_language_list" />
@@ -282,10 +279,10 @@
                     android:id="@+id/radiogroup_three_int"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/textcolor"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Intermediate"
+                    android:text="@string/intermediate"
+                    android:textColor="@color/textcolor"
                     app:layout_constraintStart_toEndOf="@+id/radiogroup_three_beg"
                     app:layout_constraintTop_toTopOf="@+id/radiogroup_three_beg" />
 
@@ -295,7 +292,7 @@
                     android:layout_height="wrap_content"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
-                    android:text="Fluent"
+                    android:text="@string/fluent"
                     android:textColor="@color/textcolor"
                     app:layout_constraintStart_toEndOf="@+id/radiogroup_three_int"
                     app:layout_constraintTop_toTopOf="@+id/radiogroup_three_int" />
@@ -318,7 +315,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/black_stroke"
-                android:text="Next"
+                android:text="@string/next"
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -331,13 +328,13 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/black_stroke"
-                android:text="Back"
+                android:enabled="true"
+                android:text="@string/back"
                 android:textAllCaps="false"
                 android:textColor="@color/textcolor"
                 android:textSize="16sp"
-                android:enabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
 

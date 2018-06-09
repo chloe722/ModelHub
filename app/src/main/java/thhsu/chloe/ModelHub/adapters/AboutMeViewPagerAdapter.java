@@ -32,24 +32,6 @@ public class AboutMeViewPagerAdapter extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 
-//    @Override
-//    public Fragment getItem(int position) {
-//
-//        switch (position){
-//            case 0:
-//                return new AboutMeStepOneFragment() ;
-//            case 1:
-//                return new AboutMeStepTwoFragment();
-//            case 2:
-//                return new AboutMeStepThreeFragment();
-//        }
-//        return null;
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return 3;
-//    }
 
     public void addFragment(Fragment fragment){
         mFragmentList.add(fragment);
