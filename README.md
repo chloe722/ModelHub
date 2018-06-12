@@ -37,7 +37,19 @@ ModelHub目標解決資訊不透明、雙方語言隔閡溝通等問題<br />
   * 第三步詢問使用者是否要開啟推播功能　(開發中)
 
 # Screenshot
-![logo](image/cover.jpg)
+![cover](image/cover.jpg)
+
+![home](image/opportunities.jpg)
+![detail](image/detail.jpg)
+
+![profile](image/profile.jpg)
+![interest](image/interest.jpg)
+
+![edit profile](image/edited1.jpg)
+![edit profile](image/edited2.jpg)
+![edit profile](image/edited3.jpg)
+
+
   
 
 # Library
