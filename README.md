@@ -1,6 +1,6 @@
-# ModelHub
+# ModelHub　![logo](image/modelhub.png)
 ModelHub 屬於在台的外國演員和模特兒尋找在台演藝相關工作機會的平台<br />
-未來廣告商或設計師任何有需要外國演員和模特兒需求時，能夠在ModelHub上發案。達到雙平台<br />
+未來廣告商或設計師任何有需要外國演員和模特兒需求時，能夠在ModelHub上發案。實現雙平台<br />
 ModelHub目標解決資訊不透明、雙方語言隔閡溝通等問題<br />
 
 
@@ -36,6 +36,9 @@ ModelHub目標解決資訊不透明、雙方語言隔閡溝通等問題<br />
   * 第二步為語言能力、經歷和自傳
   * 第三步詢問使用者是否要開啟推播功能　(開發中)
 
+# Screenshot
+![logo](image/cover.jpg)
+  
 
 # Library
 * Retrofit
