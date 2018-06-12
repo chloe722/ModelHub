@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ModelHub</string>
     <string name="Home">Home</string>
     <string name="join_us_be_the_memebr_for_free">Be the member for free. Explore more features. </string>
@@ -24,7 +24,6 @@
     <string name="permanent">Permanent</string>
     <string name="remote">Remote</string>
     <string name="fullstack_developer">FullStack Developer</string>
-    <string name="save">Save</string>
     <string name="invalidName">invalid Name</string>
     <string name="invalidEmail">invalid Email</string>
     <string name="invalid_phone_number">invalid phone number</string>
