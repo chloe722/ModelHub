@@ -96,7 +96,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stepper_two_bio_title" />
-            <!--app:layout_constraintBottom_toTopOf="@+id/stepper_two_back_btn"-->
 
 
             <Spinner
