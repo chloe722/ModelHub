@@ -1,4 +1,4 @@
-# ModelHub　![logo](image/modelhub.png)　![<img src="image/googleplay.png" width="150" height="50">](https://play.google.com/store/apps/details?id=thhsu.chloe.ModelHub)
+# ModelHub　![logo](image/modelhub.png)　![googleplay](image/google-play-badge.png)
 ModelHub 屬於在台的外國演員和模特兒尋找在台演藝相關工作機會的平台<br />
 未來廣告商或設計師任何有需要外國演員和模特兒需求時，能夠在ModelHub上發案。實現雙平台<br />
 ModelHub目標解決資訊不透明、雙方語言隔閡溝通等問題<br />
