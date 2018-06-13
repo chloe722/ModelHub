@@ -5,19 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/sign_in_jeeva_logo"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-        android:contentDescription="jeeva_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/modelhub_color_font_edited" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textinputLayout_signin_email"
@@ -35,9 +22,8 @@
             android:id="@+id/editText_signin_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_email_black_24dp"
+            android:drawableStart="@drawable/ic_email_black_24dp"
             android:drawablePadding="10dp"
-
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
@@ -59,10 +45,10 @@
             android:id="@+id/editText_signin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorButtonNavInactive"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:textSize="18sp" />
 
@@ -78,7 +64,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/black_stroke"
         android:fontFamily="@font/amiko_bold"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textColor="@color/textcolor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +88,7 @@
         android:layout_height="28dp"
         android:layout_marginEnd="50dp"
         android:background="@null"
-        android:text="Forgot Password?"
+        android:text="@string/forgot_password"
         android:textAllCaps="false"
         android:textColor="@color/nav_active_color"
         android:textSize="12sp"
@@ -117,7 +103,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="65dp"
         android:fontFamily="@font/bungeehairline_regular"
-        android:text="ModelHub"
+        android:text="@string/modelhub"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
