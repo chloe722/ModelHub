@@ -66,6 +66,8 @@ ModelHub目標解決資訊不透明、雙方語言隔閡溝通等問題<br />
 * indefinitepagerIndicator
 * Picasso
 * Gson
+* Firebase
+* Fabric crashlytics
 
 
 # Requirement
