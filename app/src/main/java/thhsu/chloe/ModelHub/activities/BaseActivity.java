@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import thhsu.chloe.ModelHub.R;
 
 /**
@@ -18,11 +20,13 @@ import thhsu.chloe.ModelHub.R;
 public class BaseActivity extends AppCompatActivity {
 
     protected Context mContext;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mContext = this;
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
 }
