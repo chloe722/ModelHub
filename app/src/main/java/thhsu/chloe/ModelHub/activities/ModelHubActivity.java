@@ -39,6 +39,7 @@ public class ModelHubActivity extends BaseActivity implements ModelHubContract.V
     private BottomNavigationView mBottomNavigationView;
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
