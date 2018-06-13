@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+
     <application
         android:name="thhsu.chloe.ModelHub.ModelHub"
         android:allowBackup="true"
@@ -75,10 +76,6 @@
         android:name="thhsu.chloe.ModelHub.activities.SignUpActivity"
         android:exported="true" />
 
-        <!--<activity-->
-            <!--android:name="thhsu.chloe.ModelHub.activities.ProfileActivity"-->
-            <!--android:exported="true" />-->
-
         <activity
             android:name="thhsu.chloe.ModelHub.activities.AboutPageActivity"
             android:exported="true" />
@@ -100,6 +97,17 @@
         android:resource="@xml/path"/>
         </provider>
 
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="811c3910311b1daae42ce0114a91d03b96a7291d" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/modelhub" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
 
     </application>
 

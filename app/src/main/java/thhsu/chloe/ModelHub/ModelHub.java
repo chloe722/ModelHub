@@ -3,6 +3,8 @@ package thhsu.chloe.ModelHub;
 import android.app.Application;
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import thhsu.chloe.ModelHub.database.ModelHubSQLHelper;
 
 /**
@@ -17,6 +19,7 @@ public class ModelHub extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         mContext = this;
         mModelHubSQLHelper = null;
     }
