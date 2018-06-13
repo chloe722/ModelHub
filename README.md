@@ -1,4 +1,4 @@
-# ModelHub　![logo](image/modelhub.png)
+# ModelHub　![logo](image/modelhub.png)　![googleplay](image/googleplay.png)
 ModelHub 屬於在台的外國演員和模特兒尋找在台演藝相關工作機會的平台<br />
 未來廣告商或設計師任何有需要外國演員和模特兒需求時，能夠在ModelHub上發案。實現雙平台<br />
 ModelHub目標解決資訊不透明、雙方語言隔閡溝通等問題<br />
@@ -37,13 +37,22 @@ ModelHub目標解決資訊不透明、雙方語言隔閡溝通等問題<br />
   * 第三步詢問使用者是否要開啟推播功能　(開發中)
 
 # Screenshot
+* 首頁畫面
+
 ![cover](image/cover.jpg)
+
+* 進入後點擊任一項目，會直接看到點擊項目的詳細內容
 
 ![home](image/opportunities.jpg)
 ![detail](image/detail.jpg)
 
+* 個人簡介頁面，顯示基本資料。藍色＂＋＂號按鈕可通過照相或從相簿選取照片更新大頭貼
+* 右圖Interests列表為在主頁點擊愛心收藏後的項目
+
 ![profile](image/profile.jpg)
 ![interest](image/interest.jpg)
+
+* 編輯個人資料頁面，使用者填寫基本個人資料和語言能力等等
 
 ![edit profile](image/edited1.jpg)
 ![edit profile](image/edited2.jpg)
