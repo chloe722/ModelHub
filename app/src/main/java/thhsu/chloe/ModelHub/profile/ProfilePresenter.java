@@ -248,7 +248,7 @@ public class ProfilePresenter implements ProfileContract.Presenter{
 
 
 
-    //                 Upload file (testing)
+    //                 Upload file (createAccountTesting)
     //                mActivity.getContentResolver().openInputStream(mImageUri)
 //    File f = new File(mImageUri.getPath());
 //                Log.d("Chloe", "f: " + f);
