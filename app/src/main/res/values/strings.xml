@@ -1,13 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ModelHub</string>
-    <string name="Home">Home</string>
     <string name="join_us_be_the_memebr_for_free">Be the member for free. Explore more features. </string>
     <string name="or">or</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="resume">Resume</string>
-    <string name="status">Status: Member</string>
     <string name="job_tyoe">I\'m looking for...</string>
     <string name="commercial_video">Commercial Video</string>
     <string name="acting">Acting</string>
@@ -19,15 +15,12 @@
     <string name="paid">Paid</string>
     <string name="unpaid">Unpaid</string>
     <string name="internship">Internship</string>
-    <string name="part_time">Part-Time</string>
     <string name="permanent">Permanent</string>
     <string name="remote">Remote</string>
     <string name="fullstack_developer">FullStack Developer</string>
     <string name="invalidName">invalid Name</string>
     <string name="invalidEmail">invalid Email</string>
     <string name="invalid_phone_number">invalid phone number</string>
-    <string name="invalidUrl">invalid URL</string>
-    <string name="later">Later</string>
     <string name="ok">I got it</string>
     <string name="button_allow">Allow</string>
     <string name="button_deny">Deny</string>
@@ -88,4 +81,6 @@
     <string name="opportunities">Opportunities</string>
     <string name="we_re_looking_for">We\'re looking for..</string>
     <string name="apply">Apply</string>
+    <string name="about_menu">About</string>
+    <string name="sign_out_menu">Sign Out</string>
 </resources>

@@ -72,6 +72,7 @@ public class ProfilePresenter implements ProfileContract.Presenter{
 
         } else if (requestCode == Constants.CROP_IMAGE) {
             if (!mImageUri.equals("")) {
+
                 mProfileView.showUserPhoto(mImageUri);
             }
         }
@@ -245,33 +246,32 @@ public class ProfilePresenter implements ProfileContract.Presenter{
 }
 
 
-//    //                 Upload file (testing)
-////                mActivity.getContentResolver().openInputStream(mImageUri)
+
+
+    //                 Upload file (testing)
+    //                mActivity.getContentResolver().openInputStream(mImageUri)
 //    File f = new File(mImageUri.getPath());
+//                Log.d("Chloe", "f: " + f);
+
 //                ApiJobManager.getInstance().upLoadImage(f,new UploadImageCallBack(){
 //@Override
 //public void onComplete(String url){
-//        Log.d("Chloe","image-url: "+url);
-//        userImageUrl="https://moelhub.tw"+url;
-//        mUser.setProfilePic(userImageUrl);
-//        UpdateUserRequest r=new UpdateUserRequest(mUserToken,mUser);
-//        ApiJobManager.getInstance().getPostUserInfoResult(r,new PostUserInfoCallBack(){
-//@Override
-//public void onComplete(){
-////                                Toast.makeText(this, "Photo updated", Toast.LENGTH_SHORT).show();
-//        Picasso.get().load(userImageUrl).fit().centerCrop().transform(new CircleTransform()).into(mImageViewUserPhoto);
-//
+//        Log.d("Chloe", "url from server: " + url);
+////                            Log.d("Chloe","image-url: "+url);
+////                            userImageUrl="https://moelhub.tw"+url;
+////                            mUser.setProfilePic(userImageUrl);
+////                            UpdateUserRequest r=new UpdateUserRequest(mUserToken,mUser);
+////                            ApiJobManager.getInstance().getPostUserInfoResult(r,new PostUserInfoCallBack(){
+////                    @Override
+////                    public void onComplete(){
+////                            Picasso.get().load(userImageUrl).fit().centerCrop().transform(new CircleTransform()).into(mImageViewUserPhoto);}
+////
+////                    @Override
+////                    public void onError(String errorMessage){
+////                            Log.d("Chloe","error: "+errorMessage);
+////                    }});
 //        }
 //
 //@Override
-//public void onError(String errorMessage){
-//        Log.d("Chloe","error: "+errorMessage);
-//        }
-//        });
-//        }
-//
-//@Override
-//public void onError(String errorMessage){
-//
-//        }
+//public void onError(String errorMessage){}
 //        });
