@@ -36,16 +36,4 @@ public class FilterPresenter implements FilterContract.Presenter {
         });
     }
 
-
-
-
-
 }
-
-//    @Override
-//    public void transToHome() {
-//        Intent intent = new Intent(, ModelHubActivity.class);
-////        mPresenter.transToHome();
-////        mModelHubActivity.showHomeUi();
-//    }
-//}

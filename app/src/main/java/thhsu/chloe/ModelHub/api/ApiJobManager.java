@@ -173,7 +173,7 @@ public class ApiJobManager {
     }
 
     public void upLoadImage(File image, final UploadImageCallBack uploadImageCallBack){
-        RequestBody b = RequestBody.create(MediaType.parse("image/*"), image);
+        RequestBody b = RequestBody.create(MediaType.parse("image/jpeg"), image);
         Call<UploadResponse> call = ApiManager.getInstance().apiCasesService.uploadImage(b);
         call.enqueue(new Callback<UploadResponse>() {
             @Override

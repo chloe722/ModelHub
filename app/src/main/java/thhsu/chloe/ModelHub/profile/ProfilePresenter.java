@@ -17,6 +17,8 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -25,6 +27,11 @@ import java.util.List;
 import thhsu.chloe.ModelHub.ModelHub;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
+import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
+import thhsu.chloe.ModelHub.api.PostUserInfoCallBack;
+import thhsu.chloe.ModelHub.api.UploadImageCallBack;
+import thhsu.chloe.ModelHub.api.model.UpdateUserRequest;
+import thhsu.chloe.ModelHub.utils.CircleTransform;
 import thhsu.chloe.ModelHub.utils.Constants;
 import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 import thhsu.chloe.ModelHub.api.model.User;
@@ -65,6 +72,7 @@ public class ProfilePresenter implements ProfileContract.Presenter{
 
         } else if (requestCode == Constants.CROP_IMAGE) {
             if (!mImageUri.equals("")) {
+
                 mProfileView.showUserPhoto(mImageUri);
             }
         }
@@ -236,3 +244,34 @@ public class ProfilePresenter implements ProfileContract.Presenter{
         return null;
     }
 }
+
+
+
+
+    //                 Upload file (testing)
+    //                mActivity.getContentResolver().openInputStream(mImageUri)
+//    File f = new File(mImageUri.getPath());
+//                Log.d("Chloe", "f: " + f);
+
+//                ApiJobManager.getInstance().upLoadImage(f,new UploadImageCallBack(){
+//@Override
+//public void onComplete(String url){
+//        Log.d("Chloe", "url from server: " + url);
+////                            Log.d("Chloe","image-url: "+url);
+////                            userImageUrl="https://moelhub.tw"+url;
+////                            mUser.setProfilePic(userImageUrl);
+////                            UpdateUserRequest r=new UpdateUserRequest(mUserToken,mUser);
+////                            ApiJobManager.getInstance().getPostUserInfoResult(r,new PostUserInfoCallBack(){
+////                    @Override
+////                    public void onComplete(){
+////                            Picasso.get().load(userImageUrl).fit().centerCrop().transform(new CircleTransform()).into(mImageViewUserPhoto);}
+////
+////                    @Override
+////                    public void onError(String errorMessage){
+////                            Log.d("Chloe","error: "+errorMessage);
+////                    }});
+//        }
+//
+//@Override
+//public void onError(String errorMessage){}
+//        });

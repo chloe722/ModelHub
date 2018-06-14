@@ -9,31 +9,42 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import thhsu.chloe.ModelHub.R;
+import thhsu.chloe.ModelHub.signUp.SignUpContract;
+import thhsu.chloe.ModelHub.signUp.SignUpPresenter;
 import thhsu.chloe.ModelHub.utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiJobManager;
-import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
 
 /**
  * Created by Chloe on 5/13/2018.
  */
 
-public class SignUpActivity extends BaseActivity implements View.OnClickListener{
+public class SignUpActivity extends BaseActivity implements SignUpContract.View, View.OnClickListener{
     private TextInputLayout mTextInputLayoutRegisterEmail, mTextInputLayoutRegisterPassword, mTextInputLayoutRegisterConfirmPassword,
             mTextInputLayoutRegisterName, mTextInputLayoutRegisterAge;
     private EditText mEditTextRegisterEmail, mEditTextRegisterPassword, mEditTextRegisterConfirmPassword,
             mEditTextRegisterName, mEditTextRegisterAge;
-    private String mUserToken, mUserEmail, mUserName, mUserAge, mUserGender;
+    private String mUserEmail;
+    private String mUserName;
+    private String mUserAge;
+    private String mUserGender;
     private RadioGroup mRadioGroupGender;
     private SharedPreferences mSharedPreferences;
+    private SignUpContract.Presenter mPresenter;
+
+
+    @Override
+    public void setPresenter(SignUpContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+
+        mPresenter = new SignUpPresenter(this, getApplicationContext());
         mSharedPreferences = this.getSharedPreferences(Constants.USER_DATA, MODE_PRIVATE);
 
         mTextInputLayoutRegisterAge = (TextInputLayout) findViewById(R.id.textinputLayout_signup_age_);
@@ -115,29 +126,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     mUserAge =  mEditTextRegisterAge.getText().toString();
                     mUserGender = selectedGender.getText().toString();
                     password = mEditTextRegisterPassword.getText().toString();
-                    ApiJobManager.getInstance().getRegister(mUserName, mUserAge, mUserGender, mUserEmail, password, new PostRegisterLoginCallBack() {
-                        @Override
-                        public void onCompleted(String token) {
-                            Intent intent = new Intent(SignUpActivity.this, ModelHubActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            mUserToken = token;
-                            mSharedPreferences.edit()
-                                    .putString(Constants.USER_TOKEN, mUserToken)
-                                    .putString(Constants.USER_EMAIL, mUserEmail)
-                                    .putString(Constants.USER_NAME, mUserName)
-                                    .putString(Constants.USER_AGE, mUserAge)
-                                    .putString(Constants.USER_GENDER, mUserGender)
-                                    .apply();
-                            setResult(Constants.RESULT_SUCCESS);
-                            startActivity(intent);
-                            finish();
-                        }
 
-                        @Override
-                        public void onError(String errorMessage) {
-                            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    mPresenter.onClickSignUp(mUserName, mUserAge, mUserGender, mUserEmail, password);
                 }
 
                 break;
@@ -147,4 +137,20 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+
+    @Override
+    public void onClickSignUpUi(String token) {
+        Intent intent = new Intent(SignUpActivity.this, ModelHubActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mSharedPreferences.edit()
+                .putString(Constants.USER_TOKEN, token)
+                .putString(Constants.USER_EMAIL, mUserEmail)
+                .putString(Constants.USER_NAME, mUserName)
+                .putString(Constants.USER_AGE, mUserAge)
+                .putString(Constants.USER_GENDER, mUserGender)
+                .apply();
+        setResult(Constants.RESULT_SUCCESS);
+        startActivity(intent);
+        finish();
+    }
 }

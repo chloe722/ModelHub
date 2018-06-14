@@ -202,33 +202,3 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     }
 }
 
-// Upload file (testing)
-//                getContext().getContentResolver().openInputStream(mImageUri)
-//                File f = new File(mImageUri.getPath());
-//                ApiJobManager.getInstance().upLoadImage(f, new UploadImageCallBack() {
-//                    @Override
-//                    public void onComplete(String url) {
-//                        Log.d("Chloe", "image-url: "+url);
-//                        userImageUrl = "https://moelhub.tw" + url;
-//                        mUser.setProfilePic(userImageUrl);
-//                        UpdateUserRequest r = new UpdateUserRequest(mUserToken, mUser);
-//                        ApiJobManager.getInstance().getPostUserInfoResult(r, new PostUserInfoCallBack() {
-//                            @Override
-//                            public void onComplete() {
-////                                Toast.makeText(this, "Photo updated", Toast.LENGTH_SHORT).show();
-//                                Picasso.get().load(userImageUrl).fit().centerCrop().transform(new CircleTransform()).into(mImageViewUserPhoto);
-//
-//                            }
-//
-//                            @Override
-//                            public void onError(String errorMessage) {
-//                                Log.d("Chloe","error: " + errorMessage);
-//                            }
-//                        });
-//                    }
-//
-//                    @Override
-//                    public void onError(String errorMessage) {
-//
-//                    }
-//                });

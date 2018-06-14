@@ -23,4 +23,5 @@ public class ExampleInstrumentedTest {
 
         assertEquals("thhsu.chloe.jeeva", appContext.getPackageName());
     }
+
 }
