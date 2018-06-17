@@ -66,8 +66,9 @@ public class SignInActivity extends BaseActivity implements SignInContract.View,
     @Override
     public void showEmailError(boolean isError){
         if(isError){
-            mTextInputLayoutSignInEmail.setError(getString(R.string.invalidEmail));
+            mTextInputLayoutSignInEmail.setError("Invalid Email");
         }else{
+
             mTextInputLayoutSignInEmail.setErrorEnabled(false);
         }
     }

@@ -4,27 +4,25 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.util.ArrayList;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-//import thhsu.chloe.jeeva.api.model.FilterJobs;
+import retrofit2.Callback;
+import retrofit2.Response;
 import thhsu.chloe.ModelHub.ModelHub;
-import thhsu.chloe.ModelHub.activities.ModelHubActivity;
-import thhsu.chloe.ModelHub.activities.SignInActivity;
 import thhsu.chloe.ModelHub.api.model.Jobs;
 import thhsu.chloe.ModelHub.api.model.PostUserInfoResult;
 import thhsu.chloe.ModelHub.api.model.RegisterResult;
 import thhsu.chloe.ModelHub.api.model.Result;
-
-
-import retrofit2.Callback;
-import retrofit2.Response;
 import thhsu.chloe.ModelHub.api.model.UpdateUserRequest;
 import thhsu.chloe.ModelHub.api.model.UserInfo;
+
+//import thhsu.chloe.jeeva.api.model.FilterJobs;
 
 
 /**
@@ -142,7 +140,9 @@ public class ApiJobManager {
                         Log.d("Chloe", "LogIn get token: " + (response.body().getToken()));
                     }
                 }else{
-                    Toast.makeText(ModelHub.getAppContext(), "Email doesn't exist", Toast.LENGTH_SHORT).show();
+                    Gson gson = new Gson();
+                    ErrorResponse r = gson.fromJson(response.errorBody().charStream(),ErrorResponse.class);
+                    Toast.makeText(ModelHub.getAppContext(), r.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -162,8 +162,8 @@ public class ApiJobManager {
                     postUserInfoCallBack.onComplete();
                     Log.d("Chloe", "Post user info success!: " + (response.body().getOk()));
                 }else{
-                    Toast.makeText(ModelHub.getAppContext(), response.body().message, Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(ModelHub.getAppContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+            }
             }
             @Override
             public void onFailure(Call<PostUserInfoResult> call, Throwable t) {

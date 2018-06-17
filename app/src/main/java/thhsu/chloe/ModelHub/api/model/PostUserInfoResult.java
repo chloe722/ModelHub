@@ -12,8 +12,19 @@ public class PostUserInfoResult {
     @SerializedName("ok")
     @Expose
     private Boolean ok;
-    public String message;
-    
+
+    @SerializedName("message")
+    @Expose
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public Boolean getOk() {
         return ok;
     }
