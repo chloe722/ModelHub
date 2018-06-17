@@ -104,14 +104,12 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
     }
 
     @Override
-    public boolean showConfirmPasswordError(Boolean isError){
+    public void showConfirmPasswordError(Boolean isError){
         if(isError){
             mTextInputLayoutRegisterConfirmPassword.setError("Password must match");
-            return true;
         }else{
             mTextInputLayoutRegisterConfirmPassword.setErrorEnabled(false);
         }
-        return false;
     }
 
     @Override

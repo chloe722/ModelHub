@@ -19,16 +19,33 @@ public class SignInPresenter implements SignInContract.Presenter {
 
     @Override
     public void onClickSignIn(String email, String password) {
+        boolean haveError = false;
 
-        ApiJobManager.getInstance().getLogInResult(email, password, new PostRegisterLoginCallBack() {
-            @Override
-            public void onCompleted(String token) {
-               mView.onClickSignInUi(token);
-            }
+        if (email.equals("") || !(email.contains("@"))) {
+            haveError = true;
+            mView.showEmailError(true);
+        } else {
+            mView.showEmailError(false);
+        }
 
-            @Override
-            public void onError(String errorMessage) {
-            }
-        });
+        if (password.length() < 6) {
+            haveError = true;
+            mView.showPasswordError(true);
+        } else {
+            mView.showPasswordError(false);
+        }
+
+        if(!haveError) {
+            ApiJobManager.getInstance().getLogInResult(email, password, new PostRegisterLoginCallBack() {
+                @Override
+                public void onCompleted(String token) {
+                    mView.onClickSignInUi(token);
+                }
+
+                @Override
+                public void onError(String errorMessage) {
+                }
+            });
+        }
     }
 }

@@ -28,8 +28,6 @@ public class SignUpPresenter implements SignUpContract.Presenter {
 
     }
 
-
-
     @Override
     public void onClickSignUp(String name, String age, String gender, String email, String password, String confirmPassword) {
         boolean haveError = false;
