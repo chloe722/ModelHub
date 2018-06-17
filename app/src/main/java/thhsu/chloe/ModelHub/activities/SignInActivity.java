@@ -12,8 +12,6 @@ import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.signIn.SignInContract;
 import thhsu.chloe.ModelHub.signIn.SignInPresenter;
 import thhsu.chloe.ModelHub.utils.Constants;
-import thhsu.chloe.ModelHub.api.ApiJobManager;
-import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
 
 /**
  * Created by Chloe on 5/7/2018.
@@ -57,42 +55,33 @@ public class SignInActivity extends BaseActivity implements SignInContract.View,
                 break;
 
             case R.id.btn_signin_signin:
-                if (validateLogInData()) {
                     String email, password;
                     email = mEditTextSignInEmail.getText().toString();
                     password = mEditTextSignInPassword.getText().toString();
-
                     mPresenter.onClickSignIn(email, password);
-
-                }
                 break;
         }
     }
 
+    @Override
+    public void showEmailError(boolean isError){
+        if(isError){
+            mTextInputLayoutSignInEmail.setError("Invalid Email");
+        }else{
 
-    public boolean validateLogInData() {
-
-        boolean result = true;
-
-        String email = mEditTextSignInEmail.getText().toString();
-        if (email.equals("") || !(email.contains("@"))) {
-            mTextInputLayoutSignInEmail.setError(getString(R.string.invalidEmail));
-            result = false;
-        } else {
             mTextInputLayoutSignInEmail.setErrorEnabled(false);
         }
-
-        String password = mEditTextSignInPassword.getText().toString();
-        if (password.length() < 6) {
-            mTextInputLayoutSignInPassword.setError("At least 6 characters");
-            result = false;
-        } else {
-            mTextInputLayoutSignInPassword.setErrorEnabled(false);
-        }
-        return result;
     }
 
+    @Override
+    public void showPasswordError(boolean isError){
+        if(isError){
+            mTextInputLayoutSignInPassword.setError("At least 6 characters");
+        }else{
+            mTextInputLayoutSignInPassword.setErrorEnabled(false);
 
+        }
+    }
 
     @Override
     public void onClickSignInUi(String token) {

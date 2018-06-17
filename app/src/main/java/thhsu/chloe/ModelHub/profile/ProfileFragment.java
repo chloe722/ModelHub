@@ -3,7 +3,6 @@ package thhsu.chloe.ModelHub.profile;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +10,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -29,12 +30,12 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 import thhsu.chloe.ModelHub.R;
 import thhsu.chloe.ModelHub.adapters.ProfileViewPagerAdapter;
+import thhsu.chloe.ModelHub.api.model.User;
 import thhsu.chloe.ModelHub.profileInfo.ProfileInfoFragment;
 import thhsu.chloe.ModelHub.profileInfo.ProfileInfoPresenter;
 import thhsu.chloe.ModelHub.profileWorkbook.ProfileWorkbookFragment;
 import thhsu.chloe.ModelHub.profileWorkbook.ProfileWorkbookPresenter;
 import thhsu.chloe.ModelHub.utils.CircleTransform;
-import thhsu.chloe.ModelHub.api.model.User;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -42,7 +43,7 @@ import thhsu.chloe.ModelHub.api.model.User;
 
 @RuntimePermissions
 public class ProfileFragment extends Fragment implements ProfileContract.View, View.OnClickListener {
-    private ImageView mImageViewUserPhoto;
+    private ImageView mImageViewUserPhoto, mImageViewUserCover;
     private ProfileContract.Presenter mPresenter;
     private BottomSheetDialog mBottomSheetDialog;
     private TextView mTextViewUserName, mTextViewUserHeight, mTextViewUserLocation, mTextViewUserWeight, mTextViewUserNationality;
@@ -67,7 +68,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         mTextViewUserWeight = (TextView) root.findViewById(R.id.textview_profile_weight_text);
         mTextViewUserHeight = (TextView) root.findViewById(R.id.textview_profile_height_text);
         mTextViewUserNationality = (TextView) root.findViewById(R.id.textview_profile_nationality_text);
-        ImageView imageViewUserCover = (ImageView) root.findViewById(R.id.imageview_profile_cover_image);
+        mImageViewUserCover = (ImageView) root.findViewById(R.id.imageview_profile_cover_image);
 
         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
         ViewPager viewPager = (ViewPager) root.findViewById(R.id.viewpager_profile);
@@ -91,8 +92,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         gallery.setOnClickListener(this);
         cameraBtn.setOnClickListener(this);
 
-        Picasso.get().load("http://www.cianellistudios.com/blog/wp-content/uploads/2010/12/" +
-                "abstract-art-painting-canvas-art-mother-earth.jpg").fit().into(imageViewUserCover);
+
 
         mPresenter.showUserInfo();
 
@@ -168,7 +168,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
     }
 
     @Override
-    public void showUserPhoto(Uri uri) {
+    public void showUserPhoto(String uri) {
         Picasso.get().load(uri).fit().centerCrop().transform(new CircleTransform()).into(mImageViewUserPhoto);
     }
 
@@ -182,6 +182,12 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         String userLocationCountry = user.getCountry();
         String userLocation = (userLocationCity != null ? userLocationCity + " , " : "") +
                 (userLocationCountry != null ? userLocationCountry : "");
+        String userProfilePhoto = user.getProfilePic();
+        Log.d("Chloe", "user pohto:" + user.getProfilePic());
+
+        if (userProfilePhoto != null){
+            showUserPhoto(userProfilePhoto);
+        }
 
         mTextViewUserName.setText(userName);
         mTextViewUserLocation.setText(userLocation);
@@ -199,6 +205,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
         if (!(mTextViewUserLocation == null || mTextViewUserLocation.equals(""))) {
             mTextViewUserLocation.setVisibility(View.VISIBLE);
         }
+
+        Picasso.get().load("http://www.cianellistudios.com/blog/wp-content/uploads/2010/12/" +
+                "abstract-art-painting-canvas-art-mother-earth.jpg").fit().into(mImageViewUserCover);
+
     }
 }
 

@@ -1,7 +1,6 @@
 package thhsu.chloe.ModelHub.profile;
 
 import android.content.Intent;
-import android.net.Uri;
 
 import thhsu.chloe.ModelHub.BasePresenter;
 import thhsu.chloe.ModelHub.BaseView;
@@ -17,7 +16,7 @@ public interface ProfileContract {
 
         void showUserInfoUi(User user);
 
-        void showUserPhoto(Uri uri);
+        void showUserPhoto(String uri);
     }
 
     interface Presenter extends BasePresenter{

@@ -12,6 +12,10 @@ public interface SignInContract {
     interface View extends BaseView<Presenter> {
 
         void onClickSignInUi(String token);
+
+        void showEmailError(boolean isError);
+
+        void showPasswordError(boolean isError);
     }
 
     interface Presenter extends BasePresenter{

@@ -43,7 +43,6 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void onResume() {
         super.onResume();
-//        mPresenter.loadJobs();
     }
 
     @Nullable
@@ -114,11 +113,5 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         ((RecyclerView) getView().findViewById(R.id.fragment_home_vertical_recyclerview)).getLayoutManager().onRestoreInstanceState(recyclerViewState);
 
     }
-
-//    @Override
-//    public void clearJobs() {
-//        mHomeAdapter.clearJobs();
-//    }
-
 
 }

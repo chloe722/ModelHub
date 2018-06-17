@@ -150,7 +150,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
     }
 
     @Override
-    public void transToProfile() {
+    public void transToProfile(String token) {
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
 
@@ -167,7 +167,7 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         transaction.commit();
 
         if (mProfilePresenter == null) {
-            mProfilePresenter = new ProfilePresenter(mProfileFragment, mActivity);
+            mProfilePresenter = new ProfilePresenter(mProfileFragment, mActivity, token);
         }
         mModelHubContractView.showProfileUi();
     }
