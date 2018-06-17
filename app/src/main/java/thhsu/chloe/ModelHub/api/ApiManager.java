@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiManager {
     public static final String BASE_URL = "https://ModelHub.tw/api/";
-    public ApiJobsService apiCasesService;
+    public ApiJobsService apiJobsService;
 
 
 
@@ -34,7 +34,7 @@ public class ApiManager {
                 .client(client)
                 .build();
 
-        apiCasesService = retrofit.create(ApiJobsService.class);
+        apiJobsService = retrofit.create(ApiJobsService.class);
 
     }
 

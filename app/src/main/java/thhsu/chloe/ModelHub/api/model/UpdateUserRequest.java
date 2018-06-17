@@ -6,7 +6,6 @@ package thhsu.chloe.ModelHub.api.model;
 
 public class UpdateUserRequest {
     public String token;
-//    public UpdateUserFields user = new UpdateUserFields();
     public User user = new User();
 
     public UpdateUserRequest(String token, User user) {

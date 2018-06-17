@@ -34,7 +34,7 @@ public interface ModelHubContract {
 
         void transToInterest();
 
-        void transToProfile();
+        void transToProfile(String token);
 
         void transToSignInTabPage();
 

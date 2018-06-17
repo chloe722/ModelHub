@@ -22,7 +22,7 @@ public class User {
     private String name;
     @SerializedName("profile_pic")
     @Expose
-    private Object profilePic;
+    private String profilePic;
     @SerializedName("email")
     @Expose
     private String email;
@@ -204,11 +204,11 @@ public class User {
         this.name = name;
     }
 
-    public Object getProfilePic() {
+    public String getProfilePic() {
         return profilePic;
     }
 
-    public void setProfilePic(Object profilePic) {
+    public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
 

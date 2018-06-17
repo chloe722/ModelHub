@@ -17,24 +17,20 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import thhsu.chloe.ModelHub.ModelHub;
+import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 import thhsu.chloe.ModelHub.api.ApiJobManager;
 import thhsu.chloe.ModelHub.api.GetUserInfoCallBack;
-import thhsu.chloe.ModelHub.api.PostRegisterLoginCallBack;
 import thhsu.chloe.ModelHub.api.PostUserInfoCallBack;
 import thhsu.chloe.ModelHub.api.UploadImageCallBack;
 import thhsu.chloe.ModelHub.api.model.UpdateUserRequest;
-import thhsu.chloe.ModelHub.utils.CircleTransform;
-import thhsu.chloe.ModelHub.utils.Constants;
-import thhsu.chloe.ModelHub.activities.ModelHubActivity;
 import thhsu.chloe.ModelHub.api.model.User;
+import thhsu.chloe.ModelHub.utils.Constants;
 
 /**
  * Created by Chloe on 4/30/2018.
@@ -44,14 +40,20 @@ public class ProfilePresenter implements ProfileContract.Presenter{
     private Uri mImageUri;
     private ProfileContract.View mProfileView;
     private ModelHubActivity mActivity;
+    private File mCameraPhotoFile, mGalleryPhotoFile;
+    private String userImageUrl, mUserToken;
+    private User mUser = new User();
 
-    public ProfilePresenter(ProfileContract.View profileView, ModelHubActivity modelHubActivity){
+    public ProfilePresenter(ProfileContract.View profileView, ModelHubActivity modelHubActivity, String token){
         mProfileView = profileView;
         if(profileView != null){
             mProfileView.setPresenter(this);
         }
         mActivity= modelHubActivity;
+        mUserToken = token;
     }
+
+
 
     @Override
     public void start() {}
@@ -66,14 +68,19 @@ public class ProfilePresenter implements ProfileContract.Presenter{
         } else if (requestCode == Constants.PICK_IMAGE_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 String path = getRealPathFromURI(data.getData());
-                File imageFile = new File(path);
-                performCropImageFromGallery(mImageUri, FileProvider.getUriForFile(mActivity, "thhsu.chloe.ModelHub", imageFile));
+                mGalleryPhotoFile = new File(path);
+                performCropImageFromGallery(mImageUri, FileProvider.getUriForFile(mActivity, "thhsu.chloe.ModelHub", mGalleryPhotoFile));
             }
 
         } else if (requestCode == Constants.CROP_IMAGE) {
             if (!mImageUri.equals("")) {
 
-                mProfileView.showUserPhoto(mImageUri);
+                if(mCameraPhotoFile != null){
+                    uploadImage(mCameraPhotoFile);
+                }else{
+                    uploadImage(mGalleryPhotoFile);
+                }
+//                mProfileView.showUserPhoto(mImageUri);
             }
         }
     }
@@ -100,14 +107,14 @@ public class ProfilePresenter implements ProfileContract.Presenter{
     public void takePhoto() {
         Intent takePicIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(takePicIntent.resolveActivity(mActivity.getPackageManager()) != null){
-            File photoFile = null; // Create an file
+            mCameraPhotoFile = null; // Create an file
             try {
-                photoFile = createImageFile();
+                mCameraPhotoFile = createImageFile();
             }catch (IOException ex){
                 ex.printStackTrace();
             }
-            if(photoFile != null){
-                mImageUri = FileProvider.getUriForFile(mActivity,"thhsu.chloe.ModelHub", photoFile); //mImageCameraTempUri
+            if(mCameraPhotoFile != null){
+                mImageUri = FileProvider.getUriForFile(mActivity,"thhsu.chloe.ModelHub", mCameraPhotoFile); //mImageCameraTempUri
                 takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
                 takePicIntent.putExtra("ImageUri", mImageUri);
                 mActivity.startActivityForResult(takePicIntent, Constants.CAPTURE_IMAGE_FRAGMENT_REQUEST);
@@ -121,17 +128,48 @@ public class ProfilePresenter implements ProfileContract.Presenter{
         Intent intentPhotoPicker = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intentPhotoPicker.setType("image/*");
         if(intentPhotoPicker.resolveActivity(mActivity.getPackageManager())!= null){
-            File imageFile = null;
+            File mGalleryPhotoFile = null;
             try {
-                imageFile = createImageFile();
+                mGalleryPhotoFile = createImageFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(imageFile != null){
-                mImageUri = FileProvider.getUriForFile(mActivity,"thhsu.chloe.ModelHub", imageFile); //mImageCameraTempUri
+            if(mGalleryPhotoFile != null){
+                mImageUri = FileProvider.getUriForFile(mActivity,"thhsu.chloe.ModelHub", mGalleryPhotoFile); //mImageCameraTempUri
                 mActivity.startActivityForResult(intentPhotoPicker, Constants.PICK_IMAGE_REQUEST);
             }
         }
+    }
+
+    private void uploadImage(File file){
+        ApiJobManager.getInstance().upLoadImage(file,new UploadImageCallBack(){
+            @Override
+            public void onComplete(String url){
+                userImageUrl="https://modelhub.tw"+url;
+                updateUserPhoto(userImageUrl);
+            }
+
+            @Override
+            public void onError(String errorMessage){}
+        });
+    }
+
+    private void updateUserPhoto(final String photoUrl){
+        UpdateUserRequest r = new UpdateUserRequest();
+        r.token = mUserToken;
+        r.user.setProfilePic(photoUrl);
+        Log.d("Chloe", "token: " + mUserToken);
+        ApiJobManager.getInstance().getPostUserInfoResult( r ,new PostUserInfoCallBack(){
+            @Override
+            public void onComplete(){
+                mProfileView.showUserPhoto(photoUrl);
+
+            }
+
+            @Override
+            public void onError(String errorMessage){
+                    Log.d("Chloe","error: "+errorMessage);
+            }});
     }
 
 
@@ -248,30 +286,3 @@ public class ProfilePresenter implements ProfileContract.Presenter{
 
 
 
-    //                 Upload file (createAccountTesting)
-    //                mActivity.getContentResolver().openInputStream(mImageUri)
-//    File f = new File(mImageUri.getPath());
-//                Log.d("Chloe", "f: " + f);
-
-//                ApiJobManager.getInstance().upLoadImage(f,new UploadImageCallBack(){
-//@Override
-//public void onComplete(String url){
-//        Log.d("Chloe", "url from server: " + url);
-////                            Log.d("Chloe","image-url: "+url);
-////                            userImageUrl="https://moelhub.tw"+url;
-////                            mUser.setProfilePic(userImageUrl);
-////                            UpdateUserRequest r=new UpdateUserRequest(mUserToken,mUser);
-////                            ApiJobManager.getInstance().getPostUserInfoResult(r,new PostUserInfoCallBack(){
-////                    @Override
-////                    public void onComplete(){
-////                            Picasso.get().load(userImageUrl).fit().centerCrop().transform(new CircleTransform()).into(mImageViewUserPhoto);}
-////
-////                    @Override
-////                    public void onError(String errorMessage){
-////                            Log.d("Chloe","error: "+errorMessage);
-////                    }});
-//        }
-//
-//@Override
-//public void onError(String errorMessage){}
-//        });
