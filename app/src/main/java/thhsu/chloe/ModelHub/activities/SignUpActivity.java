@@ -67,68 +67,68 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
         registerBackBtn.setOnClickListener(this);
     }
 
-
-    public boolean validateRegisterData() {
-        boolean result = true;
-
-        String name = mEditTextRegisterName.getText().toString();
-        if (name.equals("") || name.length() < 3) {
+    @Override
+    public void showNameError(Boolean isError){
+            if(isError)
             mTextInputLayoutRegisterName.setError("invalid Name");
-            result = false;
-        } else {
-            mTextInputLayoutRegisterName.setErrorEnabled(false);
-        }
+            else{
+                mTextInputLayoutRegisterName.setErrorEnabled(false);
+            }
+    }
 
-        String age = mEditTextRegisterAge.getText().toString();
-        if (age.equals("") || age.length() > 2) {
+    @Override
+    public void showAgeError(Boolean isError){
+        if(isError){
             mTextInputLayoutRegisterAge.setError("invalid number input");
-        } else {
+        }else{
             mTextInputLayoutRegisterAge.setErrorEnabled(false);
         }
+    }
 
-        String email = mEditTextRegisterEmail.getText().toString();
-        if (email.equals("") || !(email.contains("@"))) {
+    @Override
+    public void showEmailError(Boolean isError){
+        if(isError){
             mTextInputLayoutRegisterEmail.setError(getString(R.string.invalidEmail));
-            result = false;
-        } else {
+        }else{
             mTextInputLayoutRegisterEmail.setErrorEnabled(false);
         }
+    }
 
-        String password = mEditTextRegisterPassword.getText().toString();
-        if (password.length() < 6) {
+    @Override
+    public void showPasswordError(Boolean isError){
+        if(isError){
             mTextInputLayoutRegisterPassword.setError("At least 6 characters");
-            result = false;
-        } else {
+        }else{
             mTextInputLayoutRegisterPassword.setErrorEnabled(false);
         }
+    }
 
-        String confirmPassword = mEditTextRegisterConfirmPassword.getText().toString();
-        if (!(confirmPassword.equals(password))) {
+    @Override
+    public boolean showConfirmPasswordError(Boolean isError){
+        if(isError){
             mTextInputLayoutRegisterConfirmPassword.setError("Password must match");
-            result = false;
-        } else {
+            return true;
+        }else{
             mTextInputLayoutRegisterConfirmPassword.setErrorEnabled(false);
         }
-
-        return result;
+        return false;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_signup_createaccount:
-                if(validateRegisterData()){
                     int selectedGenderId = mRadioGroupGender.getCheckedRadioButtonId();
                     RadioButton selectedGender = (RadioButton) findViewById(selectedGenderId);
-                    final String password;
+                    final String password, confirmPassword;
                     mUserName = mEditTextRegisterName.getText().toString();
                     mUserEmail = mEditTextRegisterEmail.getText().toString();
                     mUserAge =  mEditTextRegisterAge.getText().toString();
                     mUserGender = selectedGender.getText().toString();
                     password = mEditTextRegisterPassword.getText().toString();
+                    confirmPassword = mEditTextRegisterConfirmPassword.getText().toString();
 
-                    mPresenter.onClickSignUp(mUserName, mUserAge, mUserGender, mUserEmail, password);
-                }
+                    mPresenter.onClickSignUp(mUserName, mUserAge, mUserGender, mUserEmail, password, confirmPassword);
 
                 break;
             case R.id.btn_signup_back:
