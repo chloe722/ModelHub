@@ -21,10 +21,7 @@ public interface SignUpContract {
 
         void  showPasswordError(Boolean isError);
 
-        boolean showConfirmPasswordError(Boolean isError);
-
-
-
+        void showConfirmPasswordError(Boolean isError);
 
     }
 
