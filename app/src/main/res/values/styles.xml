@@ -1,6 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#ffffff</item>
@@ -20,13 +19,5 @@
         <item name="android:minWidth">0dp</item>
         <item name="android:paddingRight">300dp</item>
     </style>
-    
-    <!--<style name="Theme.MaterialComponents" parent="Theme.MaterialComponents">-->
-        <!--<item name="android:strokeColor">#C6C6C6</item>-->
-    <!--</style>-->
-
-    <!--<style name="android.support.design.widget.TextInputLayout" parent="android.support.design.widget.TextInputLayout">-->
-        <!--<item name="android:strokeColor">#C6C6C6</item>-->
-    <!--</style>-->
 
 </resources>

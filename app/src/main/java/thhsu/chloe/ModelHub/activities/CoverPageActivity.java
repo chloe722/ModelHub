@@ -13,6 +13,7 @@ public class CoverPageActivity extends BaseActivity implements CoverPageContract
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_cover_page);
         Button getStartedBtn = (Button) findViewById(R.id.btn_coverpage_getStarted);
         mPresenter = new CoverPagePresenter(this);

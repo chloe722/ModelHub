@@ -85,7 +85,7 @@
         android:background="#ffffff"
         app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
-        app:menu="@menu/bottom_navigation_main"
+        app:menu="@menu/bottom_nav_main_model_mode"
         />
 
 

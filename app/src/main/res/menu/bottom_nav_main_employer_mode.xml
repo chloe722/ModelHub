@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_post_job"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="Post"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_models_list"
+        android:icon="@drawable/ic_view_comfy_black_24dp"
+        android:title="Models"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_inbox_employer_mode"
+        android:icon="@drawable/ic_mail_outline_black_24dp"
+        android:title="InBox"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_profile_employer"
+        android:icon="@drawable/ic_person_black_36dp"
+        android:title="Profile"
+        app:showAsAction="ifRoom" />
+</menu>

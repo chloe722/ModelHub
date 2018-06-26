@@ -56,10 +56,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name="thhsu.chloe.ModelHub.activities.SignInActivity"
@@ -96,7 +92,6 @@
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/path"/>
         </provider>
-
 
         <meta-data
             android:name="io.fabric.ApiKey"

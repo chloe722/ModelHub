@@ -118,10 +118,11 @@ public class ModelHubPresenter implements ModelHubContract.Presenter {
         } else {
             transaction.show(mHomeFragment);
         }
-        transaction.commit();
         if (mHomePresenter == null) {
             mHomePresenter = new HomePresenter(mHomeFragment, mProgressBar);
         }
+
+        transaction.commit();
         mHomePresenter.refreshJobs();
         mModelHubContractView.showHomeUi();
     }
