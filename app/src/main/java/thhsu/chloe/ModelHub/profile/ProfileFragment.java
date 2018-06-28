@@ -72,7 +72,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
 
         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.profile_fragment_tablayout);
         ViewPager viewPager = (ViewPager) root.findViewById(R.id.viewpager_profile);
-        ProfileViewPagerAdapter mProfileViewPagerAdapter = new ProfileViewPagerAdapter(getChildFragmentManager());
+        ProfileViewPagerAdapter mProfileViewPagerAdapter = new ProfileViewPagerAdapter(getChildFragmentManager(), getContext());
         ProfileInfoFragment profileInfoFragment = new ProfileInfoFragment();
         ProfileWorkbookFragment profileWorkbookFragment = new ProfileWorkbookFragment();
         ProfileInfoPresenter profileInfoPresenter = new ProfileInfoPresenter(profileInfoFragment);
@@ -206,8 +206,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View, V
             mTextViewUserLocation.setVisibility(View.VISIBLE);
         }
 
-        Picasso.get().load("http://www.cianellistudios.com/blog/wp-content/uploads/2010/12/" +
-                "abstract-art-painting-canvas-art-mother-earth.jpg").fit().into(mImageViewUserCover);
+        Picasso.get().load("https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.0-9/23472259_1936414076677176_9152553920396243377_n.jpg?_nc_fx=ftpe7-2&_nc_cat=0&oh=7a50e61a5ff001ae55d2ae5a4de61780&oe=5BA62F31").fit().into(mImageViewUserCover);
 
     }
 }

@@ -245,8 +245,6 @@ public class AboutMeStepTwoFragment extends Fragment implements AboutMeStepTwoCo
                                 0;
     }
 
-
-
     private void saveUserData(){
         mSharedPreferences.edit()
                 .putString(Constants.USER_BIO, mUserBio)

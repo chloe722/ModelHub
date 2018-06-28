@@ -1,7 +1,7 @@
 package thhsu.chloe.ModelHub.adapters;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -17,9 +17,11 @@ import java.util.List;
 public class ProfileViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList<>();
+    private Context mContext;
 
-    public ProfileViewPagerAdapter(FragmentManager fm) {
+    public ProfileViewPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
+        mContext = context;
     }
 
     @Override
@@ -39,6 +41,7 @@ public class ProfileViewPagerAdapter extends FragmentStatePagerAdapter {
         switch (position){
 
             case 0:
+//                mDrawable = mContext.getDrawable(R.drawable.ic_add_black_24dp);
                 title = "Info";
                 break;
 

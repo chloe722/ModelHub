@@ -39,7 +39,7 @@ public class ApiJobManager {
 
     }
 
-    public void getJobs(final GetJobsCallBack casesCallBack){
+    public void getJobs(final GetJobsCallBack jobsCallBack){
 
         Call<Result<ArrayList<Jobs>>> call = ApiManager.getInstance().apiJobsService.getJobs();
 
@@ -50,7 +50,7 @@ public class ApiJobManager {
                 response.body();
                 Log.d("Chloe", "response.body" + response.body());
                 if(response.body().jobs != null){
-                    casesCallBack.onCompleted(response.body().jobs);
+                    jobsCallBack.onCompleted(response.body().jobs);
                 }else{
                     Log.d("Chloe", "response.body.jobs is empty");
                 }
@@ -59,7 +59,7 @@ public class ApiJobManager {
             @Override
             public void onFailure(Call<Result<ArrayList<Jobs>>> call, Throwable t) {
                 Log.d("Chloe", "onFailure");
-                casesCallBack.onError(t.getLocalizedMessage());
+                jobsCallBack.onError(t.getLocalizedMessage());
             }
         });
     }
